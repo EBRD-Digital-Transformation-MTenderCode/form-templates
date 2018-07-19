@@ -1,0 +1,19 @@
+{# @pebvariable name="aaa" type="Boolean" #}
+{
+{% macro translate(key) %}
+{{ i18n("templates/ei/messages",key) }}
+{% endmacro %}
+
+{% if aaa == true %}
+  "id": {
+    "type": "string",
+    "ocds": "buyer::object/addressDetails::object/locality::object/id::string"
+  },
+{% endif %}
+  "description": {
+    "type": "string",
+    "ocds": "buyer::object/addressDetails::string"
+  },
+  "name": "{{ translate("a.b.1") }}",
+  "title": "{{ translate("a.b.2") }}"
+}

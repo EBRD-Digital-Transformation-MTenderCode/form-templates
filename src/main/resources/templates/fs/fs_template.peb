@@ -1,0 +1,6 @@
+{
+{% macro translate(key) %}
+{{ i18n("i18n/fs/messages",key) }}
+{% endmacro %}
+
+}
