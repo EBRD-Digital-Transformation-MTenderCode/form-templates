@@ -104,7 +104,7 @@
           "type": "string",
           "ocds": "buyer::object/name::string"
         },
-        "addressDetails": {
+        "address": {
           "title": "Address",
           "type": "object",
           "properties": {
@@ -123,11 +123,13 @@
                   "properties": {
                     "id": {
                       "type": "string",
-                      "ocds": "buyer::object/addressDetails::object/country::object/id::string"
+                      "readOnly": true,
+                      "ocds": "buyer::object/address::object/addressDetails::object/country::object/id::string"
                     },
                     "description": {
                       "type": "string",
-                      "ocds": "buyer::object/addressDetails::object/country::object/description::string"
+                      "readOnly": true,
+                      "ocds": "buyer::object/address::object/addressDetails::object/country::object/description::string"
                     }
                   }
                 },
@@ -142,11 +144,11 @@
                   "properties": {
                     "id": {
                       "type": "string",
-                      "ocds": "buyer::object/addressDetails::object/region::object/id::string"
+                      "ocds": "buyer::object/address::object/addressDetails::object/region::object/id::string"
                     },
                     "description": {
                       "type": "string",
-                      "ocds": "buyer::object/addressDetails::object/region::object/description::string"
+                      "ocds": "buyer::object/address::object/addressDetails::object/region::object/description::string"
                     }
                   }
                 },
@@ -192,11 +194,11 @@
                                   "properties": {
                                     "id": {
                                       "type": "string",
-                                      "ocds": "buyer::object/addressDetails::object/locality::object/id::string"
+                                      "ocds": "buyer::object/address::object/addressDetails::object/locality::object/id::string"
                                     },
                                     "description": {
                                       "type": "string",
-                                      "ocds": "buyer::object/addressDetails::object/locality::object/description::string"
+                                      "ocds": "buyer::object/address::object/addressDetails::object/locality::object/description::string"
                                     }
                                   }
                                 }
@@ -228,16 +230,16 @@
                                     "schema": {
                                       "type": "string",
                                       "const": "other",
-                                      "ocds": "buyer::object/addressDetails::object/locality::object/schema::string"
+                                      "ocds": "buyer::object/address::object/addressDetails::object/locality::object/schema::string"
                                     },
                                     "id": {
                                       "type": "string",
                                       "const": "999999999",
-                                      "ocds": "buyer::object/addressDetails::object/locality::object/id::string"
+                                      "ocds": "buyer::object/address::object/addressDetails::object/locality::object/id::string"
                                     },
                                     "description": {
                                       "type": "string",
-                                      "ocds": "buyer::object/addressDetails::object/locality::object/description::string"
+                                      "ocds": "buyer::object/address::object/addressDetails::object/locality::object/description::string"
                                     }
                                   }
                                 }
@@ -261,12 +263,12 @@
                 "streetAddress": {
                   "title": "Street Address",
                   "type": "string",
-                  "ocds": "buyer::object/addressDetails::object/streetAddress::string"
+                  "ocds": "buyer::object/address::object/streetAddress::string"
                 },
                 "postalCode": {
                   "title": "Postal Code",
                   "type": "string",
-                  "ocds": "buyer::object/addressDetails::object/postalCode::string"
+                  "ocds": "buyer::object/address::object/postalCode::string"
                 }
               }
             }

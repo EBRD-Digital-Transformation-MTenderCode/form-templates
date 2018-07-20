@@ -1,6 +1,1819 @@
+{# @pebvariable name="uriCountry" type="String" #}
+{# @pebvariable name="uriRegion" type="String" #}
+{# @pebvariable name="uriLocality" type="String" #}
+{# @pebvariable name="uriRegistrationScheme" type="String" #}
+{# @pebvariable name="uriCurrency" type="String" #}
+{# @pebvariable name="funder" type="String" #}
+{# @pebvariable name="payer" type="String" #}
+{# @pebvariable name="isEuropeanUnionFunded" type="Boolean" #}
 {
 {% macro translate(key) %}
 {{ i18n("i18n/fs/messages",key) }}
 {% endmacro %}
-
+  "title": "Funding Source Creation",
+  "type": "object",
+  "properties": {
+    "fsParent": {
+      "title": "New Source of Financing for",
+      "description": "Readonly information about parent Expenditure Item",
+      "type": "object",
+      "properties": {
+        "eiOCID": {
+          "title": "ID",
+          "type": "string",
+          "readOnly": true
+        },
+        "eiTitle": {
+          "title": "Expenditure Item",
+          "type": "string",
+          "readOnly": true
+        },
+        "eiDescription": {
+          "title": "Description",
+          "type": "string",
+          "readOnly": true
+        },
+        "eiBudgetPeriod": {
+          "title": "Procuring Period",
+          "type": "object",
+          "properties": {
+            "startDate": {
+              "title": "Start Date",
+              "type": "string",
+              "readOnly": true
+            },
+            "endDate": {
+              "title": "End date",
+              "type": "string",
+              "readOnly": true
+            }
+          }
+        },
+        "eiClassification": {
+          "title": "eiClassification",
+          "type": "object",
+          "properties": {
+            "scheme": {
+              "title": "Classification schema",
+              "type": "string",
+              "readOnly": true
+            },
+            "id": {
+              "title": "CPV code",
+              "type": "string",
+              "readOnly": true
+            },
+            "description": {
+              "title": "CPV name",
+              "type": "string",
+              "readOnly": true
+            }
+          }
+        }
+      }
+    },
+    "fsFunding": {
+      "title": "Funding",
+      "type": "object",
+      "properties": {
+        {% if funder == "buyer" %}
+          "fsFunder": {
+          "title": "Source of money - Own Money",
+          "description": "Budget provided by buyer from parent EI",
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Official Name",
+              "type": "string",
+              "readOnly": true,
+              "ocds": "buyer::object/name::string"
+            },
+            "address": {
+              "title": "Address",
+              "type": "object",
+              "properties": {
+                "location": {
+                  "title": "Location",
+                  "type": "object",
+                  "properties": {
+                    "country": {
+                      "title": "Country",
+                      "type": "object",
+                      "source": "{{ uriCountry }}",
+                      "required": [
+                        "id",
+                        "description"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "readOnly": true,
+                          "ocds": "buyer::object/address::object/addressDetails::object/country::object/id::string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "readOnly": true,
+                          "ocds": "buyer::object/address::object/addressDetails::object/country::object/description::string"
+                        }
+                      }
+                    },
+                    "region": {
+                      "title": "Region",
+                      "type": "object",
+                      "source": "{{ uriRegion }}",
+                      "required": [
+                        "id",
+                        "description"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "readOnly": true,
+                          "ocds": "buyer::object/address::object/addressDetails::object/region::object/id::string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "readOnly": true,
+                          "ocds": "buyer::object/address::object/addressDetails::object/region::object/description::string"
+                        }
+                      }
+                    },
+                    "localityDetails": {
+                      "title": "Locality",
+                      "type": "object",
+                      "required": [
+                        "localityType"
+                      ],
+                      "properties": {
+                        "localityType": {
+                          "type": "string",
+                          "enum": [
+                            "From mdm",
+                            "Other"
+                          ],
+                          "readOnly": true
+                        }
+                      },
+                      "dependencies": {
+                        "localityType": {
+                          "oneOf": [
+                            {
+                              "required": [
+                                "localityType"
+                              ],
+                              "properties": {
+                                "localityType": {
+                                  "enum": [
+                                    "From mdm"
+                                  ]
+                                },
+                                "directory": {
+                                  "type": "object",
+                                  "properties": {
+                                    "locality": {
+                                      "type": "object",
+                                      "source": "{{ uriLocality }}",
+                                      "dependenceField": "eiBuyer.address.location.region.id",
+                                      "required": [
+                                        "id",
+                                        "description"
+                                      ],
+                                      "properties": {
+                                        "id": {
+                                          "type": "string",
+                                          "readOnly": true,
+                                          "ocds": "buyer::object/address::object/addressDetails::object/locality::object/id::string"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "readOnly": true,
+                                          "ocds": "buyer::object/address::object/addressDetails::object/locality::object/description::string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "required": [
+                                "localityType"
+                              ],
+                              "properties": {
+                                "localityType": {
+                                  "enum": [
+                                    "Other"
+                                  ]
+                                },
+                                "manual": {
+                                  "type": "object",
+                                  "properties": {
+                                    "locality": {
+                                      "type": "object",
+                                      "required": [
+                                        "schema",
+                                        "id",
+                                        "description"
+                                      ],
+                                      "properties": {
+                                        "schema": {
+                                          "type": "string",
+                                          "const": "other",
+                                          "readOnly": true,
+                                          "ocds": "buyer::object/address::object/addressDetails::object/locality::object/schema::string"
+                                        },
+                                        "id": {
+                                          "type": "string",
+                                          "const": "999999999",
+                                          "readOnly": true,
+                                          "ocds": "buyer::object/address::object/addressDetails::object/locality::object/id::string"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "readOnly": true,
+                                          "ocds": "buyer::object/address::object/addressDetails::object/locality::object/description::string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "postalAddress": {
+                  "title": "Postal Address",
+                  "type": "object",
+                  "required": [
+                    "streetAddress"
+                  ],
+                  "properties": {
+                    "streetAddress": {
+                      "title": "Street Address",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "buyer::object/address::object/streetAddress::string"
+                    },
+                    "postalCode": {
+                      "title": "Postal Code",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "buyer::object/address::object/postalCode::string"
+                    }
+                  }
+                }
+              }
+            },
+            "identifier": {
+              "title": "Main Identifier",
+              "type": "object",
+              "required": [
+                "id",
+                "scheme",
+                "legalName",
+                "uri"
+              ],
+              "properties": {
+                "scheme": {
+                  "title": "Identification scheme",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "buyer::object/identifier::object/scheme::string"
+                },
+                "id": {
+                  "title": "Identifier",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "buyer::object/identifier::object/id::string"
+                },
+                "legalName": {
+                  "title": "Legal Name",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "buyer::object/identifier::object/legalName::string"
+                },
+                "uri": {
+                  "title": "URI",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "buyer::object/identifier::object/uri::string"
+                }
+              }
+            },
+            "additionalIdentifiers": {
+              "title": "Additional Identifiers",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "scheme",
+                  "legalName",
+                  "uri"
+                ],
+                "properties": {
+                  "scheme": {
+                    "title": "Additional identifier scheme",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "buyer::object/additionalIdentifiers::array[object]/scheme::string"
+                  },
+                  "id": {
+                    "title": "Additional identifier ID",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "buyer::object/additionalIdentifiers::array[object]/id::string"
+                  },
+                  "legalName": {
+                    "title": "Additional identifier legal name",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "buyer::object/additionalIdentifiers::array[object]/legalName::string"
+                  },
+                  "uri": {
+                    "title": "Additional identifier URI",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "buyer::object/additionalIdentifiers::array[object]/uri::string"
+                  }
+                }
+              }
+            },
+            "contactPoint": {
+              "title": "Contact point",
+              "type": "object",
+              "properties": {
+                "person": {
+                  "title": "Contact person",
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "url"
+                  ],
+                  "properties": {
+                    "name": {
+                      "title": "Name",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "buyer::object/contactPoint::object/name::string"
+                    },
+                    "url": {
+                      "title": "URL",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "buyer::object/contactPoint::object/url::string"
+                    }
+                  }
+                },
+                "contacts": {
+                  "title": "Contact person",
+                  "type": "object",
+                  "required": [
+                    "telephone",
+                    "email"
+                  ],
+                  "properties": {
+                    "telephone": {
+                      "title": "Telephone",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "buyer::object/contactPoint::object/telephone::string"
+                    },
+                    "email": {
+                      "title": "E-mail",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "buyer::object/contactPoint::object/email::string"
+                    },
+                    "faxNumber": {
+                      "title": "Fax number",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "buyer::object/contactPoint::object/faxNumber::string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {% elseif funder == "state" %}
+        {% elseif funder == "donor" %}
+          "fsFunder": {
+            "title": "Source of money - Donors Money",
+            "description": "Budget provided by external Donor",
+            "type": "object",
+            "properties": {
+              "name": {
+                "title": "Official Name",
+                "type": "string",
+                "ocds": "buyer::object/name::string"
+              },
+              "address": {
+                "title": "Address",
+                "type": "object",
+                "properties": {
+                  "location": {
+                    "title": "Location",
+                    "type": "object",
+                    "properties": {
+                      "country": {
+                        "title": "Country",
+                        "type": "object",
+                        "source": "{{ uriCountry }}",
+                        "required": [
+                          "id",
+                          "description"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "ocds": "buyer::object/address::object/addressDetails::object/country::object/id::string"
+                          },
+                          "description": {
+                            "type": "string",
+                            "ocds": "buyer::object/address::object/addressDetails::object/country::object/description::string"
+                          }
+                        }
+                      },
+                      "region": {
+                        "title": "Region",
+                        "type": "object",
+                        "source": "{{ uriRegion }}",
+                        "dependenceField": "fsFunding.fsFunder.address.country.id",
+                        "required": [
+                          "id",
+                          "description"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "ocds": "buyer::object/address::object/addressDetails::object/region::object/id::string"
+                          },
+                          "description": {
+                            "type": "string",
+                            "ocds": "buyer::object/address::object/addressDetails::object/region::object/description::string"
+                          }
+                        }
+                      },
+                      "localityDetails": {
+                        "title": "Locality",
+                        "type": "object",
+                        "required": [
+                          "localityType"
+                        ],
+                        "properties": {
+                          "localityType": {
+                            "type": "string",
+                            "enum": [
+                              "From mdm",
+                              "Other"
+                            ]
+                          }
+                        },
+                        "dependencies": {
+                          "localityType": {
+                            "oneOf": [
+                              {
+                                "required": [
+                                  "localityType"
+                                ],
+                                "properties": {
+                                  "localityType": {
+                                    "enum": [
+                                      "From mdm"
+                                    ]
+                                  },
+                                  "directory": {
+                                    "type": "object",
+                                    "properties": {
+                                      "locality": {
+                                        "type": "object",
+                                        "source": "{{ uriLocality }}",
+                                        "dependenceField": "fsFunding.fsFunder.address.region.id",
+                                        "required": [
+                                          "id",
+                                          "description"
+                                        ],
+                                        "properties": {
+                                          "id": {
+                                            "type": "string",
+                                            "ocds": "buyer::object/address::object/addressDetails::object/locality::object/id::string"
+                                          },
+                                          "description": {
+                                            "type": "string",
+                                            "ocds": "buyer::object/address::object/addressDetails::object/locality::object/description::string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "required": [
+                                  "localityType"
+                                ],
+                                "properties": {
+                                  "localityType": {
+                                    "enum": [
+                                      "Other"
+                                    ]
+                                  },
+                                  "manual": {
+                                    "type": "object",
+                                    "properties": {
+                                      "locality": {
+                                        "type": "object",
+                                        "required": [
+                                          "schema",
+                                          "id",
+                                          "description"
+                                        ],
+                                        "properties": {
+                                          "schema": {
+                                            "type": "string",
+                                            "const": "other",
+                                            "ocds": "buyer::object/address::object/addressDetails::object/locality::object/schema::string"
+                                          },
+                                          "id": {
+                                            "type": "string",
+                                            "const": "999999999",
+                                            "ocds": "buyer::object/address::object/addressDetails::object/locality::object/id::string"
+                                          },
+                                          "description": {
+                                            "type": "string",
+                                            "ocds": "buyer::object/address::object/addressDetails::object/locality::object/description::string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "postalAddress": {
+                    "title": "Postal Address",
+                    "type": "object",
+                    "required": [
+                      "streetAddress"
+                    ],
+                    "properties": {
+                      "streetAddress": {
+                        "title": "Street Address",
+                        "type": "string",
+                        "ocds": "buyer::object/address::object/streetAddress::string"
+                      },
+                      "postalCode": {
+                        "title": "Postal Code",
+                        "type": "string",
+                        "ocds": "buyer::object/address::object/postalCode::string"
+                      }
+                    }
+                  }
+                }
+              },
+              "identifier": {
+                "title": "Main Identifier",
+                "type": "object",
+                "required": [
+                  "id",
+                  "scheme",
+                  "legalName",
+                  "uri"
+                ],
+                "properties": {
+                  "scheme": {
+                    "title": "Identification scheme",
+                    "type": "string",
+                    "source": "{{ uriRegistrationScheme }}",
+                    "dependenceField": "fsFunding.fsFunder.address.country.id",
+                    "ocds": "buyer::object/identifier::object/scheme::string"
+                  },
+                  "id": {
+                    "title": "Identifier",
+                    "type": "string",
+                    "ocds": "buyer::object/identifier::object/id::string"
+                  },
+                  "legalName": {
+                    "title": "Legal Name",
+                    "type": "string",
+                    "ocds": "buyer::object/identifier::object/legalName::string"
+                  },
+                  "uri": {
+                    "title": "URI",
+                    "type": "string",
+                    "ocds": "buyer::object/identifier::object/uri::string"
+                  }
+                }
+              },
+              "additionalIdentifiers": {
+                "title": "Additional Identifiers",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "scheme",
+                    "legalName",
+                    "uri"
+                  ],
+                  "properties": {
+                    "scheme": {
+                      "title": "Additional identifier scheme",
+                      "type": "string",
+                      "source": "{{ uriRegistrationScheme }}",
+                      "dependenceField": "fsFunding.fsFunder.address.country.id",
+                      "ocds": "buyer::object/additionalIdentifiers::array[object]/scheme::string"
+                    },
+                    "id": {
+                      "title": "Additional identifier ID",
+                      "type": "string",
+                      "ocds": "buyer::object/additionalIdentifiers::array[object]/id::string"
+                    },
+                    "legalName": {
+                      "title": "Additional identifier legal name",
+                      "type": "string",
+                      "ocds": "buyer::object/additionalIdentifiers::array[object]/legalName::string"
+                    },
+                    "uri": {
+                      "title": "Additional identifier URI",
+                      "type": "string",
+                      "ocds": "buyer::object/additionalIdentifiers::array[object]/uri::string"
+                    }
+                  }
+                }
+              },
+              "contactPoint": {
+                "title": "Contact point",
+                "type": "object",
+                "properties": {
+                  "person": {
+                    "title": "Contact person",
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "url"
+                    ],
+                    "properties": {
+                      "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "ocds": "buyer::object/contactPoint::object/name::string"
+                      },
+                      "url": {
+                        "title": "URL",
+                        "type": "string",
+                        "ocds": "buyer::object/contactPoint::object/url::string"
+                      }
+                    }
+                  },
+                  "contacts": {
+                    "title": "Contact person",
+                    "type": "object",
+                    "required": [
+                      "telephone",
+                      "email"
+                    ],
+                    "properties": {
+                      "telephone": {
+                        "title": "Telephone",
+                        "type": "string",
+                        "ocds": "buyer::object/contactPoint::object/telephone::string"
+                      },
+                      "email": {
+                        "title": "E-mail",
+                        "type": "string",
+                        "ocds": "buyer::object/contactPoint::object/email::string"
+                      },
+                      "faxNumber": {
+                        "title": "Fax number",
+                        "type": "string",
+                        "ocds": "buyer::object/contactPoint::object/faxNumber::string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+        {% endif %}
+        {% if payer == "buyer" %}
+          "fsPayer": {
+          "title": "Money is paid by the - Buyer",
+          "type": "object",
+          "description": "Payments will be provided by buyer from parent EI (via Treasury or directly). In that case 'buyer' in POST request should be empty. eNotice will take needed organization data from EI by itself",
+          "properties": {
+            "name": {
+              "title": "Official Name",
+              "type": "string",
+              "readOnly": true,
+              "ocds": "tender::object/procuringEntity::object/name::string"
+            },
+            "address": {
+              "title": "Address",
+              "type": "object",
+              "properties": {
+                "location": {
+                  "title": "Location",
+                  "type": "object",
+                  "properties": {
+                    "country": {
+                      "title": "Country",
+                      "type": "object",
+                      "source": "{{ uriCountry }}",
+                      "required": [
+                        "id",
+                        "description"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "readOnly": true,
+                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/country::object/id::string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "readOnly": true,
+                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/country::object/description::string"
+                        }
+                      }
+                    },
+                    "region": {
+                      "title": "Region",
+                      "type": "object",
+                      "source": "{{ uriRegion }}",
+                      "required": [
+                        "id",
+                        "description"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "readOnly": true,
+                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/region::object/id::string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "readOnly": true,
+                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/region::object/description::string"
+                        }
+                      }
+                    },
+                    "localityDetails": {
+                      "title": "Locality",
+                      "type": "object",
+                      "required": [
+                        "localityType"
+                      ],
+                      "properties": {
+                        "localityType": {
+                          "type": "string",
+                          "enum": [
+                            "From mdm",
+                            "Other"
+                          ],
+                          "readOnly": true
+                        }
+                      },
+                      "dependencies": {
+                        "localityType": {
+                          "oneOf": [
+                            {
+                              "required": [
+                                "localityType"
+                              ],
+                              "properties": {
+                                "localityType": {
+                                  "enum": [
+                                    "From mdm"
+                                  ]
+                                },
+                                "directory": {
+                                  "type": "object",
+                                  "properties": {
+                                    "locality": {
+                                      "type": "object",
+                                      "source": "{{ uriLocality }}",
+                                      "dependenceField": "eiBuyer.address.location.region.id",
+                                      "required": [
+                                        "id",
+                                        "description"
+                                      ],
+                                      "properties": {
+                                        "id": {
+                                          "type": "string",
+                                          "readOnly": true,
+                                          "ocds": "tender::object/procuringEntity::object//address::object/addressDetails::object/locality::object/id::string"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "readOnly": true,
+                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/description::string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "required": [
+                                "localityType"
+                              ],
+                              "properties": {
+                                "localityType": {
+                                  "enum": [
+                                    "Other"
+                                  ]
+                                },
+                                "manual": {
+                                  "type": "object",
+                                  "properties": {
+                                    "locality": {
+                                      "type": "object",
+                                      "required": [
+                                        "schema",
+                                        "id",
+                                        "description"
+                                      ],
+                                      "properties": {
+                                        "schema": {
+                                          "type": "string",
+                                          "const": "other",
+                                          "readOnly": true,
+                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/schema::string"
+                                        },
+                                        "id": {
+                                          "type": "string",
+                                          "const": "999999999",
+                                          "readOnly": true,
+                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/id::string"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "readOnly": true,
+                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/description::string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "postalAddress": {
+                  "title": "Postal Address",
+                  "type": "object",
+                  "required": [
+                    "streetAddress"
+                  ],
+                  "properties": {
+                    "streetAddress": {
+                      "title": "Street Address",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "buyer::object/address::object/streetAddress::string"
+                    },
+                    "postalCode": {
+                      "title": "Postal Code",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "buyer::object/address::object/postalCode::string"
+                    }
+                  }
+                }
+              }
+            },
+            "identifier": {
+              "title": "Main Identifier",
+              "type": "object",
+              "required": [
+                "id",
+                "scheme",
+                "legalName",
+                "uri"
+              ],
+              "properties": {
+                "scheme": {
+                  "title": "Identification scheme",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "tender::object/procuringEntity::object/identifier::object/scheme::string"
+                },
+                "id": {
+                  "title": "Identifier",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "tender::object/procuringEntity::object/identifier::object/id::string"
+                },
+                "legalName": {
+                  "title": "Legal Name",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "tender::object/procuringEntity::object/identifier::object/legalName::string"
+                },
+                "uri": {
+                  "title": "URI",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "tender::object/procuringEntity::object/identifier::object/uri"
+                }
+              }
+            },
+            "additionalIdentifiers": {
+              "title": "Additional Identifiers",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "scheme",
+                  "legalName",
+                  "uri"
+                ],
+                "properties": {
+                  "scheme": {
+                    "title": "Additional identifier scheme",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/scheme::string"
+                  },
+                  "id": {
+                    "title": "Additional identifier ID",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/id::string"
+                  },
+                  "legalName": {
+                    "title": "Additional identifier legal name",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/legalName::string"
+                  },
+                  "uri": {
+                    "title": "Additional identifier URI",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/uri::string"
+                  }
+                }
+              }
+            },
+            "contactPoint": {
+              "title": "Contact point",
+              "type": "object",
+              "properties": {
+                "person": {
+                  "title": "Contact person",
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "url"
+                  ],
+                  "properties": {
+                    "name": {
+                      "title": "Name",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/name::string"
+                    },
+                    "url": {
+                      "title": "URL",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/url::string"
+                    }
+                  }
+                },
+                "contacts": {
+                  "title": "Contact person",
+                  "type": "object",
+                  "required": [
+                    "telephone",
+                    "email"
+                  ],
+                  "properties": {
+                    "telephone": {
+                      "title": "Telephone",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/telephone::string"
+                    },
+                    "email": {
+                      "title": "E-mail",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/email::string"
+                    },
+                    "faxNumber": {
+                      "title": "Fax number",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/faxNumber::string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {% elseif payer == "thirdParty" %}
+          "fsPayer": {
+          "title": "Money is paid by the - Third Party",
+          "description": "Payments will be provided by Treasury",
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Official Name",
+              "type": "string",
+              "ocds": "tender::object/procuringEntity::object/name::string"
+            },
+            "address": {
+              "title": "Address",
+              "type": "object",
+              "properties": {
+                "location": {
+                  "title": "Location",
+                  "type": "object",
+                  "properties": {
+                    "country": {
+                      "title": "Country",
+                      "type": "object",
+                      "source": "{{ uriCountry }}",
+                      "required": [
+                        "id",
+                        "description"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/country::object/id::string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/country::object/description::string"
+                        }
+                      }
+                    },
+                    "region": {
+                      "title": "Region",
+                      "type": "object",
+                      "source": "{{ uriRegion }}",
+                      "dependenceField": "fsFunding.fsPayer.address.country.id",
+                      "required": [
+                        "id",
+                        "description"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/region::object/id::string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/region::object/description::string"
+                        }
+                      }
+                    },
+                    "localityDetails": {
+                      "title": "Locality",
+                      "type": "object",
+                      "required": [
+                        "localityType"
+                      ],
+                      "properties": {
+                        "localityType": {
+                          "type": "string",
+                          "enum": [
+                            "From mdm",
+                            "Other"
+                          ]
+                        }
+                      },
+                      "dependencies": {
+                        "localityType": {
+                          "oneOf": [
+                            {
+                              "required": [
+                                "localityType"
+                              ],
+                              "properties": {
+                                "localityType": {
+                                  "enum": [
+                                    "From mdm"
+                                  ]
+                                },
+                                "directory": {
+                                  "type": "object",
+                                  "properties": {
+                                    "locality": {
+                                      "type": "object",
+                                      "source": "{{ uriLocality }}",
+                                      "dependenceField": "fsFunding.fsPayer.address.region.id",
+                                      "required": [
+                                        "id",
+                                        "description"
+                                      ],
+                                      "properties": {
+                                        "id": {
+                                          "type": "string",
+                                          "ocds": "tender::object/procuringEntity::object//address::object/addressDetails::object/locality::object/id::string"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/description::string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "required": [
+                                "localityType"
+                              ],
+                              "properties": {
+                                "localityType": {
+                                  "enum": [
+                                    "Other"
+                                  ]
+                                },
+                                "manual": {
+                                  "type": "object",
+                                  "properties": {
+                                    "locality": {
+                                      "type": "object",
+                                      "required": [
+                                        "schema",
+                                        "id",
+                                        "description"
+                                      ],
+                                      "properties": {
+                                        "schema": {
+                                          "type": "string",
+                                          "const": "other",
+                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/schema::string"
+                                        },
+                                        "id": {
+                                          "type": "string",
+                                          "const": "999999999",
+                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/id::string"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/description::string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "postalAddress": {
+                  "title": "Postal Address",
+                  "type": "object",
+                  "required": [
+                    "streetAddress"
+                  ],
+                  "properties": {
+                    "streetAddress": {
+                      "title": "Street Address",
+                      "type": "string",
+                      "ocds": "buyer::object/address::object/streetAddress::string"
+                    },
+                    "postalCode": {
+                      "title": "Postal Code",
+                      "type": "string",
+                      "ocds": "buyer::object/address::object/postalCode::string"
+                    }
+                  }
+                }
+              }
+            },
+            "identifier": {
+              "title": "Main Identifier",
+              "type": "object",
+              "required": [
+                "id",
+                "scheme",
+                "legalName",
+                "uri"
+              ],
+              "properties": {
+                "scheme": {
+                  "title": "Identification scheme",
+                  "type": "string",
+                  "source": "{{ uriRegistrationScheme }}",
+                  "dependenceField": "fsFunding.fsPayer.address.country.id",
+                  "ocds": "tender::object/procuringEntity::object/identifier::object/scheme::string"
+                },
+                "id": {
+                  "title": "Identifier",
+                  "type": "string",
+                  "ocds": "tender::object/procuringEntity::object/identifier::object/id::string"
+                },
+                "legalName": {
+                  "title": "Legal Name",
+                  "type": "string",
+                  "ocds": "tender::object/procuringEntity::object/identifier::object/legalName::string"
+                },
+                "uri": {
+                  "title": "URI",
+                  "type": "string",
+                  "ocds": "tender::object/procuringEntity::object/identifier::object/uri"
+                }
+              }
+            },
+            "additionalIdentifiers": {
+              "title": "Additional Identifiers",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "scheme",
+                  "legalName",
+                  "uri"
+                ],
+                "properties": {
+                  "scheme": {
+                    "title": "Additional identifier scheme",
+                    "type": "string",
+                    "source": "{{ uriRegistrationScheme }}",
+                    "dependenceField": "fsFunding.fsPayer.address.country.id",
+                    "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/scheme::string"
+                  },
+                  "id": {
+                    "title": "Additional identifier ID",
+                    "type": "string",
+                    "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/id::string"
+                  },
+                  "legalName": {
+                    "title": "Additional identifier legal name",
+                    "type": "string",
+                    "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/legalName::string"
+                  },
+                  "uri": {
+                    "title": "Additional identifier URI",
+                    "type": "string",
+                    "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/uri::string"
+                  }
+                }
+              }
+            },
+            "contactPoint": {
+              "title": "Contact point",
+              "type": "object",
+              "properties": {
+                "person": {
+                  "title": "Contact person",
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "url"
+                  ],
+                  "properties": {
+                    "name": {
+                      "title": "Name",
+                      "type": "string",
+                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/name::string"
+                    },
+                    "url": {
+                      "title": "URL",
+                      "type": "string",
+                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/url::string"
+                    }
+                  }
+                },
+                "contacts": {
+                  "title": "Contact person",
+                  "type": "object",
+                  "required": [
+                    "telephone",
+                    "email"
+                  ],
+                  "properties": {
+                    "telephone": {
+                      "title": "Telephone",
+                      "type": "string",
+                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/telephone::string"
+                    },
+                    "email": {
+                      "title": "E-mail",
+                      "type": "string",
+                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/email::string"
+                    },
+                    "faxNumber": {
+                      "title": "Fax number",
+                      "type": "string",
+                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/faxNumber::string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {% elseif payer == "funder" %}
+          "fsPayer": {
+            "title": "Money is paid by the - Funder",
+            "description": "Payments will be provided by funder",
+            "properties": {
+              "name": {
+                "title": "Official Name",
+                "type": "string",
+                "readOnly": true,
+                "ocds": "tender::object/procuringEntity::object/name::string"
+              },
+              "address": {
+                "title": "Address",
+                "type": "object",
+                "properties": {
+                  "location": {
+                    "title": "Location",
+                    "type": "object",
+                    "properties": {
+                      "country": {
+                        "title": "Country",
+                        "type": "object",
+                        "source": "{{ uriCountry }}",
+                        "required": [
+                          "id",
+                          "description"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "readOnly": true,
+                            "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/country::object/id::string"
+                          },
+                          "description": {
+                            "type": "string",
+                            "readOnly": true,
+                            "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/country::object/description::string"
+                          }
+                        }
+                      },
+                      "region": {
+                        "title": "Region",
+                        "type": "object",
+                        "source": "{{ uriRegion }}",
+                        "required": [
+                          "id",
+                          "description"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "readOnly": true,
+                            "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/region::object/id::string"
+                          },
+                          "description": {
+                            "type": "string",
+                            "readOnly": true,
+                            "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/region::object/description::string"
+                          }
+                        }
+                      },
+                      "localityDetails": {
+                        "title": "Locality",
+                        "type": "object",
+                        "required": [
+                          "localityType"
+                        ],
+                        "properties": {
+                          "localityType": {
+                            "type": "string",
+                            "enum": [
+                              "From mdm",
+                              "Other"
+                            ],
+                            "readOnly": true
+                          }
+                        },
+                        "dependencies": {
+                          "localityType": {
+                            "oneOf": [
+                              {
+                                "required": [
+                                  "localityType"
+                                ],
+                                "properties": {
+                                  "localityType": {
+                                    "enum": [
+                                      "From mdm"
+                                    ]
+                                  },
+                                  "directory": {
+                                    "type": "object",
+                                    "properties": {
+                                      "locality": {
+                                        "type": "object",
+                                        "source": "{{ uriLocality }}",
+                                        "dependenceField": "eiBuyer.address.location.region.id",
+                                        "required": [
+                                          "id",
+                                          "description"
+                                        ],
+                                        "properties": {
+                                          "id": {
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "ocds": "tender::object/procuringEntity::object//address::object/addressDetails::object/locality::object/id::string"
+                                          },
+                                          "description": {
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/description::string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "required": [
+                                  "localityType"
+                                ],
+                                "properties": {
+                                  "localityType": {
+                                    "enum": [
+                                      "Other"
+                                    ]
+                                  },
+                                  "manual": {
+                                    "type": "object",
+                                    "properties": {
+                                      "locality": {
+                                        "type": "object",
+                                        "required": [
+                                          "schema",
+                                          "id",
+                                          "description"
+                                        ],
+                                        "properties": {
+                                          "schema": {
+                                            "type": "string",
+                                            "const": "other",
+                                            "readOnly": true,
+                                            "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/schema::string"
+                                          },
+                                          "id": {
+                                            "type": "string",
+                                            "const": "999999999",
+                                            "readOnly": true,
+                                            "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/id::string"
+                                          },
+                                          "description": {
+                                            "type": "string",
+                                            "readOnly": true,
+                                            "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/description::string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "postalAddress": {
+                    "title": "Postal Address",
+                    "type": "object",
+                    "required": [
+                      "streetAddress"
+                    ],
+                    "properties": {
+                      "streetAddress": {
+                        "title": "Street Address",
+                        "type": "string",
+                        "readOnly": true,
+                        "ocds": "buyer::object/address::object/streetAddress::string"
+                      },
+                      "postalCode": {
+                        "title": "Postal Code",
+                        "type": "string",
+                        "readOnly": true,
+                        "ocds": "buyer::object/address::object/postalCode::string"
+                      }
+                    }
+                  }
+                }
+              },
+              "identifier": {
+                "title": "Main Identifier",
+                "type": "object",
+                "required": [
+                  "id",
+                  "scheme",
+                  "legalName",
+                  "uri"
+                ],
+                "properties": {
+                  "scheme": {
+                    "title": "Identification scheme",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "tender::object/procuringEntity::object/identifier::object/scheme::string"
+                  },
+                  "id": {
+                    "title": "Identifier",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "tender::object/procuringEntity::object/identifier::object/id::string"
+                  },
+                  "legalName": {
+                    "title": "Legal Name",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "tender::object/procuringEntity::object/identifier::object/legalName::string"
+                  },
+                  "uri": {
+                    "title": "URI",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "tender::object/procuringEntity::object/identifier::object/uri"
+                  }
+                }
+              },
+              "additionalIdentifiers": {
+                "title": "Additional Identifiers",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "scheme",
+                    "legalName",
+                    "uri"
+                  ],
+                  "properties": {
+                    "scheme": {
+                      "title": "Additional identifier scheme",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/scheme::string"
+                    },
+                    "id": {
+                      "title": "Additional identifier ID",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/id::string"
+                    },
+                    "legalName": {
+                      "title": "Additional identifier legal name",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/legalName::string"
+                    },
+                    "uri": {
+                      "title": "Additional identifier URI",
+                      "type": "string",
+                      "readOnly": true,
+                      "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/uri::string"
+                    }
+                  }
+                }
+              },
+              "contactPoint": {
+                "title": "Contact point",
+                "type": "object",
+                "properties": {
+                  "person": {
+                    "title": "Contact person",
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "url"
+                    ],
+                    "properties": {
+                      "name": {
+                        "title": "Name",
+                        "type": "string",
+                        "readOnly": true,
+                        "ocds": "tender::object/procuringEntity::object/contactPoint::object/name::string"
+                      },
+                      "url": {
+                        "title": "URL",
+                        "type": "string",
+                        "readOnly": true,
+                        "ocds": "tender::object/procuringEntity::object/contactPoint::object/url::string"
+                      }
+                    }
+                  },
+                  "contacts": {
+                    "title": "Contact person",
+                    "type": "object",
+                    "required": [
+                      "telephone",
+                      "email"
+                    ],
+                    "properties": {
+                      "telephone": {
+                        "title": "Telephone",
+                        "type": "string",
+                        "readOnly": true,
+                        "ocds": "tender::object/procuringEntity::object/contactPoint::object/telephone::string"
+                      },
+                      "email": {
+                        "title": "E-mail",
+                        "type": "string",
+                        "readOnly": true,
+                        "ocds": "tender::object/procuringEntity::object/contactPoint::object/email::string"
+                      },
+                      "faxNumber": {
+                        "title": "Fax number",
+                        "type": "string",
+                        "readOnly": true,
+                        "ocds": "tender::object/procuringEntity::object/contactPoint::object/faxNumber::string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        {% endif %}
+      }
+    },
+    "fsBudget": {
+      "title": "Budget",
+      "type": "object",
+      "properties": {
+        "rationale": {
+          "title": "Rationale",
+          "description": "rationale description",
+          "type": "string",
+          "ocds": "planning::object/rationale::string"
+        },
+        "budgetDetails": {
+          "title": "Budget details",
+          "type": "object",
+          "properties": {
+            "description": {
+              "title": "Description",
+              "description": "A short free text description of the budget source",
+              "type": "string",
+              "ocds": "planning::object/budget::object/description::string"
+            },
+            "id": {
+              "title": "Budget ID",
+              "description": "An identifier for the budget line item",
+              "type": "string",
+              "ocds": "planning::object/budget::object/id::string"
+            }
+          }
+        },
+        "budgetAmount": {
+          "title": "Budget Amount",
+          "type": "object",
+          "required": [
+            "amount",
+            "currency"
+          ],
+          "properties": {
+            "amount": {
+              "title": "Value",
+              "description": "Value description",
+              "type": "number",
+              "ocds": "planning::object/budget::object/amount::object/amount::number"
+            },
+            "currency": {
+              "title": "Currency",
+              "description": "Currency description",
+              "type": "string",
+              "source": "{{ uriCurrency }}",
+              "enum": [],
+              "enumNames": [],
+              "ocds": "planning::object/budget::object/amount::object/currency::string"
+            }
+          }
+        },
+        "budgetPeriod": {
+          "title": "Budget Period",
+          "type": "object",
+          "required": [
+            "startDate",
+            "endDate"
+          ],
+          "properties": {
+            "startDate": {
+              "title": "From",
+              "type": "string",
+              "ocds": "planning::object/budget::object/period::object/startDate::string"
+            },
+            "endDate": {
+              "title": "To",
+              "type": "string",
+              "ocds": "planning::object/budget::object/period::object/endDate::string"
+            }
+          }
+        },
+        "budgetProject": {
+          "title": "Project",
+          "type": "object",
+          "properties": {
+            "projectDetails": {
+              "title": "Project Details",
+              "type": "object",
+              "properties": {
+                "project": {
+                  "title": "Project name",
+                  "type": "string",
+                  "ocds": "planning::object/budget::object/project::string"
+                },
+                "projectID": {
+                  "title": "Project ID",
+                  "type": "string",
+                  "ocds": "planning::object/budget::object/projectID::string"
+                },
+                "uri": {
+                  "title": "Project URI",
+                  "type": "string",
+                  "ocds": "planning::object/budget::object/uri::string"
+                },
+                "EUFunded": {
+                  "type": "object",
+                  "required": [
+                    "isEUfunded",
+                    {% if isEuropeanUnionFunded == true %}
+                      "projectIdentifier",
+                      "projectName"
+                    {% endif %}
+                  ],
+                  "properties": {
+                    "isEUfunded": {
+                      "title": "Is European Union Funded",
+                      "type": "boolean",
+                      "enum": [
+                        true,
+                        false
+                      ],
+                      "enumNames": [
+                        "Yes, it is",
+                        "No, it isn't"
+                      ],
+                      "enumDesc": [
+                        "This budget is related to a project and/or programme financed by EU funds",
+                        "This budget is not related to a project and/or programme financed by EU funds"
+                      ],
+                      "readOnly": true,
+                      "ocds": "planning::object/budget::object/isEuropeanUnionFunded::boolean"
+                    },
+                    {% if isEuropeanUnionFunded == true %}
+                      "projectIdentifier": {
+                        "title": "Project Identifier",
+                        "description": "National identifier of the EU project providing partial or full funding",
+                        "type": "string",
+                        "ocds": "planning::object/budget::object/europeanUnionFunding::object/projectIdentifier::string"
+                      },
+                      "projectName": {
+                        "title": "Project Name",
+                        "description": "Name or other national identification of the project providing full or partial funding.",
+                        "type": "string",
+                        "ocds": "planning::object/budget::object/europeanUnionFunding::object/projectName::string"
+                      },
+                      "uri": {
+                        "title": "Project URI",
+                        "description": "URI of the project providing full or partial funding.",
+                        "type": "string",
+                        "ocds": "planning::object/budget::object/europeanUnionFunding::object/uri::string"
+                      }
+                    {% endif %}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
