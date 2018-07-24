@@ -66,9 +66,10 @@
             "documentType": {
               "title": "Document type",
               "type": "string",
-              "source": "{{ context.uris.document }}",
-              "enum": [],
-              "enumNames": [],
+              "enum": [
+                "illustration",
+                "submissionDocuments"
+              ],
               "ocds": "bid::object/documents::array[object]/documentType::string"
             },
             "relatedLots": {

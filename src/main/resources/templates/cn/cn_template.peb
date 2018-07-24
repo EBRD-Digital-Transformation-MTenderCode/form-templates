@@ -465,9 +465,29 @@
                 "documentType": {
                   "title": "Document type",
                   "type": "string",
-                  "source": "{{ context.uris.document }}",
-                  "enum": [],
-                  "enumNames": [],
+                  "enum": [
+                    "tenderNotice",
+                    "procurementPlan",
+                    "biddingDocuments",
+                    "technicalSpecifications",
+                    "evaluationCriteria",
+                    "contractDraft",
+                    "hearingNotice",
+                    "marketStudies",
+                    "eligibilityCriteria",
+                    "clarifications",
+                    "environmentalImpact",
+                    "assetAndLiabilityAssessment",
+                    "riskProvisions",
+                    "complaints",
+                    "needsAssessment",
+                    "feasibilityStudy",
+                    "projectPlan",
+                    "billOfQuantity",
+                    "conflictOfInterest",
+                    "illustration",
+                    "cancellationDetails"
+                  ],
                   "ocds": "tender::object/documents::array[object]/documentType::string"
                 }
               }
@@ -923,9 +943,29 @@
                       "documentType": {
                         "title": "Document type",
                         "type": "string",
-                        "source": "{{ context.uris.document }}",
-                        "enum": [],
-                        "enumNames": [],
+                        "enum": [
+                          "tenderNotice",
+                          "procurementPlan",
+                          "biddingDocuments",
+                          "technicalSpecifications",
+                          "evaluationCriteria",
+                          "contractDraft",
+                          "hearingNotice",
+                          "marketStudies",
+                          "eligibilityCriteria",
+                          "clarifications",
+                          "environmentalImpact",
+                          "assetAndLiabilityAssessment",
+                          "riskProvisions",
+                          "complaints",
+                          "needsAssessment",
+                          "feasibilityStudy",
+                          "projectPlan",
+                          "billOfQuantity",
+                          "conflictOfInterest",
+                          "illustration",
+                          "cancellationDetails"
+                        ],
                         "ocds": "tender::object/documents::array[object]/documentType::string"
                       },
                       "relatedLots": {
