@@ -1,0 +1,334 @@
+{# @pebvariable name="context" type="com.procurement.formsservice.model.enquiry.Data" #}
+{
+  "schema": {
+    "title": "New enquiry",
+    "type": "object",
+    "properties": {
+      "title": {
+        "title": "Title of enquiry",
+        "type": "string",
+        "ocds": "enquiry::object/title::string"
+      },
+      "description": {
+        "title": "Description of enquiry",
+        "type": "string",
+        "ocds": "enquiry::object/description::string"
+      },
+      "author": {
+        "title": "",
+        "type": "",
+        "properties": {
+          "name": {
+            "title": "Official Name",
+            "type": "string",
+            "ocds": "enquiry::object/author::object/name::string"
+          },
+          "address": {
+            "title": "Address",
+            "type": "object",
+            "properties": {
+              "location": {
+                "title": "Location",
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "title": "Country",
+                    "type": "object",
+                    "source": "{{ context.uris.country }}",
+                    "required": [
+                      "id",
+                      "description"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "ocds": "enquiry::object/author::object/address::object/addressDetails::object/country::object/id::string"
+                      },
+                      "description": {
+                        "type": "string",
+                        "ocds": "enquiry::object/author::object/address::object/addressDetails::object/country::object/description::string"
+                      }
+                    }
+                  },
+                  "region": {
+                    "title": "Region",
+                    "type": "object",
+                    "source": "{{ context.uris.region }}",
+                    "dependenceField": "tenderers[0].address.location.country.id",
+                    "required": [
+                      "id",
+                      "description"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "ocds": "enquiry::object/author::object/address::object/addressDetails::object/region::object/id::string"
+                      },
+                      "description": {
+                        "type": "string",
+                        "ocds": "enquiry::object/author::object/address::object/addressDetails::object/region::object/description::string"
+                      }
+                    }
+                  },
+                  "locality": {
+                    "title": "Locality",
+                    "type": "object",
+                    "required": [
+                      "localityType"
+                    ],
+                    "properties": {
+                      "localityType": {
+                        "type": "string",
+                        "enum": [
+                          "From mdm",
+                          "Other"
+                        ]
+                      }
+                    },
+                    "dependencies": {
+                      "localityType": {
+                        "oneOf": [
+                          {
+                            "required": [
+                              "localityType"
+                            ],
+                            "properties": {
+                              "localityType": {
+                                "enum": [
+                                  "From mdm"
+                                ]
+                              },
+                              "directory": {
+                                "type": "object",
+                                "properties": {
+                                  "locality": {
+                                    "type": "object",
+                                    "source": "{{ context.uris.locality }}",
+                                    "dependenceField": "tenderers[0].address.location.region.id",
+                                    "required": [
+                                      "id",
+                                      "description"
+                                    ],
+                                    "properties": {
+                                      "id": {
+                                        "type": "string",
+                                        "ocds": "enquiry::object/author::object/address::object/addressDetails::object/locality::object/id::string"
+                                      },
+                                      "description": {
+                                        "type": "string",
+                                        "ocds": "enquiry::object/author::object/address::object/addressDetails::object/locality::object/description::string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "required": [
+                              "localityType"
+                            ],
+                            "properties": {
+                              "localityType": {
+                                "enum": [
+                                  "Other"
+                                ]
+                              },
+                              "manual": {
+                                "type": "object",
+                                "properties": {
+                                  "localityDetails": {
+                                    "type": "object",
+                                    "required": [
+                                      "schema",
+                                      "id",
+                                      "description"
+                                    ],
+                                    "properties": {
+                                      "schema": {
+                                        "type": "string",
+                                        "const": "other",
+                                        "ocds": "enquiry::object/author::object/address::object/addressDetails::object/locality::object/schema::string"
+                                      },
+                                      "id": {
+                                        "type": "string",
+                                        "const": "999999999",
+                                        "ocds": "enquiry::object/author::object/address::object/addressDetails::object/locality::object/id::string"
+                                      },
+                                      "description": {
+                                        "type": "string",
+                                        "ocds": "enquiry::object/author::object/address::object/addressDetails::object/locality::object/description::string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "postalAddress": {
+                "title": "Postal Address",
+                "type": "object",
+                "required": [
+                  "streetAddress"
+                ],
+                "properties": {
+                  "streetAddress": {
+                    "title": "Street Address",
+                    "type": "string",
+                    "ocds": "enquiry::object/author::object/address::object/streetAddress::string"
+                  },
+                  "postalCode": {
+                    "title": "Postal Code",
+                    "type": "string",
+                    "ocds": "enquiry::object/author::object/address::object/postalCode::string"
+                  }
+                }
+              }
+            }
+          },
+          "identifier": {
+            "title": "Main Identifier",
+            "type": "object",
+            "required": [
+              "scheme",
+              "id",
+              "legalName",
+              "uri"
+            ],
+            "properties": {
+              "scheme": {
+                "title": "Identification scheme",
+                "type": "string",
+                "source": "{{ context.uris.registrationScheme }}",
+                "dependenceField": "tenderers[0].address.country.id",
+                "enum": [],
+                "ocds": "enquiry::object/author::object/identifier::object/scheme::string"
+              },
+              "id": {
+                "title": "Identifier",
+                "type": "string",
+                "ocds": "enquiry::object/author::object/identifier::object/id::string"
+              },
+              "legalName": {
+                "title": "Legal Name",
+                "type": "string",
+                "ocds": "enquiry::object/author::object/identifier::object/legalName::string"
+              },
+              "uri": {
+                "title": "URI",
+                "type": "string",
+                "ocds": "enquiry::object/author::object/identifier::object/uri::string"
+              }
+            }
+          },
+          "additionalIdentifiers": {
+            "title": "Additional Identifiers",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "scheme",
+                "id",
+                "legalName",
+                "uri"
+              ],
+              "properties": {
+                "scheme": {
+                  "title": "Additional identifier scheme",
+                  "type": "string",
+                  "source": "{{ context.uris.registrationScheme }}",
+                  "dependenceField": "tenderers[0].address.country.id",
+                  "enum": [],
+                  "ocds": "enquiry::object/author::object/additionalIdentifiers::array[object]/scheme::string"
+                },
+                "id": {
+                  "title": "Additional identifier ID",
+                  "type": "string",
+                  "ocds": "enquiry::object/author::object/additionalIdentifiers::array[object]/id::string"
+                },
+                "legalName": {
+                  "title": "Additional identifier legal name",
+                  "type": "string",
+                  "ocds": "enquiry::object/author::object/additionalIdentifiers::array[object]/legalName::string"
+                },
+                "uri": {
+                  "title": "Additional identifier URI",
+                  "type": "string",
+                  "ocds": "enquiry::object/author::object/additionalIdentifiers::array[object]/uri::string"
+                }
+              }
+            }
+          },
+          "contactPoint": {
+            "title": "Contact point",
+            "type": "object",
+            "properties": {
+              "person": {
+                "title": "Contact person",
+                "type": "object",
+                "required": [
+                  "name",
+                  "url"
+                ],
+                "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "ocds": "enquiry::object/author::object/contactPoint::object/name::string"
+                  },
+                  "url": {
+                    "title": "URL",
+                    "type": "string",
+                    "ocds": "enquiry::object/author::object/contactPoint::object/url::string"
+                  }
+                }
+              },
+              "contacts": {
+                "title": "Contact point",
+                "type": "object",
+                "required": [
+                  "telephone",
+                  "email"
+                ],
+                "properties": {
+                  "telephone": {
+                    "title": "Telephone",
+                    "type": "string",
+                    "ocds": "enquiry::object/author::object/contactPoint::object/telephone::string"
+                  },
+                  "email": {
+                    "title": "E-mail",
+                    "type": "string",
+                    "ocds": "enquiry::object/author::object/contactPoint::object/email::string"
+                  },
+                  "faxNumber": {
+                    "title": "Fax number",
+                    "type": "string",
+                    "ocds": "enquiry::object/author::object/contactPoint::object/faxNumber::string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+                  {% if context.parameters.lotId equals "" %}
+                    "relatedLot": {
+                      "type": "string",
+                      "ocds": "enquiry::object/relatedLot::string"
+                    }
+                  {% endif %}
+    }
+  },
+  "data": {
+          {% if context.parameters.lotId equals "" %}
+            "relatedLot": "{{ context.parameters.lotId }}"
+          {% endif %}
+  }
+}
