@@ -3,6 +3,7 @@ package com.procurement.formsservice.model.fs
 class Data(
     val parameters: Parameters,
     val uris: Uris,
+    val ei: EI,
     val buyer: Buyer,
     val budget: Budget
 )
@@ -20,6 +21,25 @@ data class Uris(
     val registrationScheme: String, // if parameter funder or payer == "buyer" "/registration-scheme?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/registration-scheme?lang=langFromRequest&country="
     val currency: String  // /currency?lang=langFromRequest&country=(Buyer.Address.Country.id)
 )
+
+data class EI(
+    val ocid: String, // EI.ocid,
+    val title: String, // EI.tender.title
+    val description: String?, // EI.tender.description
+    val budgetPeriod: BudgetPeriod,
+    val classification: Classification
+) {
+    data class BudgetPeriod(
+        val startDate: String, // EI.planning.budget.period.startDate
+        val endDate: String // EI.planning.budget.period.endDate
+    )
+
+    data class Classification(
+        val scheme: String, // EI.tender.classification.scheme
+        val id: String, // EI.tender.classification.id
+        val description: String // EI.tender.classification.description
+    )
+}
 
 data class Buyer(
     val name: String?, // EI.parties[0].name

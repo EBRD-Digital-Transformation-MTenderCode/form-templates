@@ -1819,17 +1819,17 @@
   },
   "data": {
     "fsParent": {
-      "eiOCID": "EI.ocid",
-      "eiTitle": "EI.tender.title",
-      "eiDescription": "EI.tender.description",
+      "eiOCID": "{{ context.ei.ocid }}",
+      "eiTitle": "{{ context.ei.title }}",
+      "eiDescription": "{{ context.ei.description }}",
       "eiBudgetPeriod": {
-        "startDate": "EI.planning.budget.period.startDate",
-        "endDate": "EI.planning.budget.period.endDate"
+        "startDate": "{{ context.ei.budgetPeriod.startDate }}",
+        "endDate": "{{ context.ei.budgetPeriod.endDate }}"
       },
       "eiClassification": {
-        "scheme": "EI.tender.classification.scheme",
-        "id": "EI.tender.classification.id",
-        "description": "EI.tender.classification.description"
+        "scheme": "{{ context.ei.classification.scheme }}",
+        "id": "{{ context.ei.classification.id }}",
+        "description": "{{ context.ei.classification.description }}"
       }
     },
     "fsFunding": {
