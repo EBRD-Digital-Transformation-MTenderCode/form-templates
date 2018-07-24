@@ -14,20 +14,20 @@ data class Parameters(
 )
 
 data class Uris(
-    val country: String,
-    val region: String,
-    val locality: String,
-    val registrationScheme: String,
-    val currency: String,
-    val unitClass: String,
-    val unit: String,
-    val cpv: String,
-    val cpvs: String,
-    val pmd: String
+    val country: String, // /country?lang=langFromRequest
+    val region: String, // /region?lang=langFromRequest&country=
+    val locality: String, // /locality?lang=langFromRequest&region=
+    val registrationScheme: String, // /registration-scheme?lang=langFromRequest&country=
+    val currency: String, // /currency?lang=langFromRequest&country=countryFromBuyer
+    val unitClass: String, // /unit-class?lang=langFromRequest
+    val unit: String, // /unit?lang=langFromRequest&unitClass=
+    val cpv: String, // cpv?lang=langFromRequest&code=CPVCodeFromEI
+    val cpvs: String, // /cpvs?lang=langFromRequest
+    val pmd: String // /pmd?lang=langFromRequest&country=countryFromBuyer
 )
 
 data class Buyer(
-    val name: String,
+    val name: String,  // EI.parties[0].name
     val address: Address,
     val identifier: Identifier,
     val additionalIdentifiers: List<AdditionalIdentifier>,
@@ -65,10 +65,10 @@ data class Buyer(
     )
 
     data class AdditionalIdentifier(
-        val scheme: String, // EI.parties[0].identifier.scheme
-        val id: String, // EI.parties[0].identifier.id
-        val legalName: String, // EI.parties[0].identifier.legalName
-        val uri: String // EI.parties[0].identifier.uri
+        val scheme: String, // EI.parties[0].additionalIdentifier[i].scheme
+        val id: String, // EI.parties[0].additionalIdentifier[i].id
+        val legalName: String, // EI.parties[0].additionalIdentifier[i].legalName
+        val uri: String // EI.parties[0].additionalIdentifier[i].uri
     )
 
     data class ContactPoint(
