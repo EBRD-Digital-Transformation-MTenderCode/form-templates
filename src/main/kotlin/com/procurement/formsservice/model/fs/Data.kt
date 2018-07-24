@@ -4,7 +4,7 @@ class Data(
     val parameters: Parameters,
     val uris: Uris,
     val ei: EI,
-    val buyer: Buyer,
+    val buyer: Buyer?,
     val budget: Budget
 )
 
@@ -42,18 +42,18 @@ data class EI(
 }
 
 data class Buyer(
-    val name: String?, // EI.parties[0].name
-    val address: Address?,
-    val identifier: Identifier?,
+    val name: String, // EI.parties[0].name
+    val address: Address,
+    val identifier: Identifier,
     val additionalIdentifiers: List<AdditionalIdentifier>?,
-    val contactPoint: ContactPoint?
+    val contactPoint: ContactPoint
 ) {
     data class Address(
         val country: Country,
         val region: Region,
         val locality: Locality,
         val streetAddress: String, // EI.parties[0].address.streetAddress
-        val postalCode: String // EI.parties[0].address.postalCode
+        val postalCode: String? // EI.parties[0].address.postalCode
     ) {
         data class Country(
             val id: String, // EI.parties[0].address.addressDetails.country.id
@@ -91,7 +91,7 @@ data class Buyer(
         val url: String, // EI.parties[0].contactPoint.url
         val telephone: String, // EI.parties[0].contactPoint.telephone
         val email: String, // EI.parties[0].contactPoint.email
-        val faxNumber: String // EI.parties[0].contactPoint.faxNumber
+        val faxNumber: String? // EI.parties[0].contactPoint.faxNumber
     )
 }
 
