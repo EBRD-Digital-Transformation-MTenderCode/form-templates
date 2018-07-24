@@ -18,20 +18,20 @@ data class Uris(
     val region: String, // /region?lang=langFromRequest&country=
     val locality: String, // /locality?lang=langFromRequest&region=
     val registrationScheme: String, // /registration-scheme?lang=langFromRequest&country=
-    val currency: String, // /currency?lang=langFromRequest&country=countryFromBuyer
+    val currency: String, // /currency?lang=langFromRequest&country=(Buyer.Address.Country.id)
     val unitClass: String, // /unit-class?lang=langFromRequest
     val unit: String, // /unit?lang=langFromRequest&unitClass=
-    val cpv: String, // cpv?lang=langFromRequest&code=CPVCodeFromEI
+    val cpv: String, // cpv?lang=langFromRequest&code=(EI.tender.classification.id)
     val cpvs: String, // /cpvs?lang=langFromRequest
-    val pmd: String // /pmd?lang=langFromRequest&country=countryFromBuyer
+    val pmd: String // /pmd?lang=langFromRequest&country=(Buyer.Address.Country.id)
 )
 
 data class Buyer(
-    val name: String,  // EI.parties[0].name
-    val address: Address,
-    val identifier: Identifier,
-    val additionalIdentifiers: List<AdditionalIdentifier>,
-    val contactPoint: ContactPoint
+    val name: String?,  // EI.parties[0].name
+    val address: Address?,
+    val identifier: Identifier?,
+    val additionalIdentifiers: List<AdditionalIdentifier>?,
+    val contactPoint: ContactPoint?
 ) {
     data class Address(
         val country: Country,

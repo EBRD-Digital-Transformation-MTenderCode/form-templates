@@ -15,18 +15,18 @@ data class Parameters(
 
 data class Uris(
     val country: String, // /country?lang=langFromRequest
-    val region: String, // if parameter funder or payer == "buyer" "/region?lang=langFromRequest&country=countryFromBuyer" else "/region?lang=langFromRequest&country="
-    val locality: String, // if parameter funder or payer == "buyer" "/locality?lang=langFromRequest&region=regionFromBuyer" else "/locality?lang=langFromRequest&region="
-    val registrationScheme: String, // if parameter funder or payer == "buyer" "/registration-scheme?lang=langFromRequest&country=countryFromBuyer" else "/registration-scheme?lang=langFromRequest&country="
-    val currency: String  // /currency?lang=langFromRequest&country=countryFromBuyer
+    val region: String, // if parameter funder or payer == "buyer" "/region?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/region?lang=langFromRequest&country="
+    val locality: String, // if parameter funder or payer == "buyer" "/locality?lang=langFromRequest&region=(Buyer.Address.Region.id)" else "/locality?lang=langFromRequest&region="
+    val registrationScheme: String, // if parameter funder or payer == "buyer" "/registration-scheme?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/registration-scheme?lang=langFromRequest&country="
+    val currency: String  // /currency?lang=langFromRequest&country=(Buyer.Address.Country.id)
 )
 
 data class Buyer(
-    val name: String, // EI.parties[0].name
-    val address: Address,
-    val identifier: Identifier,
-    val additionalIdentifiers: List<AdditionalIdentifier>,
-    val contactPoint: ContactPoint
+    val name: String?, // EI.parties[0].name
+    val address: Address?,
+    val identifier: Identifier?,
+    val additionalIdentifiers: List<AdditionalIdentifier>?,
+    val contactPoint: ContactPoint?
 ) {
     data class Address(
         val country: Country,
