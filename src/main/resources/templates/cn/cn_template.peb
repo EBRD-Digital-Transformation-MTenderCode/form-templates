@@ -465,6 +465,9 @@
                 "documentType": {
                   "title": "Document type",
                   "type": "string",
+                  "source": "{{ context.uris.document }}",
+                  "enum": [],
+                  "enumNames": [],
                   "ocds": "tender::object/documents::array[object]/documentType::string"
                 }
               }
@@ -474,6 +477,7 @@
             "title": "Information about lots",
             "description": "II.1.6) Information about lots",
             "type": "array",
+            "minItems": 1,
             "items": {
               "type": "object",
               "properties": {
@@ -739,6 +743,7 @@
                 "items": {
                   "title": "Nomenclature of lot",
                   "type": "array",
+                  "minItems": 1,
                   "items": {
                     "type": "object",
                     "required": [
@@ -918,6 +923,9 @@
                       "documentType": {
                         "title": "Document type",
                         "type": "string",
+                        "source": "{{ context.uris.document }}",
+                        "enum": [],
+                        "enumNames": [],
                         "ocds": "tender::object/documents::array[object]/documentType::string"
                       },
                       "relatedLots": {
