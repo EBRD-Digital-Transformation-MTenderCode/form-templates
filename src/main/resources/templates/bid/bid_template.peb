@@ -1,0 +1,417 @@
+{# @pebvariable name="context" type="com.procurement.formsservice.model.bid.Data" #}
+{
+{% macro translate(key) %}
+{{ i18n("i18n/cn/messages",key) }}
+{% endmacro %}
+  "schema": {
+    "title": "New Submission",
+    "type": "object",
+    "properties": {
+                  {% if findSubString(context.parameters.CNOCID, "EV") %}
+                    "bidAmount": {
+                      "title": "Estimated coast",
+                      "type": "object",
+                      "required": [
+                        "amount",
+                        "currency"
+                      ],
+                      "properties": {
+                        "amount": {
+                          "type": "number",
+                          "maximum": {{ context.amount.maxAmount }},
+                          "exclusiveMaximum": false,
+                          "ocds": "bid::object/value::object/amount::number"
+                        },
+                        "currency": {
+                          "type": "string",
+                          "readOnly": true,
+                          "ocds": "bid::object/value::object/currency::string"
+                        },
+                        "maxAmount": {
+                          "title": "Maximum amount",
+                          "type": "string",
+                          "readOnly": true
+                        }
+                      }
+                    },
+                  {% endif %}
+      "documents": {
+        "title": "Attachments and documents",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "documentId",
+            "documentType"
+          ],
+          "properties": {
+            "file": {
+              "title": "Select file",
+              "type": "string"
+            },
+            "documentId": {
+              "type": "string",
+              "ocds": "bid::object/documents::array[object]/id::string"
+            },
+            "title": {
+              "title": "Public name",
+              "type": "string",
+              "ocds": "bid::object/documents::array[object]/title::string"
+            },
+            "description": {
+              "title": "A short description of the document",
+              "type": "string",
+              "ocds": "bid::object/documents::array[object]/description::string"
+            },
+            "documentType": {
+              "title": "Document type",
+              "type": "string",
+              "source": "{{ context.uris.document }}",
+              "enum": [],
+              "enumNames": [],
+              "ocds": "bid::object/documents::array[object]/documentType::string"
+            },
+            "relatedLots": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "default": "{{ context.parameters.lotId }}",
+                "ocds": "bid::object/documents::array[object]/relatedLots::array[string]"
+              }
+            }
+          }
+        }
+      },
+      "tenderers": {
+        "title": "Tenderer",
+        "description": "Information about Entity who submits this bid",
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "title": "Official Name",
+              "type": "string",
+              "ocds": "bid::object/tenderers::array[object]/name::string"
+            },
+            "address": {
+              "title": "Address",
+              "type": "object",
+              "properties": {
+                "location": {
+                  "title": "Location",
+                  "type": "object",
+                  "properties": {
+                    "country": {
+                      "title": "Country",
+                      "type": "object",
+                      "source": "{{ context.uris.country }}",
+                      "required": [
+                        "id",
+                        "description"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "ocds": "bid::object/tenderers::array[object]/address::object/addressDetails::object/country::object/id::string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "ocds": "bid::object/tenderers::array[object]/address::object/addressDetails::object/country::object/description::string"
+                        }
+                      }
+                    },
+                    "region": {
+                      "title": "Region",
+                      "type": "object",
+                      "source": "{{ context.uris.region }}",
+                      "dependenceField": "tenderers[0].address.location.country.id",
+                      "required": [
+                        "id",
+                        "description"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "ocds": "bid::object/tenderers::array[object]/address::object/addressDetails::object/region::object/id::string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "ocds": "bid::object/tenderers::array[object]/address::object/addressDetails::object/region::object/description::string"
+                        }
+                      }
+                    },
+                    "locality": {
+                      "title": "Locality",
+                      "type": "object",
+                      "required": [
+                        "localityType"
+                      ],
+                      "properties": {
+                        "localityType": {
+                          "type": "string",
+                          "enum": [
+                            "From mdm",
+                            "Other"
+                          ]
+                        }
+                      },
+                      "dependencies": {
+                        "localityType": {
+                          "oneOf": [
+                            {
+                              "required": [
+                                "localityType"
+                              ],
+                              "properties": {
+                                "localityType": {
+                                  "enum": [
+                                    "From mdm"
+                                  ]
+                                },
+                                "directory": {
+                                  "type": "object",
+                                  "properties": {
+                                    "locality": {
+                                      "type": "object",
+                                      "source": "{{ context.uris.locality }}",
+                                      "dependenceField": "tenderers[0].address.location.region.id",
+                                      "required": [
+                                        "id",
+                                        "description"
+                                      ],
+                                      "properties": {
+                                        "id": {
+                                          "type": "string",
+                                          "ocds": "bid::object/tenderers::array[object]/address::object/addressDetails::object/locality::object/id::string"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "ocds": "bid::object/tenderers::array[object]/address::object/addressDetails::object/locality::object/description::string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "required": [
+                                "localityType"
+                              ],
+                              "properties": {
+                                "localityType": {
+                                  "enum": [
+                                    "Other"
+                                  ]
+                                },
+                                "manual": {
+                                  "type": "object",
+                                  "properties": {
+                                    "localityDetails": {
+                                      "type": "object",
+                                      "required": [
+                                        "schema",
+                                        "id",
+                                        "description"
+                                      ],
+                                      "properties": {
+                                        "schema": {
+                                          "type": "string",
+                                          "const": "other",
+                                          "ocds": "bid::object/tenderers::array[object]/address::object/addressDetails::object/locality::object/schema::string"
+                                        },
+                                        "id": {
+                                          "type": "string",
+                                          "const": "999999999",
+                                          "ocds": "bid::object/tenderers::array[object]/address::object/addressDetails::object/locality::object/id::string"
+                                        },
+                                        "description": {
+                                          "type": "string",
+                                          "ocds": "bid::object/tenderers::array[object]/address::object/addressDetails::object/locality::object/description::string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "postalAddress": {
+                  "title": "Postal Address",
+                  "type": "object",
+                  "required": [
+                    "streetAddress"
+                  ],
+                  "properties": {
+                    "streetAddress": {
+                      "title": "Street Address",
+                      "type": "string",
+                      "ocds": "bid::object/tenderers::array[object]/address::object/streetAddress::string"
+                    },
+                    "postalCode": {
+                      "title": "Postal Code",
+                      "type": "string",
+                      "ocds": "bid::object/tenderers::array[object]/address::object/postalCode::string"
+                    }
+                  }
+                }
+              }
+            },
+            "identifier": {
+              "title": "Main Identifier",
+              "type": "object",
+              "required": [
+                "scheme",
+                "id",
+                "legalName",
+                "uri"
+              ],
+              "properties": {
+                "scheme": {
+                  "title": "Identification scheme",
+                  "type": "string",
+                  "source": "{{ context.uris.registrationScheme }}",
+                  "dependenceField": "tenderers[0].address.country.id",
+                  "enum": [],
+                  "ocds": "bid::object/tenderers::array[object]/identifier::object/scheme::string"
+                },
+                "id": {
+                  "title": "Identifier",
+                  "type": "string",
+                  "ocds": "bid::object/tenderers::array[object]/identifier::object/id::string"
+                },
+                "legalName": {
+                  "title": "Legal Name",
+                  "type": "string",
+                  "ocds": "bid::object/tenderers::array[object]/identifier::object/legalName::string"
+                },
+                "uri": {
+                  "title": "URI",
+                  "type": "string",
+                  "ocds": "bid::object/tenderers::array[object]/identifier::object/uri::string"
+                }
+              }
+            },
+            "additionalIdentifiers": {
+              "title": "Additional Identifiers",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "scheme",
+                  "id",
+                  "legalName",
+                  "uri"
+                ],
+                "properties": {
+                  "scheme": {
+                    "title": "Additional identifier scheme",
+                    "type": "string",
+                    "source": "{{ context.uris.registrationScheme }}",
+                    "dependenceField": "tenderers[0].address.country.id",
+                    "enum": [],
+                    "ocds": "bid::object/tenderers::array[object]/additionalIdentifiers::array[object]/scheme::string"
+                  },
+                  "id": {
+                    "title": "Additional identifier ID",
+                    "type": "string",
+                    "ocds": "bid::object/tenderers::array[object]/additionalIdentifiers::array[object]/id::string"
+                  },
+                  "legalName": {
+                    "title": "Additional identifier legal name",
+                    "type": "string",
+                    "ocds": "bid::object/tenderers::array[object]/additionalIdentifiers::array[object]/legalName::string"
+                  },
+                  "uri": {
+                    "title": "Additional identifier URI",
+                    "type": "string",
+                    "ocds": "bid::object/tenderers::array[object]/additionalIdentifiers::array[object]/uri::string"
+                  }
+                }
+              }
+            },
+            "contactPoint": {
+              "title": "Contact point",
+              "type": "object",
+              "properties": {
+                "person": {
+                  "title": "Contact person",
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "url"
+                  ],
+                  "properties": {
+                    "name": {
+                      "title": "Name",
+                      "type": "string",
+                      "ocds": "bid::object/tenderers::array[object]/contactPoint::object/name::string"
+                    },
+                    "url": {
+                      "title": "URL",
+                      "type": "string",
+                      "ocds": "bid::object/tenderers::array[object]/contactPoint::object/url::string"
+                    }
+                  }
+                },
+                "contacts": {
+                  "title": "Contact point",
+                  "type": "object",
+                  "required": [
+                    "telephone",
+                    "email"
+                  ],
+                  "properties": {
+                    "telephone": {
+                      "title": "Telephone",
+                      "type": "string",
+                      "ocds": "bid::object/tenderers::array[object]/contactPoint::object/telephone::string"
+                    },
+                    "email": {
+                      "title": "E-mail",
+                      "type": "string",
+                      "ocds": "bid::object/tenderers::array[object]/contactPoint::object/email::string"
+                    },
+                    "faxNumber": {
+                      "title": "Fax number",
+                      "type": "string",
+                      "ocds": "bid::object/tenderers::array[object]/contactPoint::object/faxNumber::string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "bidRelatedLots": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "string",
+          "ocds": "bid::object/relatedLots::array[string]"
+        }
+      },
+    }
+  },
+  "data": {
+    {% if findSubString(context.parameters.CNOCID, "EV") %}
+        "bidAmount": {
+          "currency": "{{ context.amount.currency }}",
+          "maxAmount": {{ context.amount.maxAmount }}
+        },
+    {% endif %}
+    "bidRelatedLots": ["{{ context.parameters.lotId }}"]
+  }
+}
