@@ -255,6 +255,7 @@
                             {% if context.parameters.procuringEntity == "THIRDPARTY" %}
                               "source": "{{ context.uris.registrationScheme }}",
                               "dependenceField": "section1.procuringEntity.address.country.id",
+                              "enum": [],
                             {% endif %}
                     "ocds": "tender::object/procuringEntity::object/identifier::object/scheme::string"
                   },
@@ -305,6 +306,7 @@
                               {% if context.parameters.procuringEntity == "THIRDPARTY" %}
                                 "source": "{{ context.uris.registrationScheme }}",
                                 "dependenceField": "section1.procuringEntity.address.country.id",
+                                "enum": [],
                               {% endif %}
                       "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/scheme::string"
                     },
@@ -338,9 +340,6 @@
               "contactPoint": {
                 "title": "Contact Person",
                 "type": "object",
-                "required": [
-                  "person"
-                ],
                 "properties": {
                   "person": {
                     "title": "Contact person",
@@ -1111,26 +1110,31 @@
             }
           },
           "postalAddress": {
-            "streetAddress": "{{ context.buyer.address.streetAddress }}",
-            "postalCode": "{{ context.buyer.address.postalCode }}"
+            "streetAddress": "{{ context.buyer.address.streetAddress }}"
+             {% if context.buyer.address.postalCode != "" %},{% endif %}
+             {{ attributeIf(name = postalCode, value = context.buyer.address.postalCode) }}
           }
         },
         "identifier": {
           "scheme": "{{ context.buyer.identifier.scheme }}",
           "id": "{{ context.buyer.identifier.id }}",
-          "legalName": "{{ context.buyer.identifier.legalName }}",
-          "uri": "{{ context.buyer.identifier.uri }}"
+          "legalName": "{{ context.buyer.identifier.legalName }}"
+          {% if context.buyer.identifier.uri != "" %},{% endif %}
+          {{ attributeIf(name = faxNumber, value = context.buyer.identifier.uri) }}
         },
-        "additionalIdentifiers": [
-                                 {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
-                                   {
-                                     "schema": "{{ additionalIdentifier.scheme }}",
-                                     "id": "{{ additionalIdentifier.id }}",
-                                     "legalName": "{{ additionalIdentifier.legalName }}",
-                                     "uri": "{{ additionalIdentifier.uri }}"
-                                   }
-                                 {% endfor %}
-        ],
+        {% if context.buyer.additionalIdentifiers != null %}
+          "additionalIdentifiers": [
+                                   {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
+                                     {
+                                       "schema": "{{ additionalIdentifier.scheme }}",
+                                       "id": "{{ additionalIdentifier.id }}",
+                                       "legalName": "{{ additionalIdentifier.legalName }}"
+                                       {% if additionalIdentifier.uri != "" %},{% endif %}
+                                       {{ attributeIf(name = faxNumber, value = additionalIdentifier.uri) }}
+                                     }
+                                   {% endfor %}
+          ],
+        {% endif %}
         "contactPoint": {
           "person": {
             "name": "{{ context.buyer.contactPoint.name }}",
@@ -1138,8 +1142,9 @@
           },
           "contacts": {
             "telephone": "{{ context.buyer.contactPoint.telephone }}",
-            "email": "{{ context.buyer.contactPoint.email }}",
-            "faxNumber": "{{ context.buyer.contactPoint.faxNumber }}"
+            "email": "{{ context.buyer.contactPoint.email }}"
+            {% if context.buyer.contactPoint.faxNumber != "" %},{% endif %}
+            {{ attributeIf(name = faxNumber, value = context.buyer.contactPoint.faxNumber) }}
           }
         }
       }
@@ -1181,26 +1186,31 @@
             }
           },
           "postalAddress": {
-            "streetAddress": "{{ context.buyer.address.streetAddress }}",
-            "postalCode": "{{ context.buyer.address.postalCode }}"
+            "streetAddress": "{{ context.buyer.address.streetAddress }}"
+             {% if context.buyer.address.postalCode != "" %},{% endif %}
+             {{ attributeIf(name = postalCode, value = context.buyer.address.postalCode) }}
           }
         },
         "identifier": {
           "scheme": "{{ context.buyer.identifier.scheme }}",
           "id": "{{ context.buyer.identifier.id }}",
-          "legalName": "{{ context.buyer.identifier.legalName }}",
-          "uri": "{{ context.buyer.identifier.uri }}"
+          "legalName": "{{ context.buyer.identifier.legalName }}"
+          {% if context.buyer.identifier.uri != "" %},{% endif %}
+          {{ attributeIf(name = faxNumber, value = context.buyer.identifier.uri) }}
         },
-        "additionalIdentifiers": [
-                                 {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
-                                   {
-                                     "schema": "{{ additionalIdentifier.scheme }}",
-                                     "id": "{{ additionalIdentifier.id }}",
-                                     "legalName": "{{ additionalIdentifier.legalName }}",
-                                     "uri": "{{ additionalIdentifier.uri }}"
-                                   }
-                                 {% endfor %}
-        ]
+        {% if context.buyer.additionalIdentifiers != null %}
+          "additionalIdentifiers": [
+                                   {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
+                                     {
+                                       "schema": "{{ additionalIdentifier.scheme }}",
+                                       "id": "{{ additionalIdentifier.id }}",
+                                       "legalName": "{{ additionalIdentifier.legalName }}"
+                                       {% if additionalIdentifier.uri != "" %},{% endif %}
+                                       {{ attributeIf(name = faxNumber, value = additionalIdentifier.uri) }}
+                                     }
+                                   {% endfor %}
+          ]
+        {% endif %}
       }
     },
   {% endif %}
@@ -1214,8 +1224,9 @@
           },
           "contacts": {
             "telephone": "{{ context.buyer.contactPoint.telephone }}",
-            "email": "{{ context.buyer.contactPoint.email }}",
-            "faxNumber": "{{ context.buyer.contactPoint.faxNumber }}"
+            "email": "{{ context.buyer.contactPoint.email }}"
+            {% if context.buyer.contactPoint.faxNumber != "" %},{% endif %}
+            {{ attributeIf(name = faxNumber, value = context.buyer.contactPoint.faxNumber) }}
           }
         }
       }

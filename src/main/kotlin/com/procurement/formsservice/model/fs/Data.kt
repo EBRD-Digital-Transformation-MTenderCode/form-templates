@@ -76,14 +76,14 @@ data class Buyer(
         val scheme: String, // EI.parties[0].identifier.scheme
         val id: String, // EI.parties[0].identifier.id
         val legalName: String, // EI.parties[0].identifier.legalName
-        val uri: String // EI.parties[0].identifier.uri
+        val uri: String? // EI.parties[0].identifier.uri
     )
 
     data class AdditionalIdentifier(
         val scheme: String, // EI.parties[0].additionalIdentifier[i].scheme
         val id: String, // EI.parties[0].additionalIdentifier[i].id
         val legalName: String, // EI.parties[0].additionalIdentifier[i].legalName
-        val uri: String // EI.parties[0].additionalIdentifier[i].uri
+        val uri: String? // EI.parties[0].additionalIdentifier[i].uri
     )
 
     data class ContactPoint(

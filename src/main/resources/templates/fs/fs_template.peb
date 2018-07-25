@@ -267,8 +267,8 @@
                               "title": "Main Identifier",
                               "type": "object",
                               "required": [
-                                "id",
                                 "scheme",
+                                "id",
                                 "legalName",
                                 "uri"
                               ],
@@ -305,8 +305,8 @@
                               "items": {
                                 "type": "object",
                                 "required": [
-                                  "id",
                                   "scheme",
+                                  "id",
                                   "legalName",
                                   "uri"
                                 ],
@@ -581,8 +581,8 @@
                               "title": "Main Identifier",
                               "type": "object",
                               "required": [
-                                "id",
                                 "scheme",
+                                "id",
                                 "legalName",
                                 "uri"
                               ],
@@ -617,8 +617,8 @@
                               "items": {
                                 "type": "object",
                                 "required": [
-                                  "id",
                                   "scheme",
+                                  "id",
                                   "legalName",
                                   "uri"
                                 ],
@@ -628,6 +628,7 @@
                                     "type": "string",
                                     "source": "{{ context.uris.registrationScheme }}",
                                     "dependenceField": "fsFunding.fsFunder.address.country.id",
+                                    "enum": [],
                                     "ocds": "buyer::object/additionalIdentifiers::array[object]/scheme::string"
                                   },
                                   "id": {
@@ -898,8 +899,8 @@
                               "title": "Main Identifier",
                               "type": "object",
                               "required": [
-                                "id",
                                 "scheme",
+                                "id",
                                 "legalName",
                                 "uri"
                               ],
@@ -936,8 +937,8 @@
                               "items": {
                                 "type": "object",
                                 "required": [
-                                  "id",
                                   "scheme",
+                                  "id",
                                   "legalName",
                                   "uri"
                                 ],
@@ -1026,7 +1027,7 @@
                               }
                             }
                           }
-                        },
+                        }
                       {% elseif context.parameters.payer == "THIRDPARTY" %}
                         "fsPayer": {
                           "title": "Money is paid by the - Third Party",
@@ -1211,8 +1212,8 @@
                               "title": "Main Identifier",
                               "type": "object",
                               "required": [
-                                "id",
                                 "scheme",
+                                "id",
                                 "legalName",
                                 "uri"
                               ],
@@ -1222,6 +1223,7 @@
                                   "type": "string",
                                   "source": "{{ context.uris.registrationScheme }}",
                                   "dependenceField": "fsFunding.fsPayer.address.country.id",
+                                  "enum": [],
                                   "ocds": "tender::object/procuringEntity::object/identifier::object/scheme::string"
                                 },
                                 "id": {
@@ -1247,8 +1249,8 @@
                               "items": {
                                 "type": "object",
                                 "required": [
-                                  "id",
                                   "scheme",
+                                  "id",
                                   "legalName",
                                   "uri"
                                 ],
@@ -1258,6 +1260,7 @@
                                     "type": "string",
                                     "source": "{{ context.uris.registrationScheme }}",
                                     "dependenceField": "fsFunding.fsPayer.address.country.id",
+                                    "enum": [],
                                     "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/scheme::string"
                                   },
                                   "id": {
@@ -1330,7 +1333,7 @@
                               }
                             }
                           }
-                        },
+                        }
                       {% elseif context.parameters.payer == "FUNDER" %}
                         "fsPayer": {
                           "title": "Money is paid by the - Funder",
@@ -1526,8 +1529,8 @@
                               "title": "Main Identifier",
                               "type": "object",
                               "required": [
-                                "id",
                                 "scheme",
+                                "id",
                                 "legalName",
                                 "uri"
                               ],
@@ -1564,8 +1567,8 @@
                               "items": {
                                 "type": "object",
                                 "required": [
-                                  "id",
                                   "scheme",
+                                  "id",
                                   "legalName",
                                   "uri"
                                 ],
@@ -1762,8 +1765,9 @@
                   "EUFunded": {
                     "type": "object",
                     "required": [
-                      "isEUfunded",
+                      "isEUfunded"
                                 {% if context.parameters.europeanUnionFunded == true %}
+                                  ,
                                   "projectIdentifier",
                                   "projectName"
                                 {% endif %}
@@ -1786,8 +1790,9 @@
                         ],
                         "readOnly": true,
                         "ocds": "planning::object/budget::object/isEuropeanUnionFunded::boolean"
-                      },
+                      }
                                   {% if context.parameters.europeanUnionFunded == true %}
+                                    ,
                                     "projectIdentifier": {
                                       "title": "Project Identifier",
                                       "description": "National identifier of the EU project providing partial or full funding",
@@ -1820,8 +1825,9 @@
   "data": {
     "fsParent": {
       "eiOCID": "{{ context.ei.ocid }}",
-      "eiTitle": "{{ context.ei.title }}",
-      "eiDescription": "{{ context.ei.description }}",
+      "eiTitle": "{{ context.ei.title }}"
+      {% if context.ei.description != "" %},{% endif %}
+      {{ attributeIf(name = eiDescription, value = context.ei.description) }},
       "eiBudgetPeriod": {
         "startDate": "{{ context.ei.budgetPeriod.startDate }}",
         "endDate": "{{ context.ei.budgetPeriod.endDate }}"
@@ -1868,26 +1874,31 @@
                          }
                        },
                        "postalAddress": {
-                         "streetAddress": "{{ context.buyer.address.streetAddress }}",
-                         "postalCode": "{{ context.buyer.address.postalCode }}"
+                         "streetAddress": "{{ context.buyer.address.streetAddress }}"
+                         {% if context.buyer.address.postalCode != "" %},{% endif %}
+                         {{ attributeIf(name = postalCode, value = context.buyer.address.postalCode) }}
                        }
                      },
                      "identifier": {
                        "scheme": "{{ context.buyer.identifier.scheme }}",
                        "id": "{{ context.buyer.identifier.id }}",
-                       "legalName": "{{ context.buyer.identifier.legalName }}",
-                       "uri": "{{ context.buyer.identifier.uri }}"
+                       "legalName": "{{ context.buyer.identifier.legalName }}"
+                       {% if context.buyer.identifier.uri != "" %},{% endif %}
+                       {{ attributeIf(name = faxNumber, value = context.buyer.identifier.uri) }}
                      },
-                     "additionalIdentifiers": [
+                     {% if context.buyer.additionalIdentifiers != null %}
+                        "additionalIdentifiers": [
                                               {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
                                                 {
                                                   "schema": "{{ additionalIdentifier.scheme }}",
                                                   "id": "{{ additionalIdentifier.id }}",
-                                                  "legalName": "{{ additionalIdentifier.legalName }}",
-                                                  "uri": "{{ additionalIdentifier.uri }}"
+                                                  "legalName": "{{ additionalIdentifier.legalName }}"
+                                                  {% if additionalIdentifier.uri != "" %},{% endif %}
+                                                  {{ attributeIf(name = faxNumber, value = additionalIdentifier.uri) }}
                                                 }
                                               {% endfor %}
-                     ],
+                        ],
+                     {% endif %}
                      "contactPoint": {
                        "person": {
                          "name": "{{ context.buyer.contactPoint.name }}",
@@ -1895,8 +1906,9 @@
                        },
                        "contacts": {
                          "telephone": "{{ context.buyer.contactPoint.telephone }}",
-                         "email": "{{ context.buyer.contactPoint.email }}",
-                         "faxNumber": "{{ context.buyer.contactPoint.faxNumber }}"
+                         "email": "{{ context.buyer.contactPoint.email }}"
+                         {% if context.buyer.contactPoint.faxNumber != "" %},{% endif %}
+                         {{ attributeIf(name = faxNumber, value = context.buyer.contactPoint.faxNumber) }}
                        }
                      }
                    },
@@ -1936,26 +1948,31 @@
                          }
                        },
                        "postalAddress": {
-                         "streetAddress": "{{ context.buyer.address.streetAddress }}",
-                         "postalCode": "{{ context.buyer.address.postalCode }}"
+                         "streetAddress": "{{ context.buyer.address.streetAddress }}"
+                          {% if context.buyer.address.postalCode != "" %},{% endif %}
+                          {{ attributeIf(name = postalCode, value = context.buyer.address.postalCode) }}
                        }
                      },
                      "identifier": {
                        "scheme": "{{ context.buyer.identifier.scheme }}",
                        "id": "{{ context.buyer.identifier.id }}",
-                       "legalName": "{{ context.buyer.identifier.legalName }}",
-                       "uri": "{{ context.buyer.identifier.uri }}"
+                       "legalName": "{{ context.buyer.identifier.legalName }}"
+                       {% if context.buyer.identifier.uri != "" %},{% endif %}
+                       {{ attributeIf(name = faxNumber, value = context.buyer.identifier.uri) }}
                      },
-                     "additionalIdentifiers": [
-                                              {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
-                                                {
-                                                  "schema": "{{ additionalIdentifier.scheme }}",
-                                                  "id": "{{ additionalIdentifier.id }}",
-                                                  "legalName": "{{ additionalIdentifier.legalName }}",
-                                                  "uri": "{{ additionalIdentifier.uri }}"
-                                                }
-                                              {% endfor %}
-                     ],
+                     {% if context.buyer.additionalIdentifiers != null %}
+                       "additionalIdentifiers": [
+                                                {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
+                                                  {
+                                                    "schema": "{{ additionalIdentifier.scheme }}",
+                                                    "id": "{{ additionalIdentifier.id }}",
+                                                    "legalName": "{{ additionalIdentifier.legalName }}"
+                                                    {% if additionalIdentifier.uri != "" %},{% endif %}
+                                                    {{ attributeIf(name = faxNumber, value = additionalIdentifier.uri) }}
+                                                  }
+                                                {% endfor %}
+                       ],
+                     {% endif %}
                      "contactPoint": {
                        "person": {
                          "name": "{{ context.buyer.contactPoint.name }}",
@@ -1963,8 +1980,9 @@
                        },
                        "contacts": {
                          "telephone": "{{ context.buyer.contactPoint.telephone }}",
-                         "email": "{{ context.buyer.contactPoint.email }}",
-                         "faxNumber": "{{ context.buyer.contactPoint.faxNumber }}"
+                         "email": "{{ context.buyer.contactPoint.email }}"
+                         {% if context.buyer.contactPoint.faxNumber != "" %},{% endif %}
+                         {{ attributeIf(name = faxNumber, value = context.buyer.contactPoint.faxNumber) }}
                        }
                      }
                    },
@@ -1976,7 +1994,6 @@
                     "currency": "{{ context.budget.amount.currency }}"
                   },
                 {% endif %}
-
       "budgetProject": {
         "projectDetails": {
           "EUfunded": {

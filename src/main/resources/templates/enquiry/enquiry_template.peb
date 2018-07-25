@@ -54,7 +54,7 @@
                     "title": "Region",
                     "type": "object",
                     "source": "{{ context.uris.region }}",
-                    "dependenceField": "tenderers[0].address.location.country.id",
+                    "dependenceField": "enquiry.author.address.location.country.id",
                     "required": [
                       "id",
                       "description"
@@ -104,7 +104,7 @@
                                   "locality": {
                                     "type": "object",
                                     "source": "{{ context.uris.locality }}",
-                                    "dependenceField": "tenderers[0].address.location.region.id",
+                                    "dependenceField": "enquiry.author.address.location.region.id",
                                     "required": [
                                       "id",
                                       "description"
@@ -206,7 +206,7 @@
                 "title": "Identification scheme",
                 "type": "string",
                 "source": "{{ context.uris.registrationScheme }}",
-                "dependenceField": "tenderers[0].address.country.id",
+                "dependenceField": "enquiry.author.address.country.id",
                 "enum": [],
                 "ocds": "enquiry::object/author::object/identifier::object/scheme::string"
               },
@@ -243,7 +243,7 @@
                   "title": "Additional identifier scheme",
                   "type": "string",
                   "source": "{{ context.uris.registrationScheme }}",
-                  "dependenceField": "tenderers[0].address.country.id",
+                  "dependenceField": "enquiry.author.address.country.id",
                   "enum": [],
                   "ocds": "enquiry::object/author::object/additionalIdentifiers::array[object]/scheme::string"
                 },
