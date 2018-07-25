@@ -1910,8 +1910,9 @@
                          {{ attributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
                        }
                      }
-                   },
+                   }
                  {% endif %}
+                 {% if context.parameters.funder == "BUYER" && context.parameters.payer == "BUYER" %},{% endif %}
                  {% if context.parameters.payer == "BUYER" %}
                    "fsPayer": {
                      "name": "{{ context.buyer.name }}",
