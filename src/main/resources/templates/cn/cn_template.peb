@@ -1088,7 +1088,7 @@
               "description": "{{ context.buyer.address.region.description }}"
             },
             "localityDetails": {
-                               {% if context.buyer.address.locality.scheme == "UN/LOCODE" %}
+                               {% if context.buyer.address.locality.scheme == "CUATM" %}
                                  "localityType": "From mdm",
                                  "directory": {
                                    "locality": {
@@ -1164,7 +1164,7 @@
               "description": "{{ context.buyer.address.region.description }}"
             },
             "localityDetails": {
-                               {% if context.buyer.address.locality.scheme == "UN/LOCODE" %}
+                               {% if context.buyer.address.locality.scheme == "CUATM" %}
                                  "localityType": "From mdm",
                                  "directory": {
                                    "locality": {
