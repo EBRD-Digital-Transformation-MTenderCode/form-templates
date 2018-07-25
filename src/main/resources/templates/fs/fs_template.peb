@@ -1984,7 +1984,7 @@
                          {{ attributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
                        }
                      }
-                   },
+                   }
                  {% endif %}
     },
     "fsBudget": {
