@@ -1,9 +1,8 @@
 {# @pebvariable name="context" type="com.procurement.formsservice.model.fs.Data" #}
 {# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.fs.Buyer.AdditionalIdentifier" #}
 {
-{% macro translate(key) %}
-{{ i18n("i18n/fs/messages",key) }}
-{% endmacro %}
+{% import "../macros/translate" %}
+{% import "../macros/commaIf" %}
   "schema": {
     "title": "Funding Source Creation",
     "type": "object",
@@ -1826,7 +1825,7 @@
     "fsParent": {
       "eiOCID": "{{ context.ei.ocid }}",
       "eiTitle": "{{ context.ei.title }}"
-      {% if context.ei.description != "" %},{% endif %}
+      {{ commaIf(context.ei.description) }}
       {{ attributeIf(name = eiDescription, value = context.ei.description) }},
       "eiBudgetPeriod": {
         "startDate": "{{ context.ei.budgetPeriod.startDate }}",
@@ -1875,7 +1874,7 @@
                        },
                        "postalAddress": {
                          "streetAddress": "{{ context.buyer.address.streetAddress }}"
-                         {% if context.buyer.address.postalCode != "" %},{% endif %}
+                          {{ commaIf(context.buyer.address.postalCode) }}
                          {{ attributeIf(name = postalCode, value = context.buyer.address.postalCode) }}
                        }
                      },
@@ -1883,7 +1882,7 @@
                        "scheme": "{{ context.buyer.identifier.scheme }}",
                        "id": "{{ context.buyer.identifier.id }}",
                        "legalName": "{{ context.buyer.identifier.legalName }}"
-                       {% if context.buyer.identifier.uri != "" %},{% endif %}
+                       {{ commaIf(context.buyer.identifier.uri) }}
                        {{ attributeIf(name = faxNumber, value = context.buyer.identifier.uri) }}
                      },
                      {% if context.buyer.additionalIdentifiers != null %}
@@ -1893,7 +1892,7 @@
                                                   "schema": "{{ additionalIdentifier.scheme }}",
                                                   "id": "{{ additionalIdentifier.id }}",
                                                   "legalName": "{{ additionalIdentifier.legalName }}"
-                                                  {% if additionalIdentifier.uri != "" %},{% endif %}
+                                                  {{ commaIf(additionalIdentifier.uri) }}
                                                   {{ attributeIf(name = faxNumber, value = additionalIdentifier.uri) }}
                                                 }
                                               {% endfor %}
@@ -1907,7 +1906,7 @@
                        "contacts": {
                          "telephone": "{{ context.buyer.contactPoint.telephone }}",
                          "email": "{{ context.buyer.contactPoint.email }}"
-                         {% if context.buyer.contactPoint.faxNumber != "" %},{% endif %}
+                         {{ commaIf(context.buyer.contactPoint.faxNumber) }}
                          {{ attributeIf(name = faxNumber, value = context.buyer.contactPoint.faxNumber) }}
                        }
                      }
@@ -1949,7 +1948,7 @@
                        },
                        "postalAddress": {
                          "streetAddress": "{{ context.buyer.address.streetAddress }}"
-                          {% if context.buyer.address.postalCode != "" %},{% endif %}
+                          {{ commaIf(context.buyer.address.postalCode) }}
                           {{ attributeIf(name = postalCode, value = context.buyer.address.postalCode) }}
                        }
                      },
@@ -1957,7 +1956,7 @@
                        "scheme": "{{ context.buyer.identifier.scheme }}",
                        "id": "{{ context.buyer.identifier.id }}",
                        "legalName": "{{ context.buyer.identifier.legalName }}"
-                       {% if context.buyer.identifier.uri != "" %},{% endif %}
+                       {{ commaIf(context.buyer.identifier.uri) }}
                        {{ attributeIf(name = faxNumber, value = context.buyer.identifier.uri) }}
                      },
                      {% if context.buyer.additionalIdentifiers != null %}
@@ -1967,7 +1966,7 @@
                                                     "schema": "{{ additionalIdentifier.scheme }}",
                                                     "id": "{{ additionalIdentifier.id }}",
                                                     "legalName": "{{ additionalIdentifier.legalName }}"
-                                                    {% if additionalIdentifier.uri != "" %},{% endif %}
+                                                    {{ commaIf(additionalIdentifier.uri) }}
                                                     {{ attributeIf(name = faxNumber, value = additionalIdentifier.uri) }}
                                                   }
                                                 {% endfor %}
@@ -1981,7 +1980,7 @@
                        "contacts": {
                          "telephone": "{{ context.buyer.contactPoint.telephone }}",
                          "email": "{{ context.buyer.contactPoint.email }}"
-                         {% if context.buyer.contactPoint.faxNumber != "" %},{% endif %}
+                         {{ commaIf(context.buyer.contactPoint.faxNumber) }}
                          {{ attributeIf(name = faxNumber, value = context.buyer.contactPoint.faxNumber) }}
                        }
                      }

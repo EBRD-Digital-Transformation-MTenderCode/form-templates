@@ -1,8 +1,6 @@
 {# @pebvariable name="context" type="com.procurement.formsservice.model.bid.Data" #}
 {
-{% macro translate(key) %}
-{{ i18n("i18n/cn/messages",key) }}
-{% endmacro %}
+{% import "../macros/translate" %}
   "schema": {
     "title": "New Submission",
     "type": "object",

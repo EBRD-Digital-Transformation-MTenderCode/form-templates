@@ -1,5 +1,6 @@
 {# @pebvariable name="context" type="com.procurement.formsservice.model.enquiry.Data" #}
 {
+{% import "../macros/translate" %}
   "schema": {
     "title": "New enquiry",
     "type": "object",
