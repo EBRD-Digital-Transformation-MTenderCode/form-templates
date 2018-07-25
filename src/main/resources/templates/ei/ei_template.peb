@@ -486,7 +486,7 @@
   },
   "data": {
     "eiBuyer": {
-      "addressDetails": {
+      "address": {
         "location": {
           "country": {
             "id": "{{ context.parameters.country }}"
