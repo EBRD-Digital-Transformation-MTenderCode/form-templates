@@ -215,15 +215,15 @@
                                     "localityDetails": {
                                       "type": "object",
                                       "required": [
-                                        "schema",
+                                        "scheme",
                                         "id",
                                         "description"
                                       ],
                                       "properties": {
-                                        "schema": {
+                                        "scheme": {
                                           "type": "string",
                                           "const": "other",
-                                          "ocds": "bid::object/tenderers::array[object]/address::object/addressDetails::object/locality::object/schema::string"
+                                          "ocds": "bid::object/tenderers::array[object]/address::object/addressDetails::object/locality::object/scheme::string"
                                         },
                                         "id": {
                                           "type": "string",

@@ -48,7 +48,7 @@
             "type": "object",
             "properties": {
               "scheme": {
-                "title": "Classification schema",
+                "title": "Classification scheme",
                 "type": "string",
                 "readOnly": true
               },
@@ -205,16 +205,16 @@
                                                     "locality": {
                                                       "type": "object",
                                                       "required": [
-                                                        "schema",
+                                                        "scheme",
                                                         "id",
                                                         "description"
                                                       ],
                                                       "properties": {
-                                                        "schema": {
+                                                        "scheme": {
                                                           "type": "string",
                                                           "const": "other",
                                                           "readOnly": true,
-                                                          "ocds": "buyer::object/address::object/addressDetails::object/locality::object/schema::string"
+                                                          "ocds": "buyer::object/address::object/addressDetails::object/locality::object/scheme::string"
                                                         },
                                                         "id": {
                                                           "type": "string",
@@ -524,15 +524,15 @@
                                                     "locality": {
                                                       "type": "object",
                                                       "required": [
-                                                        "schema",
+                                                        "scheme",
                                                         "id",
                                                         "description"
                                                       ],
                                                       "properties": {
-                                                        "schema": {
+                                                        "scheme": {
                                                           "type": "string",
                                                           "const": "other",
-                                                          "ocds": "buyer::object/address::object/addressDetails::object/locality::object/schema::string"
+                                                          "ocds": "buyer::object/address::object/addressDetails::object/locality::object/scheme::string"
                                                         },
                                                         "id": {
                                                           "type": "string",
@@ -837,16 +837,16 @@
                                                     "locality": {
                                                       "type": "object",
                                                       "required": [
-                                                        "schema",
+                                                        "scheme",
                                                         "id",
                                                         "description"
                                                       ],
                                                       "properties": {
-                                                        "schema": {
+                                                        "scheme": {
                                                           "type": "string",
                                                           "const": "other",
                                                           "readOnly": true,
-                                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/schema::string"
+                                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/scheme::string"
                                                         },
                                                         "id": {
                                                           "type": "string",
@@ -1155,15 +1155,15 @@
                                                     "locality": {
                                                       "type": "object",
                                                       "required": [
-                                                        "schema",
+                                                        "scheme",
                                                         "id",
                                                         "description"
                                                       ],
                                                       "properties": {
-                                                        "schema": {
+                                                        "scheme": {
                                                           "type": "string",
                                                           "const": "other",
-                                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/schema::string"
+                                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/scheme::string"
                                                         },
                                                         "id": {
                                                           "type": "string",
@@ -1467,16 +1467,16 @@
                                                     "locality": {
                                                       "type": "object",
                                                       "required": [
-                                                        "schema",
+                                                        "scheme",
                                                         "id",
                                                         "description"
                                                       ],
                                                       "properties": {
-                                                        "schema": {
+                                                        "scheme": {
                                                           "type": "string",
                                                           "const": "other",
                                                           "readOnly": true,
-                                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/schema::string"
+                                                          "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/scheme::string"
                                                         },
                                                         "id": {
                                                           "type": "string",
@@ -1865,7 +1865,7 @@
                                                       "localityType": "Other",
                                                       "manual": {
                                                         "locality": {
-                                                          "schema": "{{ context.buyer.address.locality.schema }}",
+                                                          "scheme": "{{ context.buyer.address.locality.scheme }}",
                                                           "id": "{{ context.buyer.address.locality.id }}",
                                                           "description": "{{ context.buyer.address.locality.description }}"
                                                         }
@@ -1890,7 +1890,7 @@
                                          "additionalIdentifiers": [
                                                                   {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
                                                                     {
-                                                                      "schema": "{{ additionalIdentifier.scheme }}",
+                                                                      "scheme": "{{ additionalIdentifier.scheme }}",
                                                                       "id": "{{ additionalIdentifier.id }}",
                                                                       "legalName": "{{ additionalIdentifier.legalName }}"
                                                                     {{ commaIf(additionalIdentifier.uri) }}
@@ -1940,7 +1940,7 @@
                                                       "localityType": "Other",
                                                       "manual": {
                                                         "locality": {
-                                                          "schema": "{{ context.buyer.address.locality.schema }}",
+                                                          "scheme": "{{ context.buyer.address.locality.scheme }}",
                                                           "id": "{{ context.buyer.address.locality.id }}",
                                                           "description": "{{ context.buyer.address.locality.description }}"
                                                         }
@@ -1965,7 +1965,7 @@
                                         "additionalIdentifiers": [
                                                                  {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
                                                                    {
-                                                                     "schema": "{{ additionalIdentifier.scheme }}",
+                                                                     "scheme": "{{ additionalIdentifier.scheme }}",
                                                                      "id": "{{ additionalIdentifier.id }}",
                                                                      "legalName": "{{ additionalIdentifier.legalName }}"
                                                                    {{ commaIf(additionalIdentifier.uri) }}

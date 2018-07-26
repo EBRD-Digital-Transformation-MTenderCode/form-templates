@@ -141,15 +141,15 @@
                                   "localityDetails": {
                                     "type": "object",
                                     "required": [
-                                      "schema",
+                                      "scheme",
                                       "id",
                                       "description"
                                     ],
                                     "properties": {
-                                      "schema": {
+                                      "scheme": {
                                         "type": "string",
                                         "const": "other",
-                                        "ocds": "enquiry::object/author::object/address::object/addressDetails::object/locality::object/schema::string"
+                                        "ocds": "enquiry::object/author::object/address::object/addressDetails::object/locality::object/scheme::string"
                                       },
                                       "id": {
                                         "type": "string",

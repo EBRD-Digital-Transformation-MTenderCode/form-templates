@@ -217,15 +217,15 @@
                                   "localityDetails": {
                                     "type": "object",
                                     "required": [
-                                      "schema",
+                                      "scheme",
                                       "id",
                                       "description"
                                     ],
                                     "properties": {
-                                      "schema": {
+                                      "scheme": {
                                         "type": "string",
                                         "const": "other",
-                                        "ocds": "buyer::object/address::object/addressDetails::object/locality::object/schema::string"
+                                        "ocds": "buyer::object/address::object/addressDetails::object/locality::object/scheme::string"
                                       },
                                       "id": {
                                         "type": "string",
