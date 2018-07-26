@@ -1095,7 +1095,7 @@
                                      "id": "{{ context.buyer.address.locality.id }}",
                                      "description": "{{ context.buyer.address.locality.description }}"
                                    }
-                                 },
+                                 }
                                {% else %}
                                  "localityType": "Other",
                                  "manual": {
