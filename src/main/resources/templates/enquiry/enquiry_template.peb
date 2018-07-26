@@ -318,8 +318,9 @@
             }
           }
         }
-      },
-                  {% if context.parameters.lotId equals "" %}
+      }
+                  {% if context.parameters.lotId != null %}
+                  ,
                     "relatedLot": {
                       "type": "string",
                       "ocds": "enquiry::object/relatedLot::string"
@@ -328,7 +329,7 @@
     }
   },
   "data": {
-          {% if context.parameters.lotId equals "" %}
+          {% if context.parameters.lotId != null %}
             "relatedLot": "{{ context.parameters.lotId }}"
           {% endif %}
   }
