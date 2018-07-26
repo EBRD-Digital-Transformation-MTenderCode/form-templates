@@ -1766,7 +1766,7 @@
                     "required": [
                       "isEUfunded"
                                 {% if context.parameters.europeanUnionFunded == true %}
-                                  ,
+                                ,
                                   "projectIdentifier",
                                   "projectName"
                                 {% endif %}
@@ -1791,7 +1791,7 @@
                         "ocds": "planning::object/budget::object/isEuropeanUnionFunded::boolean"
                       }
                                   {% if context.parameters.europeanUnionFunded == true %}
-                                    ,
+                                  ,
                                     "projectIdentifier": {
                                       "title": "Project Identifier",
                                       "description": "National identifier of the EU project providing partial or full funding",
@@ -1825,8 +1825,8 @@
     "fsParent": {
       "eiOCID": "{{ context.ei.ocid }}",
       "eiTitle": "{{ context.ei.title }}"
-      {{ commaIf(context.ei.description) }}
-      {{ attributeIf(name = "eiDescription", value = context.ei.description) }},
+                {{ commaIf(context.ei.description) }}
+                {{ attributeIf(name = "eiDescription", value = context.ei.description) }},
       "eiBudgetPeriod": {
         "startDate": "{{ context.ei.budgetPeriod.startDate }}",
         "endDate": "{{ context.ei.budgetPeriod.endDate }}"
@@ -1837,157 +1837,159 @@
         "description": "{{ context.ei.classification.description }}"
       }
     },
-    "fsFunding": {
-                 {% if context.parameters.funder == "BUYER" %}
-                   "fsFunder": {
-                     "name": "{{ context.buyer.name }}",
-                     "address": {
-                       "location": {
-                         "country": {
-                           "id": "{{ context.buyer.address.country.id }}",
-                           "description": "{{ context.buyer.address.country.description }}"
-                         },
-                         "region": {
-                           "id": "{{ context.buyer.address.region.id }}",
-                           "description": "{{ context.buyer.address.region.description }}"
-                         },
-                         "localityDetails": {
-                                            {% if context.buyer.address.locality.scheme == "CUATM" %}
-                                              "localityType": "From mdm",
-                                              "directory": {
-                                                "locality": {
-                                                  "id": "{{ context.buyer.address.locality.id }}",
-                                                  "description": "{{ context.buyer.address.locality.description }}"
-                                                }
-                                              }
-                                            {% else %}
-                                              "localityType": "Other",
-                                              "manual": {
-                                                "locality": {
-                                                  "schema": "{{ context.buyer.address.locality.schema }}",
-                                                  "id": "{{ context.buyer.address.locality.id }}",
-                                                  "description": "{{ context.buyer.address.locality.description }}"
-                                                }
-                                              }
-                                            {% endif %}
-                         }
-                       },
-                       "postalAddress": {
-                         "streetAddress": "{{ context.buyer.address.streetAddress }}"
-                          {{ commaIf(context.buyer.address.postalCode) }}
-                         {{ attributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
-                       }
-                     },
-                     "identifier": {
-                       "scheme": "{{ context.buyer.identifier.scheme }}",
-                       "id": "{{ context.buyer.identifier.id }}",
-                       "legalName": "{{ context.buyer.identifier.legalName }}"
-                       {{ commaIf(context.buyer.identifier.uri) }}
-                       {{ attributeIf(name = "uri", value = context.buyer.identifier.uri) }}
-                     },
-                     {% if context.buyer.additionalIdentifiers != null %}
-                        "additionalIdentifiers": [
-                                              {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
-                                                {
-                                                  "schema": "{{ additionalIdentifier.scheme }}",
-                                                  "id": "{{ additionalIdentifier.id }}",
-                                                  "legalName": "{{ additionalIdentifier.legalName }}"
-                                                  {{ commaIf(additionalIdentifier.uri) }}
-                                                  {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
-                                                }
-                                              {% endfor %}
-                        ],
-                     {% endif %}
-                     "contactPoint": {
-                       "person": {
-                         "name": "{{ context.buyer.contactPoint.name }}",
-                         "url": "{{ context.buyer.contactPoint.url }}"
-                       },
-                       "contacts": {
-                         "telephone": "{{ context.buyer.contactPoint.telephone }}",
-                         "email": "{{ context.buyer.contactPoint.email }}"
-                         {{ commaIf(context.buyer.contactPoint.faxNumber) }}
-                         {{ attributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
-                       }
-                     }
-                   }
-                 {% endif %}
-                 {% if context.parameters.funder == "BUYER" and context.parameters.payer == "BUYER" %},{% endif %}
-                 {% if context.parameters.payer == "BUYER" %}
-                   "fsPayer": {
-                     "name": "{{ context.buyer.name }}",
-                     "address": {
-                       "location": {
-                         "country": {
-                           "id": "{{ context.buyer.address.country.id }}",
-                           "description": "{{ context.buyer.address.country.description }}"
-                         },
-                         "region": {
-                           "id": "{{ context.buyer.address.region.id }}",
-                           "description": "{{ context.buyer.address.region.description }}"
-                         },
-                         "localityDetails": {
-                                            {% if context.buyer.address.locality.scheme == "CUATM" %}
-                                              "localityType": "From mdm",
-                                              "directory": {
-                                                "locality": {
-                                                  "id": "{{ context.buyer.address.locality.id }}",
-                                                  "description": "{{ context.buyer.address.locality.description }}"
-                                                }
-                                              }
-                                            {% else %}
-                                              "localityType": "Other",
-                                              "manual": {
-                                                "locality": {
-                                                  "schema": "{{ context.buyer.address.locality.schema }}",
-                                                  "id": "{{ context.buyer.address.locality.id }}",
-                                                  "description": "{{ context.buyer.address.locality.description }}"
-                                                }
-                                              }
-                                            {% endif %}
-                         }
-                       },
-                       "postalAddress": {
-                         "streetAddress": "{{ context.buyer.address.streetAddress }}"
-                          {{ commaIf(context.buyer.address.postalCode) }}
-                          {{ attributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
-                       }
-                     },
-                     "identifier": {
-                       "scheme": "{{ context.buyer.identifier.scheme }}",
-                       "id": "{{ context.buyer.identifier.id }}",
-                       "legalName": "{{ context.buyer.identifier.legalName }}"
-                       {{ commaIf(context.buyer.identifier.uri) }}
-                       {{ attributeIf(name = "uri", value = context.buyer.identifier.uri) }}
-                     },
-                     {% if context.buyer.additionalIdentifiers != null %}
-                       "additionalIdentifiers": [
-                                                {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
-                                                  {
-                                                    "schema": "{{ additionalIdentifier.scheme }}",
-                                                    "id": "{{ additionalIdentifier.id }}",
-                                                    "legalName": "{{ additionalIdentifier.legalName }}"
-                                                    {{ commaIf(additionalIdentifier.uri) }}
-                                                    {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
-                                                  }
-                                                {% endfor %}
-                       ],
-                     {% endif %}
-                     "contactPoint": {
-                       "person": {
-                         "name": "{{ context.buyer.contactPoint.name }}",
-                         "url": "{{ context.buyer.contactPoint.url }}"
-                       },
-                       "contacts": {
-                         "telephone": "{{ context.buyer.contactPoint.telephone }}",
-                         "email": "{{ context.buyer.contactPoint.email }}"
-                         {{ commaIf(context.buyer.contactPoint.faxNumber) }}
-                         {{ attributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
-                       }
-                     }
-                   }
-                 {% endif %}
-    },
+          {% if context.parameters.funder == "BUYER" or context.parameters.payer == "BUYER" %}
+            "fsFunding": {
+                         {% if context.parameters.funder == "BUYER" %}
+                           "fsFunder": {
+                             "name": "{{ context.buyer.name }}",
+                             "address": {
+                               "location": {
+                                 "country": {
+                                   "id": "{{ context.buyer.address.country.id }}",
+                                   "description": "{{ context.buyer.address.country.description }}"
+                                 },
+                                 "region": {
+                                   "id": "{{ context.buyer.address.region.id }}",
+                                   "description": "{{ context.buyer.address.region.description }}"
+                                 },
+                                 "localityDetails": {
+                                                    {% if context.buyer.address.locality.scheme == "CUATM" %}
+                                                      "localityType": "From mdm",
+                                                      "directory": {
+                                                        "locality": {
+                                                          "id": "{{ context.buyer.address.locality.id }}",
+                                                          "description": "{{ context.buyer.address.locality.description }}"
+                                                        }
+                                                      }
+                                                    {% else %}
+                                                      "localityType": "Other",
+                                                      "manual": {
+                                                        "locality": {
+                                                          "schema": "{{ context.buyer.address.locality.schema }}",
+                                                          "id": "{{ context.buyer.address.locality.id }}",
+                                                          "description": "{{ context.buyer.address.locality.description }}"
+                                                        }
+                                                      }
+                                                    {% endif %}
+                                 }
+                               },
+                               "postalAddress": {
+                                 "streetAddress": "{{ context.buyer.address.streetAddress }}"
+                                                {{ commaIf(context.buyer.address.postalCode) }}
+                                                {{ attributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
+                               }
+                             },
+                             "identifier": {
+                               "scheme": "{{ context.buyer.identifier.scheme }}",
+                               "id": "{{ context.buyer.identifier.id }}",
+                               "legalName": "{{ context.buyer.identifier.legalName }}"
+                                           {{ commaIf(context.buyer.identifier.uri) }}
+                                           {{ attributeIf(name = "uri", value = context.buyer.identifier.uri) }}
+                             },
+                                       {% if context.buyer.additionalIdentifiers != null %}
+                                         "additionalIdentifiers": [
+                                                                  {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
+                                                                    {
+                                                                      "schema": "{{ additionalIdentifier.scheme }}",
+                                                                      "id": "{{ additionalIdentifier.id }}",
+                                                                      "legalName": "{{ additionalIdentifier.legalName }}"
+                                                                    {{ commaIf(additionalIdentifier.uri) }}
+                                                                    {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
+                                                                    }
+                                                                  {% endfor %}
+                                         ],
+                                       {% endif %}
+                             "contactPoint": {
+                               "person": {
+                                 "name": "{{ context.buyer.contactPoint.name }}",
+                                 "url": "{{ context.buyer.contactPoint.url }}"
+                               },
+                               "contacts": {
+                                 "telephone": "{{ context.buyer.contactPoint.telephone }}",
+                                 "email": "{{ context.buyer.contactPoint.email }}"
+                                           {{ commaIf(context.buyer.contactPoint.faxNumber) }}
+                                           {{ attributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
+                               }
+                             }
+                           }
+                         {% endif %}
+                         {% if context.parameters.funder == "BUYER" and context.parameters.payer == "BUYER" %},{% endif %}
+                         {% if context.parameters.payer == "BUYER" %}
+                           "fsPayer": {
+                             "name": "{{ context.buyer.name }}",
+                             "address": {
+                               "location": {
+                                 "country": {
+                                   "id": "{{ context.buyer.address.country.id }}",
+                                   "description": "{{ context.buyer.address.country.description }}"
+                                 },
+                                 "region": {
+                                   "id": "{{ context.buyer.address.region.id }}",
+                                   "description": "{{ context.buyer.address.region.description }}"
+                                 },
+                                 "localityDetails": {
+                                                    {% if context.buyer.address.locality.scheme == "CUATM" %}
+                                                      "localityType": "From mdm",
+                                                      "directory": {
+                                                        "locality": {
+                                                          "id": "{{ context.buyer.address.locality.id }}",
+                                                          "description": "{{ context.buyer.address.locality.description }}"
+                                                        }
+                                                      }
+                                                    {% else %}
+                                                      "localityType": "Other",
+                                                      "manual": {
+                                                        "locality": {
+                                                          "schema": "{{ context.buyer.address.locality.schema }}",
+                                                          "id": "{{ context.buyer.address.locality.id }}",
+                                                          "description": "{{ context.buyer.address.locality.description }}"
+                                                        }
+                                                      }
+                                                    {% endif %}
+                                 }
+                               },
+                               "postalAddress": {
+                                 "streetAddress": "{{ context.buyer.address.streetAddress }}"
+                                                {{ commaIf(context.buyer.address.postalCode) }}
+                                                {{ attributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
+                               }
+                             },
+                             "identifier": {
+                               "scheme": "{{ context.buyer.identifier.scheme }}",
+                               "id": "{{ context.buyer.identifier.id }}",
+                               "legalName": "{{ context.buyer.identifier.legalName }}"
+                                           {{ commaIf(context.buyer.identifier.uri) }}
+                                           {{ attributeIf(name = "uri", value = context.buyer.identifier.uri) }}
+                             },
+                                      {% if context.buyer.additionalIdentifiers != null %}
+                                        "additionalIdentifiers": [
+                                                                 {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
+                                                                   {
+                                                                     "schema": "{{ additionalIdentifier.scheme }}",
+                                                                     "id": "{{ additionalIdentifier.id }}",
+                                                                     "legalName": "{{ additionalIdentifier.legalName }}"
+                                                                   {{ commaIf(additionalIdentifier.uri) }}
+                                                                   {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
+                                                                   }
+                                                                 {% endfor %}
+                                        ],
+                                      {% endif %}
+                             "contactPoint": {
+                               "person": {
+                                 "name": "{{ context.buyer.contactPoint.name }}",
+                                 "url": "{{ context.buyer.contactPoint.url }}"
+                               },
+                               "contacts": {
+                                 "telephone": "{{ context.buyer.contactPoint.telephone }}",
+                                 "email": "{{ context.buyer.contactPoint.email }}"
+                                           {{ commaIf(context.buyer.contactPoint.faxNumber) }}
+                                           {{ attributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
+                               }
+                             }
+                           }
+                         {% endif %}
+            },
+          {% endif %}
     "fsBudget": {
                 {% if context.budget.amount is not null %}
                   "budgetAmount": {
