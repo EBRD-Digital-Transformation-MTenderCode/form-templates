@@ -21,5 +21,5 @@ data class Uris(
 
 data class Amount(
     val currency: String, // for current lotId CN.tender.lots[id].value.currency
-    val maxAmount: Number // for current lotId CN.tender.lots[id].value.amount
+    val maxAmount: Double // for current lotId CN.tender.lots[id].value.amount
 )
