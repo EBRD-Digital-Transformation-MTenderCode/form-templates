@@ -3,7 +3,7 @@ package com.procurement.formsservice.model.bid
 class Data (
     val parameters: Parameters,
     val uris: Uris,
-    val amount: Amount
+    val amount: Amount?
 )
 
 data class Parameters(
