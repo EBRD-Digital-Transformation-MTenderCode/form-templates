@@ -5,7 +5,7 @@
     "title": "New Submission",
     "type": "object",
     "properties": {
-                  {% if findSubString(context.parameters.CNOCID, ".*-EV-[0-9]{13}") %}
+                  {% if findSubString(context.parameters.ocid, ".*-EV-[0-9]{13}") %}
                     "bidAmount": {
                       "title": "Estimated coast",
                       "type": "object",
@@ -405,7 +405,7 @@
     }
   },
   "data": {
-    {% if findSubString(context.parameters.CNOCID, ".*-EV-[0-9]{13}") %}
+    {% if findSubString(context.parameters.ocid, ".*-EV-[0-9]{13}") %}
         "bidAmount": {
           "currency": "{{ context.amount.currency }}",
           "maxAmount": {{ context.amount.maxAmount }}

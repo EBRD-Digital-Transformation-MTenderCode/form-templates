@@ -7,7 +7,7 @@ class Data (
 )
 
 data class Parameters(
-    val CNOCID: String, // ocds-t1s2t3-MD-1532010121824-EV-1532010122650
+    val ocid: String, // ocds-t1s2t3-MD-1532010121824-EV-1532010122650
     val lotId: String // 1a8e2f80-8b5f-11e8-a48b-9f2980d5bbdd
 )
 
