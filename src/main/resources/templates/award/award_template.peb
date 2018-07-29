@@ -1,0 +1,89 @@
+{# @pebvariable name="context" type="com.procurement.formsservice.model.award.Data" #}
+{
+{% import "../macros/translate" %}
+  "schema": {
+    "title": "Decision regarding the Offer (financial bid)",
+    "type": "object",
+    "required": [
+      "id",
+      "statusDetails"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "readOnly": true,
+        "ocds": "awards::object/id::string"
+      },
+      "statusDetails": {
+        "title": "Qualification results",
+        "type": "string",
+        "enum": [
+          "active",
+          "unsuccessful"
+        ],
+        "enumNames": [
+          "Bid is qualified as a winner",
+          "Bid is disqualified"
+        ],
+        "ocds": "awards::object/statusDetails::string"
+      },
+      "description": {
+        "title": "Description for results",
+        "type": "string",
+        "ocds": "awards::object/description::string"
+      },
+      "documents": {
+        "title": "Attachments and documents",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "documentId",
+            "documentType"
+          ],
+          "properties": {
+            "file": {
+              "title": "Select file",
+              "type": "string"
+            },
+            "documentId": {
+              "type": "string",
+              "ocds": "awards::object/documents::array[object]/id::string"
+            },
+            "title": {
+              "title": "Public name",
+              "type": "string",
+              "ocds": "awards::object/documents::array[object]/title::string"
+            },
+            "description": {
+              "title": "A short description of the document",
+              "type": "string",
+              "ocds": "awards::object/documents::array[object]/description::string"
+            },
+            "documentType": {
+              "title": "Document type",
+              "type": "string",
+              "enum": [
+                "illustration",
+                "submissionDocuments"
+              ],
+              "ocds": "awards::object/documents::array[object]/documentType::string"
+            },
+            "relatedLots": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "default": "{{ context.parameters.lotId }}",
+                "ocds": "awards::object/documents::array[object]/relatedLots::array[string]"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "data": {
+    "id": "{{ context.parameters.awardId }}"
+  }
+}
