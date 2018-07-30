@@ -6,7 +6,7 @@
 #### 1. Form EI
 
 End-points:
-**create -** `/api/v1/operations?form=create-ei&country=...&identifierSchema=...&lang=...`
+**create -** `/api/v1/operations?form=ei&country=...&identifierSchema=...&lang=...`
 
 Значения параметров:
 
@@ -22,7 +22,7 @@ End-points:
 #### 2. Form FS
 
 End-points:
-**create -** `/api/v1/operations?form=create-fs&ocid=...&funder=...&payer=...&isEuropeanUnionFunded=...&lang=...`
+**create -** `/api/v1/operations?form=fs&ocid=...&funder=...&payer=...&isEuropeanUnionFunded=...&lang=...`
 
 Значения параметров:
 
@@ -46,7 +46,7 @@ End-points:
 #### 5. Form CN
 
 End-points:
-**create -** `/api/v1/operations?form=create-cn&ocid=...&procuringEntity=...&responsibleContactPerson=...&pmd=...&lang=..`
+**create -** `/api/v1/operations?form=cn&ocid=...&procuringEntity=...&responsibleContactPerson=...&pmd=...&lang=..`
 
 Значения параметров:
 
@@ -64,7 +64,7 @@ End-points:
 #### 6. Form Bid
 
 End-points:
-**create -** `/api/v1/operations?form=create-bid&ocid=...&lot-id=...&lang=...`
+**create -** `/api/v1/operations?form=bid&ocid=...&lot-id=...&lang=...`
 
 Значения параметров:
 
@@ -80,7 +80,7 @@ End-points:
 #### 7. Form Enquiry
 
 End-points:
-**create  ** `/api/v1/operations?form=create-enquiry&lot-id=...&lang=...`
+**create  ** `/api/v1/operations?form=enquiry&lot-id=...&lang=...`
 
 Значения параметров:
 
@@ -95,7 +95,7 @@ End-points:
 #### 8. Form Answer
 
 End-points:
-**create -** `/api/v1/operations?form=create-answer&lang=...`
+**create -** `/api/v1/operations?form=answer&lang=...`
 
 Значения параметров:
 
