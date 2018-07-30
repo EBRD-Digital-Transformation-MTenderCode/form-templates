@@ -5,6 +5,5 @@ class Data (
 )
 
 data class Parameters(
-        val awardId: String,
         val lotId: String
 )

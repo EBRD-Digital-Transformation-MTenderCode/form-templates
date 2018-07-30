@@ -148,16 +148,16 @@
                     }
                   },
                   "locality": {
-                    "title": "Locality",
                     "type": "object",
                     "required": [
                       "localityType"
                     ],
                     "properties": {
                       "localityType": {
+                        "title": "Select type locality",
                         "type": "string",
                         "enum": [
-                          "From mdm",
+                          "From the directory",
                           "Other"
                         ]
                       }
@@ -179,6 +179,7 @@
                                 "type": "object",
                                 "properties": {
                                   "locality": {
+                                    "title": "Locality",
                                     "type": "object",
                                     "source": "{{ context.uris.locality }}",
                                     "dependenceField": "eiBuyer.address.location.region.id",
@@ -214,7 +215,8 @@
                               "manual": {
                                 "type": "object",
                                 "properties": {
-                                  "localityDetails": {
+                                  "locality": {
+                                    "title": "Locality",
                                     "type": "object",
                                     "required": [
                                       "scheme",

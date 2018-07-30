@@ -5,15 +5,9 @@
     "title": "Decision regarding the Offer (financial bid)",
     "type": "object",
     "required": [
-      "id",
       "statusDetails"
     ],
     "properties": {
-      "id": {
-        "type": "string",
-        "readOnly": true,
-        "ocds": "awards::object/id::string"
-      },
       "statusDetails": {
         "title": "Qualification results",
         "type": "string",
@@ -84,6 +78,5 @@
     }
   },
   "data": {
-    "id": "{{ context.parameters.awardId }}"
   }
 }
