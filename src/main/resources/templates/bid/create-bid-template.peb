@@ -340,6 +340,28 @@
                 }
               }
             },
+            "details": {
+              "title": "Details information",
+              "type": "object",
+              "properties": {
+                "scale": {
+                  "title": "Scale",
+                  "type": "string",
+                  "enum": [
+                    "micro",
+                    "sme",
+                    "large"
+                  ],
+                  "enumNames": [
+                    "Micro Enterprise",
+                    "Small or Medium Enterprise",
+                    "Large Enterprise"
+                  ],
+                  "ocds": "bid::object/tenderers::array[object]/details::object/scale::string"
+                }
+
+              }
+            },
             "contactPoint": {
               "title": "Contact point",
               "type": "object",
