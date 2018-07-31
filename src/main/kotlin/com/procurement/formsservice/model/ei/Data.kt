@@ -12,7 +12,7 @@ data class Parameters(
 
 data class Uris(
     val cpv: String, // cpv?lang=langFromRequest
-    val country: String, // /country?lang=langFromRequest
+    val country: String, // /country/countryFromRequest?lang=langFromRequest
     val region: String, // /region?lang=langFromRequest&country=countryFromRequest
     val locality: String, // /locality?lang=langFromRequest&region=
     val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=countryFromRequest
