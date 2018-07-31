@@ -172,7 +172,7 @@
                             "properties": {
                               "localityType": {
                                 "enum": [
-                                  "From mdm"
+                                  "From the directory"
                                 ]
                               },
                               "directory": {
