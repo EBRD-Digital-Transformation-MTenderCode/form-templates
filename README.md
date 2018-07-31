@@ -15,7 +15,7 @@ End-points:
 - **"identifierSchema"**: "..." -  указание схемы регистрации buyer`a **(required)**;
 - **"lang"**:  "..." - локализация формы.
 
-Шаблон response payload ноходится - *src/main/resources/templates/ei/create-ei_template.peb*
+Шаблон response payload ноходится - *src/main/resources/templates/ei/create-ei-template.peb*
 
 ------------
 
@@ -37,11 +37,28 @@ End-points:
 
 - переданный `"payer": "funder"` в запросе считается валидными данными, только в том случае, если  `"funder": "donor"`, в противном случае платформе должно вернуться сообщение с ошибкой. Все остальные комбинации валидны.
 
-Шаблон response payload ноходится - *src/main/resources/templates/fs/create-fs_template.peb*
+Шаблон response payload ноходится - *src/main/resources/templates/fs/create-fs-template.peb*
 
 ------------
 
 #### 3. Form PN
+
+End-points:
+**create -** `/api/v1/operations?form=pn&ocid=...&procuringEntity=...&responsibleContactPerson=...&pmd=...&lang=..`
+
+Значения параметров:
+
+- **"form"**:  "pn" - указания типа создаваемой сущности **(required)**;
+- **"ocid"** :  "..." - ocid EI, FS`ы которого будут использоваться** (required)**;
+- **"procuringEntity"**: "..." -  *"buyer"* || *"thirdParty"* **(required)**;
+- **"responsibleContactPerson"**: "..." - *"buyer"* || *"thirdParty"* **(required)**;
+- **"pmd"**: "..." - *"OT"* || *"RT"* **(required)**;
+- **"lang"**:  "..." - локализация формы.
+
+Шаблон response payload ноходится - *src/main/resources/templates/pn/create-pn-template.peb*
+
+------------
+
 #### 4. Form PIN
 #### 5. Form CN
 
@@ -57,7 +74,7 @@ End-points:
 - **"pmd"**: "..." - *"OT"* || *"RT"* **(required)**;
 - **"lang"**:  "..." - локализация формы.
 
-Шаблон response payload ноходится - *src/main/resources/templates/cn/create-cn_template.peb*
+Шаблон response payload ноходится - *src/main/resources/templates/cn/create-cn-template.peb*
 
 ------------
 
@@ -73,7 +90,7 @@ End-points:
 - **"lot-id"**: "..." -  id лота на который подается bid **(required)**;
 - **"lang"**:  "..." - локализация формы.
 
-Шаблон response payload ноходится - *src/main/resources/templates/bid/create-bid_template.peb*
+Шаблон response payload ноходится - *src/main/resources/templates/bid/create-bid-template.peb*
 
 ------------
 
@@ -88,7 +105,7 @@ End-points:
 - **"lot-id"** :  "..." - id лота на который подается enquiry **(required)**;
 - **"lang"**:  "..." - локализация формы.
 
-Шаблон response payload ноходится - *src/main/resources/templates/enquiry/create-enquiry_template.peb*
+Шаблон response payload ноходится - *src/main/resources/templates/enquiry/create-enquiry-template.peb*
 
 ------------
 
@@ -102,7 +119,7 @@ End-points:
 - **"form"**:  "answer" - указания типа создаваемой сущности **(required)**;
 - **"lang"**:  "..." - локализация формы.
 
-Шаблон response payload ноходится - *src/main/resources/templates/answer/create-answer_template.peb*
+Шаблон response payload ноходится - *src/main/resources/templates/answer/create-answer-template.peb*
 
 ------------
 
@@ -117,6 +134,6 @@ End-points:
 - **"lot-id"**: "..." -  id лота на который подавался award **(required)**;
 - **"lang"**:  "..." - локализация формы.
 
-Шаблон response payload ноходится - *src/main/resources/templates/award/update-award_template.peb*
+Шаблон response payload ноходится - *src/main/resources/templates/award/update-award-template.peb*
 
 ------------
