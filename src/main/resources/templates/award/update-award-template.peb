@@ -58,8 +58,14 @@
               "title": "Document type",
               "type": "string",
               "enum": [
-                "illustration",
-                "submissionDocuments"
+                "awardNotice",
+                "evaluationReports",
+                "shortlistedFirms",
+                "winningBid",
+                "complaints",
+                "bidders",
+                "conflictOfInterest",
+                "cancellationDetails"
               ],
               "ocds": "awards::object/documents::array[object]/documentType::string"
             },
