@@ -18,7 +18,6 @@ data class Uris(
     val region: String, // /region?lang=langFromRequest&country=
     val locality: String, // /locality?lang=langFromRequest&region=
     val registrationScheme: String, // /registration-scheme?lang=langFromRequest&country=
-    val currency: String, // /currency?lang=langFromRequest&country=(Buyer.Address.Country.id)
     val unitClass: String, // /unit-class?lang=langFromRequest
     val unit: String, // /unit?lang=langFromRequest&unitClass=
     val cpv: String, // cpv?lang=langFromRequest&code=(EI.tender.classification.id)
