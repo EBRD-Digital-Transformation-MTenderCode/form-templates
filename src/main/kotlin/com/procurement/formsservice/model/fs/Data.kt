@@ -15,10 +15,10 @@ data class Parameters(
 )
 
 data class Uris(
-    val country: String, // /country?lang=langFromRequest
-    val region: String, // if parameter funder or payer == "buyer" "/region?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/region?lang=langFromRequest&country="
-    val locality: String, // if parameter funder or payer == "buyer" "/locality?lang=langFromRequest&region=(Buyer.Address.Region.id)" else "/locality?lang=langFromRequest&region="
-    val registrationScheme: String, // if parameter funder or payer == "buyer" "/registration-scheme?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/registration-scheme?lang=langFromRequest&country="
+    val country: String, // if parameter funder or payer == "buyer" "/country/(Buyer.Address.Country.id)?lang=langFromRequest else "/country?lang=langFromRequest
+    val region: String, // if parameter funder or payer == "buyer" "/region?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/region?lang=langFromRequest&country=$country$"
+    val locality: String, // if parameter funder or payer == "buyer" "/locality?lang=langFromRequest&country=(Buyer.Address.Country.id)&region=(Buyer.Address.Region.id)" else "/locality?lang=langFromRequest&country=$country$&region=$region$"
+    val registrationScheme: String, // if parameter funder or payer == "buyer" "/registration-scheme?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/registration-scheme?lang=langFromRequest&country=$country$"
     val currency: String  // /currency?lang=langFromRequest&country=(Buyer.Address.Country.id)
 )
 

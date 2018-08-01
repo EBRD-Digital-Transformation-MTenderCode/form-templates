@@ -13,9 +13,9 @@ data class Parameters(
 
 data class Uris(
     val country: String, // /country?lang=langFromRequest
-    val region: String, // /region?lang=langFromRequest&country=
-    val locality: String, // /locality?lang=langFromRequest&region=
-    val registrationScheme: String, // /registration-scheme?lang=langFromRequest&country=
+    val region: String, // /region?lang=langFromRequest&country=$country$
+    val locality: String, // /locality?lang=langFromRequest&country=$country$&region=$region$
+    val registrationScheme: String, // /registration-scheme?lang=langFromRequest&country=$country$
     val currency: String // /currency?lang=langFromRequest&country=(ocds-t1s2t3->MD<-1532010121824-EV-1532010122650)
 )
 

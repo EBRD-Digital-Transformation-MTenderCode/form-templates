@@ -132,8 +132,7 @@
                                         }
                                       }
                                     },
-                                    "localityDetails": {
-                                      "title": "Locality",
+                                    "locality": {
                                       "type": "object",
                                       "required": [
                                         "localityType"
@@ -142,7 +141,7 @@
                                         "localityType": {
                                           "type": "string",
                                           "enum": [
-                                            "From mdm",
+                                            "From the directory",
                                             "Other"
                                           ],
                                           "readOnly": true
@@ -158,16 +157,20 @@
                                               "properties": {
                                                 "localityType": {
                                                   "enum": [
-                                                    "From mdm"
+                                                    "From the directory"
                                                   ]
                                                 },
                                                 "directory": {
                                                   "type": "object",
                                                   "properties": {
                                                     "locality": {
+                                                      "title": "Locality",
                                                       "type": "object",
                                                       "source": "{{ context.uris.locality }}",
-                                                      "dependenceField": "eiBuyer.address.location.region.id",
+                                                      "dependentFields": {
+                                                        "country": "fsFunding.fsPayer.address.country.id",
+                                                        "region": "fsFunding.fsPayer.address.region.id"
+                                                      },
                                                       "required": [
                                                         "id",
                                                         "description"
@@ -203,6 +206,7 @@
                                                   "type": "object",
                                                   "properties": {
                                                     "locality": {
+                                                      "title": "Locality",
                                                       "type": "object",
                                                       "required": [
                                                         "scheme",
@@ -438,7 +442,9 @@
                                       "title": "Region",
                                       "type": "object",
                                       "source": "{{ context.uris.region }}",
-                                      "dependenceField": "fsFunding.fsFunder.address.country.id",
+                                      "dependentFields": {
+                                        "country": "fsFunding.fsFunder.address.country.id"
+                                      },
                                       "required": [
                                         "id",
                                         "description"
@@ -454,8 +460,7 @@
                                         }
                                       }
                                     },
-                                    "localityDetails": {
-                                      "title": "Locality",
+                                    "locality": {
                                       "type": "object",
                                       "required": [
                                         "localityType"
@@ -464,7 +469,7 @@
                                         "localityType": {
                                           "type": "string",
                                           "enum": [
-                                            "From mdm",
+                                            "From the directory",
                                             "Other"
                                           ]
                                         }
@@ -479,16 +484,20 @@
                                               "properties": {
                                                 "localityType": {
                                                   "enum": [
-                                                    "From mdm"
+                                                    "From the directory"
                                                   ]
                                                 },
                                                 "directory": {
                                                   "type": "object",
                                                   "properties": {
                                                     "locality": {
+                                                      "title": "Locality",
                                                       "type": "object",
                                                       "source": "{{ context.uris.locality }}",
-                                                      "dependenceField": "fsFunding.fsFunder.address.region.id",
+                                                      "dependentFields": {
+                                                        "country": "fsFunding.fsFunder.address.country.id",
+                                                        "region": "fsFunding.fsFunder.address.region.id"
+                                                      },
                                                       "required": [
                                                         "id",
                                                         "description"
@@ -522,6 +531,7 @@
                                                   "type": "object",
                                                   "properties": {
                                                     "locality": {
+                                                      "title": "Locality",
                                                       "type": "object",
                                                       "required": [
                                                         "scheme",
@@ -590,7 +600,9 @@
                                   "title": "Identification scheme",
                                   "type": "string",
                                   "source": "{{ context.uris.registrationScheme }}",
-                                  "dependenceField": "fsFunding.fsFunder.address.country.id",
+                                  "dependentFields": {
+                                    "country": "fsFunding.fsFunder.address.country.id"
+                                  },
                                   "ocds": "buyer::object/identifier::object/scheme::string"
                                 },
                                 "id": {
@@ -626,8 +638,9 @@
                                     "title": "Additional identifier scheme",
                                     "type": "string",
                                     "source": "{{ context.uris.registrationScheme }}",
-                                    "dependenceField": "fsFunding.fsFunder.address.country.id",
-                                    "enum": [],
+                                    "dependentFields": {
+                                      "country": "fsFunding.fsFunder.address.country.id"
+                                    },
                                     "ocds": "buyer::object/additionalIdentifiers::array[object]/scheme::string"
                                   },
                                   "id": {
@@ -764,8 +777,7 @@
                                         }
                                       }
                                     },
-                                    "localityDetails": {
-                                      "title": "Locality",
+                                    "locality": {
                                       "type": "object",
                                       "required": [
                                         "localityType"
@@ -774,7 +786,7 @@
                                         "localityType": {
                                           "type": "string",
                                           "enum": [
-                                            "From mdm",
+                                            "From the directory",
                                             "Other"
                                           ],
                                           "readOnly": true
@@ -790,16 +802,20 @@
                                               "properties": {
                                                 "localityType": {
                                                   "enum": [
-                                                    "From mdm"
+                                                    "From the directory"
                                                   ]
                                                 },
                                                 "directory": {
                                                   "type": "object",
                                                   "properties": {
                                                     "locality": {
+                                                      "title": "Locality",
                                                       "type": "object",
                                                       "source": "{{ context.uris.locality }}",
-                                                      "dependenceField": "eiBuyer.address.location.region.id",
+                                                      "dependentFields": {
+                                                        "country": "fsFunding.fsPayer.address.country.id",
+                                                        "region": "fsFunding.fsPayer.address.region.id"
+                                                      },
                                                       "required": [
                                                         "id",
                                                         "description"
@@ -835,6 +851,7 @@
                                                   "type": "object",
                                                   "properties": {
                                                     "locality": {
+                                                      "title": "Locality",
                                                       "type": "object",
                                                       "required": [
                                                         "scheme",
@@ -1069,7 +1086,9 @@
                                       "title": "Region",
                                       "type": "object",
                                       "source": "{{ context.uris.region }}",
-                                      "dependenceField": "fsFunding.fsPayer.address.country.id",
+                                      "dependentFields": {
+                                        "country": "fsFunding.fsPayer.address.country.id"
+                                      },
                                       "required": [
                                         "id",
                                         "description"
@@ -1085,8 +1104,7 @@
                                         }
                                       }
                                     },
-                                    "localityDetails": {
-                                      "title": "Locality",
+                                    "locality": {
                                       "type": "object",
                                       "required": [
                                         "localityType"
@@ -1095,7 +1113,7 @@
                                         "localityType": {
                                           "type": "string",
                                           "enum": [
-                                            "From mdm",
+                                            "From the directory",
                                             "Other"
                                           ]
                                         }
@@ -1110,16 +1128,20 @@
                                               "properties": {
                                                 "localityType": {
                                                   "enum": [
-                                                    "From mdm"
+                                                    "From the directory"
                                                   ]
                                                 },
                                                 "directory": {
                                                   "type": "object",
                                                   "properties": {
                                                     "locality": {
+                                                      "title": "Locality",
                                                       "type": "object",
                                                       "source": "{{ context.uris.locality }}",
-                                                      "dependenceField": "fsFunding.fsPayer.address.region.id",
+                                                      "dependentFields": {
+                                                        "country": "fsFunding.fsPayer.address.country.id",
+                                                        "region": "fsFunding.fsPayer.address.region.id"
+                                                      },
                                                       "required": [
                                                         "id",
                                                         "description"
@@ -1153,6 +1175,7 @@
                                                   "type": "object",
                                                   "properties": {
                                                     "locality": {
+                                                      "title": "Locality",
                                                       "type": "object",
                                                       "required": [
                                                         "scheme",
@@ -1220,9 +1243,9 @@
                                 "scheme": {
                                   "title": "Identification scheme",
                                   "type": "string",
-                                  "source": "{{ context.uris.registrationScheme }}",
-                                  "dependenceField": "fsFunding.fsPayer.address.country.id",
-                                  "enum": [],
+                                  "source": "{{ context.uris.registrationScheme }}","dependentFields": {
+                                    "country": "fsFunding.fsPayer.address.country.id"
+                                  },
                                   "ocds": "tender::object/procuringEntity::object/identifier::object/scheme::string"
                                 },
                                 "id": {
@@ -1257,9 +1280,9 @@
                                   "scheme": {
                                     "title": "Additional identifier scheme",
                                     "type": "string",
-                                    "source": "{{ context.uris.registrationScheme }}",
-                                    "dependenceField": "fsFunding.fsPayer.address.country.id",
-                                    "enum": [],
+                                    "source": "{{ context.uris.registrationScheme }}","dependentFields": {
+                                      "country": "fsFunding.fsPayer.address.country.id"
+                                    },
                                     "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/scheme::string"
                                   },
                                   "id": {
@@ -1394,8 +1417,7 @@
                                         }
                                       }
                                     },
-                                    "localityDetails": {
-                                      "title": "Locality",
+                                    "locality": {
                                       "type": "object",
                                       "required": [
                                         "localityType"
@@ -1404,7 +1426,7 @@
                                         "localityType": {
                                           "type": "string",
                                           "enum": [
-                                            "From mdm",
+                                            "From the directory",
                                             "Other"
                                           ],
                                           "readOnly": true
@@ -1420,7 +1442,7 @@
                                               "properties": {
                                                 "localityType": {
                                                   "enum": [
-                                                    "From mdm"
+                                                    "From the directory"
                                                   ]
                                                 },
                                                 "directory": {
@@ -1428,8 +1450,11 @@
                                                   "properties": {
                                                     "locality": {
                                                       "type": "object",
-                                                      "source": "{{ context.uris.registrationScheme }}",
-                                                      "dependenceField": "eiBuyer.address.location.region.id",
+                                                      "source": "{{ context.uris.locality }}",
+                                                      "dependentFields": {
+                                                        "country": "fsFunding.fsPayer.address.country.id",
+                                                        "region": "fsFunding.fsPayer.address.region.id"
+                                                      },
                                                       "required": [
                                                         "id",
                                                         "description"
@@ -1465,6 +1490,7 @@
                                                   "type": "object",
                                                   "properties": {
                                                     "locality": {
+                                                      "title": "Locality",
                                                       "type": "object",
                                                       "required": [
                                                         "scheme",
@@ -1710,10 +1736,6 @@
                           {% if context.budget.amount is not null %}
                             "readOnly": true,
                           {% endif %}
-                          {% if context.budget.amount is null %}
-                            "enum": [],
-                            "enumNames": [],
-                          {% endif %}
                 "ocds": "planning::object/budget::object/amount::object/currency::string"
               }
             }
@@ -1852,9 +1874,9 @@
                                    "id": "{{ context.buyer.address.region.id }}",
                                    "description": "{{ context.buyer.address.region.description }}"
                                  },
-                                 "localityDetails": {
+                                 "locality": {
                                                     {% if context.buyer.address.locality.scheme == "CUATM" %}
-                                                      "localityType": "From mdm",
+                                                      "localityType": "From the directory",
                                                       "directory": {
                                                         "locality": {
                                                           "id": "{{ context.buyer.address.locality.id }}",
@@ -1927,9 +1949,9 @@
                                    "id": "{{ context.buyer.address.region.id }}",
                                    "description": "{{ context.buyer.address.region.description }}"
                                  },
-                                 "localityDetails": {
+                                 "locality": {
                                                     {% if context.buyer.address.locality.scheme == "CUATM" %}
-                                                      "localityType": "From mdm",
+                                                      "localityType": "From the directory",
                                                       "directory": {
                                                         "locality": {
                                                           "id": "{{ context.buyer.address.locality.id }}",

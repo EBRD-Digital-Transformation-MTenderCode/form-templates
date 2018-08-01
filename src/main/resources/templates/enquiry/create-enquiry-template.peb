@@ -55,7 +55,9 @@
                     "title": "Region",
                     "type": "object",
                     "source": "{{ context.uris.region }}",
-                    "dependenceField": "enquiry.author.address.location.country.id",
+                    "dependentFields": {
+                      "country": "enquiry.author.address.location.country.id"
+                    },
                     "required": [
                       "id",
                       "description"
@@ -72,7 +74,6 @@
                     }
                   },
                   "locality": {
-                    "title": "Locality",
                     "type": "object",
                     "required": [
                       "localityType"
@@ -81,7 +82,7 @@
                       "localityType": {
                         "type": "string",
                         "enum": [
-                          "From mdm",
+                          "From the directory",
                           "Other"
                         ]
                       }
@@ -96,16 +97,20 @@
                             "properties": {
                               "localityType": {
                                 "enum": [
-                                  "From mdm"
+                                  "From the directory"
                                 ]
                               },
                               "directory": {
                                 "type": "object",
                                 "properties": {
                                   "locality": {
+                                    "title": "Locality",
                                     "type": "object",
                                     "source": "{{ context.uris.locality }}",
-                                    "dependenceField": "enquiry.author.address.location.region.id",
+                                    "dependentFields": {
+                                      "country": "enquiry.author.address.location.country.id",
+                                      "region": "enquiry.author.address.location.region.id"
+                                    },
                                     "required": [
                                       "id",
                                       "description"
@@ -138,7 +143,8 @@
                               "manual": {
                                 "type": "object",
                                 "properties": {
-                                  "localityDetails": {
+                                  "locality": {
+                                    "title": "Locality",
                                     "type": "object",
                                     "required": [
                                       "scheme",
@@ -207,8 +213,9 @@
                 "title": "Identification scheme",
                 "type": "string",
                 "source": "{{ context.uris.registrationScheme }}",
-                "dependenceField": "enquiry.author.address.country.id",
-                "enum": [],
+                "dependentFields": {
+                  "country": "enquiry.author.address.location.country.id"
+                },
                 "ocds": "enquiry::object/author::object/identifier::object/scheme::string"
               },
               "id": {
@@ -244,8 +251,9 @@
                   "title": "Additional identifier scheme",
                   "type": "string",
                   "source": "{{ context.uris.registrationScheme }}",
-                  "dependenceField": "enquiry.author.address.country.id",
-                  "enum": [],
+                  "dependentFields": {
+                    "country": "enquiry.author.address.location.country.id"
+                  },
                   "ocds": "enquiry::object/author::object/additionalIdentifiers::array[object]/scheme::string"
                 },
                 "id": {

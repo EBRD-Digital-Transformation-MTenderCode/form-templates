@@ -129,7 +129,9 @@
                       "title": "Region",
                       "type": "object",
                       "source": "{{ context.uris.region }}",
-                      "dependenceField": "tenderers[0].address.location.country.id",
+                      "dependentFields": {
+                        "country": "tenderers[0].address.location.country.id"
+                      },
                       "required": [
                         "id",
                         "description"
@@ -146,7 +148,6 @@
                       }
                     },
                     "locality": {
-                      "title": "Locality",
                       "type": "object",
                       "required": [
                         "localityType"
@@ -155,7 +156,7 @@
                         "localityType": {
                           "type": "string",
                           "enum": [
-                            "From mdm",
+                            "From the directory",
                             "Other"
                           ]
                         }
@@ -170,16 +171,20 @@
                               "properties": {
                                 "localityType": {
                                   "enum": [
-                                    "From mdm"
+                                    "From the directory"
                                   ]
                                 },
                                 "directory": {
                                   "type": "object",
                                   "properties": {
                                     "locality": {
+                                      "title": "Locality",
                                       "type": "object",
                                       "source": "{{ context.uris.locality }}",
-                                      "dependenceField": "tenderers[0].address.location.region.id",
+                                      "dependentFields": {
+                                        "country": "tenderers[0].address.location.country.id",
+                                        "region": "tenderers[0].address.location.region.id"
+                                      },
                                       "required": [
                                         "id",
                                         "description"
@@ -212,7 +217,8 @@
                                 "manual": {
                                   "type": "object",
                                   "properties": {
-                                    "localityDetails": {
+                                    "locality": {
+                                      "title": "Locality",
                                       "type": "object",
                                       "required": [
                                         "scheme",
@@ -281,8 +287,9 @@
                   "title": "Identification scheme",
                   "type": "string",
                   "source": "{{ context.uris.registrationScheme }}",
-                  "dependenceField": "tenderers[0].address.country.id",
-                  "enum": [],
+                  "dependentFields": {
+                    "country": "tenderers[0].address.location.country.id"
+                  },
                   "ocds": "bid::object/tenderers::array[object]/identifier::object/scheme::string"
                 },
                 "id": {
@@ -318,8 +325,9 @@
                     "title": "Additional identifier scheme",
                     "type": "string",
                     "source": "{{ context.uris.registrationScheme }}",
-                    "dependenceField": "tenderers[0].address.country.id",
-                    "enum": [],
+                    "dependentFields": {
+                      "country": "tenderers[0].address.location.country.id"
+                    },
                     "ocds": "bid::object/tenderers::array[object]/additionalIdentifiers::array[object]/scheme::string"
                   },
                   "id": {

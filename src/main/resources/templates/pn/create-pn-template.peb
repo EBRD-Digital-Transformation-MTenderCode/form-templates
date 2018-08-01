@@ -66,7 +66,9 @@
                         "type": "object",
                         "source": "{{ context.uris.region }}",
                                 {% if context.parameters.procuringEntity == "THIRDPARTY" %}
-                                  "dependenceField": "section1.procuringEntity.address.location.country.id",
+                                  "dependentFields": {
+                                    "country": "section1.procuringEntity.address.location.country.id"
+                                  },
                                 {% endif %}
                         "required": [
                           "id",
@@ -89,8 +91,7 @@
                           }
                         }
                       },
-                      "localityDetails": {
-                        "title": "Locality",
+                      "locality": {
                         "type": "object",
                         "required": [
                           "localityType"
@@ -99,7 +100,7 @@
                           "localityType": {
                             "type": "string",
                             "enum": [
-                              "From mdm",
+                              "From the directory",
                               "Other"
                             ],
                             "readOnly": true
@@ -115,17 +116,21 @@
                                 "properties": {
                                   "localityType": {
                                     "enum": [
-                                      "From mdm"
+                                      "From the directory"
                                     ]
                                   },
                                   "directory": {
                                     "type": "object",
                                     "properties": {
                                       "locality": {
+                                        "title": "Locality",
                                         "type": "object",
                                         "source": "{{ context.uris.locality }}",
                                                   {% if context.parameters.procuringEntity == "THIRDPARTY" %}
-                                                    "dependenceField": "section1.procuringEntity.address.location.region.id",
+                                                    "dependentFields": {
+                                                      "country": "section1.procuringEntity.address.location.country.id",
+                                                      "region": "section1.procuringEntity.address.location.region.id"
+                                                    },
                                                   {% endif %}
                                         "required": [
                                           "id",
@@ -166,6 +171,7 @@
                                     "type": "object",
                                     "properties": {
                                       "locality": {
+                                        "title": "Locality",
                                         "type": "object",
                                         "required": [
                                           "scheme",
@@ -253,8 +259,9 @@
                             {% endif %}
                             {% if context.parameters.procuringEntity == "THIRDPARTY" %}
                               "source": "{{ context.uris.registrationScheme }}",
-                              "dependenceField": "section1.procuringEntity.address.country.id",
-                              "enum": [],
+                              "dependentFields": {
+                                "country": "section1.procuringEntity.address.location.country.id"
+                              },
                             {% endif %}
                     "ocds": "tender::object/procuringEntity::object/identifier::object/scheme::string"
                   },
@@ -304,8 +311,9 @@
                               {% endif %}
                               {% if context.parameters.procuringEntity == "THIRDPARTY" %}
                                 "source": "{{ context.uris.registrationScheme }}",
-                                "dependenceField": "section1.procuringEntity.address.country.id",
-                                "enum": [],
+                                "dependentFields": {
+                                  "country": "section1.procuringEntity.address.location.country.id"
+                                },
                               {% endif %}
                       "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/scheme::string"
                     },
@@ -586,7 +594,9 @@
                                   "title": "Region",
                                   "type": "object",
                                   "source": "{{ context.uris.region }}",
-                                  "dependenceField": "section2.lots[i].address.country.id",
+                                  "dependentFields": {
+                                    "country": "section2.lots[i].address.country.id"
+                                  },
                                   "required": [
                                     "id",
                                     "description"
@@ -602,8 +612,7 @@
                                     }
                                   }
                                 },
-                                "localityDetails": {
-                                  "title": "Locality",
+                                "locality": {
                                   "type": "object",
                                   "required": [
                                     "localityType"
@@ -612,7 +621,7 @@
                                     "localityType": {
                                       "type": "string",
                                       "enum": [
-                                        "From mdm",
+                                        "From the directory",
                                         "Other"
                                       ]
                                     }
@@ -627,16 +636,20 @@
                                           "properties": {
                                             "localityType": {
                                               "enum": [
-                                                "From mdm"
+                                                "From the directory"
                                               ]
                                             },
                                             "directory": {
                                               "type": "object",
                                               "properties": {
                                                 "locality": {
+                                                  "title": "Locality",
                                                   "type": "object",
                                                   "source": "{{ context.uris.locality }}",
-                                                  "dependenceField": "section2.lots[i].address.region.id",
+                                                  "dependentFields": {
+                                                    "country": "section2.lots[i].address.country.id",
+                                                    "region": "section2.lots[i].address.region.id"
+                                                  },
                                                   "required": [
                                                     "id",
                                                     "description"
@@ -670,6 +683,7 @@
                                               "type": "object",
                                               "properties": {
                                                 "locality": {
+                                                  "title": "Locality",
                                                   "type": "object",
                                                   "required": [
                                                     "scheme",
@@ -814,7 +828,9 @@
                               "unit": {
                                 "type": "object",
                                 "source": "{{ context.uris.unit }}",
-                                "dependenceField": "section2.lots[i].items[j].quantity.unitDetails.unitClass",
+                                "dependentFields": {
+                                  "unitClass": "section2.lots[i].items[j].quantity.unitDetails.unitClass",
+                                },
                                 "required": [
                                   "id",
                                   "description"
@@ -1095,9 +1111,9 @@
                       "id": "{{ context.buyer.address.region.id }}",
                       "description": "{{ context.buyer.address.region.description }}"
                     },
-                    "localityDetails": {
+                    "locality": {
                                        {% if context.buyer.address.locality.scheme == "CUATM" %}
-                                         "localityType": "From mdm",
+                                         "localityType": "From the directory",
                                          "directory": {
                                            "locality": {
                                              "id": "{{ context.buyer.address.locality.id }}",
@@ -1171,9 +1187,9 @@
                       "id": "{{ context.buyer.address.region.id }}",
                       "description": "{{ context.buyer.address.region.description }}"
                     },
-                    "localityDetails": {
+                    "locality": {
                                        {% if context.buyer.address.locality.scheme == "CUATM" %}
-                                         "localityType": "From mdm",
+                                         "localityType": "From the directory",
                                          "directory": {
                                            "locality": {
                                              "id": "{{ context.buyer.address.locality.id }}",

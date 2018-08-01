@@ -15,11 +15,11 @@ data class Parameters(
 
 data class Uris(
     val country: String, // /country?lang=langFromRequest
-    val region: String, // /region?lang=langFromRequest&country=
-    val locality: String, // /locality?lang=langFromRequest&region=
-    val registrationScheme: String, // /registration-scheme?lang=langFromRequest&country=
+    val region: String, // /region?lang=langFromRequest&country=$country$
+    val locality: String, // /locality?lang=langFromRequest&country=$country$&region=$region$
+    val registrationScheme: String, // /registration-scheme?lang=langFromRequest&country=$country$
     val unitClass: String, // /unit-class?lang=langFromRequest
-    val unit: String, // /unit?lang=langFromRequest&unitClass=
+    val unit: String, // /unit?lang=langFromRequest&unitClass=$unitClass$
     val cpv: String, // cpv?lang=langFromRequest&code=(EI.tender.classification.id)
     val cpvs: String, // /cpvs?lang=langFromRequest
     val pmd: String // /pmd?lang=langFromRequest&country=(Buyer.Address.Country.id)

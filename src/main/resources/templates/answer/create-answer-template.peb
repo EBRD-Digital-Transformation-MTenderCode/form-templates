@@ -5,6 +5,7 @@
       "type": "object",
       "properties": {
         "answer": {
+          "title": "Answer",
           "type": "string",
           "ocds": "enquiry::object/id::answer"
         }
