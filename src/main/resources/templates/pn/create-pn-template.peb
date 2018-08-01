@@ -355,21 +355,23 @@
                       "name",
                       "url"
                     ],
-                    "name": {
-                      "title": "Contact person Full Name",
-                      "type": "string",
-                            {% if context.parameters.responsibleContactPerson == "BUYER" %}
-                              "readOnly": true,
-                            {% endif %}
-                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/name::string"
-                    },
-                    "url": {
-                      "title": "URL",
-                      "type": "string",
-                           {% if context.parameters.responsibleContactPerson == "BUYER" %}
-                             "readOnly": true,
-                           {% endif %}
-                      "ocds": "tender::object/procuringEntity::object/contactPoint::object/url::string"
+                    "properties": {
+                      "name": {
+                        "title": "Contact person Full Name",
+                        "type": "string",
+                              {% if context.parameters.responsibleContactPerson == "BUYER" %}
+                                "readOnly": true,
+                              {% endif %}
+                        "ocds": "tender::object/procuringEntity::object/contactPoint::object/name::string"
+                      },
+                      "url": {
+                        "title": "URL",
+                        "type": "string",
+                             {% if context.parameters.responsibleContactPerson == "BUYER" %}
+                               "readOnly": true,
+                             {% endif %}
+                        "ocds": "tender::object/procuringEntity::object/contactPoint::object/url::string"
+                      }
                     }
                   },
                   "contacts": {
