@@ -1692,7 +1692,6 @@
         "properties": {
           "rationale": {
             "title": "Rationale",
-            "description": "rationale description",
             "type": "string",
             "ocds": "planning::object/rationale::string"
           },
@@ -1724,13 +1723,11 @@
             "properties": {
               "amount": {
                 "title": "Value",
-                "description": "Value description",
                 "type": "number",
                 "ocds": "planning::object/budget::object/amount::object/amount::number"
               },
               "currency": {
                 "title": "Currency",
-                "description": "Currency description",
                 "type": "string",
                 "source": "{{ context.uris.currency }}",
                           {% if context.budget.amount is not null %}
