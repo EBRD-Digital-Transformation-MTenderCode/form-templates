@@ -65,11 +65,9 @@
                         "title": "Region",
                         "type": "object",
                         "source": "{{ context.uris.region }}",
-                                {% if context.parameters.procuringEntity == "THIRDPARTY" %}
-                                  "dependentFields": {
-                                    "country": "section1.procuringEntity.address.location.country.id"
-                                  },
-                                {% endif %}
+                        "dependentFields": {
+                          "country": "section1.procuringEntity.address.location.country.id"
+                        },
                         "required": [
                           "id",
                           "description"
@@ -126,12 +124,10 @@
                                         "title": "Locality",
                                         "type": "object",
                                         "source": "{{ context.uris.locality }}",
-                                                  {% if context.parameters.procuringEntity == "THIRDPARTY" %}
-                                                    "dependentFields": {
-                                                      "country": "section1.procuringEntity.address.location.country.id",
-                                                      "region": "section1.procuringEntity.address.location.region.id"
-                                                    },
-                                                  {% endif %}
+                                        "dependentFields": {
+                                          "country": "section1.procuringEntity.address.location.country.id",
+                                          "region": "section1.procuringEntity.address.location.region.id"
+                                        },
                                         "required": [
                                           "id",
                                           "description"
@@ -836,7 +832,7 @@
                                 "type": "object",
                                 "source": "{{ context.uris.unit }}",
                                 "dependentFields": {
-                                  "unitClass": "section2.lots[i].items[j].quantity.unitDetails.unitClass",
+                                  "unitClass": "section2.lots[i].items[j].quantity.unitDetails.unitClass"
                                 },
                                 "required": [
                                   "id",
