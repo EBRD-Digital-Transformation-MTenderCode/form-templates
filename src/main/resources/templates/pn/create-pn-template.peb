@@ -792,6 +792,7 @@
                         "ocds": "tender::object/items::array[object]/description::string"
                       },
                       "quantity": {
+                        "title": "Quantity",
                         "type": "object",
                         "required": [
                           "quantity"
@@ -803,7 +804,6 @@
                             "ocds": "tender::object/items::array[object]/quantity::number"
                           },
                           "unitDetails": {
-                            "title": "Unit",
                             "type": "object",
                             "properties": {
                               "unitClass": {
@@ -824,6 +824,7 @@
                                 }
                               },
                               "unit": {
+                                "title": "Unit",
                                 "type": "object",
                                 "source": "{{ context.uris.unit }}",
                                 "dependentFields": {
