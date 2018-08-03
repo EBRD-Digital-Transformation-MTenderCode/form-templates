@@ -286,6 +286,7 @@
               "scheme": {
                 "title": "Identification scheme",
                 "type": "string",
+                "source": "{{ context.uris.registrationScheme }}",
                 "readOnly": true,
                 "ocds": "buyer::object/identifier::object/scheme::string"
               },
