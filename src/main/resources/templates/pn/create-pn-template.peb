@@ -4,7 +4,7 @@
 {% import "../macros/translate" %}
 {% import "../macros/commaIf" %}
   "schema": {
-    "title": "New Contract Notice",
+    "title": "New Planning Notice",
     "type": "object",
     "properties": {
       "section1": {
