@@ -78,6 +78,9 @@
                           "properties": {
                             "buyer": {
                               "type": "object",
+                              "required": [
+                                "name"
+                              ],
                               "properties": {
                                 "name": {
                                   "title": "Official Name",
@@ -170,10 +173,6 @@
                                                           "title": "Locality",
                                                           "type": "object",
                                                           "source": "{{ context.uris.locality }}",
-                                                          "dependentFields": {
-                                                            "country": "fsFunding.fsPayer.address.country.id",
-                                                            "region": "fsFunding.fsPayer.address.region.id"
-                                                          },
                                                           "required": [
                                                             "id",
                                                             "description"
@@ -415,6 +414,9 @@
                           "properties": {
                             "donor": {
                               "type": "object",
+                              "required": [
+                                "name"
+                              ],
                               "properties": {
                                 "name": {
                                   "title": "Official Name",
@@ -453,7 +455,7 @@
                                           "type": "object",
                                           "source": "{{ context.uris.region }}",
                                           "dependentFields": {
-                                            "country": "fsFunding.fsFunder.address.country.id"
+                                            "country": "fsFunding.fsFunder.donor.address.location.country.id"
                                           },
                                           "required": [
                                             "id",
@@ -505,8 +507,8 @@
                                                           "type": "object",
                                                           "source": "{{ context.uris.locality }}",
                                                           "dependentFields": {
-                                                            "country": "fsFunding.fsFunder.address.country.id",
-                                                            "region": "fsFunding.fsFunder.address.region.id"
+                                                            "country": "fsFunding.fsFunder.donor.address.location.country.id",
+                                                            "region": "fsFunding.fsFunder.donor.address.location.region.id"
                                                           },
                                                           "required": [
                                                             "id",
@@ -611,7 +613,7 @@
                                       "type": "string",
                                       "source": "{{ context.uris.registrationScheme }}",
                                       "dependentFields": {
-                                        "country": "fsFunding.fsFunder.address.country.id"
+                                        "country": "fsFunding.fsFunder.donor.address.location.country.id"
                                       },
                                       "ocds": "buyer::object/identifier::object/scheme::string"
                                     },
@@ -649,7 +651,7 @@
                                         "type": "string",
                                         "source": "{{ context.uris.registrationScheme }}",
                                         "dependentFields": {
-                                          "country": "fsFunding.fsFunder.address.country.id"
+                                          "country": "fsFunding.fsFunder.donor.address.location.country.id"
                                         },
                                         "ocds": "buyer::object/additionalIdentifiers::array[object]/scheme::string"
                                       },
@@ -730,11 +732,14 @@
                       {% if context.parameters.payer == "BUYER" %}
                         "fsPayer": {
                           "title": "Money is paid by the - Buyer",
-                          "type": "object",
                           "description": "Payments will be provided by buyer from parent EI (via Treasury or directly). In that case 'buyer' in POST request should be empty. eNotice will take needed organization data from EI by itself",
+                          "type": "object",
                           "properties": {
                             "buyer": {
                               "type": "object",
+                              "required": [
+                                "name"
+                              ],
                               "properties": {
                                 "name": {
                                   "title": "Official Name",
@@ -827,10 +832,6 @@
                                                           "title": "Locality",
                                                           "type": "object",
                                                           "source": "{{ context.uris.locality }}",
-                                                          "dependentFields": {
-                                                            "country": "fsFunding.fsPayer.address.country.id",
-                                                            "region": "fsFunding.fsPayer.address.region.id"
-                                                          },
                                                           "required": [
                                                             "id",
                                                             "description"
@@ -1071,6 +1072,9 @@
                           "properties": {
                             "thirdParty": {
                               "type": "object",
+                              "required": [
+                                "name"
+                              ],
                               "properties": {
                                 "name": {
                                   "title": "Official Name",
@@ -1109,7 +1113,7 @@
                                           "type": "object",
                                           "source": "{{ context.uris.region }}",
                                           "dependentFields": {
-                                            "country": "fsFunding.fsPayer.address.country.id"
+                                            "country": "fsFunding.fsPayer.thirdParty.address.location.country.id"
                                           },
                                           "required": [
                                             "id",
@@ -1161,8 +1165,8 @@
                                                           "type": "object",
                                                           "source": "{{ context.uris.locality }}",
                                                           "dependentFields": {
-                                                            "country": "fsFunding.fsPayer.address.country.id",
-                                                            "region": "fsFunding.fsPayer.address.region.id"
+                                                            "country": "fsFunding.fsPayer.thirdParty.address.location.country.id",
+                                                            "region": "fsFunding.fsPayer.thirdParty.address.region.id"
                                                           },
                                                           "required": [
                                                             "id",
@@ -1265,8 +1269,9 @@
                                     "scheme": {
                                       "title": "Identification scheme",
                                       "type": "string",
-                                      "source": "{{ context.uris.registrationScheme }}","dependentFields": {
-                                        "country": "fsFunding.fsPayer.address.country.id"
+                                      "source": "{{ context.uris.registrationScheme }}",
+                                      "dependentFields": {
+                                        "country": "fsFunding.fsPayer.thirdParty.address.location.country.id"
                                       },
                                       "ocds": "tender::object/procuringEntity::object/identifier::object/scheme::string"
                                     },
@@ -1302,8 +1307,9 @@
                                       "scheme": {
                                         "title": "Additional identifier scheme",
                                         "type": "string",
-                                        "source": "{{ context.uris.registrationScheme }}","dependentFields": {
-                                          "country": "fsFunding.fsPayer.address.country.id"
+                                        "source": "{{ context.uris.registrationScheme }}",
+                                        "dependentFields": {
+                                          "country": "fsFunding.fsPayer.thirdParty.address.location.country.id"
                                         },
                                         "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/scheme::string"
                                       },
@@ -1384,10 +1390,14 @@
                         "fsPayer": {
                           "title": "Money is paid by the - Funder",
                           "description": "Payments will be provided by funder",
+                          "type": "object",
                           "properties": {
                             "funder": {
                               "type": "object",
                               "properties": {
+                                "required": [
+                                  "name"
+                                ],
                                 "name": {
                                   "title": "Official Name",
                                   "type": "string",
@@ -1405,7 +1415,6 @@
                                         "country": {
                                           "title": "Country",
                                           "type": "object",
-                                          "source": "{{ context.uris.country }}",
                                           "required": [
                                             "id",
                                             "description"
@@ -1426,7 +1435,6 @@
                                         "region": {
                                           "title": "Region",
                                           "type": "object",
-                                          "source": "{{ context.uris.region }}",
                                           "required": [
                                             "id",
                                             "description"
@@ -1477,11 +1485,6 @@
                                                       "properties": {
                                                         "locality": {
                                                           "type": "object",
-                                                          "source": "{{ context.uris.locality }}",
-                                                          "dependentFields": {
-                                                            "country": "fsFunding.fsPayer.address.country.id",
-                                                            "region": "fsFunding.fsPayer.address.region.id"
-                                                          },
                                                           "required": [
                                                             "id",
                                                             "description"
@@ -1753,6 +1756,8 @@
               "amount": {
                 "title": "Value",
                 "type": "number",
+                "minimum": 0.01,
+                "multipleOf": 0.01,
                 "ocds": "planning::object/budget::object/amount::object/amount::number"
               },
               "currency": {
