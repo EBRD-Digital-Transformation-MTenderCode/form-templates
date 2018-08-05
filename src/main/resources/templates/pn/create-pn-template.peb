@@ -972,7 +972,7 @@
                                   "type": "object",
                                   "source": "{{ context.uris.region }}",
                                   "dependentFields": {
-                                    "country": "section2.lots[i].address.country.id"
+                                    "country": "section2.lots[lotIndex].performance.placeOfPerformance.address.location.country.id"
                                   },
                                   "required": [
                                     "id",
@@ -1024,8 +1024,8 @@
                                                   "type": "object",
                                                   "source": "{{ context.uris.locality }}",
                                                   "dependentFields": {
-                                                    "country": "section2.lots[i].address.country.id",
-                                                    "region": "section2.lots[i].address.region.id"
+                                                    "country": "section2.lots[lotIndex].performance.placeOfPerformance.address.location.country.id",
+                                                    "region": "section2.lots[lotIndex].performance.placeOfPerformance.address.location.region.id"
                                                   },
                                                   "required": [
                                                     "id",
@@ -1207,7 +1207,7 @@
                                 "type": "object",
                                 "source": "{{ context.uris.unit }}",
                                 "dependentFields": {
-                                  "unitClass": "section2.lots[i].items[j].quantity.unitDetails.unitClass"
+                                  "unitClass": "section2.lots[lotIndex].items[itemIndex].quantity.unitDetails.unitClass.id"
                                 },
                                 "required": [
                                   "id",
@@ -1419,7 +1419,7 @@
                 ],
                 "properties": {
                   "startDate": {
-                    "title": "Tender end date",
+                    "title": "Tender start date",
                     "type": "string",
                     "enum": [
                       "2018-01-01T00:00:00Z",
