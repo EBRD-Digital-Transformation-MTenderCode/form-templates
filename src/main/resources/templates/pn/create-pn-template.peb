@@ -1442,6 +1442,7 @@
         }
       },
       "budget": {
+        "title": "Budget Breakdowns",
         "type": "object",
         "properties": {
           "budgetBreakdown": {
