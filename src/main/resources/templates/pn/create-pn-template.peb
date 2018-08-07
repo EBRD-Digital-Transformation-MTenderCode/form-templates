@@ -198,13 +198,13 @@
                                           "title": "Street Address",
                                           "type": "string",
                                           "readOnly": true,
-                                          "ocds": "buyer::object/address::object/streetAddress::string"
+                                          "ocds": "tender::object/procuringEntity::object/address::object/streetAddress::string"
                                         },
                                         "postalCode": {
                                           "title": "Postal Code",
                                           "type": "string",
                                           "readOnly": true,
-                                          "ocds": "buyer::object/address::object/postalCode::string"
+                                          "ocds": "tender::object/procuringEntity::object/address::object/postalCode::string"
                                         }
                                       }
                                     }
@@ -1289,7 +1289,7 @@
                             "description": {
                               "title": "CPVs Name",
                               "type": "string",
-                              "ocds": "tender::object/items::array[object]/classification::object/additionalClassification::array[object]description::stting"
+                              "ocds": "tender::object/items::array[object]/classification::object/additionalClassification::array[object]description::string"
                             },
                             "title": {
                               "type": "string"
