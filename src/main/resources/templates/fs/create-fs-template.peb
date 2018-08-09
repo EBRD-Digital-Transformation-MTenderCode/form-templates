@@ -281,7 +281,7 @@
                                     "scheme": {
                                       "title": "Identification scheme",
                                       "type": "string",
-                                      "source": "{{ context.uris.locality }}",
+                                      "source": "{{ context.uris.registrationScheme }}",
                                       "readOnly": true,
                                       "ocds": "buyer::object/identifier::object/scheme::string"
                                     },
@@ -320,7 +320,7 @@
                                       "scheme": {
                                         "title": "Additional identifier scheme",
                                         "type": "string",
-                                        "source": "{{ context.uris.locality }}",
+                                        "source": "{{ context.uris.registrationScheme }}",
                                         "readOnly": true,
                                         "ocds": "buyer::object/additionalIdentifiers::array[object]/scheme::string"
                                       },
@@ -940,7 +940,7 @@
                                     "scheme": {
                                       "title": "Identification scheme",
                                       "type": "string",
-                                      "source": "{{ context.uris.locality }}",
+                                      "source": "{{ context.uris.registrationScheme }}",
                                       "readOnly": true,
                                       "ocds": "tender::object/procuringEntity::object/identifier::object/scheme::string"
                                     },
@@ -979,7 +979,7 @@
                                       "scheme": {
                                         "title": "Additional identifier scheme",
                                         "type": "string",
-                                        "source": "{{ context.uris.locality }}",
+                                        "source": "{{ context.uris.registrationScheme }}",
                                         "readOnly": true,
                                         "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/scheme::string"
                                       },
