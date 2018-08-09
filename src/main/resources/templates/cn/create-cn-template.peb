@@ -581,12 +581,12 @@
                                         "streetAddress": {
                                           "title": "Street Address",
                                           "type": "string",
-                                          "ocds": "buyer::object/address::object/streetAddress::string"
+                                          "ocds": "tender::object/procuringEntity::object/address::object/streetAddress::string"
                                         },
                                         "postalCode": {
                                           "title": "Postal Code",
                                           "type": "string",
-                                          "ocds": "buyer::object/address::object/postalCode::string"
+                                          "ocds": "tender::object/procuringEntity::object/address::object/postalCode::string"
                                         }
                                       }
                                     }
@@ -908,7 +908,7 @@
                       "title": "Short description of lot",
                       "description": "II.2.4) Description of the procurement",
                       "type": "string",
-                      "ocds": "tender::object/lots::array[object]/description]"
+                      "ocds": "tender::object/lots::array[object]/description::string"
                     },
                     "value": {
                       "title": "Estimated total value of lot",
@@ -1284,17 +1284,17 @@
                               "title": "Classification scheme",
                               "type": "string",
                               "default": "CPVs",
-                              "ocds": "tender::object/items::array[object]/classification::object/additionalClassification::array[object]scheme::string"
+                              "ocds": "tender::object/items::array[object]/classification::object/additionalClassification::array[object]/scheme::string"
                             },
                             "id": {
                               "title": "CPVs code",
                               "type": "string",
-                              "ocds": "tender::object/items::array[object]/classification::object/additionalClassification::array[object]id::string"
+                              "ocds": "tender::object/items::array[object]/classification::object/additionalClassification::array[object]/id::string"
                             },
                             "description": {
                               "title": "CPVs Name",
                               "type": "string",
-                              "ocds": "tender::object/items::array[object]/classification::object/additionalClassification::array[object]description::string"
+                              "ocds": "tender::object/items::array[object]/classification::object/additionalClassification::array[object]/description::string"
                             },
                             "title": {
                               "type": "string"
