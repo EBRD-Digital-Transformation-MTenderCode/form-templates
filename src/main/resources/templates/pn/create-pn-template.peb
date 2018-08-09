@@ -581,12 +581,12 @@
                                         "streetAddress": {
                                           "title": "Street Address",
                                           "type": "string",
-                                          "ocds": "buyer::object/address::object/streetAddress::string"
+                                          "ocds": "tender::object/procuringEntity::object/address::object/streetAddress::string"
                                         },
                                         "postalCode": {
                                           "title": "Postal Code",
                                           "type": "string",
-                                          "ocds": "buyer::object/address::object/postalCode::string"
+                                          "ocds": "tender::object/procuringEntity::object/address::object/postalCode::string"
                                         }
                                       }
                                     }
@@ -905,7 +905,7 @@
                       "title": "Short description of lot",
                       "description": "II.2.4) Description of the procurement",
                       "type": "string",
-                      "ocds": "tender::object/lots::array[object]/description]"
+                      "ocds": "tender::object/lots::array[object]/description::string"
                     },
                     "value": {
                       "title": "Estimated total value of lot",
