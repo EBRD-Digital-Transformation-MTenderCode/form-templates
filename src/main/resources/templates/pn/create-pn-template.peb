@@ -123,7 +123,7 @@
                                                             "id": {
                                                               "type": "string",
                                                               "readOnly": true,
-                                                              "ocds": "tender::object/procuringEntity::object//address::object/addressDetails::object/locality::object/id::string"
+                                                              "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/id::string"
                                                             },
                                                             "description": {
                                                               "type": "string",
@@ -511,7 +511,7 @@
                                                           "properties": {
                                                             "id": {
                                                               "type": "string",
-                                                              "ocds": "tender::object/procuringEntity::object//address::object/addressDetails::object/locality::object/id::string"
+                                                              "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/id::string"
                                                             },
                                                             "description": {
                                                               "type": "string",
