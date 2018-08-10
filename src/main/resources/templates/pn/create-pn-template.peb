@@ -1279,17 +1279,17 @@
                               "title": "Classification scheme",
                               "type": "string",
                               "default": "CPVs",
-                              "ocds": "tender::object/items::array[object]/additionalClassification::array[object]/scheme::string"
+                              "ocds": "tender::object/items::array[object]/additionalClassifications::array[object]/scheme::string"
                             },
                             "id": {
                               "title": "CPVs code",
                               "type": "string",
-                              "ocds": "tender::object/items::array[object]/additionalClassification::array[object]/id::string"
+                              "ocds": "tender::object/items::array[object]/additionalClassifications::array[object]/id::string"
                             },
                             "description": {
                               "title": "CPVs Name",
                               "type": "string",
-                              "ocds": "tender::object/items::array[object]/additionalClassification::array[object]/description::string"
+                              "ocds": "tender::object/items::array[object]/additionalClassifications::array[object]/description::string"
                             },
                             "title": {
                               "type": "string"
