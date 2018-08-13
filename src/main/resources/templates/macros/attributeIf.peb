@@ -6,12 +6,12 @@
 
 {% macro numberAttributeIf(name, value) %}
     {% if value != null %}
-        "{{ name }}": "{{value}}"
+        "{{ name }}": {{value}}
     {% endif %}
 {% endmacro %}
 
 {% macro booleanAttributeIf(name, value) %}
     {% if value != null %}
-        "{{ name }}": "{{value}}"
+        "{{ name }}": {{value}}
     {% endif %}
 {% endmacro %}

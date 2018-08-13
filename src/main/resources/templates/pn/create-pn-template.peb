@@ -3,6 +3,7 @@
 {
 {% import "../macros/translate" %}
 {% import "../macros/commaIf" %}
+{% import "../macros/attributeIf" %}
   "schema": {
     "title": "New Planning Notice",
     "type": "object",
@@ -1515,7 +1516,7 @@
                     "postalAddress": {
                       "streetAddress": "{{ context.buyer.address.streetAddress }}"
                                      {{ commaIf(context.buyer.address.postalCode) }}
-                                     {{ attributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
+                                     {{ stringAttributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
                     }
                   },
                   "identifier": {
@@ -1523,7 +1524,7 @@
                     "id": "{{ context.buyer.identifier.id }}",
                     "legalName": "{{ context.buyer.identifier.legalName }}"
                                 {{ commaIf(context.buyer.identifier.uri) }}
-                                {{ attributeIf(name = "uri", value = context.buyer.identifier.uri) }}
+                                {{ stringAttributeIf(name = "uri", value = context.buyer.identifier.uri) }}
                   },
                          {% if context.buyer.additionalIdentifiers != null %}
                            "additionalIdentifiers": [
@@ -1533,7 +1534,7 @@
                                                         "id": "{{ additionalIdentifier.id }}",
                                                         "legalName": "{{ additionalIdentifier.legalName }}"
                                                       {{ commaIf(additionalIdentifier.uri) }}
-                                                      {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
+                                                      {{ stringAttributeIf(name = "uri", value = additionalIdentifier.uri) }}
                                                       }
                                                     {% endfor %}
                            ],
@@ -1548,7 +1549,7 @@
                         "telephone": "{{ context.buyer.contactPoint.telephone }}",
                         "email": "{{ context.buyer.contactPoint.email }}"
                                   {{ commaIf(context.buyer.contactPoint.faxNumber) }}
-                                  {{ attributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
+                                  {{ stringAttributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
                       }
                     }
                   }
@@ -1595,7 +1596,7 @@
                     "postalAddress": {
                       "streetAddress": "{{ context.buyer.address.streetAddress }}"
                                      {{ commaIf(context.buyer.address.postalCode) }}
-                                     {{ attributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
+                                     {{ stringAttributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
                     }
                   },
                   "identifier": {
@@ -1603,7 +1604,7 @@
                     "id": "{{ context.buyer.identifier.id }}",
                     "legalName": "{{ context.buyer.identifier.legalName }}"
                                 {{ commaIf(context.buyer.identifier.uri) }}
-                                {{ attributeIf(name = "uri", value = context.buyer.identifier.uri) }}
+                                {{ stringAttributeIf(name = "uri", value = context.buyer.identifier.uri) }}
                   },
                          {% if context.buyer.additionalIdentifiers != null %}
                            "additionalIdentifiers": [
@@ -1613,7 +1614,7 @@
                                                         "id": "{{ additionalIdentifier.id }}",
                                                         "legalName": "{{ additionalIdentifier.legalName }}"
                                                       {{ commaIf(additionalIdentifier.uri) }}
-                                                      {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
+                                                      {{ stringAttributeIf(name = "uri", value = additionalIdentifier.uri) }}
                                                       }
                                                     {% endfor %}
                            ]
@@ -1636,7 +1637,7 @@
                         "telephone": "{{ context.buyer.contactPoint.telephone }}",
                         "email": "{{ context.buyer.contactPoint.email }}"
                                   {{ commaIf(context.buyer.contactPoint.faxNumber) }}
-                                  {{ attributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
+                                  {{ stringAttributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
                       }
                     }
                   }
