@@ -186,10 +186,16 @@
                                       "region": "eiBuyer.address.location.region.id"
                                     },
                                     "required": [
+                                      "scheme",
                                       "id",
                                       "description"
                                     ],
                                     "properties": {
+                                      "scheme": {
+                                        "type": "string",
+                                        "const": "CUATM",
+                                        "ocds": "buyer::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                      },
                                       "id": {
                                         "type": "string",
                                         "ocds": "buyer::object/address::object/addressDetails::object/locality::object/id::string"

@@ -174,10 +174,17 @@
                                                           "type": "object",
                                                           "source": "{{ context.uris.locality }}",
                                                           "required": [
+                                                            "scheme",
                                                             "id",
                                                             "description"
                                                           ],
                                                           "properties": {
+                                                            "scheme": {
+                                                              "type": "string",
+                                                              "const": "CUATM",
+                                                              "readOnly": true,
+                                                              "ocds": "buyer::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                                            },
                                                             "id": {
                                                               "type": "string",
                                                               "readOnly": true,
@@ -511,10 +518,16 @@
                                                             "region": "fsFunding.fsFunder.donor.address.location.region.id"
                                                           },
                                                           "required": [
+                                                            "scheme",
                                                             "id",
                                                             "description"
                                                           ],
                                                           "properties": {
+                                                            "scheme": {
+                                                              "type": "string",
+                                                              "const": "CUATM",
+                                                              "ocds": "buyer::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                                            },
                                                             "id": {
                                                               "type": "string",
                                                               "ocds": "buyer::object/address::object/addressDetails::object/locality::object/id::string"
@@ -833,10 +846,17 @@
                                                           "type": "object",
                                                           "source": "{{ context.uris.locality }}",
                                                           "required": [
+                                                            "scheme",
                                                             "id",
                                                             "description"
                                                           ],
                                                           "properties": {
+                                                            "scheme": {
+                                                              "type": "string",
+                                                              "const": "CUATM",
+                                                              "readOnly": true,
+                                                              "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                                            },
                                                             "id": {
                                                               "type": "string",
                                                               "readOnly": true,
@@ -1169,10 +1189,16 @@
                                                             "region": "fsFunding.fsPayer.thirdParty.address.region.id"
                                                           },
                                                           "required": [
+                                                            "scheme",
                                                             "id",
                                                             "description"
                                                           ],
                                                           "properties": {
+                                                            "scheme": {
+                                                              "type": "string",
+                                                              "const": "CUATM",
+                                                              "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                                            },
                                                             "id": {
                                                               "type": "string",
                                                               "ocds": "tender::object/procuringEntity::object//address::object/addressDetails::object/locality::object/id::string"
@@ -1394,10 +1420,10 @@
                           "properties": {
                             "funder": {
                               "type": "object",
+                              "required": [
+                                "name"
+                              ],
                               "properties": {
-                                "required": [
-                                  "name"
-                                ],
                                 "name": {
                                   "title": "Official Name",
                                   "type": "string",
@@ -1486,10 +1512,17 @@
                                                         "locality": {
                                                           "type": "object",
                                                           "required": [
+                                                            "scheme",
                                                             "id",
                                                             "description"
                                                           ],
                                                           "properties": {
+                                                            "scheme": {
+                                                              "type": "string",
+                                                              "const": "CUATM",
+                                                              "readOnly": true,
+                                                              "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                                            },
                                                             "id": {
                                                               "type": "string",
                                                               "readOnly": true,
@@ -1911,6 +1944,7 @@
                                                  "localityType": "From the directory",
                                                  "directory": {
                                                    "locality": {
+                                                     "scheme": "{{ context.buyer.address.locality.scheme }}",
                                                      "id": "{{ context.buyer.address.locality.id }}",
                                                      "description": "{{ context.buyer.address.locality.description }}"
                                                    }
@@ -1988,6 +2022,7 @@
                                                  "localityType": "From the directory",
                                                  "directory": {
                                                    "locality": {
+                                                     "scheme": "{{ context.buyer.address.locality.scheme }}",
                                                      "id": "{{ context.buyer.address.locality.id }}",
                                                      "description": "{{ context.buyer.address.locality.description }}"
                                                    }

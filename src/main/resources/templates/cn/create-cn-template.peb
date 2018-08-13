@@ -116,10 +116,17 @@
                                                           "type": "object",
                                                           "source": "{{ context.uris.locality }}",
                                                           "required": [
+                                                            "scheme",
                                                             "id",
                                                             "description"
                                                           ],
                                                           "properties": {
+                                                            "scheme": {
+                                                              "type": "string",
+                                                              "const": "CUATM",
+                                                              "readOnly": true,
+                                                              "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                                            },
                                                             "id": {
                                                               "type": "string",
                                                               "readOnly": true,
@@ -505,10 +512,16 @@
                                                             "region": "section1.procuringEntity.thirdParty.address.location.region.id"
                                                           },
                                                           "required": [
+                                                            "scheme",
                                                             "id",
                                                             "description"
                                                           ],
                                                           "properties": {
+                                                            "scheme": {
+                                                              "type": "string",
+                                                              "const": "CUATM",
+                                                              "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                                            },
                                                             "id": {
                                                               "type": "string",
                                                               "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/id::string"
@@ -1033,10 +1046,16 @@
                                                     "region": "section2.lots[lotIndex].performance.placeOfPerformance.address.location.region.id"
                                                   },
                                                   "required": [
+                                                    "scheme",
                                                     "id",
                                                     "description"
                                                   ],
                                                   "properties": {
+                                                    "scheme": {
+                                                      "type": "string",
+                                                      "const": "CUATM",
+                                                      "ocds": "tender::object/lots::array[object]/placeOfPerformance::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                                    },
                                                     "id": {
                                                       "type": "string",
                                                       "ocds": "tender::object/lots::array[object]/placeOfPerformance::object/address::object/addressDetails::object/locality::object/id::string"
@@ -1490,6 +1509,7 @@
                                     "localityType": "From the directory",
                                     "directory": {
                                       "locality": {
+                                        "scheme": "{{ context.buyer.address.locality.scheme }}",
                                         "id": "{{ context.buyer.address.locality.id }}",
                                         "description": "{{ context.buyer.address.locality.description }}"
                                       }
@@ -1570,6 +1590,7 @@
                                     "localityType": "From the directory",
                                     "directory": {
                                       "locality": {
+                                        "scheme": "{{ context.buyer.address.locality.scheme }}",
                                         "id": "{{ context.buyer.address.locality.id }}",
                                         "description": "{{ context.buyer.address.locality.description }}"
                                       }
