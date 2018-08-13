@@ -1977,13 +1977,14 @@
                                       {% if context.buyer.additionalIdentifiers != null %}
                                         "additionalIdentifiers": [
                                                                  {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
+                                                                   {% if loop.index  > 0 %},{% endif %}
                                                                    {
                                                                      "scheme": "{{ additionalIdentifier.scheme }}",
                                                                      "id": "{{ additionalIdentifier.id }}",
                                                                      "legalName": "{{ additionalIdentifier.legalName }}"
-                                                                   {{ commaIf(additionalIdentifier.uri) }}
-                                                                   {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
-                                                                   } {% if context.buyer.additionalIdentifiers.size > 1 %},{% endif %}
+                                                                     {{ commaIf(additionalIdentifier.uri) }}
+                                                                     {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
+                                                                   }
                                                                  {% endfor %}
                                         ],
                                       {% endif %}
@@ -2055,13 +2056,14 @@
                                       {% if context.buyer.additionalIdentifiers != null %}
                                         "additionalIdentifiers": [
                                                                  {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
+                                                                   {% if loop.index  > 0 %},{% endif %}
                                                                    {
                                                                      "scheme": "{{ additionalIdentifier.scheme }}",
                                                                      "id": "{{ additionalIdentifier.id }}",
                                                                      "legalName": "{{ additionalIdentifier.legalName }}"
-                                                                   {{ commaIf(additionalIdentifier.uri) }}
-                                                                   {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
-                                                                   } {% if context.buyer.additionalIdentifiers.size > 1 %},{% endif %}
+                                                                     {{ commaIf(additionalIdentifier.uri) }}
+                                                                     {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
+                                                                   }
                                                                  {% endfor %}
                                         ],
                                       {% endif %}
