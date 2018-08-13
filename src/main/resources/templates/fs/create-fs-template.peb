@@ -1983,7 +1983,7 @@
                                                                      "legalName": "{{ additionalIdentifier.legalName }}"
                                                                    {{ commaIf(additionalIdentifier.uri) }}
                                                                    {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
-                                                                   }
+                                                                   } {% if context.buyer.additionalIdentifiers.size > 1 %},{% endif %}
                                                                  {% endfor %}
                                         ],
                                       {% endif %}
@@ -2061,7 +2061,7 @@
                                                                      "legalName": "{{ additionalIdentifier.legalName }}"
                                                                    {{ commaIf(additionalIdentifier.uri) }}
                                                                    {{ attributeIf(name = "uri", value = additionalIdentifier.uri) }}
-                                                                   }
+                                                                   } {% if context.buyer.additionalIdentifiers.size > 1 %},{% endif %}
                                                                  {% endfor %}
                                         ],
                                       {% endif %}
