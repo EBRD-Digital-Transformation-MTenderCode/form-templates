@@ -1288,7 +1288,7 @@
                           }
                         }
                       },
-                      "additionalClassification": {
+                      "additionalClassifications": {
                         "title": "Supplementary CPV code",
                         "type": "array",
                         "items": {
