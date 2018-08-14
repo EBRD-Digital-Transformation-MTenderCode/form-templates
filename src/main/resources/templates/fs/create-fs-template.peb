@@ -1913,7 +1913,7 @@
       "eiOCID": "{{ context.ei.ocid }}",
       "eiTitle": "{{ context.ei.title }}"
                 {{ commaIf(context.ei.description) }}
-                {{ strtingAttributeIf(name = "eiDescription", value = context.ei.description) }},
+                {{ stringAttributeIf(name = "eiDescription", value = context.ei.description) }},
       "eiBudgetPeriod": {
         "startDate": "{{ context.ei.budgetPeriod.startDate }}",
         "endDate": "{{ context.ei.budgetPeriod.endDate }}"
