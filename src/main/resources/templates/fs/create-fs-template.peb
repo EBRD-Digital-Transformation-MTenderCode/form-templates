@@ -1187,7 +1187,7 @@
                                                           "source": "{{ context.payer.uris.locality }}",
                                                           "dependentFields": {
                                                             "country": "fsFunding.fsPayer.thirdParty.address.location.country.id",
-                                                            "region": "fsFunding.fsPayer.thirdParty.address.region.id"
+                                                            "region": "fsFunding.fsPayer.thirdParty.address.location.region.id"
                                                           },
                                                           "required": [
                                                             "scheme",
