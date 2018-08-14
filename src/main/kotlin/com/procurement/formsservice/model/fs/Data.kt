@@ -2,6 +2,8 @@ package com.procurement.formsservice.model.fs
 
 class Data(
     val parameters: Parameters,
+    val funder: Funder,
+    val payer: Payer,
     val uris: Uris,
     val ei: EI,
     val buyer: Buyer?,
@@ -14,11 +16,26 @@ data class Parameters(
     val europeanUnionFunded: Boolean
 )
 
+data class Funder(val uris: Uris) {
+    data class Uris(
+        val country: String, // if parameter funder == "buyer" "/country/(Buyer.Address.Country.id)?lang=langFromRequest else "/country?lang=langFromRequest
+        val region: String, // if parameter funder == "buyer" "/region?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/region?lang=langFromRequest&country=$country$"
+        val locality: String, // if parameter funder == "buyer" "/locality?lang=langFromRequest&country=(Buyer.Address.Country.id)&region=(Buyer.Address.Region.id)" else "/locality?lang=langFromRequest&country=$country$&region=$region$"
+        val registrationScheme: String, // if parameter funder == "buyer" "/registration-scheme?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/registration-scheme?lang=langFromRequest&country=$country$"
+        val currency: String  // /currency?lang=langFromRequest&country=(Buyer.Address.Country.id)
+    )
+}
+data class Payer(val uris: Uris) {
+    data class Uris(
+        val country: String, // if parameter  payer == "buyer" "/country/(Buyer.Address.Country.id)?lang=langFromRequest else "/country?lang=langFromRequest
+        val region: String, // if parameter payer == "buyer" "/region?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/region?lang=langFromRequest&country=$country$"
+        val locality: String, // if parameter payer == "buyer" "/locality?lang=langFromRequest&country=(Buyer.Address.Country.id)&region=(Buyer.Address.Region.id)" else "/locality?lang=langFromRequest&country=$country$&region=$region$"
+        val registrationScheme: String, // if parameter payer == "buyer" "/registration-scheme?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/registration-scheme?lang=langFromRequest&country=$country$"
+        val currency: String  // /currency?lang=langFromRequest&country=(Buyer.Address.Country.id)
+    )
+}
+
 data class Uris(
-    val country: String, // if parameter funder or payer == "buyer" "/country/(Buyer.Address.Country.id)?lang=langFromRequest else "/country?lang=langFromRequest
-    val region: String, // if parameter funder or payer == "buyer" "/region?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/region?lang=langFromRequest&country=$country$"
-    val locality: String, // if parameter funder or payer == "buyer" "/locality?lang=langFromRequest&country=(Buyer.Address.Country.id)&region=(Buyer.Address.Region.id)" else "/locality?lang=langFromRequest&country=$country$&region=$region$"
-    val registrationScheme: String, // if parameter funder or payer == "buyer" "/registration-scheme?lang=langFromRequest&country=(Buyer.Address.Country.id)" else "/registration-scheme?lang=langFromRequest&country=$country$"
     val currency: String  // /currency?lang=langFromRequest&country=(Buyer.Address.Country.id)
 )
 
