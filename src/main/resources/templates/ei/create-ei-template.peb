@@ -285,8 +285,7 @@
             "required": [
               "scheme",
               "id",
-              "legalName",
-              "uri"
+              "legalName"
             ],
             "properties": {
               "scheme": {
