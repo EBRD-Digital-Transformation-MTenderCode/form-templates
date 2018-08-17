@@ -1535,7 +1535,8 @@
                     "legalName": "{{ context.buyer.identifier.legalName }}"
                                 {{ commaIf(context.buyer.identifier.uri) }}
                                 {{ stringAttributeIf(name = "uri", value = context.buyer.identifier.uri) }}
-                  },
+                  }
+                  {% if context.buyer.additionalIdentifiers != null %},{% endif %}
                          {% if context.buyer.additionalIdentifiers != null %}
                            "additionalIdentifiers": [
                                                     {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
@@ -1617,7 +1618,8 @@
                     "legalName": "{{ context.buyer.identifier.legalName }}"
                                 {{ commaIf(context.buyer.identifier.uri) }}
                                 {{ stringAttributeIf(name = "uri", value = context.buyer.identifier.uri) }}
-                  },
+                  }
+                  {% if context.buyer.additionalIdentifiers != null %},{% endif %}
                          {% if context.buyer.additionalIdentifiers != null %}
                            "additionalIdentifiers": [
                                                     {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
