@@ -741,7 +741,7 @@
                       {% endif %}
                       {% if context.parameters.payer == "BUYER" %}
                         "fsPayer": {
-                          "title": "Money is paid by the - Buyer",
+                          "title": "Payments proceed by the - Buyer",
                           "description": "Payments will be provided by buyer from parent EI (via Treasury or directly). In that case 'buyer' in POST request should be empty. eNotice will take needed organization data from EI by itself",
                           "type": "object",
                           "properties": {
@@ -1081,7 +1081,7 @@
                         }
                       {% elseif context.parameters.payer == "THIRDPARTY" %}
                         "fsPayer": {
-                          "title": "Money is paid by the - Third Party",
+                          "title": "Payments proceed by the - Third Party",
                           "description": "Payments will be provided by Treasury",
                           "type": "object",
                           "properties": {
@@ -1407,7 +1407,7 @@
                         }
                       {% elseif context.parameters.payer == "FUNDER" %}
                         "fsPayer": {
-                          "title": "Money is paid by the - Funder",
+                          "title": "Payments proceed by the - Funder",
                           "description": "Payments will be provided by funder",
                           "type": "object",
                           "properties": {
