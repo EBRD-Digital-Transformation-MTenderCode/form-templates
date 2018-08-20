@@ -1,6 +1,6 @@
 package com.procurement.formsservice.model.pn
 
-class Data(
+class PNCreateContext(
         val parameters: Parameters,
         val uris: Uris,
         val buyer: Buyer?,

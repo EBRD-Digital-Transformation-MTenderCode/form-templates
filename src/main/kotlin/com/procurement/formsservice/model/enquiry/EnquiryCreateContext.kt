@@ -1,6 +1,6 @@
 package com.procurement.formsservice.model.enquiry
 
-class Data (
+class EnquiryCreateContext (
     val parameters: Parameters,
     val uris: Uris
 )

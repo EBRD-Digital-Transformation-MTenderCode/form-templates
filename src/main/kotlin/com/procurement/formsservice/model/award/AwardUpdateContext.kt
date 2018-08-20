@@ -1,6 +1,6 @@
 package com.procurement.formsservice.model.award
 
-class Data (
+class AwardUpdateContext (
         val parameters: Parameters
 )
 

@@ -1,4 +1,4 @@
-{# @pebvariable name="context" type="com.procurement.formsservice.model.enquiry.Data" #}
+{# @pebvariable name="context" type="com.procurement.formsservice.model.enquiry.EnquiryCreateContext" #}
 {
 {% import "../macros/translate" %}
   "schema": {

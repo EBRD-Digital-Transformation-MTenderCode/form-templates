@@ -1,4 +1,4 @@
-{# @pebvariable name="context" type="com.procurement.formsservice.model.bid.Data" #}
+{# @pebvariable name="context" type="com.procurement.formsservice.model.bid.BidCreateContext" #}
 {
 {% import "../macros/translate" %}
   "schema": {

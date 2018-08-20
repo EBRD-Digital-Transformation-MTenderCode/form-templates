@@ -1,6 +1,6 @@
 package com.procurement.formsservice.model.ei
 
-class Data(
+class EICreateContext(
     val parameters: Parameters,
     val uris: Uris
 )

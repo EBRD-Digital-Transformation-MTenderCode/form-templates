@@ -1,4 +1,4 @@
-{# @pebvariable name="context" type="com.procurement.formsservice.model.award.Data" #}
+{# @pebvariable name="context" type="com.procurement.formsservice.model.award.AwardUpdateContext" #}
 {
 {% import "../macros/translate" %}
   "schema": {

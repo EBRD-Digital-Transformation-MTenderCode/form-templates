@@ -1,6 +1,6 @@
 package com.procurement.formsservice.model.cn
 
-class Data(
+class CNCreateContext(
     val parameters: Parameters,
     val procuringEntity: ProcuringEntity,
     val lot: Lot,

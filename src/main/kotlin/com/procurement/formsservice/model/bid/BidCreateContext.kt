@@ -1,6 +1,6 @@
 package com.procurement.formsservice.model.bid
 
-class Data (
+class BidCreateContext (
     val parameters: Parameters,
     val uris: Uris,
     val amount: Amount?

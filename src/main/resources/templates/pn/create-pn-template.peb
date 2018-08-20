@@ -1,4 +1,4 @@
-{# @pebvariable name="context" type="com.procurement.formsservice.model.pn.Data" #}
+{# @pebvariable name="context" type="com.procurement.formsservice.model.pn.PNCreateContext" #}
 {# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.pn.Buyer.AdditionalIdentifier" #}
 {
 {% import "../macros/translate" %}

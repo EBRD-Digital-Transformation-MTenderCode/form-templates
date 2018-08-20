@@ -1,6 +1,6 @@
 package com.procurement.formsservice.model.fs
 
-class Data(
+class FSCreateContext(
     val parameters: Parameters,
     val funder: Funder,
     val payer: Payer,
