@@ -1,0 +1,616 @@
+{# @pebvariable name="context" type="com.procurement.formsservice.model.ei.EIUpdateContext" #}
+{# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.ei.Buyer.AdditionalIdentifier" #}
+{
+{% import "../macros/translate" %}
+{% import "../macros/commaIf" %}
+{% import "../macros/attributeIf" %}
+  "schema": {
+    "type": "object",
+    "properties": {
+      "eiSubject": {
+        "title": "Subject of expenditures",
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "properties": {
+          "title": {
+            "title": "Title",
+            "type": "string",
+            "ocds": "tender::object/title::string"
+          },
+          "description": {
+            "title": "Short description",
+            "type": "string",
+            "ocds": "tender::object/description::string"
+          },
+          "period": {
+            "title": "Period of procuring",
+            "type": "object",
+            "required": [
+              "startDate",
+              "endDate"
+            ],
+            "properties": {
+              "startDate": {
+                "title": "From",
+                "type": "string",
+                "readOnly": true,
+                "ocds": "planning::object/budget::object/period::object/startDate::string"
+              },
+              "endDate": {
+                "title": "Till",
+                "type": "string",
+                "readOnly": true,
+                "ocds": "planning::object/budget::object/period::object/endDate::string"
+              }
+            }
+          },
+          "parameters": {
+            "title": "Parameters",
+            "type": "object",
+            "properties": {
+              "classification": {
+                "title": "Main CPV code",
+                "type": "object",
+                "source": "{{ context.uris.cpv }}",
+                "required": [
+                  "scheme",
+                  "id",
+                  "description",
+                  "title"
+                ],
+                "properties": {
+                  "scheme": {
+                    "title": "Classification scheme",
+                    "type": "string",
+                    "default": "CPV",
+                    "readOnly": true,
+                    "ocds": "tender::object/classification::object/scheme::string"
+                  },
+                  "id": {
+                    "title": "CPV code",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "tender::object/classification::object/id::string"
+                  },
+                  "description": {
+                    "title": "CPV name",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "tender::object/classification::object/description::string"
+                  },
+                  "title": {
+                    "type": "string",
+                    "readOnly": true
+                  }
+                }
+              }
+            }
+          },
+          "rationale": {
+            "title": "Rationale",
+            "type": "string",
+            "ocds": "planning::object/rationale::string"
+          }
+        }
+      },
+      "eiBuyer": {
+        "title": "Owner of Budget",
+        "description": "Information about Entity who will operate budget from this Expenditure Item",
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "title": "Official Name",
+            "type": "string",
+            "readOnly": true,
+            "ocds": "buyer::object/name::string"
+          },
+          "address": {
+            "title": "Address",
+            "type": "object",
+            "properties": {
+              "location": {
+                "title": "Location",
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "title": "Country",
+                    "type": "object",
+                    "source": "{{ context.uris.country }}",
+                    "required": [
+                      "id",
+                      "description"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "readOnly": true,
+                        "ocds": "buyer::object/address::object/addressDetails::object/country::object/id::string"
+                      },
+                      "description": {
+                        "type": "string",
+                        "readOnly": true,
+                        "ocds": "buyer::object/address::object/addressDetails::object/country::object/description::string"
+                      }
+                    }
+                  },
+                  "region": {
+                    "title": "Region",
+                    "type": "object",
+                    "source": "{{ context.uris.region }}",
+                    "required": [
+                      "id",
+                      "description"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "readOnly": true,
+                        "ocds": "buyer::object/address::object/addressDetails::object/region::object/id::string"
+                      },
+                      "description": {
+                        "type": "string",
+                        "readOnly": true,
+                        "ocds": "buyer::object/address::object/addressDetails::object/region::object/description::string"
+                      }
+                    }
+                  },
+                  "locality": {
+                    "type": "object",
+                    "required": [
+                      "localityType"
+                    ],
+                    "properties": {
+                      "localityType": {
+                        "title": "Select type locality",
+                        "type": "string",
+                        "readOnly": true,
+                        "enum": [
+                          "From the directory",
+                          "Other"
+                        ]
+                      }
+                    },
+                    "dependencies": {
+                      "localityType": {
+                        "oneOf": [
+                          {
+                            "required": [
+                              "localityType"
+                            ],
+                            "properties": {
+                              "localityType": {
+                                "enum": [
+                                  "From the directory"
+                                ]
+                              },
+                              "directory": {
+                                "type": "object",
+                                "properties": {
+                                  "locality": {
+                                    "title": "Locality",
+                                    "type": "object",
+                                    "source": "{{ context.uris.locality }}",
+                                    "required": [
+                                      "scheme",
+                                      "id",
+                                      "description"
+                                    ],
+                                    "properties": {
+                                      "scheme": {
+                                        "type": "string",
+                                        "const": "CUATM",
+                                        "readOnly": true,
+                                        "ocds": "buyer::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                      },
+                                      "id": {
+                                        "type": "string",
+                                        "readOnly": true,
+                                        "ocds": "buyer::object/address::object/addressDetails::object/locality::object/id::string"
+                                      },
+                                      "description": {
+                                        "type": "string",
+                                        "readOnly": true,
+                                        "ocds": "buyer::object/address::object/addressDetails::object/locality::object/description::string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "required": [
+                              "localityType"
+                            ],
+                            "properties": {
+                              "localityType": {
+                                "enum": [
+                                  "Other"
+                                ]
+                              },
+                              "manual": {
+                                "type": "object",
+                                "properties": {
+                                  "locality": {
+                                    "title": "Locality",
+                                    "type": "object",
+                                    "required": [
+                                      "scheme",
+                                      "id",
+                                      "description"
+                                    ],
+                                    "properties": {
+                                      "scheme": {
+                                        "type": "string",
+                                        "const": "other",
+                                        "readOnly": true,
+                                        "ocds": "buyer::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                      },
+                                      "id": {
+                                        "type": "string",
+                                        "const": "999999999",
+                                        "readOnly": true,
+                                        "ocds": "buyer::object/address::object/addressDetails::object/locality::object/id::string"
+                                      },
+                                      "description": {
+                                        "type": "string",
+                                        "readOnly": true,
+                                        "ocds": "buyer::object/address::object/addressDetails::object/locality::object/description::string"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "postalAddress": {
+                "title": "Postal Address",
+                "type": "object",
+                "required": [
+                  "streetAddress"
+                ],
+                "properties": {
+                  "streetAddress": {
+                    "title": "Street Address",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "buyer::object/address::object/streetAddress::string"
+                  },
+                  "postalCode": {
+                    "title": "Postal Code",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "buyer::object/address::object/postalCode::string"
+                  }
+                }
+              }
+            }
+          },
+          "identifier": {
+            "title": "Main Identifier",
+            "type": "object",
+            "required": [
+              "scheme",
+              "id",
+              "legalName"
+            ],
+            "properties": {
+              "scheme": {
+                "title": "Identification scheme",
+                "type": "string",
+                "source": "{{ context.uris.registrationScheme }}",
+                "readOnly": true,
+                "ocds": "buyer::object/identifier::object/scheme::string"
+              },
+              "id": {
+                "title": "Identifier",
+                "type": "string",
+                "readOnly": true,
+                "ocds": "buyer::object/identifier::object/id::string"
+              },
+              "legalName": {
+                "title": "Legal Name",
+                "type": "string",
+                "readOnly": true,
+                "ocds": "buyer::object/identifier::object/legalName::string"
+              },
+              "uri": {
+                "title": "URI",
+                "type": "string",
+                "readOnly": true,
+                "ocds": "buyer::object/identifier::object/uri::string"
+              }
+            }
+          },
+          "additionalIdentifiers": {
+            "title": "Additional Identifiers",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "scheme",
+                "id",
+                "legalName",
+                "uri"
+              ],
+              "properties": {
+                "scheme": {
+                  "title": "Additional identifier scheme",
+                  "type": "string",
+                  "readOnly": true,
+                  "source": "{{ context.uris.registrationScheme }}",
+                  "ocds": "buyer::object/additionalIdentifiers::array[object]/scheme::string"
+                },
+                "id": {
+                  "title": "Additional identifier ID",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "buyer::object/additionalIdentifiers::array[object]/id::string"
+                },
+                "legalName": {
+                  "title": "Additional identifier legal name",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "buyer::object/additionalIdentifiers::array[object]/legalName::string"
+                },
+                "uri": {
+                  "title": "Additional identifier URI",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "buyer::object/additionalIdentifiers::array[object]/uri::string"
+                }
+              }
+            }
+          },
+          "details": {
+            "title": "Details",
+            "type": "object",
+            "required": [
+              "typeOfBuyer",
+              "mainGeneralActivity",
+              "mainSectoralActivity"
+            ],
+            "properties": {
+              "typeOfBuyer": {
+                "title": "Type of buyer",
+                "type": "string",
+                "readOnly": true,
+                "enum": [
+                  "BODY_PUBLIC",
+                  "EU_INSTITUTION",
+                  "MINISTRY",
+                  "NATIONAL_AGENCY",
+                  "REGIONAL_AGENCY",
+                  "REGIONAL_AUTHORITY"
+                ],
+                "enumNames": [
+                  "Body governed by public law",
+                  "European institution/agency or international organisation",
+                  "Ministry or any other national or federal authority, including their regional or local subdivisions",
+                  "National or federal agency/office",
+                  "Regional or local agency/office",
+                  "Regional or local authority"
+                ],
+                "ocds": "buyer::object/details::object/typeOfBuyer::string"
+              },
+              "mainGeneralActivity": {
+                "title": "Main general activity",
+                "type": "string",
+                "readOnly": true,
+                "enum": [
+                  "DEFENCE",
+                  "ECONOMIC_AND_FINANCIAL_AFFAIRS",
+                  "EDUCATION",
+                  "ENVIRONMENT",
+                  "GENERAL_PUBLIC_SERVICES",
+                  "HEALTH",
+                  "HOUSING_AND_COMMUNITY_AMENITIES",
+                  "PUBLIC_ORDER_AND_SAFETY",
+                  "RECREATION_CULTURE_AND_RELIGION",
+                  "SOCIAL_PROTECTION"
+                ],
+                "enumNames": [
+                  "Defence",
+                  "Economic and financial affairs",
+                  "Education",
+                  "Environment",
+                  "General public services",
+                  "Health",
+                  "Housing and community amenities",
+                  "Public order and safety",
+                  "Recreation, culture and religion",
+                  "Social protection"
+                ],
+                "ocds": "buyer::object/details::object/mainGeneralActivity::string"
+              },
+              "mainSectoralActivity": {
+                "title": "Main sectoral activity",
+                "type": "string",
+                "readOnly": true,
+                "enum": [
+                  "AIRPORT_RELATED_ACTIVITIES",
+                  "ELECTRICITY",
+                  "EXPLORATION_EXTRACTION_COAL_OTHER_SOLID_FUEL",
+                  "EXPLORATION_EXTRACTION_GAS_OIL",
+                  "PORT_RELATED_ACTIVITIES",
+                  "POSTAL_SERVICES",
+                  "PRODUCTION_TRANSPORT_DISTRIBUTION_GAS_HEAT",
+                  "RAILWAY_SERVICES",
+                  "URBAN_RAILWAY_TRAMWAY_TROLLEYBUS_BUS_SERVICES",
+                  "WATER"
+                ],
+                "enumNames": [
+                  "Airports related activities",
+                  "Electricity",
+                  "Exploration extraction coal and other solid fuel",
+                  "Exploration extraction gas and oil",
+                  "Port related activities",
+                  "Postal services",
+                  "Production transport distribution gas and heat",
+                  "Railway services",
+                  "Urban railway, tramway, trolleybus, bus services",
+                  "Water"
+                ],
+                "ocds": "buyer::object/details::object/mainSectoralActivity::string"
+              }
+            }
+          },
+          "contactPoint": {
+            "title": "Contact point",
+            "type": "object",
+            "properties": {
+              "person": {
+                "title": "Contact person",
+                "type": "object",
+                "required": [
+                  "name",
+                  "url"
+                ],
+                "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "buyer::object/contactPoint::object/name::string"
+                  },
+                  "url": {
+                    "title": "URL",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "buyer::object/contactPoint::object/url::string"
+                  }
+                }
+              },
+              "contacts": {
+                "title": "Contact person contacts",
+                "type": "object",
+                "required": [
+                  "telephone",
+                  "email"
+                ],
+                "properties": {
+                  "telephone": {
+                    "title": "Telephone",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "buyer::object/contactPoint::object/telephone::string"
+                  },
+                  "email": {
+                    "title": "E-mail",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "buyer::object/contactPoint::object/email::string"
+                  },
+                  "faxNumber": {
+                    "title": "Fax number",
+                    "type": "string",
+                    "readOnly": true,
+                    "ocds": "buyer::object/contactPoint::object/faxNumber::string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "data": {
+    "eiSubject": {
+      "title": "{{ context.subject.title }}",
+      {{ stringAttributeIf(name = "description", value = context.subject.description) }}
+      {{ commaIf(context.subject.description) }}
+      "period": {
+        "startDate": "{{ context.subject.budgetPeriod.startDate }}",
+        "endDate": "{{ context.subject.budgetPeriod.endDate }}"
+      },
+      "parameters": {
+        "classification": {
+          "scheme": "{{ context.subject.classification.scheme }}",
+          "id": "{{ context.subject.classification.id }}",
+          "description": "{{ context.subject.classification.description }}",
+          "title": "{{ context.subject.classification.title }}"
+        }
+      }
+      {{ commaIf(context.subject.rationale) }}
+      {{ stringAttributeIf(name = "rationale", value = context.subject.rationale) }}
+    },
+    "eiBuyer": {
+      "name": "{{ context.buyer.name}}",
+      "address": {
+        "location": {
+          "country": {
+            "id": "{{ context.buyer.address.country.id }}",
+            "description": "{{ context.buyer.address.country.description }}"
+          },
+          "region": {
+            "id": "{{ context.buyer.address.region.id }}",
+            "description": "{{ context.buyer.address.region.description }}"
+          },
+          "locality": {
+            "localityType": {% if context.buyer.address.locality.scheme == "CUATM" %}"From the directory"{% else %}"Other"{% endif %},
+            {% if context.buyer.address.locality.scheme == "CUATM" %}"directory"{% else %}"manual"{% endif %}: {
+              "locality": {
+                "scheme": "{{ context.buyer.address.locality.scheme }}",
+                "id": "{{ context.buyer.address.locality.id }}",
+                "description": "{{ context.buyer.address.locality.description }}"
+              }
+            }
+          }
+        },
+        "postalAddress": "{{ context.buyer.address.streetAddress }}"
+        {{ commaIf(context.buyer.address.postalCode) }}
+        {{ stringAttributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
+      },
+      "identifier": {
+        "scheme": "{{ context.buyer.identifier.scheme }}",
+        "id": "{{ context.buyer.identifier.id }}",
+        "legalName": "{{ context.buyer.identifier.legalName }}"
+         {{ commaIf(context.buyer.identifier.uri) }}
+         {{ stringAttributeIf(name = "uri", value = context.buyer.identifier.uri) }}
+      },
+      {% if context.buyer.additionalIdentifiers != null %}
+        "additionalIdentifiers": [
+          {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
+          {% if loop.index  > 0 %},{% endif %}
+            {
+              "scheme": "{{ additionalIdentifier.scheme }}",
+              "id": "{{ additionalIdentifier.id }}",
+              "legalName": "{{ additionalIdentifier.legalName }}"
+              {{ commaIf(additionalIdentifier.uri) }}
+              {{ stringAttributeIf(name = "uri", value = additionalIdentifier.uri) }}
+            }
+          {% endfor %}
+        ],
+      {% endif %}
+      "details": {
+        "typeOfBuyer": "{{ context.buyer.details.typeOfBuyer }}",
+        "mainGeneralActivity": "{{ context.buyer.details.mainGeneralActivity }}",
+        "mainSectoralActivity": "{{ context.buyer.details.mainSectoralActivity }}"
+      },
+      "contactPoint": {
+        "person": {
+          "name": "{{ context.buyer.contactPoint.name }}",
+          "url": "{{ context.buyer.contactPoint.url }}"
+        },
+        "contacts": {
+          "telephone": "{{ context.buyer.contactPoint.telephone }}",
+          "email": "{{ context.buyer.contactPoint.email }}"
+          {{ commaIf(context.buyer.contactPoint.faxNumber) }}
+          {{ stringAttributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
+        }
+      }
+    }
+  }
+}

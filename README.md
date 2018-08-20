@@ -5,6 +5,8 @@
 
 #### 1. Form EI
 
+##### Create:
+
 End-points:
 **create -** `/api/v1/operations?form=ei&country=...&identifierSchema=...&lang=...`
 
@@ -16,6 +18,21 @@ End-points:
 - **"lang"**:  "..." - локализация формы.
 
 Шаблон response payload ноходится - *src/main/resources/templates/ei/create-ei-template.peb*
+
+------------
+
+##### Update:
+
+End-points:
+**update -** `/api/v1/operations?form=update-ei&ocid=...&lang=...`
+
+Значения параметров:
+
+- **"form"**:  "update-ei" - указания типа создаваемой сущности **(required)**;
+- **"ocid"** :  "..." - указание ocid`a обновляемого EI **(required)**;
+- **"lang"**:  "..." - локализация формы.
+
+Шаблон response payload ноходится - *src/main/resources/templates/ei/update-ei-template.peb*
 
 ------------
 
