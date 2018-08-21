@@ -38,6 +38,8 @@ End-points:
 
 #### 2. Form FS
 
+##### Create:
+
 End-points:
 **create -** `/api/v1/operations?form=fs&ocid=...&funder=...&payer=...&isEuropeanUnionFunded=...&lang=...`
 
@@ -55,6 +57,21 @@ End-points:
 - переданный `"payer": "funder"` в запросе считается валидными данными, только в том случае, если  `"funder": "donor"`, в противном случае платформе должно вернуться сообщение с ошибкой. Все остальные комбинации валидны.
 
 Шаблон response payload ноходится - *src/main/resources/templates/fs/create-fs-template.peb*
+
+------------
+
+##### Update:
+
+End-points:
+**update -** `/api/v1/operations?form=update-fs&ocid=...&lang=...`
+
+Значения параметров:
+
+- **"form"**:  "update-fs" - указания типа создаваемой сущности **(required)**;
+- **"ocid"** :  "..." - указание ocid`a обновляемого FS **(required)**;
+- **"lang"**:  "..." - локализация формы.
+
+Шаблон response payload ноходится - *src/main/resources/templates/fs/update-fs-template.peb*
 
 ------------
 
@@ -79,6 +96,8 @@ End-points:
 #### 4. Form PIN
 #### 5. Form CN
 
+##### Create:
+
 End-points:
 **create -** `/api/v1/operations?form=cn&ocid=...&procuringEntity=...&responsibleContactPerson=...&pmd=...&lang=..`
 
@@ -92,6 +111,21 @@ End-points:
 - **"lang"**:  "..." - локализация формы.
 
 Шаблон response payload ноходится - *src/main/resources/templates/cn/create-cn-template.peb*
+
+------------
+
+##### Update:
+
+End-points:
+**update -** `/api/v1/operations?form=update-cn&ocid=...&lang=..`
+
+Значения параметров:
+
+- **"form"**:  "update-cn" - указания типа создаваемой сущности **(required)**;
+- **"ocid"** :  "..." - указание ocid`a обновляемого CN ** (required)**;
+- **"lang"**:  "..." - локализация формы.
+
+Шаблон response payload ноходится - *src/main/resources/templates/cn/update-cn-template.peb*
 
 ------------
 

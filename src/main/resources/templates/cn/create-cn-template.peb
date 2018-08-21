@@ -1,5 +1,5 @@
 {# @pebvariable name="context" type="com.procurement.formsservice.model.cn.CNCreateContext" #}
-{# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.cn.Buyer.AdditionalIdentifier" #}
+{# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.cn.CNCreateContext.Buyer.AdditionalIdentifier" #}
 {
 {% import "../macros/translate" %}
 {% import "../macros/commaIf" %}
@@ -933,6 +933,7 @@
                         "amount": {
                           "title": "Amount",
                           "type": "number",
+                          "min": 0.00001,
                           "ocds": "tender::object/lots::array[object]/value::object/amount::number"
                         },
                         "currency": {
@@ -1469,6 +1470,7 @@
                   "properties": {
                     "amount": {
                       "type": "number",
+                      "min": 0.00001,
                       "ocds": "planning::object/budget::object/budgetBreakdown::array[object]/amount::object/amount::number"
                     },
                     "currency": {

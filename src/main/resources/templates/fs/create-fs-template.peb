@@ -1,5 +1,5 @@
 {# @pebvariable name="context" type="com.procurement.formsservice.model.fs.FSCreateContext" #}
-{# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.fs.Buyer.AdditionalIdentifier" #}
+{# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.fs.FSCreateContext.Buyer.AdditionalIdentifier" #}
 {
 {% import "../macros/translate" %}
 {% import "../macros/commaIf" %}
@@ -1780,8 +1780,7 @@
               "amount": {
                 "title": "Value",
                 "type": "number",
-                "minimum": 0.01,
-                "multipleOf": 0.01,
+                "minimum": 0.00001,
                 "ocds": "planning::object/budget::object/amount::object/amount::number"
               },
               "currency": {

@@ -1,12 +1,12 @@
 {# @pebvariable name="context" type="com.procurement.formsservice.model.fs.FSUpdateContext" #}
-{# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.fs.Funder.AdditionalIdentifier" #}
-{# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.fs.Payer.AdditionalIdentifier" #}
+{# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.fs.FSUpdateContext.Funder.AdditionalIdentifier" #}
+{# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.fs.FSUpdateContext.Payer.AdditionalIdentifier" #}
 {
 {% import "../macros/translate" %}
 {% import "../macros/commaIf" %}
 {% import "../macros/attributeIf" %}
   "schema": {
-    "title": "Funding Source Creation",
+    "title": "Funding Source Updating",
     "type": "object",
     "properties": {
       "fsParent": {
