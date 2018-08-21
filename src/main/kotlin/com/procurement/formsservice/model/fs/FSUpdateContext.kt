@@ -189,7 +189,7 @@ class FSUpdateContext(
         ) {
             data class EUfunded(
                 val isEUfunded: Boolean, // FS.planning.budget.isEuropeanUnionFunded
-                val projectIdentifier: String?,  // FS.planning.budget.europeanUnionFunding.projectIdentifier
+                val projectIdentifier: String?, // FS.planning.budget.europeanUnionFunding.projectIdentifier
                 val projectName: String?, // FS.planning.budget.europeanUnionFunding.projectName
                 val uri: String? // FS.planning.budget.europeanUnionFunding.uri
             )

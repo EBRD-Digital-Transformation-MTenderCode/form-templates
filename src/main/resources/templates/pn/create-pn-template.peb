@@ -42,7 +42,7 @@
                                         "country": {
                                           "title": "Country",
                                           "type": "object",
-                                          "source": "{{ context.uris.country }}",
+                                          "source": "{{ context.procuringEntity.uris.country }}",
                                           "required": [
                                             "id",
                                             "description"
@@ -63,7 +63,7 @@
                                         "region": {
                                           "title": "Region",
                                           "type": "object",
-                                          "source": "{{ context.uris.region }}",
+                                          "source": "{{ context.procuringEntity.uris.region }}",
                                           "required": [
                                             "id",
                                             "description"
@@ -115,12 +115,19 @@
                                                         "locality": {
                                                           "title": "Locality",
                                                           "type": "object",
-                                                          "source": "{{ context.uris.locality }}",
+                                                          "source": "{{ context.procuringEntity.uris.locality }}",
                                                           "required": [
+                                                            "scheme",
                                                             "id",
                                                             "description"
                                                           ],
                                                           "properties": {
+                                                            "scheme": {
+                                                              "type": "string",
+                                                              "const": "CUATM",
+                                                              "readOnly": true,
+                                                              "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                                            },
                                                             "id": {
                                                               "type": "string",
                                                               "readOnly": true,
@@ -217,15 +224,14 @@
                                   "required": [
                                     "scheme",
                                     "id",
-                                    "legalName",
-                                    "uri"
+                                    "legalName"
                                   ],
                                   "properties": {
                                     "scheme": {
                                       "title": "Identification scheme",
                                       "type": "string",
                                       "readOnly": true,
-                                      "source": "{{ context.uris.registrationScheme }}",
+                                      "source": "{{ context.procuringEntity.uris.registrationScheme }}",
                                       "ocds": "tender::object/procuringEntity::object/identifier::object/scheme::string"
                                     },
                                     "id": {
@@ -256,15 +262,14 @@
                                     "required": [
                                       "scheme",
                                       "id",
-                                      "legalName",
-                                      "uri"
+                                      "legalName"
                                     ],
                                     "properties": {
                                       "scheme": {
                                         "title": "Additional identifier scheme",
                                         "type": "string",
                                         "readOnly": true,
-                                        "source": "{{ context.uris.registrationScheme }}",
+                                        "source": "{{ context.procuringEntity.uris.registrationScheme }}",
                                         "ocds": "tender::object/procuringEntity::object/additionalIdentifiers::array[object]/scheme::string"
                                       },
                                       "id": {
@@ -429,7 +434,7 @@
                                         "country": {
                                           "title": "Country",
                                           "type": "object",
-                                          "source": "{{ context.uris.country }}",
+                                          "source": "{{ context.procuringEntity.uris.country }}",
                                           "required": [
                                             "id",
                                             "description"
@@ -448,7 +453,7 @@
                                         "region": {
                                           "title": "Region",
                                           "type": "object",
-                                          "source": "{{ context.uris.region }}",
+                                          "source": "{{ context.procuringEntity.uris.region }}",
                                           "dependentFields": {
                                             "country": "section1.procuringEntity.thirdParty.address.location.country.id"
                                           },
@@ -500,16 +505,22 @@
                                                         "locality": {
                                                           "title": "Locality",
                                                           "type": "object",
-                                                          "source": "{{ context.uris.locality }}",
+                                                          "source": "{{ context.procuringEntity.uris.locality }}",
                                                           "dependentFields": {
                                                             "country": "section1.procuringEntity.thirdParty.address.location.country.id",
                                                             "region": "section1.procuringEntity.thirdParty.address.location.region.id"
                                                           },
                                                           "required": [
+                                                            "scheme",
                                                             "id",
                                                             "description"
                                                           ],
                                                           "properties": {
+                                                            "scheme": {
+                                                              "type": "string",
+                                                              "const": "CUATM",
+                                                              "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                                            },
                                                             "id": {
                                                               "type": "string",
                                                               "ocds": "tender::object/procuringEntity::object/address::object/addressDetails::object/locality::object/id::string"
@@ -599,14 +610,13 @@
                                   "required": [
                                     "scheme",
                                     "id",
-                                    "legalName",
-                                    "uri"
+                                    "legalName"
                                   ],
                                   "properties": {
                                     "scheme": {
                                       "title": "Identification scheme",
                                       "type": "string",
-                                      "source": "{{ context.uris.registrationScheme }}",
+                                      "source": "{{ context.procuringEntity.uris.registrationScheme }}",
                                       "dependentFields": {
                                         "country": "section1.procuringEntity.thirdParty.address.location.country.id"
                                       },
@@ -637,14 +647,13 @@
                                     "required": [
                                       "scheme",
                                       "id",
-                                      "legalName",
-                                      "uri"
+                                      "legalName"
                                     ],
                                     "properties": {
                                       "scheme": {
                                         "title": "Additional identifier scheme",
                                         "type": "string",
-                                        "source": "{{ context.uris.registrationScheme }}",
+                                        "source": "{{ context.procuringEntity.uris.registrationScheme }}",
                                         "dependentFields": {
                                           "country": "section1.procuringEntity.thirdParty.address.location.country.id"
                                         },
@@ -952,7 +961,7 @@
                                 "country": {
                                   "title": "Country",
                                   "type": "object",
-                                  "source": "{{ context.uris.country }}",
+                                  "source": "{{ context.lot.uris.country }}",
                                   "required": [
                                     "id",
                                     "description"
@@ -971,7 +980,7 @@
                                 "region": {
                                   "title": "Region",
                                   "type": "object",
-                                  "source": "{{ context.uris.region }}",
+                                  "source": "{{ context.lot.uris.region }}",
                                   "dependentFields": {
                                     "country": "section2.lots[lotIndex].performance.placeOfPerformance.address.location.country.id"
                                   },
@@ -991,6 +1000,7 @@
                                   }
                                 },
                                 "locality": {
+                                  "title": "Locality",
                                   "type": "object",
                                   "required": [
                                     "localityType"
@@ -1023,16 +1033,22 @@
                                                 "locality": {
                                                   "title": "Locality",
                                                   "type": "object",
-                                                  "source": "{{ context.uris.locality }}",
+                                                  "source": "{{ context.lot.uris.locality }}",
                                                   "dependentFields": {
                                                     "country": "section2.lots[lotIndex].performance.placeOfPerformance.address.location.country.id",
                                                     "region": "section2.lots[lotIndex].performance.placeOfPerformance.address.location.region.id"
                                                   },
                                                   "required": [
+                                                    "scheme",
                                                     "id",
                                                     "description"
                                                   ],
                                                   "properties": {
+                                                    "scheme": {
+                                                      "type": "string",
+                                                      "const": "CUATM",
+                                                      "ocds": "tender::object/lots::array[object]/placeOfPerformance::object/address::object/addressDetails::object/locality::object/scheme::string"
+                                                    },
                                                     "id": {
                                                       "type": "string",
                                                       "ocds": "tender::object/lots::array[object]/placeOfPerformance::object/address::object/addressDetails::object/locality::object/id::string"
@@ -1263,7 +1279,7 @@
                           }
                         }
                       },
-                      "additionalClassification": {
+                      "additionalClassifications": {
                         "title": "Supplementary CPV code",
                         "type": "array",
                         "items": {
@@ -1497,6 +1513,7 @@
                                     "localityType": "From the directory",
                                     "directory": {
                                       "locality": {
+                                        "scheme": "{{ context.buyer.address.locality.scheme }}",
                                         "id": "{{ context.buyer.address.locality.id }}",
                                         "description": "{{ context.buyer.address.locality.description }}"
                                       }
@@ -1525,16 +1542,18 @@
                     "legalName": "{{ context.buyer.identifier.legalName }}"
                                 {{ commaIf(context.buyer.identifier.uri) }}
                                 {{ stringAttributeIf(name = "uri", value = context.buyer.identifier.uri) }}
-                  },
+                  }
+                  ,
                          {% if context.buyer.additionalIdentifiers != null %}
                            "additionalIdentifiers": [
                                                     {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
+                                                      {% if loop.index  > 0 %},{% endif %}
                                                       {
                                                         "scheme": "{{ additionalIdentifier.scheme }}",
                                                         "id": "{{ additionalIdentifier.id }}",
                                                         "legalName": "{{ additionalIdentifier.legalName }}"
-                                                      {{ commaIf(additionalIdentifier.uri) }}
-                                                      {{ stringAttributeIf(name = "uri", value = additionalIdentifier.uri) }}
+                                                        {{ commaIf(additionalIdentifier.uri) }}
+                                                        {{ stringAttributeIf(name = "uri", value = additionalIdentifier.uri) }}
                                                       }
                                                     {% endfor %}
                            ],
@@ -1577,6 +1596,7 @@
                                     "localityType": "From the directory",
                                     "directory": {
                                       "locality": {
+                                        "scheme": "{{ context.buyer.address.locality.scheme }}",
                                         "id": "{{ context.buyer.address.locality.id }}",
                                         "description": "{{ context.buyer.address.locality.description }}"
                                       }
@@ -1605,16 +1625,18 @@
                     "legalName": "{{ context.buyer.identifier.legalName }}"
                                 {{ commaIf(context.buyer.identifier.uri) }}
                                 {{ stringAttributeIf(name = "uri", value = context.buyer.identifier.uri) }}
-                  },
+                  }
+                  {% if context.buyer.additionalIdentifiers != null %},{% endif %}
                          {% if context.buyer.additionalIdentifiers != null %}
                            "additionalIdentifiers": [
                                                     {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
+                                                      {% if loop.index  > 0 %},{% endif %}
                                                       {
                                                         "scheme": "{{ additionalIdentifier.scheme }}",
                                                         "id": "{{ additionalIdentifier.id }}",
                                                         "legalName": "{{ additionalIdentifier.legalName }}"
-                                                      {{ commaIf(additionalIdentifier.uri) }}
-                                                      {{ stringAttributeIf(name = "uri", value = additionalIdentifier.uri) }}
+                                                        {{ commaIf(additionalIdentifier.uri) }}
+                                                        {{ stringAttributeIf(name = "uri", value = additionalIdentifier.uri) }}
                                                       }
                                                     {% endfor %}
                            ]
