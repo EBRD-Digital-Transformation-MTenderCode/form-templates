@@ -86,9 +86,9 @@ class EIUpdateContext(
         )
 
         data class Details(
-            val typeOfBuyer: String,
-            val mainGeneralActivity: String,
-            val mainSectoralActivity: String
+            val typeOfBuyer: String, // EI.parties[0].details.typeOfBuyer
+            val mainGeneralActivity: String, // EI.parties[0].details.mainGeneralActivity
+            val mainSectoralActivity: String // EI.parties[0].details.mainSectoralActivity
         )
 
         data class ContactPoint(
