@@ -131,6 +131,8 @@ End-points:
 
 #### 6. Form Bid
 
+##### Create:
+
 End-points:
 **create -** `/api/v1/operations?form=bid&ocid=...&lot-id=...&lang=...`
 
@@ -142,6 +144,23 @@ End-points:
 - **"lang"**:  "..." - локализация формы.
 
 Шаблон response payload ноходится - *src/main/resources/templates/bid/create-bid-template.peb*
+
+------------
+
+##### Update:
+
+End-points:
+**update -** `/api/v1/operations?form=update-bid&ocid=...&lot-id=...&bid-id=...&lang=...`
+
+Значения параметров:
+
+- **"form"**:  "update-bid" - указания типа создаваемой сущности **(required)**;
+- **"ocid"** :  "..." - ocid стадии тендерного процесса в которой подается bid **(required)**;
+- **"lot-id"**: "..." -  id лота на который подается bid **(required)**;
+- **"bid-id"**: "..." -  id  обновляемого bid`a  **(required)**;
+- **"lang"**:  "..." - локализация формы.
+
+Шаблон response payload ноходится - *src/main/resources/templates/bid/update-bid-template.peb*
 
 ------------
 
