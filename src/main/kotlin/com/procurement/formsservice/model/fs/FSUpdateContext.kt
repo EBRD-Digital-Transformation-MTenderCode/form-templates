@@ -172,7 +172,7 @@ class FSUpdateContext(
         )
 
         data class BudgetAmount(
-            val amount: Number, // FS.planning.budget.amount.amount
+            val amount: Double, // FS.planning.budget.amount.amount
             val currency: String // FS.planning.budget.amount.currency
         )
 

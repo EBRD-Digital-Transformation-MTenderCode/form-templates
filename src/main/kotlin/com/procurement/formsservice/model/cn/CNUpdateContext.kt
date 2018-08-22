@@ -100,7 +100,7 @@ class CNUpdateContext(
             val documents: List<Document>
         ) {
             data class Value(
-                val amount: Number, // CN.tender.lots[i].value.amount
+                val amount: Double, // CN.tender.lots[i].value.amount
                 val currency: String // CN.tender.lots[i].value.currency
             )
 
@@ -152,7 +152,7 @@ class CNUpdateContext(
                 val additionalClassifications: List<AdditionalClassification>
             ) {
                 data class Quantity(
-                    val quantity: Number, // CN.tender.items[relatedLot = lot.id] quantity
+                    val quantity: Double, // CN.tender.items[relatedLot = lot.id] quantity
                     val unitClass: UnitClass,
                     val unit: Unit
                 ) {
@@ -197,7 +197,7 @@ class CNUpdateContext(
             val amount: Amount
         ) {
             data class Amount(
-                val amount: Number, // MS.planning.budget.budgetBreakdown[i].amount.amount
+                val amount: Double, // MS.planning.budget.budgetBreakdown[i].amount.amount
                 val currency: String // MS.planning.budget.budgetBreakdown[i].amount.currency
             )
         }
