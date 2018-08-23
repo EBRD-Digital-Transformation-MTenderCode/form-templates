@@ -996,7 +996,7 @@
               {{ stringAttributeIf(name = "faxNumber", value = context.funder.contactPoint.faxNumber) }}
             }
           }
-        }
+        },
       {% endif %}
       "fsPayer": {
         "name": "{{ context.payer.name }}",
@@ -1069,11 +1069,11 @@
         "budgetDetails": {
           {{ stringAttributeIf(name = "description", value = context.budget.budgetDetails.description) }}
           {{ commaIf(context.budget.budgetDetails.id) }}
-          {{ stringAttributeIf(name = "description", value = context.budget.budgetDetails.id) }}
+          {{ stringAttributeIf(name = "id", value = context.budget.budgetDetails.id) }}
         },
       {% endif %}
       "budgetAmount": {
-        "amount": {{ context.budget.budgetAmount.amount }}
+        "amount": {{ context.budget.budgetAmount.amount }},
         "currency": "{{ context.budget.budgetAmount.currency }}"
       },
       "budgetPeriod": {
@@ -1089,7 +1089,7 @@
           {{ stringAttributeIf(name = "project", value = context.budget.budgetProject.uri) }}
           {{ commaIf(context.budget.budgetProject.uri) }}
           "EUfunded": {
-            "isEUfunded": {{ context.budget.budgetProject.euFunded.isEUfunded }},
+            "isEUfunded": {{ context.budget.budgetProject.euFunded.isEUfunded }}
             {{ commaIf(context.budget.budgetProject.euFunded.projectIdentifier) }}
             {{ stringAttributeIf(name = "projectIdentifier", value = context.budget.budgetProject.euFunded.projectIdentifier) }}
             {{ commaIf(context.budget.budgetProject.euFunded.projectName) }}
