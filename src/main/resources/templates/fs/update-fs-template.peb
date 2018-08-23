@@ -1084,9 +1084,9 @@
         "projectDetails": {
           {{ stringAttributeIf(name = "project", value = context.budget.budgetProject.project) }}
           {{ commaIf(context.budget.budgetProject.project) }}
-          {{ stringAttributeIf(name = "project", value = context.budget.budgetProject.projectID) }}
+          {{ stringAttributeIf(name = "projectID", value = context.budget.budgetProject.projectID) }}
           {{ commaIf(context.budget.budgetProject.projectID) }}
-          {{ stringAttributeIf(name = "project", value = context.budget.budgetProject.uri) }}
+          {{ stringAttributeIf(name = "uri", value = context.budget.budgetProject.uri) }}
           {{ commaIf(context.budget.budgetProject.uri) }}
           "EUfunded": {
             "isEUfunded": {{ context.budget.budgetProject.euFunded.isEUfunded }}

@@ -97,7 +97,7 @@ class CNUpdateContext(
             val value: Value,
             val performance: Performance,
             val items: List<Item>,
-            val documents: List<Document>
+            val documents: List<Document>?
         ) {
             data class Value(
                 val amount: Double, // CN.tender.lots[i].value.amount
@@ -162,7 +162,7 @@ class CNUpdateContext(
                     )
 
                     data class Unit(
-                        val id: String, // CN.tender.items[relatedLot = lot.id] quantity.id
+                        val id: String, // CN.tender.items[relatedLot = lot.id] unit.id
                         val description: String // CN.tender.items[relatedLot = lot.id] unit.name
                     )
                 }
