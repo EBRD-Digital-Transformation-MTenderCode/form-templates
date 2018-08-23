@@ -929,6 +929,7 @@
                         "amount": {
                           "title": "Amount",
                           "type": "number",
+                          "min": 0.00001,
                           "ocds": "tender::object/lots::array[object]/value::object/amount::number"
                         },
                         "currency": {
@@ -1476,6 +1477,7 @@
                   "properties": {
                     "amount": {
                       "type": "number",
+                      "min": 0.00001,
                       "ocds": "planning::object/budget::object/budgetBreakdown::array[object]/amount::object/amount::number"
                     },
                     "currency": {

@@ -43,7 +43,7 @@ class FSUpdateContext(
             val country: String, // /country/FS.parties[role="funder"].address.addressDetails.country.id?lang=langFromRequest
             val region: String, // /region?lang=langFromRequest&country=FS.parties[role="funder"].address.addressDetails.country.id
             val locality: String, // /locality?lang=langFromRequest&country=FS.parties[role="funder"].address.addressDetails.country.id&region=FS.parties[role="funder"].address.addressDetails.region.id
-            val registrationScheme: String // /registration-scheme?lang=langFromRequest&country=FS.parties[role="funder"].identifier.scheme
+            val registrationScheme: String // /registration-scheme?lang=langFromRequest&country=FS.parties[role="funder"].address.addressDetails.country.id?
         )
 
         data class Address(
@@ -105,7 +105,7 @@ class FSUpdateContext(
             val country: String, // /country/FS.parties[role="payer"].address.addressDetails.country.id?lang=langFromRequest
             val region: String, // /region?lang=langFromRequest&country=FS.parties[role="payer"].address.addressDetails.country.id
             val locality: String, // /locality?lang=langFromRequest&country=FS.parties[role="payer"].address.addressDetails.country.id&region=FS.parties[role="payer"].address.addressDetails.region.id
-            val registrationScheme: String // /registration-scheme?lang=langFromRequest&country=FS.parties[role="payer"].identifier.scheme
+            val registrationScheme: String // /registration-scheme?lang=langFromRequest&country=FS.parties[role="funder"].address.addressDetails.country.id?
         )
 
         data class Address(

@@ -77,6 +77,8 @@ End-points:
 
 #### 3. Form PN
 
+##### Create:
+
 End-points:
 **create -** `/api/v1/operations?form=pn&ocid=...&procuringEntity=...&responsibleContactPerson=...&pmd=...&lang=..`
 
@@ -90,6 +92,21 @@ End-points:
 - **"lang"**:  "..." - локализация формы.
 
 Шаблон response payload ноходится - *src/main/resources/templates/pn/create-pn-template.peb*
+
+------------
+
+##### Update:
+
+End-points:
+**update -** `/api/v1/operations?form=update-pn&ocid=...&lang=..`
+
+Значения параметров:
+
+- **"form"**:  "update-pn" - указания типа создаваемой сущности **(required)**;
+- **"ocid"** :  "..." - указание ocid`a обновляемого PN ** (required)**;
+- **"lang"**:  "..." - локализация формы.
+
+Шаблон response payload ноходится - *src/main/resources/templates/pn/update-pn-template.peb*
 
 ------------
 
