@@ -1136,7 +1136,7 @@
             {% if loop.index  > 0 %},{% endif %}
             {
               "documentId": "{{ tenderDocument.id }}",
-              "documentType": {{ tenderDocument.type }}
+              "documentType": "{{ tenderDocument.type }}"
               {{ commaIf(tenderDocument.title) }}
               {{ stringAttributeIf(name = "title", value = tenderDocument.title) }}
               {{ commaIf(tenderDocument.description) }}
@@ -1249,7 +1249,7 @@
                     {% if loop.index  > 0 %},{% endif %}
                     {
                       "documentId": "{{ lotDocument.id }}",
-                      "documentType": {{ lotDocument.type }},
+                      "documentType": "{{ lotDocument.type }}",
                       "relatedLots": {{ lotDocument.relatedLots }}
                       {{ commaIf(lotDocument.title) }}
                       {{ stringAttributeIf(name = "title", value = lotDocument.title) }}
