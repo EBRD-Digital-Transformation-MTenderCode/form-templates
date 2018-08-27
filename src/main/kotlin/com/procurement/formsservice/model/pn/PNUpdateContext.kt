@@ -75,10 +75,10 @@ class PNUpdateContext(
         val title: String, // MS.tender.title
         val description: String, // MS.tender.description
         val documents: List<Document>,
-        val lots: List<Lot>,
-        val procurementMethodDetails: String,
-        val legalBasis: String,
-        val validityPeriod: String,
+        val lots: List<Lot>?,
+        val procurementMethodDetails: String, // MS.tender.procurementMethodDetails
+        val legalBasis: String,  // MS.tender.legalBasis
+        val validityPeriod: String, // PN.tender.tenderPeriod.endDate
         val budgetBreakdown: List<BudgetBreakdown>,
         val uris: Uris,
         val currency: String // MS.tender.value.currency
@@ -96,8 +96,8 @@ class PNUpdateContext(
             val description: String, // PN.tender.lots[i].description
             val value: Value,
             val performance: Performance,
-            val items: List<Item>,
-            val documents: List<Document>
+            val items: List<Item>?,
+            val documents: List<Document>?
         ) {
             data class Value(
                 val amount: Double, // PN.tender.lots[i].value.amount
@@ -149,7 +149,7 @@ class PNUpdateContext(
                 val description: String?, // PN.tender.items[relatedLot = lot.id] description
                 val quantity: Quantity,
                 val classification: Classification,
-                val additionalClassifications: List<AdditionalClassification>
+                val additionalClassifications: List<AdditionalClassification>?
             ) {
                 data class Quantity(
                     val quantity: Double, // PN.tender.items[relatedLot = lot.id] quantity
@@ -162,7 +162,7 @@ class PNUpdateContext(
                     )
 
                     data class Unit(
-                        val id: String, // PN.tender.items[relatedLot = lot.id] quantity.id
+                        val id: String, // PN.tender.items[relatedLot = lot.id] unit.id
                         val description: String // PN.tender.items[relatedLot = lot.id] unit.name
                     )
                 }
@@ -186,10 +186,9 @@ class PNUpdateContext(
                 val id: String, // PN.tender.documents[relatedLots[0] = lot.id].id
                 val type: String, // PN.tender.documents[relatedLots[0] = lot.id].documentType
                 val title: String?, // PN.tender.documents[relatedLots[0] = lot.id].title
-                val description: String, // PN.tender.documents[relatedLots[0] = lot.id].description
-                val relatedLots: List<String> // PN.tender.documents[relatedLots[0] = lot.id].relatedLots
+                val description: String?, // PN.tender.documents[relatedLots[0] = lot.id].description
+                val relatedLots: List<String>? // PN.tender.documents[relatedLots[0] = lot.id].relatedLots
             )
-
         }
 
         data class BudgetBreakdown(
@@ -211,6 +210,5 @@ class PNUpdateContext(
             val cpv: String, // /cpv?lang=langFromRequest&code=MS.tender.classification.id
             val cpvs: String // /cpvs?lang=langFromRequest
         )
-
     }
 }

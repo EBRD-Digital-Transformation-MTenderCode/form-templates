@@ -76,9 +76,9 @@ class CNUpdateContext(
         val description: String, // MS.tender.description
         val documents: List<Document>,
         val lots: List<Lot>,
-        val procurementMethodDetails: String,
-        val legalBasis: String,
-        val validityPeriod: String,
+        val procurementMethodDetails: String, // MS.tender.procurementMethodDetails
+        val legalBasis: String,  // MS.tender.legalBasis
+        val validityPeriod: String, // CN.tender.tenderPeriod.endDate
         val budgetBreakdown: List<BudgetBreakdown>,
         val uris: Uris,
         val currency: String // MS.tender.value.currency
@@ -149,7 +149,7 @@ class CNUpdateContext(
                 val description: String?, // CN.tender.items[relatedLot = lot.id] description
                 val quantity: Quantity,
                 val classification: Classification,
-                val additionalClassifications: List<AdditionalClassification>
+                val additionalClassifications: List<AdditionalClassification>?
             ) {
                 data class Quantity(
                     val quantity: Double, // CN.tender.items[relatedLot = lot.id] quantity
@@ -186,10 +186,9 @@ class CNUpdateContext(
                 val id: String, // CN.tender.documents[relatedLots[0] = lot.id].id
                 val type: String, // CN.tender.documents[relatedLots[0] = lot.id].documentType
                 val title: String?, // CN.tender.documents[relatedLots[0] = lot.id].title
-                val description: String, // CN.tender.documents[relatedLots[0] = lot.id].description
-                val relatedLots: List<String> // CN.tender.documents[relatedLots[0] = lot.id].relatedLots
+                val description: String?, // CN.tender.documents[relatedLots[0] = lot.id].description
+                val relatedLots: List<String>? // CN.tender.documents[relatedLots[0] = lot.id].relatedLots
             )
-
         }
 
         data class BudgetBreakdown(
@@ -211,6 +210,5 @@ class CNUpdateContext(
             val cpv: String, // /cpv?lang=langFromRequest&code=MS.tender.classification.id
             val cpvs: String // /cpvs?lang=langFromRequest
         )
-
     }
 }
