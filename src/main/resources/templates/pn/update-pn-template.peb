@@ -965,7 +965,7 @@
                 "title": "Type of Procurement Procedure",
                 "description": "IV.1.1) Type of procedure",
                 "type": "string",
-                "source": "{{ context.uris.pmd }}",
+                "source": "{{ context.tender.uris.pmd }}",
                 "readOnly": true,
                 "ocds": "tender::object/procurementMethodDetails::string"
               },

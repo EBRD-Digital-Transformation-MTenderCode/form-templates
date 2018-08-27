@@ -87,7 +87,7 @@ class PNUpdateContext(
             val id: String, // PN.tender.documents[hasn`t field relatedLots].id
             val type: String, // PN.tender.documents[hasn`t field relatedLots].documentType
             val title: String?, // PN.tender.documents[hasn`t field relatedLots].title
-            val description: String // PN.tender.documents[hasn`t field relatedLots].description
+            val description: String? // PN.tender.documents[hasn`t field relatedLots].description
         )
 
         data class Lot(
@@ -116,7 +116,7 @@ class PNUpdateContext(
                         val country: Country,
                         val region: Region,
                         val locality: Locality,
-                        val streetAddress: String, // PN.tender.lots[i].placeOfPerformance.streetAddress
+                        val streetAddress: String, // PN.tender.lots[i].placeOfPerformance.address.streetAddress
                         val postalCode: String? // PN.tender.lots[i].placeOfPerformance.address.postalCode
                     ) {
                         data class Country(
@@ -208,7 +208,8 @@ class PNUpdateContext(
             val unitClass: String, // /unit-class?lang=langFromRequest
             val unit: String, // /unit?lang=langFromRequest&unitClass=$unitClass$
             val cpv: String, // /cpv?lang=langFromRequest&code=MS.tender.classification.id
-            val cpvs: String // /cpvs?lang=langFromRequest
+            val cpvs: String, // /cpvs?lang=langFromRequest
+            val pmd: String // /pmd?lang=langFromRequest&country=(ocds-t1s2t3->MD<-1532010121824-PN-1532010122650)
         )
     }
 }

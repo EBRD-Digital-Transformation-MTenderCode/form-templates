@@ -87,7 +87,7 @@ class CNUpdateContext(
             val id: String, // CN.tender.documents[hasn`t field relatedLots].id
             val type: String, // CN.tender.documents[hasn`t field relatedLots].documentType
             val title: String?, // CN.tender.documents[hasn`t field relatedLots].title
-            val description: String // CN.tender.documents[hasn`t field relatedLots].description
+            val description: String? // CN.tender.documents[hasn`t field relatedLots].description
         )
 
         data class Lot(
@@ -208,7 +208,8 @@ class CNUpdateContext(
             val unitClass: String, // /unit-class?lang=langFromRequest
             val unit: String, // /unit?lang=langFromRequest&unitClass=$unitClass$
             val cpv: String, // /cpv?lang=langFromRequest&code=MS.tender.classification.id
-            val cpvs: String // /cpvs?lang=langFromRequest
+            val cpvs: String, // /cpvs?lang=langFromRequest
+            val pmd: String // /pmd?lang=langFromRequest&country=(ocds-t1s2t3->MD<-1532010121824-EV-1532010122650)
         )
     }
 }
