@@ -857,16 +857,16 @@
                             "scheme": {
                               "title": "Classification scheme",
                               "type": "string",
-                              "default": "CPVs",
+                              "default": "CPVS",
                               "ocds": "tender::object/items::array[object]/additionalClassifications::array[object]/scheme::string"
                             },
                             "id": {
-                              "title": "CPVs code",
+                              "title": "CPVS code",
                               "type": "string",
                               "ocds": "tender::object/items::array[object]/additionalClassifications::array[object]/id::string"
                             },
                             "description": {
-                              "title": "CPVs Name",
+                              "title": "CPVS Name",
                               "type": "string",
                               "ocds": "tender::object/items::array[object]/additionalClassifications::array[object]/description::string"
                             },
