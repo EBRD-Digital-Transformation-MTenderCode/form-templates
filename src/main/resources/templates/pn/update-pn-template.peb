@@ -1099,7 +1099,7 @@
         },
         {% if context.procuringEntity.additionalIdentifiers != null %}
           "additionalIdentifiers": [
-            {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
+            {% for additionalIdentifier in context.procuringEntity.additionalIdentifiers %}
               {% if loop.index  > 0 %},{% endif %}
               {
                 "scheme": "{{ additionalIdentifier.scheme }}",
@@ -1188,7 +1188,7 @@
                       {{ commaIf(lot.performance.placeOfPerformance.address.postalCode) }}
                       {{ stringAttributeIf(name = "postalCode", value = lot.performance.placeOfPerformance.address.postalCode) }}
                     }
-                  },
+                  }
                   {{ commaIf(lot.performance.placeOfPerformance.description) }}
                   {{ stringAttributeIf(name = "description", value = lot.performance.placeOfPerformance.description) }}
                 },
@@ -1207,7 +1207,7 @@
                       {{ stringAttributeIf(name = "description", value = item.description) }}
                       {{ commaIf(item.description) }}
                       "quantity": {
-                        "quantity": {{ item.quantity }},
+                        "quantity": {{ item.quantity.quantity }},
                         "unitDetails": {
                           "unitClass": {
                             "id": "{{ item.quantity.unitClass.id }}",
@@ -1245,12 +1245,12 @@
               {% endif %}
               {% if lot.documents != null %}
                 "documents": [
-                  {% for lotDocument in context.tender.documents %}
+                  {% for lotDocument in lot.documents %}
                     {% if loop.index  > 0 %},{% endif %}
                     {
                       "documentId": "{{ lotDocument.id }}",
                       "documentType": {{ lotDocument.type }},
-                      "relatedLots": {{ lotDocument.relatedLots }},
+                      "relatedLots": {{ lotDocument.relatedLots }}
                       {{ commaIf(lotDocument.title) }}
                       {{ stringAttributeIf(name = "title", value = lotDocument.title) }}
                       {{ commaIf(lotDocument.description) }}

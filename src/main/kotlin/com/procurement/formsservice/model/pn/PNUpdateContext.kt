@@ -187,7 +187,7 @@ class PNUpdateContext(
                 val type: String, // PN.tender.documents[relatedLots[0] = lot.id].documentType
                 val title: String?, // PN.tender.documents[relatedLots[0] = lot.id].title
                 val description: String?, // PN.tender.documents[relatedLots[0] = lot.id].description
-                val relatedLots: List<String>? // PN.tender.documents[relatedLots[0] = lot.id].relatedLots
+                val relatedLots: List<String> // PN.tender.documents[relatedLots[0] = lot.id].relatedLots
             )
         }
 

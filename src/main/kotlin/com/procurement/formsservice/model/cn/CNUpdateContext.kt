@@ -116,7 +116,7 @@ class CNUpdateContext(
                         val country: Country,
                         val region: Region,
                         val locality: Locality,
-                        val streetAddress: String, // CN.tender.lots[i].placeOfPerformance.streetAddress
+                        val streetAddress: String, // CN.tender.lots[i].placeOfPerformance.address.streetAddress
                         val postalCode: String? // CN.tender.lots[i].placeOfPerformance.address.postalCode
                     ) {
                         data class Country(
@@ -187,7 +187,7 @@ class CNUpdateContext(
                 val type: String, // CN.tender.documents[relatedLots[0] = lot.id].documentType
                 val title: String?, // CN.tender.documents[relatedLots[0] = lot.id].title
                 val description: String?, // CN.tender.documents[relatedLots[0] = lot.id].description
-                val relatedLots: List<String>? // CN.tender.documents[relatedLots[0] = lot.id].relatedLots
+                val relatedLots: List<String> // CN.tender.documents[relatedLots[0] = lot.id].relatedLots
             )
         }
 
