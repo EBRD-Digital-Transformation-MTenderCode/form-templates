@@ -1273,7 +1273,7 @@
       },
       "administrative": {
         "validityPeriod": {
-          "endDate": "{{ context.tender.validityPeriod }}"
+          "startDate": "{{ context.tender.validityPeriod }}"
         }
       }
     },

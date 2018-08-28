@@ -78,7 +78,7 @@ class PNUpdateContext(
         val lots: List<Lot>?,
         val procurementMethodDetails: String, // MS.tender.procurementMethodDetails
         val legalBasis: String,  // MS.tender.legalBasis
-        val validityPeriod: String, // PN.tender.tenderPeriod.endDate
+        val validityPeriod: String, // PN.tender.tenderPeriod.startDate
         val budgetBreakdown: List<BudgetBreakdown>,
         val uris: Uris,
         val currency: String // MS.tender.value.currency
