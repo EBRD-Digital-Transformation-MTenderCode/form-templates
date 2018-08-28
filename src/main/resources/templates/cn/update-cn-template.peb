@@ -1184,8 +1184,9 @@
                   "startDate": "{{ lot.performance.deliveryPeriod.startDate }}",
                   "endDate": "{{ lot.performance.deliveryPeriod.endDate }}"
                 }
-              },
+              }
               {% if lot.items != null %}
+                ,
                 "items": [
                   {% for item in lot.items %}
                     {% if loop.index  > 0 %},{% endif %}
@@ -1232,6 +1233,7 @@
                 ]
               {% endif %}
               {% if lot.documents != null %}
+                ,
                 "documents": [
                   {% for lotDocument in lot.documents %}
                     {% if loop.index  > 0 %},{% endif %}
