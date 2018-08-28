@@ -1226,21 +1226,21 @@
                         "description": "{{ item.classification.description }}",
                         "title": "{{ item.classification.title }}"
                       }
+                      {% if item.additionalClassifications != null %}
+                        ,
+                        "additionalClassifications": [
+                          {% for additionalClassification in item.additionalClassifications %}
+                            {% if loop.index  > 0 %},{% endif %}
+                            {
+                              "scheme": "{{ additionalClassification.scheme }}",
+                              "id": "{{ additionalClassification.id }}",
+                              "description": "{{ additionalClassification.description }}",
+                              "title": "{{ additionalClassification.title }}"
+                            }
+                          {% endfor %}
+                        ]
+                      {% endif %}
                     }
-                    {% if item.additionalClassifications != null %}
-                      ,
-                      "additionalClassifications": [
-                        {% for additionalClassification in item.additionalClassifications %}
-                          {% if loop.index  > 0 %},{% endif %}
-                          {
-                            "scheme": "{{ additionalClassification.scheme }}",
-                            "id": "{{ additionalClassification.id }}",
-                            "description": "{{ additionalClassification.description }}",
-                            "title": "{{ additionalClassification.title }}"
-                          }
-                        {% endfor %}
-                      ]
-                    {% endif %}
                   {% endfor %}
                 ]
               {% endif %}
