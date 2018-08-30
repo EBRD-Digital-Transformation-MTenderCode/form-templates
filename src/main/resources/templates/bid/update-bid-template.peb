@@ -1,7 +1,4 @@
 {# @pebvariable name="context" type="com.procurement.formsservice.model.bid.BidUpdateContext" #}
-{# @pebvariable name="tenderer" type="com.procurement.formsservice.model.bid.BidUpdateContext.Tenderer" #}
-{# @pebvariable name="additionalIdentifier" type="com.procurement.formsservice.model.bid.BidUpdateContext.Tenderer.AdditionalIdentifier" #}
-{# @pebvariable name="document" type="com.procurement.formsservice.model.bid.BidUpdateContext.Document" #}
 {
 {% import "../macros/translate" %}
   "schema": {
@@ -39,7 +36,6 @@
       "documents": {
         "title": "Attachments and documents",
         "type": "array",
-        "minItems": 1,
         "items": {
           "type": "object",
           "required": [
@@ -462,95 +458,9 @@
   "data": {
     {% if findSubString(context.parameters.ocid, ".*-EV-[0-9]{13}") %}
       "bidAmount": {
-        "amount": {{ context.amount.amount }},
         "currency": "{{ context.amount.currency }}",
         "maxAmount": {{ context.amount.maxAmount }}
       },
-    {% endif %}
-    {% if context.documents != null %}
-      "documents": [
-        {% for document in context.documents %}
-          {
-            {% if loop.index  > 0 %},{% endif %}
-            "documentId": "{{ tenderDocument.id }}",
-            "documentType": {{ tenderDocument.type }}
-            {{ commaIf(tenderDocument.title) }}
-            {{ stringAttributeIf(name = "title", value = tenderDocument.title) }}
-            {{ commaIf(tenderDocument.description) }}
-            {{ stringAttributeIf(name = "description", value = tenderDocument.description) }}
-          }
-        {% endfor %}
-      ],
-    {% endif %}
-    {% if context.tenderer != null %}
-      "tenderers": [
-        {% for tenderer in context.tenderers %}
-          {% if loop.index  > 0 %},{% endif %}
-          {
-            "name": "{{ tenderer.name }}",
-            "address": {
-              "location": {
-                "country": {
-                  "id": "{{ tenderer.address.country.id }}",
-                  "description": "{{ tenderer.address.country.description }}"
-                },
-                "region": {
-                  "id": "{{ tenderer.address.region.id }}",
-                  "description": "{{ tenderer.address.region.description }}"
-                },
-                "locality": {
-                  "localityType": {% if tenderer.address.locality.scheme == "CUATM" %}"From the directory"{% else %}"Other"{% endif %},
-                  {% if tenderer.address.locality.scheme == "CUATM" %}"directory"{% else %}"manual"{% endif %}: {
-                    "locality": {
-                      "scheme": "{{ tenderer.address.locality.scheme }}",
-                      "id": "{{ tenderer.address.locality.id }}",
-                      "description": "{{ tenderer.address.locality.description }}"
-                    }
-                  }
-                }
-              },
-              "postalAddress": {
-                "streetAddress": "{{ tenderer.address.streetAddress }}"
-                {{ commaIf(tenderer.address.postalCode) }}
-                {{ stringAttributeIf(name = "postalCode", value = tenderer.address.postalCode) }}
-              }
-            },
-            "identifier": {
-              "scheme": "{{ tenderer.identifier.scheme }}",
-              "id": "{{ tenderer.identifier.id }}",
-              "legalName": "{{ tenderer.identifier.legalName }}"
-              {{ commaIf(tenderer.identifier.uri) }}
-              {{ stringAttributeIf(name = "uri", value = tenderer.identifier.uri) }}
-            },
-            {% if tenderer.additionalIdentifiers != null %}
-              "additionalIdentifiers": [
-                {% for additionalIdentifier in context.buyer.additionalIdentifiers %}
-                  {% if loop.index  > 0 %},{% endif %}
-                  {
-                    "scheme": "{{ additionalIdentifier.scheme }}",
-                    "id": "{{ additionalIdentifier.id }}",
-                    "legalName": "{{ additionalIdentifier.legalName }}"
-                    {{ commaIf(additionalIdentifier.uri) }}
-                    {{ stringAttributeIf(name = "uri", value = additionalIdentifier.uri) }}
-                  }
-                {% endfor %}
-              ],
-            {% endif %}
-            "contactPoint": {
-              "person": {
-                "name": "{{ tenderer.contactPoint.name }}",
-                "url": "{{ tenderer.contactPoint.url }}"
-              },
-              "contacts": {
-                "telephone": "{{ tenderer.contactPoint.telephone }}",
-                "email": "{{ tenderer.contactPoint.email }}"
-                {{ commaIf(tenderer.contactPoint.faxNumber) }}
-                {{ stringAttributeIf(name = "faxNumber", value = tenderer.contactPoint.faxNumber) }}
-              }
-            }
-          }
-        {% endfor %}
-      ],
     {% endif %}
     "bidRelatedLots": ["{{ context.parameters.lotId }}"]
   }

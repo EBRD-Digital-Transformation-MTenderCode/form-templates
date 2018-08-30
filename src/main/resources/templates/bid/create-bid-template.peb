@@ -5,38 +5,37 @@
     "title": "New Submission",
     "type": "object",
     "properties": {
-                  {% if findSubString(context.parameters.ocid, ".*-EV-[0-9]{13}") %}
-                    "bidAmount": {
-                      "title": "Estimated coast",
-                      "type": "object",
-                      "required": [
-                        "amount",
-                        "currency"
-                      ],
-                      "properties": {
-                        "amount": {
-                          "type": "number",
-                          "min": 0.00001,
-                          "maximum": {{ context.amount.maxAmount }},
-                          "ocds": "bid::object/value::object/amount::number"
-                        },
-                        "currency": {
-                          "type": "string",
-                          "readOnly": true,
-                          "ocds": "bid::object/value::object/currency::string"
-                        },
-                        "maxAmount": {
-                          "title": "Maximum amount",
-                          "type": "number",
-                          "readOnly": true
-                        }
-                      }
-                    },
-                  {% endif %}
+      {% if findSubString(context.parameters.ocid, ".*-EV-[0-9]{13}") %}
+        "bidAmount": {
+          "title": "Estimated coast",
+          "type": "object",
+          "required": [
+            "amount",
+            "currency"
+          ],
+          "properties": {
+            "amount": {
+              "type": "number",
+              "min": 0.00001,
+              "maximum": {{ context.amount.maxAmount }},
+              "ocds": "bid::object/value::object/amount::number"
+            },
+            "currency": {
+              "type": "string",
+              "readOnly": true,
+              "ocds": "bid::object/value::object/currency::string"
+            },
+            "maxAmount": {
+              "title": "Maximum amount",
+              "type": "number",
+              "readOnly": true
+            }
+          }
+        },
+      {% endif %}
       "documents": {
         "title": "Attachments and documents",
         "type": "array",
-        "minItems": 1,
         "items": {
           "type": "object",
           "required": [

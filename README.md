@@ -167,14 +167,13 @@ End-points:
 ##### Update:
 
 End-points:
-**update -** `/api/v1/operations?form=update-bid&ocid=...&lot-id=...&bid-id=...&lang=...`
+**update -** `/api/v1/operations?form=update-bid&ocid=...&lot-id=...&lang=...`
 
 Значения параметров:
 
 - **"form"**:  "update-bid" - указания типа создаваемой сущности **(required)**;
 - **"ocid"** :  "..." - ocid стадии тендерного процесса в которой подается bid **(required)**;
 - **"lot-id"**: "..." -  id лота на который подается bid **(required)**;
-- **"bid-id"**: "..." -  id  обновляемого bid`a  **(required)**;
 - **"lang"**:  "..." - локализация формы.
 
 Шаблон response payload ноходится - *src/main/resources/templates/bid/update-bid-template.peb*
