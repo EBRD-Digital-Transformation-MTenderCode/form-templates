@@ -259,19 +259,19 @@
                 }
               },
               "postalAddress": {
-                "title": "Postal Address",
+                "title": "{{ translate("eiBuyer.address.postalAddress.title") }}",
                 "type": "object",
                 "required": [
                   "streetAddress"
                 ],
                 "properties": {
                   "streetAddress": {
-                    "title": "{{ translate("eiBuyer.address.streetAddress.title") }}",
+                    "title": "{{ translate("eiBuyer.address.postalAddress.streetAddress.title") }}",
                     "type": "string",
                     "ocds": "buyer::object/address::object/streetAddress::string"
                   },
                   "postalCode": {
-                    "title": "{{ translate("eiBuyer.address.postalCode.title") }}",
+                    "title": "{{ translate("eiBuyer.address.postalAddress.postalCode.title") }}",
                     "type": "string",
                     "ocds": "buyer::object/address::object/postalCode::string"
                   }
