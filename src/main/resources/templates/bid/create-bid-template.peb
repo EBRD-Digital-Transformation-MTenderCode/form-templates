@@ -376,7 +376,6 @@
                   ],
                   "ocds": "bid::object/tenderers::array[object]/details::object/scale::string"
                 }
-
               }
             },
             "contactPoint": {
