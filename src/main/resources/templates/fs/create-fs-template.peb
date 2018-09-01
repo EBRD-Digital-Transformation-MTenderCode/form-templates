@@ -210,7 +210,7 @@
                                       "properties": {
                                         "localityType": {
                                           "enum": [
-                                            "fsFunding.address.location.locality.localityType.enum[1]"
+                                            "{{ translate("fsFunding.address.location.locality.localityType.enum[1]") }}"
                                           ]
                                         },
                                         "manual": {
