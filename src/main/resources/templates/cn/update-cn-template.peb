@@ -1272,7 +1272,7 @@
             {
               "id": "{{ budgetBreakdown.id }}",
               "budgetBreakdownAmount": {
-                "amount": "{{ budgetBreakdown.amount.amount }}",
+                "amount": {{ budgetBreakdown.amount.amount }},
                 "currency": "{{ budgetBreakdown.amount.currency }}"
               }
             }
