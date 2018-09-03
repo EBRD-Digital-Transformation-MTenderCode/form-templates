@@ -83,7 +83,7 @@
         }
       },
       "tenderers": {
-        "title": "{{ translate("bid", "tenderes.title") }}",
+        "title": "{{ translate("bid", "tenderers.title") }}",
         "description": "{{ translate("bid", "tenderers.description") }}",
         "type": "array",
         "minItems": 1,
