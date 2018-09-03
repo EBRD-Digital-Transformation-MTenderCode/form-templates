@@ -275,20 +275,20 @@
                 }
               },
               "postalAddress": {
-                "title": "Postal Address",
+                "title": "{{ translate("ei", "eiBuyer.address.postalAddress.title") }}",
                 "type": "object",
                 "required": [
                   "streetAddress"
                 ],
                 "properties": {
                   "streetAddress": {
-                    "title": "{{ translate("ei", "eiBuyer.address.streetAddress.title") }}",
+                    "title": "{{ translate("ei", "eiBuyer.address.postalAddress.streetAddress.title") }}",
                     "type": "string",
                     "readOnly": true,
                     "ocds": "buyer::object/address::object/streetAddress::string"
                   },
                   "postalCode": {
-                    "title": "{{ translate("ei", "eiBuyer.address.postalCode.title") }}",
+                    "title": "{{ translate("ei", "eiBuyer.address.postalAddress.postalCode.title") }}",
                     "type": "string",
                     "readOnly": true,
                     "ocds": "buyer::object/address::object/postalCode::string"

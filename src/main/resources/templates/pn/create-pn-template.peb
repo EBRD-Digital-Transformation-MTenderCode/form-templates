@@ -593,12 +593,12 @@
                           ],
                           "properties": {
                             "streetAddress": {
-                              "title": "{{ translate("pn", "section1.procuringEntity.address.streetAddress.title") }}",
+                              "title": "{{ translate("pn", "section1.procuringEntity.address.postalAddress.streetAddress.title") }}",
                               "type": "string",
                               "ocds": "tender::object/procuringEntity::object/address::object/streetAddress::string"
                             },
                             "postalCode": {
-                              "title": "{{ translate("pn", "section1.procuringEntity.address.postalCode.title") }}",
+                              "title": "{{ translate("pn", "section1.procuringEntity.address.postalAddress.postalCode.title") }}",
                               "type": "string",
                               "ocds": "tender::object/procuringEntity::object/address::object/postalCode::string"
                             }
@@ -1319,7 +1319,7 @@
                   }
                 },
                 "documents": {
-                  "title": "{{ translate("pn", "section2.lots.documents.tile") }}",
+                  "title": "{{ translate("pn", "section2.lots.documents.title") }}",
                   "type": "array",
                   "items": {
                     "type": "object",

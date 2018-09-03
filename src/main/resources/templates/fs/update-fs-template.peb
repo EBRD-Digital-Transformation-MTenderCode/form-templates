@@ -81,13 +81,13 @@
               ],
               "properties": {
                 "name": {
-                  "title": "{{ translate("fs", "fsFunding.fsFunder.name.title") }}",
+                  "title": "{{ translate("fs", "fsFunding.name.title") }}",
                   "type": "string",
                   "readOnly": true,
                   "ocds": "buyer::object/name::string"
                 },
                 "address": {
-                  "title": "{{ translate("fs", "fsFunding.fsFunder.address.title") }}",
+                  "title": "{{ translate("fs", "fsFunding.address.title") }}",
                   "type": "object",
                   "properties": {
                     "location": {
@@ -362,13 +362,13 @@
                       ],
                       "properties": {
                         "name": {
-                          "title": "{{ translate("fs", "fsFunding.contactPoint.name.title") }}",
+                          "title": "{{ translate("fs", "fsFunding.contactPoint.person.name.title") }}",
                           "type": "string",
                           "readOnly": true,
                           "ocds": "buyer::object/contactPoint::object/name::string"
                         },
                         "url": {
-                          "title": "{{ translate("fs", "fsFunding.contactPoint.url.title") }}",
+                          "title": "{{ translate("fs", "fsFunding.contactPoint.person.url.title") }}",
                           "type": "string",
                           "readOnly": true,
                           "ocds": "buyer::object/contactPoint::object/url::string"
@@ -376,7 +376,7 @@
                       }
                     },
                     "contacts": {
-                      "title": "{{ translate("fs", "fsFunding.fsFunder.contactPoint.contacts.title") }}",
+                      "title": "{{ translate("fs", "fsFunding.contactPoint.contacts.title") }}",
                       "type": "object",
                       "required": [
                         "telephone",
