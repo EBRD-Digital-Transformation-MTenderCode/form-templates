@@ -2,32 +2,32 @@
 {
 {% import "../macros/translate" %}
   "schema": {
-    "title": "{{ translate("titleUpdate") }}",
+    "title": "{{ translate("award", "titleUpdate") }}",
     "type": "object",
     "required": [
       "statusDetails"
     ],
     "properties": {
       "statusDetails": {
-        "title": "{{ translate("statusDetails.title") }}",
+        "title": "{{ translate("award", "statusDetails.title") }}",
         "type": "string",
         "enum": [
           "active",
           "unsuccessful"
         ],
         "enumNames": [
-          "{{ translate("statusDetails.enumNames[0]") }}",
-          "{{ translate("statusDetails.enumNames[1]") }}"
+          "{{ translate("award", "statusDetails.enumNames[0]") }}",
+          "{{ translate("award", "statusDetails.enumNames[1]") }}"
         ],
         "ocds": "awards::object/statusDetails::string"
       },
       "description": {
-        "title": "{{ translate("description.title") }}",
+        "title": "{{ translate("award", "description.title") }}",
         "type": "string",
         "ocds": "awards::object/description::string"
       },
       "documents": {
-        "title": "{{ translate("documents.title") }}",
+        "title": "{{ translate("award", "documents.title") }}",
         "type": "array",
         "items": {
           "type": "object",
@@ -37,7 +37,7 @@
           ],
           "properties": {
             "file": {
-              "title": "{{ translate("documents.file.title") }}",
+              "title": "{{ translate("award", "documents.file.title") }}",
               "type": "string"
             },
             "documentId": {
@@ -45,17 +45,17 @@
               "ocds": "awards::object/documents::array[object]/id::string"
             },
             "title": {
-              "title": "{{ translate("documents.title.title") }}",
+              "title": "{{ translate("award", "documents.title.title") }}",
               "type": "string",
               "ocds": "awards::object/documents::array[object]/title::string"
             },
             "description": {
-              "title": "{{ translate("documents.description.title") }}",
+              "title": "{{ translate("award", "documents.description.title") }}",
               "type": "string",
               "ocds": "awards::object/documents::array[object]/description::string"
             },
             "documentType": {
-              "title": "{{ translate("documents.documentType.title") }}",
+              "title": "{{ translate("award", "documents.documentType.title") }}",
               "type": "string",
               "enum": [
                 "awardNotice",

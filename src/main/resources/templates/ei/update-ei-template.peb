@@ -8,24 +8,24 @@
     "type": "object",
     "properties": {
       "eiSubject": {
-        "title": "{{ translate("eiSubject.title") }}",
+        "title": "{{ translate("ei", "eiSubject.title") }}",
         "type": "object",
         "required": [
           "title"
         ],
         "properties": {
           "title": {
-            "title": "{{ translate("eiSubject.title.title") }}",
+            "title": "{{ translate("ei", "eiSubject.title.title") }}",
             "type": "string",
             "ocds": "tender::object/title::string"
           },
           "description": {
-            "title": "{{ translate("eiSubject.description.title") }}",
+            "title": "{{ translate("ei", "eiSubject.description.title") }}",
             "type": "string",
             "ocds": "tender::object/description::string"
           },
           "period": {
-            "title": "{{ translate("eiSubject.period.title") }}",
+            "title": "{{ translate("ei", "eiSubject.period.title") }}",
             "type": "object",
             "required": [
               "startDate",
@@ -33,13 +33,13 @@
             ],
             "properties": {
               "startDate": {
-                "title": "{{ translate("eiSubject.period.startDate.title") }}",
+                "title": "{{ translate("ei", "eiSubject.period.startDate.title") }}",
                 "type": "string",
                 "readOnly": true,
                 "ocds": "planning::object/budget::object/period::object/startDate::string"
               },
               "endDate": {
-                "title": "{{ translate("eiSubject.period.endDate.title") }}",
+                "title": "{{ translate("ei", "eiSubject.period.endDate.title") }}",
                 "type": "string",
                 "readOnly": true,
                 "ocds": "planning::object/budget::object/period::object/endDate::string"
@@ -47,11 +47,11 @@
             }
           },
           "parameters": {
-            "title": "{{ translate("eiSubject.parameters.title") }}",
+            "title": "{{ translate("ei", "eiSubject.parameters.title") }}",
             "type": "object",
             "properties": {
               "classification": {
-                "title": "{{ translate("eiSubject.parameters.classification.title") }}",
+                "title": "{{ translate("ei", "eiSubject.parameters.classification.title") }}",
                 "type": "object",
                 "source": "{{ context.uris.cpv }}",
                 "required": [
@@ -62,20 +62,20 @@
                 ],
                 "properties": {
                   "scheme": {
-                    "title": "{{ translate("eiSubject.parameters.classification.scheme.title") }}",
+                    "title": "{{ translate("ei", "eiSubject.parameters.classification.scheme.title") }}",
                     "type": "string",
                     "default": "CPV",
                     "readOnly": true,
                     "ocds": "tender::object/classification::object/scheme::string"
                   },
                   "id": {
-                    "title": "{{ translate("eiSubject.parameters.classification.id.title") }}",
+                    "title": "{{ translate("ei", "eiSubject.parameters.classification.id.title") }}",
                     "type": "string",
                     "readOnly": true,
                     "ocds": "tender::object/classification::object/id::string"
                   },
                   "description": {
-                    "title": "{{ translate("eiSubject.parameters.classification.description.title") }}",
+                    "title": "{{ translate("ei", "eiSubject.parameters.classification.description.title") }}",
                     "type": "string",
                     "readOnly": true,
                     "ocds": "tender::object/classification::object/description::string"
@@ -89,36 +89,36 @@
             }
           },
           "rationale": {
-            "title": "{{ translate("eiSubject.rationale.title") }}",
+            "title": "{{ translate("ei", "eiSubject.rationale.title") }}",
             "type": "string",
             "ocds": "planning::object/rationale::string"
           }
         }
       },
       "eiBuyer": {
-        "title": "{{ translate("eiBuyer.title") }}",
-        "description": "{{ translate("eiBuyer.description") }}",
+        "title": "{{ translate("ei", "eiBuyer.title") }}",
+        "description": "{{ translate("ei", "eiBuyer.description") }}",
         "type": "object",
         "required": [
           "name"
         ],
         "properties": {
           "name": {
-            "title": "{{ translate("eiBuyer.name.title") }}",
+            "title": "{{ translate("ei", "eiBuyer.name.title") }}",
             "type": "string",
             "readOnly": true,
             "ocds": "buyer::object/name::string"
           },
           "address": {
-            "title": "{{ translate("eiBuyer.address.title") }}",
+            "title": "{{ translate("ei", "eiBuyer.address.title") }}",
             "type": "object",
             "properties": {
               "location": {
-                "title": "{{ translate("eiBuyer.address.location.title") }}",
+                "title": "{{ translate("ei", "eiBuyer.address.location.title") }}",
                 "type": "object",
                 "properties": {
                   "country": {
-                    "title": "{{ translate("eiBuyer.address.location.country.title") }}",
+                    "title": "{{ translate("ei", "eiBuyer.address.location.country.title") }}",
                     "type": "object",
                     "source": "{{ context.uris.country }}",
                     "required": [
@@ -139,7 +139,7 @@
                     }
                   },
                   "region": {
-                    "title": "{{ translate("eiBuyer.address.location.region.title") }}",
+                    "title": "{{ translate("ei", "eiBuyer.address.location.region.title") }}",
                     "type": "object",
                     "source": "{{ context.uris.region }}",
                     "required": [
@@ -166,12 +166,12 @@
                     ],
                     "properties": {
                       "localityType": {
-                        "title": "{{ translate("eiBuyer.address.location.locality.localityType.title") }}",
+                        "title": "{{ translate("ei", "eiBuyer.address.location.locality.localityType.title") }}",
                         "type": "string",
                         "readOnly": true,
                         "enum": [
-                          "{{ translate("eiBuyer.address.location.locality.localityType.enum[0]") }}",
-                          "{{ translate("eiBuyer.address.location.locality.localityType.enum[1]") }}"
+                          "{{ translate("ei", "eiBuyer.address.location.locality.localityType.enum[0]") }}",
+                          "{{ translate("ei", "eiBuyer.address.location.locality.localityType.enum[1]") }}"
                         ]
                       }
                     },
@@ -185,14 +185,14 @@
                             "properties": {
                               "localityType": {
                                 "enum": [
-                                  "{{ translate("eiBuyer.address.location.locality.localityType.enum[0]") }}"
+                                  "{{ translate("ei", "eiBuyer.address.location.locality.localityType.enum[0]") }}"
                                 ]
                               },
                               "directory": {
                                 "type": "object",
                                 "properties": {
                                   "locality": {
-                                    "title": "{{ translate("eiBuyer.address.location.locality.title") }}",
+                                    "title": "{{ translate("ei", "eiBuyer.address.location.locality.title") }}",
                                     "type": "object",
                                     "source": "{{ context.uris.locality }}",
                                     "required": [
@@ -237,7 +237,7 @@
                                 "type": "object",
                                 "properties": {
                                   "locality": {
-                                    "title": "{{ translate("eiBuyer.address.location.locality.title") }}",
+                                    "title": "{{ translate("ei", "eiBuyer.address.location.locality.title") }}",
                                     "type": "object",
                                     "required": [
                                       "scheme",
@@ -282,13 +282,13 @@
                 ],
                 "properties": {
                   "streetAddress": {
-                    "title": "{{ translate("eiBuyer.address.streetAddress.title") }}",
+                    "title": "{{ translate("ei", "eiBuyer.address.streetAddress.title") }}",
                     "type": "string",
                     "readOnly": true,
                     "ocds": "buyer::object/address::object/streetAddress::string"
                   },
                   "postalCode": {
-                    "title": "{{ translate("eiBuyer.address.postalCode.title") }}",
+                    "title": "{{ translate("ei", "eiBuyer.address.postalCode.title") }}",
                     "type": "string",
                     "readOnly": true,
                     "ocds": "buyer::object/address::object/postalCode::string"
@@ -298,7 +298,7 @@
             }
           },
           "identifier": {
-            "title": "{{ translate("eiBuyer.identifier.title") }}",
+            "title": "{{ translate("ei", "eiBuyer.identifier.title") }}",
             "type": "object",
             "required": [
               "scheme",
@@ -307,26 +307,26 @@
             ],
             "properties": {
               "scheme": {
-                "title": "{{ translate("eiBuyer.identifier.scheme.title") }}",
+                "title": "{{ translate("ei", "eiBuyer.identifier.scheme.title") }}",
                 "type": "string",
                 "source": "{{ context.uris.registrationScheme }}",
                 "readOnly": true,
                 "ocds": "buyer::object/identifier::object/scheme::string"
               },
               "id": {
-                "title": "{{ translate("eiBuyer.identifier.id.title") }}",
+                "title": "{{ translate("ei", "eiBuyer.identifier.id.title") }}",
                 "type": "string",
                 "readOnly": true,
                 "ocds": "buyer::object/identifier::object/id::string"
               },
               "legalName": {
-                "title": "{{ translate("eiBuyer.identifier.legalName.title") }}",
+                "title": "{{ translate("ei", "eiBuyer.identifier.legalName.title") }}",
                 "type": "string",
                 "readOnly": true,
                 "ocds": "buyer::object/identifier::object/legalName::string"
               },
               "uri": {
-                "title": "{{ translate("eiBuyer.identifier.uri.title") }}",
+                "title": "{{ translate("ei", "eiBuyer.identifier.uri.title") }}",
                 "type": "string",
                 "readOnly": true,
                 "ocds": "buyer::object/identifier::object/uri::string"
@@ -334,7 +334,7 @@
             }
           },
           "additionalIdentifiers": {
-            "title": "{{ translate("eiBuyer.additionalIdentifiers.title") }}",
+            "title": "{{ translate("ei", "eiBuyer.additionalIdentifiers.title") }}",
             "type": "array",
             "items": {
               "type": "object",
@@ -346,26 +346,26 @@
               ],
               "properties": {
                 "scheme": {
-                  "title": "{{ translate("eiBuyer.additionalIdentifiers.scheme.title") }}",
+                  "title": "{{ translate("ei", "eiBuyer.additionalIdentifiers.scheme.title") }}",
                   "type": "string",
                   "readOnly": true,
                   "source": "{{ context.uris.registrationScheme }}",
                   "ocds": "buyer::object/additionalIdentifiers::array[object]/scheme::string"
                 },
                 "id": {
-                  "title": "{{ translate("eiBuyer.additionalIdentifiers.id.title") }}",
+                  "title": "{{ translate("ei", "eiBuyer.additionalIdentifiers.id.title") }}",
                   "type": "string",
                   "readOnly": true,
                   "ocds": "buyer::object/additionalIdentifiers::array[object]/id::string"
                 },
                 "legalName": {
-                  "title": "{{ translate("eiBuyer.additionalIdentifiers.legalName.title") }}",
+                  "title": "{{ translate("ei", "eiBuyer.additionalIdentifiers.legalName.title") }}",
                   "type": "string",
                   "readOnly": true,
                   "ocds": "buyer::object/additionalIdentifiers::array[object]/legalName::string"
                 },
                 "uri": {
-                  "title": "{{ translate("eiBuyer.additionalIdentifiers.uri.title") }}",
+                  "title": "{{ translate("ei", "eiBuyer.additionalIdentifiers.uri.title") }}",
                   "type": "string",
                   "readOnly": true,
                   "ocds": "buyer::object/additionalIdentifiers::array[object]/uri::string"
@@ -374,7 +374,7 @@
             }
           },
           "details": {
-            "title": "{{ translate("eiBuyer.details.title") }}",
+            "title": "{{ translate("ei", "eiBuyer.details.title") }}",
             "type": "object",
             "required": [
               "typeOfBuyer",
@@ -383,7 +383,7 @@
             ],
             "properties": {
               "typeOfBuyer": {
-                "title": "{{ translate("eiBuyer.details.typeOfBuyer.title") }}",
+                "title": "{{ translate("ei", "eiBuyer.details.typeOfBuyer.title") }}",
                 "type": "string",
                 "readOnly": true,
                 "enum": [
@@ -395,17 +395,17 @@
                   "REGIONAL_AUTHORITY"
                 ],
                 "enumNames": [
-                  "{{ translate("eiBuyer.details.typeOfBuyer.enumNames[0]") }}",
-                  "{{ translate("eiBuyer.details.typeOfBuyer.enumNames[1]") }}",
-                  "{{ translate("eiBuyer.details.typeOfBuyer.enumNames[2]") }}",
-                  "{{ translate("eiBuyer.details.typeOfBuyer.enumNames[3]") }}",
-                  "{{ translate("eiBuyer.details.typeOfBuyer.enumNames[4]") }}",
-                  "{{ translate("eiBuyer.details.typeOfBuyer.enumNames[5]") }}"
+                  "{{ translate("ei", "eiBuyer.details.typeOfBuyer.enumNames[0]") }}",
+                  "{{ translate("ei", "eiBuyer.details.typeOfBuyer.enumNames[1]") }}",
+                  "{{ translate("ei", "eiBuyer.details.typeOfBuyer.enumNames[2]") }}",
+                  "{{ translate("ei", "eiBuyer.details.typeOfBuyer.enumNames[3]") }}",
+                  "{{ translate("ei", "eiBuyer.details.typeOfBuyer.enumNames[4]") }}",
+                  "{{ translate("ei", "eiBuyer.details.typeOfBuyer.enumNames[5]") }}"
                 ],
                 "ocds": "buyer::object/details::object/typeOfBuyer::string"
               },
               "mainGeneralActivity": {
-                "title": "{{ translate("eiBuyer.details.mainGeneralActivity.title") }}",
+                "title": "{{ translate("ei", "eiBuyer.details.mainGeneralActivity.title") }}",
                 "type": "string",
                 "readOnly": true,
                 "enum": [
@@ -421,21 +421,21 @@
                   "SOCIAL_PROTECTION"
                 ],
                 "enumNames": [
-                  "{{ translate("eiBuyer.details.mainGeneralActivity.enumNames[0]") }}",
-                  "{{ translate("eiBuyer.details.mainGeneralActivity.enumNames[1]") }}",
-                  "{{ translate("eiBuyer.details.mainGeneralActivity.enumNames[2]") }}",
-                  "{{ translate("eiBuyer.details.mainGeneralActivity.enumNames[3]") }}",
-                  "{{ translate("eiBuyer.details.mainGeneralActivity.enumNames[4]") }}",
-                  "{{ translate("eiBuyer.details.mainGeneralActivity.enumNames[5]") }}",
-                  "{{ translate("eiBuyer.details.mainGeneralActivity.enumNames[6]") }}",
-                  "{{ translate("eiBuyer.details.mainGeneralActivity.enumNames[7]") }}",
-                  "{{ translate("eiBuyer.details.mainGeneralActivity.enumNames[8]") }}",
-                  "{{ translate("eiBuyer.details.mainGeneralActivity.enumNames[9]") }}"
+                  "{{ translate("ei", "eiBuyer.details.mainGeneralActivity.enumNames[0]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainGeneralActivity.enumNames[1]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainGeneralActivity.enumNames[2]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainGeneralActivity.enumNames[3]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainGeneralActivity.enumNames[4]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainGeneralActivity.enumNames[5]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainGeneralActivity.enumNames[6]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainGeneralActivity.enumNames[7]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainGeneralActivity.enumNames[8]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainGeneralActivity.enumNames[9]") }}"
                 ],
                 "ocds": "buyer::object/details::object/mainGeneralActivity::string"
               },
               "mainSectoralActivity": {
-                "title": "{{ translate("eiBuyer.details.mainSectoralActivity.title") }}",
+                "title": "{{ translate("ei", "eiBuyer.details.mainSectoralActivity.title") }}",
                 "type": "string",
                 "readOnly": true,
                 "enum": [
@@ -451,27 +451,27 @@
                   "WATER"
                 ],
                 "enumNames": [
-                  "{{ translate("eiBuyer.details.mainSectoralActivity.enumNames[0]") }}",
-                  "{{ translate("eiBuyer.details.mainSectoralActivity.enumNames[1]") }}",
-                  "{{ translate("eiBuyer.details.mainSectoralActivity.enumNames[2]") }}",
-                  "{{ translate("eiBuyer.details.mainSectoralActivity.enumNames[3]") }}",
-                  "{{ translate("eiBuyer.details.mainSectoralActivity.enumNames[4]") }}",
-                  "{{ translate("eiBuyer.details.mainSectoralActivity.enumNames[5]") }}",
-                  "{{ translate("eiBuyer.details.mainSectoralActivity.enumNames[6]") }}",
-                  "{{ translate("eiBuyer.details.mainSectoralActivity.enumNames[7]") }}",
-                  "{{ translate("eiBuyer.details.mainSectoralActivity.enumNames[8]") }}",
-                  "{{ translate("eiBuyer.details.mainSectoralActivity.enumNames[9]") }}"
+                  "{{ translate("ei", "eiBuyer.details.mainSectoralActivity.enumNames[0]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainSectoralActivity.enumNames[1]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainSectoralActivity.enumNames[2]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainSectoralActivity.enumNames[3]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainSectoralActivity.enumNames[4]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainSectoralActivity.enumNames[5]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainSectoralActivity.enumNames[6]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainSectoralActivity.enumNames[7]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainSectoralActivity.enumNames[8]") }}",
+                  "{{ translate("ei", "eiBuyer.details.mainSectoralActivity.enumNames[9]") }}"
                 ],
                 "ocds": "buyer::object/details::object/mainSectoralActivity::string"
               }
             }
           },
           "contactPoint": {
-            "title": "{{ translate("eiBuyer.contactPoint.title") }}",
+            "title": "{{ translate("ei", "eiBuyer.contactPoint.title") }}",
             "type": "object",
             "properties": {
               "person": {
-                "title": "{{ translate("eiBuyer.contactPoint.person.title") }}",
+                "title": "{{ translate("ei", "eiBuyer.contactPoint.person.title") }}",
                 "type": "object",
                 "required": [
                   "name",
@@ -479,13 +479,13 @@
                 ],
                 "properties": {
                   "name": {
-                    "title": "{{ translate("eiBuyer.contactPoint.person.name.title") }}",
+                    "title": "{{ translate("ei", "eiBuyer.contactPoint.person.name.title") }}",
                     "type": "string",
                     "readOnly": true,
                     "ocds": "buyer::object/contactPoint::object/name::string"
                   },
                   "url": {
-                    "title": "{{ translate("eiBuyer.contactPoint.person.url.title") }}",
+                    "title": "{{ translate("ei", "eiBuyer.contactPoint.person.url.title") }}",
                     "type": "string",
                     "readOnly": true,
                     "ocds": "buyer::object/contactPoint::object/url::string"
@@ -493,7 +493,7 @@
                 }
               },
               "contacts": {
-                "title": "{{ translate("eiBuyer.contactPoint.contacts.title") }}",
+                "title": "{{ translate("ei", "eiBuyer.contactPoint.contacts.title") }}",
                 "type": "object",
                 "required": [
                   "telephone",
@@ -501,19 +501,19 @@
                 ],
                 "properties": {
                   "telephone": {
-                    "title": "{{ translate("eiBuyer.contactPoint.contacts.telephone.title") }}",
+                    "title": "{{ translate("ei", "eiBuyer.contactPoint.contacts.telephone.title") }}",
                     "type": "string",
                     "readOnly": true,
                     "ocds": "buyer::object/contactPoint::object/telephone::string"
                   },
                   "email": {
-                    "title": "{{ translate("eiBuyer.contactPoint.contacts.email.title") }}",
+                    "title": "{{ translate("ei", "eiBuyer.contactPoint.contacts.email.title") }}",
                     "type": "string",
                     "readOnly": true,
                     "ocds": "buyer::object/contactPoint::object/email::string"
                   },
                   "faxNumber": {
-                    "title": "{{ translate("eiBuyer.contactPoint.contacts.faxNumber.title") }}",
+                    "title": "{{ translate("ei", "eiBuyer.contactPoint.contacts.faxNumber.title") }}",
                     "type": "string",
                     "readOnly": true,
                     "ocds": "buyer::object/contactPoint::object/faxNumber::string"
@@ -559,7 +559,7 @@
             "description": "{{ context.buyer.address.region.description }}"
           },
           "locality": {
-            "localityType": {% if context.buyer.address.locality.scheme == "CUATM" %}"{{ translate("eiBuyer.address.location.locality.localityType.enum[0]") }}"{% else %}"{{ translate("eiBuyer.address.location.locality.localityType.enum[1]") }}"{% endif %},
+            "localityType": {% if context.buyer.address.locality.scheme == "CUATM" %}"{{ translate("ei", "eiBuyer.address.location.locality.localityType.enum[0]") }}"{% else %}"{{ translate("ei", "eiBuyer.address.location.locality.localityType.enum[1]") }}"{% endif %},
             {% if context.buyer.address.locality.scheme == "CUATM" %}"directory"{% else %}"manual"{% endif %}: {
               "locality": {
                 "scheme": "{{ context.buyer.address.locality.scheme }}",

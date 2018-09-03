@@ -2,39 +2,39 @@
 {
 {% import "../macros/translate" %}
   "schema": {
-    "title": "{{ translate("title") }}",
+    "title": "{{ translate("enquiry", "title") }}",
     "type": "object",
     "properties": {
       "title": {
-        "title": "{{ translate("title.title") }}",
+        "title": "{{ translate("enquiry", "title.title") }}",
         "type": "string",
         "ocds": "enquiry::object/title::string"
       },
       "description": {
-        "title": "{{ translate("description.title") }}",
+        "title": "{{ translate("enquiry", "description.title") }}",
         "type": "string",
         "ocds": "enquiry::object/description::string"
       },
       "author": {
-        "title": "{{ translate("author.title") }}",
-        "description": "{{ translate("author.description") }}",
+        "title": "{{ translate("enquiry", "author.title") }}",
+        "description": "{{ translate("enquiry", "author.description") }}",
         "type": "object",
         "properties": {
           "name": {
-            "title": "{{ translate("author.name.title") }}",
+            "title": "{{ translate("enquiry", "author.name.title") }}",
             "type": "string",
             "ocds": "enquiry::object/author::object/name::string"
           },
           "address": {
-            "title": "{{ translate("author.address.title") }}",
+            "title": "{{ translate("enquiry", "author.address.title") }}",
             "type": "object",
             "properties": {
               "location": {
-                "title": "{{ translate("author.address.location.title") }}",
+                "title": "{{ translate("enquiry", "author.address.location.title") }}",
                 "type": "object",
                 "properties": {
                   "country": {
-                    "title": "{{ translate("author.address.location.country.title") }}",
+                    "title": "{{ translate("enquiry", "author.address.location.country.title") }}",
                     "type": "object",
                     "source": "{{ context.uris.country }}",
                     "required": [
@@ -53,7 +53,7 @@
                     }
                   },
                   "region": {
-                    "title": "{{ translate("author.address.location.region.title") }}",
+                    "title": "{{ translate("enquiry", "author.address.location.region.title") }}",
                     "type": "object",
                     "source": "{{ context.uris.region }}",
                     "dependentFields": {
@@ -81,11 +81,11 @@
                     ],
                     "properties": {
                       "localityType": {
-                        "title": "{{ translate("author.address.location.locality.localityType.title") }}",
+                        "title": "{{ translate("enquiry", "author.address.location.locality.localityType.title") }}",
                         "type": "string",
                         "enum": [
-                          "{{ translate("author.address.location.locality.localityType.enum[0]") }}",
-                          "{{ translate("author.address.location.locality.localityType.enum[1]") }}"
+                          "{{ translate("enquiry", "author.address.location.locality.localityType.enum[0]") }}",
+                          "{{ translate("enquiry", "author.address.location.locality.localityType.enum[1]") }}"
                         ]
                       }
                     },
@@ -99,14 +99,14 @@
                             "properties": {
                               "localityType": {
                                 "enum": [
-                                  "{{ translate("author.address.location.locality.localityType.enum[0]") }}"
+                                  "{{ translate("enquiry", "author.address.location.locality.localityType.enum[0]") }}"
                                 ]
                               },
                               "directory": {
                                 "type": "object",
                                 "properties": {
                                   "locality": {
-                                    "title": "{{ translate("author.address.location.locality.title") }}",
+                                    "title": "{{ translate("enquiry", "author.address.location.locality.title") }}",
                                     "type": "object",
                                     "source": "{{ context.uris.locality }}",
                                     "dependentFields": {
@@ -139,14 +139,14 @@
                             "properties": {
                               "localityType": {
                                 "enum": [
-                                  "{{ translate("author.address.location.locality.localityType.enum[1]") }}"
+                                  "{{ translate("enquiry", "author.address.location.locality.localityType.enum[1]") }}"
                                 ]
                               },
                               "manual": {
                                 "type": "object",
                                 "properties": {
                                   "locality": {
-                                    "title": "{{ translate("author.address.location.locality.title") }}",
+                                    "title": "{{ translate("enquiry", "author.address.location.locality.title") }}",
                                     "type": "object",
                                     "required": [
                                       "scheme",
@@ -181,19 +181,19 @@
                 }
               },
               "postalAddress": {
-                "title": "{{ translate("author.address.location.postalAddress.title") }}",
+                "title": "{{ translate("enquiry", "author.address.location.postalAddress.title") }}",
                 "type": "object",
                 "required": [
                   "streetAddress"
                 ],
                 "properties": {
                   "streetAddress": {
-                    "title": "{{ translate("author.address.location.postalAddress.streetAddress.title") }}",
+                    "title": "{{ translate("enquiry", "author.address.location.postalAddress.streetAddress.title") }}",
                     "type": "string",
                     "ocds": "enquiry::object/author::object/address::object/streetAddress::string"
                   },
                   "postalCode": {
-                    "title": "{{ translate("author.address.location.postalAddress.postalCode.title") }}",
+                    "title": "{{ translate("enquiry", "author.address.location.postalAddress.postalCode.title") }}",
                     "type": "string",
                     "ocds": "enquiry::object/author::object/address::object/postalCode::string"
                   }
@@ -202,7 +202,7 @@
             }
           },
           "identifier": {
-            "title": "{{ translate("author.identifier.title") }}",
+            "title": "{{ translate("enquiry", "author.identifier.title") }}",
             "type": "object",
             "required": [
               "scheme",
@@ -211,7 +211,7 @@
             ],
             "properties": {
               "scheme": {
-                "title": "{{ translate("author.identifier.scheme.title") }}",
+                "title": "{{ translate("enquiry", "author.identifier.scheme.title") }}",
                 "type": "string",
                 "source": "{{ context.uris.registrationScheme }}",
                 "dependentFields": {
@@ -220,24 +220,24 @@
                 "ocds": "enquiry::object/author::object/identifier::object/scheme::string"
               },
               "id": {
-                "title": "{{ translate("author.identifier.id.title") }}",
+                "title": "{{ translate("enquiry", "author.identifier.id.title") }}",
                 "type": "string",
                 "ocds": "enquiry::object/author::object/identifier::object/id::string"
               },
               "legalName": {
-                "title": "{{ translate("author.identifier.legalName.title") }}",
+                "title": "{{ translate("enquiry", "author.identifier.legalName.title") }}",
                 "type": "string",
                 "ocds": "enquiry::object/author::object/identifier::object/legalName::string"
               },
               "uri": {
-                "title": "{{ translate("author.identifier.uri.title") }}",
+                "title": "{{ translate("enquiry", "author.identifier.uri.title") }}",
                 "type": "string",
                 "ocds": "enquiry::object/author::object/identifier::object/uri::string"
               }
             }
           },
           "additionalIdentifiers": {
-            "title": "{{ translate("author.additionalIdentifiers.title") }}",
+            "title": "{{ translate("enquiry", "author.additionalIdentifiers.title") }}",
             "type": "array",
             "items": {
               "type": "object",
@@ -248,7 +248,7 @@
               ],
               "properties": {
                 "scheme": {
-                  "title": "{{ translate("author.additionalIdentifiers.scheme.title") }}",
+                  "title": "{{ translate("enquiry", "author.additionalIdentifiers.scheme.title") }}",
                   "type": "string",
                   "source": "{{ context.uris.registrationScheme }}",
                   "dependentFields": {
@@ -257,17 +257,17 @@
                   "ocds": "enquiry::object/author::object/additionalIdentifiers::array[object]/scheme::string"
                 },
                 "id": {
-                  "title": "{{ translate("author.additionalIdentifiers.id.title") }}",
+                  "title": "{{ translate("enquiry", "author.additionalIdentifiers.id.title") }}",
                   "type": "string",
                   "ocds": "enquiry::object/author::object/additionalIdentifiers::array[object]/id::string"
                 },
                 "legalName": {
-                  "title": "{{ translate("author.additionalIdentifiers.legalName.title") }}",
+                  "title": "{{ translate("enquiry", "author.additionalIdentifiers.legalName.title") }}",
                   "type": "string",
                   "ocds": "enquiry::object/author::object/additionalIdentifiers::array[object]/legalName::string"
                 },
                 "uri": {
-                  "title": "{{ translate("author.additionalIdentifiers.uri.title") }}",
+                  "title": "{{ translate("enquiry", "author.additionalIdentifiers.uri.title") }}",
                   "type": "string",
                   "ocds": "enquiry::object/author::object/additionalIdentifiers::array[object]/uri::string"
                 }
@@ -275,11 +275,11 @@
             }
           },
           "contactPoint": {
-            "title": "{{ translate("author.contactPoint.title") }}",
+            "title": "{{ translate("enquiry", "author.contactPoint.title") }}",
             "type": "object",
             "properties": {
               "person": {
-                "title": "{{ translate("author.contactPoint.person.title") }}",
+                "title": "{{ translate("enquiry", "author.contactPoint.person.title") }}",
                 "type": "object",
                 "required": [
                   "name",
@@ -287,19 +287,19 @@
                 ],
                 "properties": {
                   "name": {
-                    "title": "{{ translate("author.contactPoint.person.name.title") }}",
+                    "title": "{{ translate("enquiry", "author.contactPoint.person.name.title") }}",
                     "type": "string",
                     "ocds": "enquiry::object/author::object/contactPoint::object/name::string"
                   },
                   "url": {
-                    "title": "{{ translate("author.contactPoint.person.url.title") }}",
+                    "title": "{{ translate("enquiry", "author.contactPoint.person.url.title") }}",
                     "type": "string",
                     "ocds": "enquiry::object/author::object/contactPoint::object/url::string"
                   }
                 }
               },
               "contacts": {
-                "title": "{{ translate("author.contactPoint.contacts.title") }}",
+                "title": "{{ translate("enquiry", "author.contactPoint.contacts.title") }}",
                 "type": "object",
                 "required": [
                   "telephone",
@@ -307,17 +307,17 @@
                 ],
                 "properties": {
                   "telephone": {
-                    "title": "{{ translate("author.contactPoint.contacts.telephone.title") }}",
+                    "title": "{{ translate("enquiry", "author.contactPoint.contacts.telephone.title") }}",
                     "type": "string",
                     "ocds": "enquiry::object/author::object/contactPoint::object/telephone::string"
                   },
                   "email": {
-                    "title": "{{ translate("author.contactPoint.contacts.email.title") }}",
+                    "title": "{{ translate("enquiry", "author.contactPoint.contacts.email.title") }}",
                     "type": "string",
                     "ocds": "enquiry::object/author::object/contactPoint::object/email::string"
                   },
                   "faxNumber": {
-                    "title": "{{ translate("author.contactPoint.contacts.faxNumber.title") }}",
+                    "title": "{{ translate("enquiry", "author.contactPoint.contacts.faxNumber.title") }}",
                     "type": "string",
                     "ocds": "enquiry::object/author::object/contactPoint::object/faxNumber::string"
                   }

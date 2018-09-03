@@ -5,7 +5,7 @@
       "type": "object",
       "properties": {
         "answer": {
-          "title": "{{ translate("answer.title") }}",
+          "title": "{{ translate("answer", "answer.title") }}",
           "type": "string",
           "ocds": "enquiry::object/id::answer"
         }

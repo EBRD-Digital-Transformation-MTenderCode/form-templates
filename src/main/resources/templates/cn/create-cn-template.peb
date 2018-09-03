@@ -88,7 +88,7 @@
                               ],
                               "properties": {
                                 "localityType": {
-                                  "title": "{{ translate("section1.procuringEntity.address.location.locality.localityType.title") }}",
+                                  "title": "{{ translate("cn", "section1.procuringEntity.address.location.locality.localityType.title") }}",
                                   "type": "string",
                                   "enum": [
                                     "{{ translate("section1.procuringEntity.address.location.locality.localityType.enum[0]") }}",

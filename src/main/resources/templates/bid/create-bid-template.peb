@@ -2,12 +2,12 @@
 {
 {% import "../macros/translate" %}
   "schema": {
-    "title": "{{ translate( "title") }}",
+    "title": "{{ translate("bid",  "title") }}",
     "type": "object",
     "properties": {
       {% if findSubString(context.parameters.ocid, ".*-EV-[0-9]{13}") %}
         "bidAmount": {
-          "title": "{{ translate("bidAmount.title") }}",
+          "title": "{{ translate("bid", "bidAmount.title") }}",
           "type": "object",
           "required": [
             "amount",
@@ -26,7 +26,7 @@
               "ocds": "bid::object/value::object/currency::string"
             },
             "maxAmount": {
-              "title": "{{ translate("bidAmount.maxAmount.title") }}",
+              "title": "{{ translate("bid", "bidAmount.maxAmount.title") }}",
               "type": "number",
               "readOnly": true
             }
@@ -34,7 +34,7 @@
         },
       {% endif %}
       "documents": {
-        "title": "{{ translate("documents.title") }}",
+        "title": "{{ translate("bid", "documents.title") }}",
         "type": "array",
         "items": {
           "type": "object",
@@ -44,7 +44,7 @@
           ],
           "properties": {
             "file": {
-              "title": "{{ translate("documents.file.title") }}",
+              "title": "{{ translate("bid", "documents.file.title") }}",
               "type": "string"
             },
             "documentId": {
@@ -52,17 +52,17 @@
               "ocds": "bid::object/documents::array[object]/id::string"
             },
             "title": {
-              "title": "{{ translate("documents.title.title") }}",
+              "title": "{{ translate("bid", "documents.title.title") }}",
               "type": "string",
               "ocds": "bid::object/documents::array[object]/title::string"
             },
             "description": {
-              "title": "{{ translate("documents.description.title") }}",
+              "title": "{{ translate("bid", "documents.description.title") }}",
               "type": "string",
               "ocds": "bid::object/documents::array[object]/description::string"
             },
             "documentType": {
-              "title": "{{ translate("documents.documentType.title" ) }}",
+              "title": "{{ translate("bid", "documents.documentType.title" ) }}",
               "type": "string",
               "enum": [
                 "illustration",
@@ -83,8 +83,8 @@
         }
       },
       "tenderers": {
-        "title": "{{ translate("tenderes.title") }}",
-        "description": "{{ translate("tenderers.description") }}",
+        "title": "{{ translate("bid", "tenderes.title") }}",
+        "description": "{{ translate("bid", "tenderers.description") }}",
         "type": "array",
         "minItems": 1,
         "items": {
@@ -94,20 +94,20 @@
           ],
           "properties": {
             "name": {
-              "title": "{{ translate("tenderers.name.title") }}",
+              "title": "{{ translate("bid", "tenderers.name.title") }}",
               "type": "string",
               "ocds": "bid::object/tenderers::array[object]/name::string"
             },
             "address": {
-              "title": "{{ translate("tenderers.address.title") }}",
+              "title": "{{ translate("bid", "tenderers.address.title") }}",
               "type": "object",
               "properties": {
                 "location": {
-                  "title": "{{ translate("tenderers.address.location.title") }}",
+                  "title": "{{ translate("bid", "tenderers.address.location.title") }}",
                   "type": "object",
                   "properties": {
                     "country": {
-                      "title": "{{ translate("tenderers.address.location.country.title") }}",
+                      "title": "{{ translate("bid", "tenderers.address.location.country.title") }}",
                       "type": "object",
                       "source": "{{ context.uris.country }}",
                       "required": [
@@ -126,7 +126,7 @@
                       }
                     },
                     "region": {
-                      "title": "{{ translate("tenderers.address.location.region.title")}}",
+                      "title": "{{ translate("bid", "tenderers.address.location.region.title")}}",
                       "type": "object",
                       "source": "{{ context.uris.region }}",
                       "dependentFields": {
@@ -154,11 +154,11 @@
                       ],
                       "properties": {
                         "localityType": {
-                          "title": "{{ translate("tenderers.address.location.locality.localityType.title") }}",
+                          "title": "{{ translate("bid", "tenderers.address.location.locality.localityType.title") }}",
                           "type": "string",
                           "enum": [
-                            "{{ translate("tenderers.address.location.locality.localityType.enum[0]") }}",
-                            "{{ translate("tenderers.address.location.locality.localityType.enum[1]") }}"
+                            "{{ translate("bid", "tenderers.address.location.locality.localityType.enum[0]") }}",
+                            "{{ translate("bid", "tenderers.address.location.locality.localityType.enum[1]") }}"
                           ]
                         }
                       },
@@ -172,14 +172,14 @@
                               "properties": {
                                 "localityType": {
                                   "enum": [
-                                    "{{ translate("tenderers.address.location.locality.localityType.enum[0]") }}"
+                                    "{{ translate("bid", "tenderers.address.location.locality.localityType.enum[0]") }}"
                                   ]
                                 },
                                 "directory": {
                                   "type": "object",
                                   "properties": {
                                     "locality": {
-                                      "title": "{{ translate("tenderers.address.location.locality.title") }}",
+                                      "title": "{{ translate("bid", "tenderers.address.location.locality.title") }}",
                                       "type": "object",
                                       "source": "{{ context.uris.locality }}",
                                       "dependentFields": {
@@ -219,14 +219,14 @@
                               "properties": {
                                 "localityType": {
                                   "enum": [
-                                    "{{ translate("tenderers.address.location.locality.localityType.enum[1]") }}"
+                                    "{{ translate("bid", "tenderers.address.location.locality.localityType.enum[1]") }}"
                                   ]
                                 },
                                 "manual": {
                                   "type": "object",
                                   "properties": {
                                     "locality": {
-                                      "title": "{{ translate("tenderers.address.location.locality.title") }}",
+                                      "title": "{{ translate("bid", "tenderers.address.location.locality.title") }}",
                                       "type": "object",
                                       "required": [
                                         "scheme",
@@ -261,19 +261,19 @@
                   }
                 },
                 "postalAddress": {
-                  "title": "{{ translate("tenderers.address.location.postalAddress.title") }}",
+                  "title": "{{ translate("bid", "tenderers.address.location.postalAddress.title") }}",
                   "type": "object",
                   "required": [
                     "streetAddress"
                   ],
                   "properties": {
                     "streetAddress": {
-                      "title": "{{ translate("tenderers.address.location.postalAddress.streetAddress.title") }}",
+                      "title": "{{ translate("bid", "tenderers.address.location.postalAddress.streetAddress.title") }}",
                       "type": "string",
                       "ocds": "bid::object/tenderers::array[object]/address::object/streetAddress::string"
                     },
                     "postalCode": {
-                      "title": "{{ translate("tenderers.address.location.postalAddress.postalCode.title") }}",
+                      "title": "{{ translate("bid", "tenderers.address.location.postalAddress.postalCode.title") }}",
                       "type": "string",
                       "ocds": "bid::object/tenderers::array[object]/address::object/postalCode::string"
                     }
@@ -282,7 +282,7 @@
               }
             },
             "identifier": {
-              "title": "{{ translate("tenderers.identifier.title") }}",
+              "title": "{{ translate("bid", "tenderers.identifier.title") }}",
               "type": "object",
               "required": [
                 "scheme",
@@ -291,7 +291,7 @@
               ],
               "properties": {
                 "scheme": {
-                  "title": "{{ translate("tenderers.identifier.scheme.title") }}",
+                  "title": "{{ translate("bid", "tenderers.identifier.scheme.title") }}",
                   "type": "string",
                   "source": "{{ context.uris.registrationScheme }}",
                   "dependentFields": {
@@ -300,24 +300,24 @@
                   "ocds": "bid::object/tenderers::array[object]/identifier::object/scheme::string"
                 },
                 "id": {
-                  "title": "{{ translate("tenderers.identifier.id.title") }}",
+                  "title": "{{ translate("bid", "tenderers.identifier.id.title") }}",
                   "type": "string",
                   "ocds": "bid::object/tenderers::array[object]/identifier::object/id::string"
                 },
                 "legalName": {
-                  "title": "{{ translate("tenderers.identifier.legalName.title") }}",
+                  "title": "{{ translate("bid", "tenderers.identifier.legalName.title") }}",
                   "type": "string",
                   "ocds": "bid::object/tenderers::array[object]/identifier::object/legalName::string"
                 },
                 "uri": {
-                  "title": "{{ translate("tenderers.identifier.uri.title") }}",
+                  "title": "{{ translate("bid", "tenderers.identifier.uri.title") }}",
                   "type": "string",
                   "ocds": "bid::object/tenderers::array[object]/identifier::object/uri::string"
                 }
               }
             },
             "additionalIdentifiers": {
-              "title": "{{ translate("tenderers.additionalIdentifiers.title") }}",
+              "title": "{{ translate("bid", "tenderers.additionalIdentifiers.title") }}",
               "type": "array",
               "items": {
                 "type": "object",
@@ -328,7 +328,7 @@
                 ],
                 "properties": {
                   "scheme": {
-                    "title": "{{ translate("tenderers.additionalIdentifiers.scheme.title") }}",
+                    "title": "{{ translate("bid", "tenderers.additionalIdentifiers.scheme.title") }}",
                     "type": "string",
                     "source": "{{ context.uris.registrationScheme }}",
                     "dependentFields": {
@@ -337,17 +337,17 @@
                     "ocds": "bid::object/tenderers::array[object]/additionalIdentifiers::array[object]/scheme::string"
                   },
                   "id": {
-                    "title": "{{ translate("tenderers.additionalIdentifiers.id.title") }}",
+                    "title": "{{ translate("bid", "tenderers.additionalIdentifiers.id.title") }}",
                     "type": "string",
                     "ocds": "bid::object/tenderers::array[object]/additionalIdentifiers::array[object]/id::string"
                   },
                   "legalName": {
-                    "title": "{{ translate("tenderers.additionalIdentifiers.legalName.title") }}",
+                    "title": "{{ translate("bid", "tenderers.additionalIdentifiers.legalName.title") }}",
                     "type": "string",
                     "ocds": "bid::object/tenderers::array[object]/additionalIdentifiers::array[object]/legalName::string"
                   },
                   "uri": {
-                    "title": "{{ translate("tenderers.additionalIdentifiers.uri.title") }}",
+                    "title": "{{ translate("bid", "tenderers.additionalIdentifiers.uri.title") }}",
                     "type": "string",
                     "ocds": "bid::object/tenderers::array[object]/additionalIdentifiers::array[object]/uri::string"
                   }
@@ -355,14 +355,14 @@
               }
             },
             "details": {
-              "title": "{{ translate("tenderers.details.title") }}",
+              "title": "{{ translate("bid", "tenderers.details.title") }}",
               "type": "object",
               "required": [
                 "scale"
               ],
               "properties": {
                 "scale": {
-                  "title": "{{ translate("tenderers.details.scale.title") }}",
+                  "title": "{{ translate("bid", "tenderers.details.scale.title") }}",
                   "type": "string",
                   "enum": [
                     "micro",
@@ -370,20 +370,20 @@
                     "large"
                   ],
                   "enumNames": [
-                    "{{ translate("tenderers.details.scale.enumNames[0]") }}",
-                    "{{ translate("tenderers.details.scale.enumNames[1]") }}",
-                    "{{ translate("tenderers.details.scale.enumNames[2]") }}"
+                    "{{ translate("bid", "tenderers.details.scale.enumNames[0]") }}",
+                    "{{ translate("bid", "tenderers.details.scale.enumNames[1]") }}",
+                    "{{ translate("bid", "tenderers.details.scale.enumNames[2]") }}"
                   ],
                   "ocds": "bid::object/tenderers::array[object]/details::object/scale::string"
                 }
               }
             },
             "contactPoint": {
-              "title": "{{ translate("tenderers.contactPoint.title") }}",
+              "title": "{{ translate("bid", "tenderers.contactPoint.title") }}",
               "type": "object",
               "properties": {
                 "person": {
-                  "title": "{{ translate("tenderers.contactPoint.title") }}",
+                  "title": "{{ translate("bid", "tenderers.contactPoint.title") }}",
                   "type": "object",
                   "required": [
                     "name",
@@ -391,19 +391,19 @@
                   ],
                   "properties": {
                     "name": {
-                      "title": "{{ translate("tenderers.contactPoint.person.name.title") }}",
+                      "title": "{{ translate("bid", "tenderers.contactPoint.person.name.title") }}",
                       "type": "string",
                       "ocds": "bid::object/tenderers::array[object]/contactPoint::object/name::string"
                     },
                     "url": {
-                      "title": "{{ translate("tenderers.contactPoint.person.url.title") }}",
+                      "title": "{{ translate("bid", "tenderers.contactPoint.person.url.title") }}",
                       "type": "string",
                       "ocds": "bid::object/tenderers::array[object]/contactPoint::object/url::string"
                     }
                   }
                 },
                 "contacts": {
-                  "title": "{{ translate("tenderers.contactPoint.contacts.title")}}",
+                  "title": "{{ translate("bid", "tenderers.contactPoint.contacts.title")}}",
                   "type": "object",
                   "required": [
                     "telephone",
@@ -411,17 +411,17 @@
                   ],
                   "properties": {
                     "telephone": {
-                      "title": "{{ translate("tenderers.contactPoint.contacts.telephone.title") }}",
+                      "title": "{{ translate("bid", "tenderers.contactPoint.contacts.telephone.title") }}",
                       "type": "string",
                       "ocds": "bid::object/tenderers::array[object]/contactPoint::object/telephone::string"
                     },
                     "email": {
-                      "title": "{{ translate("tenderers.contactPoint.contacts.email.title") }}",
+                      "title": "{{ translate("bid", "tenderers.contactPoint.contacts.email.title") }}",
                       "type": "string",
                       "ocds": "bid::object/tenderers::array[object]/contactPoint::object/email::string"
                     },
                     "faxNumber": {
-                      "title": "{{ translate("tenderers.contactPoint.contacts.faxNumber.title") }}",
+                      "title": "{{ translate("bid", "tenderers.contactPoint.contacts.faxNumber.title") }}",
                       "type": "string",
                       "ocds": "bid::object/tenderers::array[object]/contactPoint::object/faxNumber::string"
                     }
