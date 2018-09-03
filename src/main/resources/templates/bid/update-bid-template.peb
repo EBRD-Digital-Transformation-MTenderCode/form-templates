@@ -2,7 +2,7 @@
 {
 {% import "../macros/translate" %}
   "schema": {
-    "title": "{{ translate( "title") }}",
+    "title": "{{ translate( "titleUpdate") }}",
     "type": "object",
     "properties": {
       {% if findSubString(context.parameters.ocid, ".*-EV-[0-9]{13}") %}

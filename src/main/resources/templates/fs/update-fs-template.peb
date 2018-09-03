@@ -6,7 +6,7 @@
 {% import "../macros/commaIf" %}
 {% import "../macros/attributeIf" %}
   "schema": {
-    "title": "{{ translate("schema.title") }}",
+    "title": "{{ translate("titleUpdate") }}",
     "type": "object",
     "properties": {
       "fsParent": {

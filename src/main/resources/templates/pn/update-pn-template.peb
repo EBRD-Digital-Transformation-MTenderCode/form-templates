@@ -11,7 +11,7 @@
 {% import "../macros/commaIf" %}
 {% import "../macros/attributeIf" %}
   "schema": {
-    "title": "{{ translate("title") }}",
+    "title": "{{ translate("titleUpdate") }}",
     "type": "object",
     "properties": {
       "section1": {
