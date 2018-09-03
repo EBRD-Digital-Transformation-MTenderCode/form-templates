@@ -206,13 +206,13 @@
                     ],
                     "properties": {
                       "streetAddress": {
-                        "title": "{{ translate("section1.procuringEntity.address.streetAddress.title") }}",
+                        "title": "{{ translate("section1.procuringEntity.address.postalAddress.streetAddress.title") }}",
                         "type": "string",
                         "readOnly": true,
                         "ocds": "tender::object/procuringEntity::object/address::object/streetAddress::string"
                       },
                       "postalCode": {
-                        "title": "{{ translate("section1.procuringEntity.address.postalCode.title") }}",
+                        "title": "{{ translate("section1.procuringEntity.address.postalAddress.postalCode.title") }}",
                         "type": "string",
                         "readOnly": true,
                         "ocds": "tender::object/procuringEntity::object/address::object/postalCode::string"
@@ -768,7 +768,7 @@
                               "unitClass": {
                                 "title": "{{ translate("section2.lots.items.quantity.title") }}",
                                 "type": "object",
-                                "source": "{{ context.uris.unitClass }}",
+                                "source": "{{ context.tender.uris.unitClass }}",
                                 "required": [
                                   "id",
                                   "description"
@@ -879,7 +879,7 @@
                   }
                 },
                 "documents": {
-                  "title": "{{ translate("section2.lots.documents.tile") }}",
+                  "title": "{{ translate("section2.lots.documents.title") }}",
                   "type": "array",
                   "items": {
                     "type": "object",
@@ -902,7 +902,7 @@
                         "ocds": "tender::object/documents::array[object]/title::string"
                       },
                       "description": {
-                        "title": "{{ translate("section2.lots.documents.description.title=") }}",
+                        "title": "{{ translate("section2.lots.documents.description.title") }}",
                         "type": "string",
                         "ocds": "tender::object/documents::array[object]/description::string"
                       },
