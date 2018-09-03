@@ -1342,7 +1342,7 @@
                         "ocds": "tender::object/documents::array[object]/title::string"
                       },
                       "description": {
-                        "title": "{{ translate("pn", "section2.lots.documents.description.title=") }}",
+                        "title": "{{ translate("pn", "section2.lots.documents.description.title") }}",
                         "type": "string",
                         "ocds": "tender::object/documents::array[object]/description::string"
                       },
