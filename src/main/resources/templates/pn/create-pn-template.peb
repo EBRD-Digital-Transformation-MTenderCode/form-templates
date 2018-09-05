@@ -204,13 +204,13 @@
                           ],
                           "properties": {
                             "streetAddress": {
-                              "title": "{{ translate("pn", "section1.procuringEntity.address.streetAddress.title") }}",
+                              "title": "{{ translate("pn", "section1.procuringEntity.address.postalAddress.streetAddress.title") }}",
                               "type": "string",
                               "readOnly": true,
                               "ocds": "tender::object/procuringEntity::object/address::object/streetAddress::string"
                             },
                             "postalCode": {
-                              "title": "{{ translate("pn", "section1.procuringEntity.address.postalCode.title") }}",
+                              "title": "{{ translate("pn", "section1.procuringEntity.address.postalAddress.postalCode.title") }}",
                               "type": "string",
                               "readOnly": true,
                               "ocds": "tender::object/procuringEntity::object/address::object/postalCode::string"

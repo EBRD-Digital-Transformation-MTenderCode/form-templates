@@ -204,13 +204,13 @@
                           ],
                           "properties": {
                             "streetAddress": {
-                              "title": "{{ translate("cn", "section1.procuringEntity.address.streetAddress.title") }}",
+                              "title": "{{ translate("cn", "section1.procuringEntity.address.postalAddress.streetAddress.title") }}",
                               "type": "string",
                               "readOnly": true,
                               "ocds": "tender::object/procuringEntity::object/address::object/streetAddress::string"
                             },
                             "postalCode": {
-                              "title": "{{ translate("cn", "section1.procuringEntity.address.postalCode.title") }}",
+                              "title": "{{ translate("cn", "section1.procuringEntity.address.postalAddress.postalCode.title") }}",
                               "type": "string",
                               "readOnly": true,
                               "ocds": "tender::object/procuringEntity::object/address::object/postalCode::string"
@@ -593,12 +593,12 @@
                           ],
                           "properties": {
                             "streetAddress": {
-                              "title": "{{ translate("cn", "section1.procuringEntity.address.streetAddress.title") }}",
+                              "title": "{{ translate("cn", "section1.procuringEntity.address.postalAddress.streetAddress.title") }}",
                               "type": "string",
                               "ocds": "tender::object/procuringEntity::object/address::object/streetAddress::string"
                             },
                             "postalCode": {
-                              "title": "{{ translate("cn", "section1.procuringEntity.address.postalCode.title") }}",
+                              "title": "{{ translate("cn", "section1.procuringEntity.address.postalAddress.postalCode.title") }}",
                               "type": "string",
                               "ocds": "tender::object/procuringEntity::object/address::object/postalCode::string"
                             }
@@ -1324,7 +1324,7 @@
                   }
                 },
                 "documents": {
-                  "title": "{{ translate("cn", "section2.lots.documents.tile") }}",
+                  "title": "{{ translate("cn", "section2.lots.documents.title") }}",
                   "type": "array",
                   "items": {
                     "type": "object",
@@ -1347,7 +1347,7 @@
                         "ocds": "tender::object/documents::array[object]/title::string"
                       },
                       "description": {
-                        "title": "{{ translate("cn", "section2.lots.documents.description.title=") }}",
+                        "title": "{{ translate("cn", "section2.lots.documents.description.title") }}",
                         "type": "string",
                         "ocds": "tender::object/documents::array[object]/description::string"
                       },

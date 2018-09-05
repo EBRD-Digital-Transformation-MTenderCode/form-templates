@@ -76,7 +76,7 @@
               "items": {
                 "type": "string",
                 "default": "{{ context.parameters.lotId }}",
-                "ocds": "bid::object/documents::array[object]/relatedLots::array[string]"
+                "ocds": "bgit clone https://rotberry@bitbucket.org/ustudio-llc/form-templates.gitid::object/documents::array[object]/relatedLots::array[string]"
               }
             }
           }
