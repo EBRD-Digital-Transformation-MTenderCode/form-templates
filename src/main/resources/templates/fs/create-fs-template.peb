@@ -84,7 +84,7 @@
                   ],
                   "properties": {
                     "name": {
-                      "title": "{{ translate("fs", "fsFunding.fsFunder.name.title") }}",
+                      "title": "{{ translate("fs", "fsFunding.name.title") }}",
                       "type": "string",
                       "readOnly": true,
                       "ocds": "buyer::object/name::string"

@@ -94,7 +94,7 @@ class PNCreateContext(
     }
 
     data class Budget(
-        val amount: Amount // EI.planning.budget.amount
+        val amount: Amount // EI.planning.budget.amount, if EI.planning.budget.amount == null -> ERROR 422 None of the sources of financing is associated with this expenditure Items
     ) {
         data class Amount(
             val currency: String // EI.planning.budget.amount.currency
