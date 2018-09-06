@@ -414,7 +414,7 @@
                   }
                 },
                 "contacts": {
-                  "title": "Contact point",
+                  "title": "{{ translate("bid", "tenderers.contactPoint.contacts.title")}}",
                   "type": "object",
                   "required": [
                     "telephone",

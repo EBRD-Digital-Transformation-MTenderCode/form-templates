@@ -188,7 +188,7 @@ End-points:
 Значения параметров:
 
 - **"form"**:  "enquiry" - указания типа создаваемой сущности **(required)**;
-- **"lot-id"** :  "..." - id лота на который подается enquiry **(required)**;
+- **"lot-id"** :  "..." - id лота на который подается enquiry;
 - **"lang"**:  "..." - локализация формы.
 
 Шаблон response payload ноходится - *src/main/resources/templates/enquiry/create-enquiry-template.peb*
@@ -216,7 +216,7 @@ End-points:
 
 Значения параметров:
 
-- **"form"**:  "award" - указания типа создаваемой сущности **(required)**;
+- **"form"**:  "update-award" - указания типа создаваемой сущности **(required)**;
 - **"lot-id"**: "..." -  id лота на который подавался award **(required)**;
 - **"lang"**:  "..." - локализация формы.
 
