@@ -632,7 +632,7 @@
                                           "properties": {
                                             "localityType": {
                                               "enum": [
-                                                "section2.lots.performance.address.location.locality.localityType.enum[1]"
+                                                "{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[1]") }}"
                                               ]
                                             },
                                             "manual": {

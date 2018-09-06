@@ -230,7 +230,7 @@
                             "properties": {
                               "localityType": {
                                 "enum": [
-                                  "eiBuyer.address.location.locality.localityType.enum[1]"
+                                  "{{ translate("ei", "eiBuyer.address.location.locality.localityType.enum[1]") }}"
                                 ]
                               },
                               "manual": {
