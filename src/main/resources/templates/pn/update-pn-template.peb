@@ -1128,8 +1128,9 @@
       "procurementScope": {
         "title": "{{ context.tender.title }}",
         "description": "{{ context.tender.description }}"
-      },
+      }
       {% if context.tender.documents != null %}
+      ,
         "documents": [
           {% for tenderDocument in context.tender.documents %}
             {% if loop.index  > 0 %},{% endif %}
@@ -1142,9 +1143,10 @@
               {{ stringAttributeIf(name = "description", value = tenderDocument.description) }}
             }
           {% endfor %}
-        ],
+        ]
       {% endif %}
       {% if context.tender.lots != null %}
+      ,
         "lots": [
           {% for lot in context.tender.lots %}
             {% if loop.index  > 0 %},{% endif %}

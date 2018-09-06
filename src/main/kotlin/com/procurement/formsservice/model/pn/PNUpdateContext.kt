@@ -74,7 +74,7 @@ class PNUpdateContext(
     data class Tender(
         val title: String, // MS.tender.title
         val description: String, // MS.tender.description
-        val documents: List<Document>,
+        val documents: List<Document>?,
         val lots: List<Lot>?,
         val procurementMethodDetails: String, // MS.tender.procurementMethodDetails
         val legalBasis: String,  // MS.tender.legalBasis
