@@ -90,7 +90,7 @@
                       "ocds": "buyer::object/name::string"
                     },
                     "address": {
-                      "title": "{{ translate("fs", "fsFunding.fsFunder.address.title") }}",
+                      "title": "{{ translate("fs", "fsFunding.address.title") }}",
                       "type": "object",
                       "properties": {
                         "location": {
@@ -379,7 +379,7 @@
                           }
                         },
                         "contacts": {
-                          "title": "{{ translate("fs", "fsFunding.fsFunder.contactPoint.contacts.title") }}",
+                          "title": "{{ translate("fs", "fsFunding.contactPoint.contacts.title") }}",
                           "type": "object",
                           "required": [
                             "telephone",
