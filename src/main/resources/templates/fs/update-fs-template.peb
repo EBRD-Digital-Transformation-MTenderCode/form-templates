@@ -783,7 +783,6 @@
               "amount": {
                 "title": "{{ translate("fs", "fsBudget.budgetAmount.amount.title") }}",
                 "type": "number",
-                "minimum": 0.00001,
                 "ocds": "planning::object/budget::object/amount::object/amount::number"
               },
               "currency": {
