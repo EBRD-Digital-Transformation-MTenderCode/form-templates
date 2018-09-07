@@ -365,13 +365,13 @@
                           ],
                           "properties": {
                             "name": {
-                              "title": "{{ translate("fs", "fsFunding.contactPoint.name.title") }}",
+                              "title": "{{ translate("fs", "fsFunding.contactPoint.person.name.title") }}",
                               "type": "string",
                               "readOnly": true,
                               "ocds": "buyer::object/contactPoint::object/name::string"
                             },
                             "url": {
-                              "title": "{{ translate("fs", "fsFunding.contactPoint.url.title") }}",
+                              "title": "{{ translate("fs", "fsFunding.contactPoint.person.url.title") }}",
                               "type": "string",
                               "readOnly": true,
                               "ocds": "buyer::object/contactPoint::object/url::string"
