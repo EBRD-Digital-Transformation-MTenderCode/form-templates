@@ -570,7 +570,7 @@
           }
         },
         "postalAddress": {
-          "streetAddress": "{{ context.buyer.address.streetAddress }}",
+          "streetAddress": "{{ context.buyer.address.streetAddress }}"
           {{ commaIf(context.buyer.address.postalCode) }}
           {{ stringAttributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
         }
