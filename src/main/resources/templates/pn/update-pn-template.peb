@@ -841,7 +841,7 @@
                         }
                       },
                       "additionalClassifications": {
-                        "title": "{{ translate("pn", "section2.lots.items.classification.title") }}",
+                        "title": "{{ translate("pn", "section2.lots.items.additionalClassifications.title") }}",
                         "type": "array",
                         "items": {
                           "type": "object",
@@ -1253,7 +1253,7 @@
                     {
                       "documentId": "{{ lotDocument.id }}",
                       "documentType": "{{ lotDocument.type }}",
-                      "relatedLots": {{ lotDocument.relatedLots }}
+                      "relatedLots": ["{{ lotDocument.relatedLots }}"]
                       {{ commaIf(lotDocument.title) }}
                       {{ stringAttributeIf(name = "title", value = lotDocument.title) }}
                       {{ commaIf(lotDocument.description) }}

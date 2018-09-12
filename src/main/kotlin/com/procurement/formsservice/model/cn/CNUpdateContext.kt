@@ -187,7 +187,7 @@ class CNUpdateContext(
                 val type: String, // CN.tender.documents[relatedLots[0] = lot.id].documentType
                 val title: String?, // CN.tender.documents[relatedLots[0] = lot.id].title
                 val description: String?, // CN.tender.documents[relatedLots[0] = lot.id].description
-                val relatedLots: List<String> // CN.tender.documents[relatedLots[0] = lot.id].relatedLots
+                val relatedLots: String // CN.tender.documents[relatedLots[0] = lot.id].relatedLots[0]
             )
         }
 

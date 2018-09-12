@@ -569,9 +569,11 @@
             }
           }
         },
-        "postalAddress": "{{ context.buyer.address.streetAddress }}"
-        {{ commaIf(context.buyer.address.postalCode) }}
-        {{ stringAttributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
+        "postalAddress": {
+          "streetAddress": "{{ context.buyer.address.streetAddress }}",
+          {{ commaIf(context.buyer.address.postalCode) }}
+          {{ stringAttributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
+        }
       },
       "identifier": {
         "scheme": "{{ context.buyer.identifier.scheme }}",
