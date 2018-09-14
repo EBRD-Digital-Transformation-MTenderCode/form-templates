@@ -1,4 +1,4 @@
-{# @pebvariable name="context" type="com.procurement.formsservice.model.cancellation.CancellationCreateContext" #}
+{# @pebvariable name="context" type="com.procurement.formsservice.model.cancellation.CancellationTenderContext" #}
 {
 {% import "../macros/translate" %}
     "schema": {

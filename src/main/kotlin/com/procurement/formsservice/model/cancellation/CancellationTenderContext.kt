@@ -1,6 +1,6 @@
 package com.procurement.formsservice.model.cancellation
 
-class CancellationCreateContext (
+class CancellationTenderContext (
     val parameters: Parameters,
     val tender: Tender
 ) {
@@ -9,8 +9,8 @@ class CancellationCreateContext (
     )
 
     data class Tender(
-        val title: String // MS.tender.title
-        val title: String // MS.tender.description
+        val title: String, // MS.tender.title
+        val description: String // MS.tender.description
     )
 
 }
