@@ -223,3 +223,18 @@ End-points:
 Шаблон response payload ноходится - *src/main/resources/templates/award/update-award-template.peb*
 
 ------------
+
+#### 10. Form Cancellation
+
+End-points:
+**create -** `/api/v1/operations?form=cancellation&ocid=...&lang=...`
+
+Значения параметров:
+
+- **"form"**:  "cancellation" - указания типа создаваемой сущности **(required)**;
+- **"ocid"** :  "..." - ocid тендерного процесса который отменяется **(required)**;
+- **"lang"**:  "..." - локализация формы.
+
+Шаблон response payload ноходится - *src/main/resources/templates/cancellation/create-cancellation-template.peb*
+
+------------
