@@ -74,8 +74,8 @@ class PNUpdateContext(
     data class Tender(
         val title: String, // MS.tender.title
         val description: String, // MS.tender.description
-        val documents: List<Document>?,
-        val lots: List<Lot>?,
+        val documents: List<Document>?, // PN.tender.documents
+        val lots: List<Lot>?, // PN.tender.lots
         val procurementMethodDetails: String, // MS.tender.procurementMethodDetails
         val legalBasis: String,  // MS.tender.legalBasis
         val validityPeriod: String, // PN.tender.tenderPeriod.startDate
@@ -96,8 +96,8 @@ class PNUpdateContext(
             val description: String, // PN.tender.lots[i].description
             val value: Value,
             val performance: Performance,
-            val items: List<Item>?,
-            val documents: List<Document>?
+            val items: List<Item>?, // PN.tender.items
+            val documents: List<Document>? // PN.tender.documents
         ) {
             data class Value(
                 val amount: Double, // PN.tender.lots[i].value.amount

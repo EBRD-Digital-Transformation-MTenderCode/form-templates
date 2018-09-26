@@ -74,8 +74,8 @@ class CNUpdateContext(
     data class Tender(
         val title: String, // MS.tender.title
         val description: String, // MS.tender.description
-        val documents: List<Document>?,
-        val lots: List<Lot>?,
+        val documents: List<Document>?, // CN.tender.documents
+        val lots: List<Lot>?, // CN.tender.lots
         val procurementMethodDetails: String, // MS.tender.procurementMethodDetails
         val legalBasis: String,  // MS.tender.legalBasis
         val validityPeriod: String?, // CN.tender.tenderPeriod.endDate
@@ -96,8 +96,8 @@ class CNUpdateContext(
             val description: String, // CN.tender.lots[i].description
             val value: Value,
             val performance: Performance,
-            val items: List<Item>?,
-            val documents: List<Document>?
+            val items: List<Item>?, // CN.tender.items
+            val documents: List<Document>? // CN.tender.documents
         ) {
             data class Value(
                 val amount: Double, // CN.tender.lots[i].value.amount
