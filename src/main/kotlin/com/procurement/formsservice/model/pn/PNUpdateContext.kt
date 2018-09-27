@@ -64,7 +64,7 @@ class PNUpdateContext(
 
         data class ContactPoint(
             val name: String, // MS.parties[role="procuringEntity"].contactPoint.name
-            val url: String, // MS.parties[role="procuringEntity"].contactPoint.url
+            val url: String?, // MS.parties[role="procuringEntity"].contactPoint.url
             val telephone: String, // MS.parties[role="procuringEntity"].contactPoint.telephone
             val email: String, // MS.parties[role="procuringEntity"].contactPoint.email
             val faxNumber: String? // MS.parties[role="procuringEntity"].contactPoint.faxNumber
