@@ -493,7 +493,7 @@
                           "ocds": "tender::object/lots::array[object]/value::object/amount::number"
                         },
                         "currency": {
-                          "title": "{{ translate("cn", "section2.lots.description.value.amount.title") }}",
+                          "title": "{{ translate("cn", "section2.lots.description.value.currency.title") }}",
                           "type": "string",
                           "default": "{{ context.tender.currency }}",
                           "readOnly": true,
