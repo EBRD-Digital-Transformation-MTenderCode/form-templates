@@ -1023,6 +1023,9 @@
             "type": "array",
             "items": {
               "type": "object",
+              "required": [
+                "id"
+              ],
               "properties": {
                 "id": {
                   "type": "string",
@@ -1031,6 +1034,10 @@
                 },
                 "budgetBreakdownAmount": {
                   "type": "object",
+                  "required": [
+                    "amount",
+                    "currency"
+                  ],
                   "properties": {
                     "amount": {
                       "type": "number",
