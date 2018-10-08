@@ -1142,7 +1142,7 @@
         ]
       {% endif %}
       {% if context.tender.lots != null %}
-      ,
+        ,
         "lots": [
           {% for lot in context.tender.lots %}
             {% if loop.index  > 0 %},{% endif %}
@@ -1187,7 +1187,7 @@
                         {{ stringAttributeIf(name = "postalCode", value = lot.performance.placeOfPerformance.address.postalCode) }}
                       }
                     }
-                    {% if lot.performance.placeOfPerformance.address != null and lot.performance.placeOfPerformance.description != null %}
+                    {% if lot.performance.placeOfPerformance.address != null and lot.performance.placeOfPerformance.description != null %},{% endif %}
                     {{ stringAttributeIf(name = "description", value = lot.performance.placeOfPerformance.description) }}
                   },
                 {% endif %}
