@@ -1282,7 +1282,7 @@
                         }
                       },
                       "additionalClassifications": {
-                        "title": "{{ translate("cn", "section2.lots.items.classification.title") }}",
+                        "title": "{{ translate("cn", "section2.lots.items.additionalClassifications.title") }}",
                         "type": "array",
                         "items": {
                           "type": "object",
