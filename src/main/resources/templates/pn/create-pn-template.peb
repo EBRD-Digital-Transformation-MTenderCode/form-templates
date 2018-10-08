@@ -1374,6 +1374,7 @@
                       "relatedLots": {
                         "type": "array",
                         "minItems": 1,
+                        "maxItems": 1,
                         "items": {
                           "type": "string",
                           "ocds": "tender::object/documents::array[object]/relatedLots::array[string]"
