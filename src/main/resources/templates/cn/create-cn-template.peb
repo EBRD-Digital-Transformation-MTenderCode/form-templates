@@ -1437,6 +1437,10 @@
                   "type": "string",
                   "enum": ["electronicAuction"],
                   "enumNames": ["{{ translate("cn", "section2.modalities.procurementMethodModalities.enumNames[0]") }}"],
+                  {% if (context.parameters.pmd == "SV" or context.parameters.pmd == "TEST_SV") and (context.mainProcurementCategory == "goods" or context.mainProcurementCategory == "services") %}
+                    "readOnly": true,
+                    "default": ["electronicAuction"],
+                  {% endif %}
                   "ocds": "tender::object/procurementMethodModalities::array[string]"
                 }
               }

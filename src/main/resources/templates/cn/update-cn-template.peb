@@ -5,6 +5,7 @@
 {# @pebvariable name="item" type="com.procurement.formsservice.model.cn.CNUpdateContext.Tender.Lot.Item" #}
 {# @pebvariable name="additionalClassification" type="com.procurement.formsservice.model.cn.CNUpdateContext.Tender.Lot.Item.AdditionalClassification" #}
 {# @pebvariable name="lotDocument" type="com.procurement.formsservice.model.cn.CNUpdateContext.Tender.Lot.Document" #}
+{# @pebvariable name="electronicAuction" type="com.procurement.formsservice.model.cn.CNUpdateContext.Tender.ElectronicAuction" #}
 {# @pebvariable name="budgetBreakdown" type="com.procurement.formsservice.model.cn.CNUpdateContext.Tender.BudgetBreakdown" #}
 {
 {% import "../macros/translate" %}
@@ -994,6 +995,14 @@
                   "type": "string",
                   "enum": ["electronicAuction"],
                   "enumNames": ["{{ translate("cn", "section2.modalities.procurementMethodModalities.enumNames[0]") }}"],
+                  {% if context.parentEntity == "PN" %}
+                    {% if (context.parameters.pmd == "SV" or context.parameters.pmd == "TEST_SV") and (context.mainProcurementCategory == "goods" or context.mainProcurementCategory == "services") %}
+                      "readOnly": true,
+                      "default": ["electronicAuction"],
+                    {% endif %}
+                  {% else %}
+                    "readOnly": true,
+                  {% endif %}
                   "ocds": "tender::object/procurementMethodModalities::array[string]"
                 }
               }
@@ -1056,7 +1065,7 @@
                                   "currency": {
                                     "title": "{{ translate("cn", "section2.modalities.details.electronicAuctionModalities.currency.title") }}",
                                     "type": "string",
-                                    "default": "{{ context.budget.amount.currency }}",
+                                    "default": "{{ context.tender.currency }}",
                                     "readOnly": true,
                                     "ocds": "tender::object/electronicAuctions::object/details::array[object]/electronicAuctionModalities::array[object]/eligibleMinimumDifference::object/currency::string"
                                   }
@@ -1401,6 +1410,27 @@
             }
           {% endfor %}
         ]
+      {% endif %}
+      {% if context.tender.procurementMethodModalities != null %}
+        ,
+        "modalities": {
+          "procurementMethodModalities": ["{{ context.tender.procurementMethodModalities }}"],
+          "details": [
+            {% for electronicAuction in context.tender.electronicAuctions %}
+              {% if loop.index  > 0 %},{% endif %}
+              {
+                "id": "{{ electronicAuction.id }}",
+                "relatedLot": "{{ electronicAuction.relatedLot }}",
+                "electronicAuctionModalities": [
+                  {
+                    "amount": "{{ electronicAuction.value.amount }}",
+                    "currency": "{{ electronicAuction.value.currency }}"
+                  }
+                ]
+              }
+            {% endfor %}
+          ]
+        }
       {% endif %}
     },
     "section4": {
