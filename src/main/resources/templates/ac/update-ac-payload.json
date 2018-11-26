@@ -1,0 +1,349 @@
+{
+  "planning": {
+    "implementation": {
+      "transactions": [
+        {
+          "id": "",
+          "type": "advance",
+          "value": {
+            "amount": 20000,
+            "currency": "MDL"
+          },
+          "executionPeriod": {
+            "durationInDays": 0
+          },
+          "--relatedContractMilestone": "approval-3"
+        }
+      ]
+    },
+    "budget": {
+      "description": "",
+      "budgetAllocation": [
+        {
+          "budgetBreakdownID": "",
+          "period": {
+            "startDate": "",
+            "endDate": ""
+          },
+          "amount": 0,
+          "relatedItem": ""
+        }
+      ],
+      "budgetSource": [
+        {
+          "budgetBreakdownID": "",
+          "amount": 0,
+          "currency": ""
+        }
+      ]
+    }
+  },
+  "contract": {
+    "+title": "",
+    "+description": "",
+    "+period": {
+      "+startDate": "",
+      "+endDate": ""
+    },
+    "+--documents": [
+      {
+        "+documentType": "",
+        "+id": "",
+        "+--title": "",
+        "+--description": "",
+        "+relatedLots": [""]
+      }
+    ],
+    "milestones": [
+      {
+        "id": "approval-re1atedparties.id",
+        "type": "approval",
+        "--relatedItems": [""],
+        "additionalInformation": "",
+        "dueDate": "",
+        "title": "",
+        "description": ""
+      }
+    ],
+    "--confirmationRequests": [
+      {
+        "id": "cs-tenderer-confirmation-on-document.id",
+        "relatedItem": "document.id",
+        "source": "tenderer"
+      }
+    ],
+    "agreedMetrics": [
+      {
+        "id": "cc-general",
+        "observations": [
+          {
+            "id": "cc-general-1-1",
+            "measure": 5
+          }
+        ]
+      }
+    ]
+  },
+  "award": {
+    "id": "",
+    "+suppliers": [
+      {
+        "+id": "",
+        "+additionalIdentifiers": [
+          {
+            "+scheme": "MD-SRJE",
+            "+id": "",
+            "+legalName": "",
+            "+uri": ""
+          }
+        ],
+        "+persones": [
+          {
+            "+title": "",
+            "+name": "",
+            "+identifier": {
+              "+scheme": "",
+              "+id": "",
+              "+uri": ""
+            },
+            "+businessFunctions": [
+              {
+                "+id": "",
+                "+type": "authority",
+                "+jobTitle": "Chief Executive Officer",
+                "+period": {
+                  "+startDate": ""
+                },
+                "+documents": [
+                  {
+                    "+id": "",
+                    "+documentType": "regulatoryDocument",
+                    "+--title": "",
+                    "+--description": ""
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "+details": {
+          "+typeOfSupplier": "",
+          "+mainEconomicActivities": [""],
+          "+scale": "sme",
+          "+permits": [
+            {
+              "+scheme": "SRLE",
+              "+id": "",
+              "+url": "",
+              "+permit": {
+                "+issuedBy": {
+                  "+id": "",
+                  "+name": ""
+                },
+                "+issuedThought": {
+                  "+id": "",
+                  "+name": ""
+                },
+                "+validityPeriod": {
+                  "+startDate": "",
+                  "+endDate": ""
+                }
+              }
+            }
+          ],
+          "+bankAccounts": [
+            {
+              "+description": "",
+              "+bankName": "",
+              "+address": {
+                "+streetAddress": "",
+                "+--postalCode": "",
+                "+addressDetails": {
+                  "+country": {
+                    "+scheme": "",
+                    "+id": "",
+                    "+description": "",
+                    "+uri": ""
+                  },
+                  "+region": {
+                    "+scheme": "",
+                    "+id": "",
+                    "+description": "",
+                    "+uri": ""
+                  },
+                  "+locality": {
+                    "+scheme": "",
+                    "+id": "",
+                    "+description": "",
+                    "+--uri": ""
+                  }
+                }
+              },
+              "+identifier": {
+                "+scheme": "UA-MFO",
+                "+id": "300711"
+              },
+              "+accountIdentification": {
+                "+scheme": "IBAN",
+                "+id": "2600000625637"
+              },
+              "+additionalAccountIdentifiers":[
+                {
+                  "+scheme": "settlement",
+                  "+id": ""
+                }
+              ]
+            }
+          ],
+          "+legalForm": {
+            "+scheme": "",
+            "+id": "",
+            "+description": "",
+            "+uri": ""
+          }
+        }
+      }
+    ],
+    "documents": [
+      {
+        "documentType": "",
+        "id": "",
+        "--title": "",
+        "--description": "",
+        "--relatedLots":[""]
+      }
+    ],
+    "value": {
+      "amount": 0,
+      "currency": "",
+      "amountNet": 0,
+      "valueAddedTaxIncluded": true
+    },
+    "items": [
+      {
+        "id": "",
+        "quantity": 0,
+        "unit": {
+          "value": {
+            "amount": 0,
+            "amountNet": 0,
+            "valueAddedTaxIncluded": true,
+            "currency": ""
+          }
+        },
+        "deliveryAddress": {
+          "streetAddress": "",
+          "postalCode": "",
+          "addressDetails": {
+            "country": {
+              "id": "UA"
+            },
+            "region": {
+              "id": "UA-12"
+            },
+            "locality": {
+              "scheme": "UN/LOCDE",
+              "id": "UA-DNP",
+              "description": "Dnipro"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "+buyer": {
+    "+id": "",
+    "+additionalIdentifiers": [
+      {
+        "+scheme": "MD-SRJE",
+        "+id": "",
+        "+legalName": "",
+        "+uri": ""
+      }
+    ],
+    "+persones": [
+      {
+        "+title": "",
+        "+name": "",
+        "+identifier": {
+          "+scheme": "",
+          "+id": "",
+          "+uri": ""
+        },
+        "+businessFunctions": [
+          {
+            "+id": "",
+            "+type": "authority",
+            "+jobTitle": "Chief Executive Officer",
+            "+period": {
+              "+startDate": ""
+            },
+            "+documents": [
+              {
+                "+id": "",
+                "+documentType": "regulatoryDocument",
+                "+--title": "",
+                "+--description": ""
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "+details": {
+      "+typeOfBuyer": "",
+      "+mainGeneralActivity": "",
+      "+mainSectoralActivity": "",
+      "+bankAccounts": [
+        {
+          "+description": "",
+          "+bankName": "",
+          "+address": {
+            "+streetAddress": "",
+            "+--postalCode": "",
+            "+addressDetails": {
+              "+country": {
+                "+scheme": "",
+                "+id": "",
+                "+description": "",
+                "+uri": ""
+              },
+              "+region": {
+                "+scheme": "",
+                "+id": "",
+                "+description": "",
+                "+uri": ""
+              },
+              "+locality": {
+                "+scheme": "",
+                "+id": "",
+                "+description": "",
+                "+--uri": ""
+              }
+            }
+          },
+          "+identifier": {
+            "+scheme": "MD-BANKS",
+            "+id": "300711"
+          },
+          "+accountIdentification": {
+            "+scheme": "MD-IBAN",
+            "+id": "2600000625637"
+          },
+          "+additionalAccountIdentifiers":[
+            {
+              "+scheme": "MD-SETTLEMENT",
+              "+id": ""
+            }
+          ]
+        }
+      ],
+      "+legalForm": {
+        "+scheme": "",
+        "+id": "",
+        "+description": "",
+        "+uri": ""
+      }
+    }
+  }
+}

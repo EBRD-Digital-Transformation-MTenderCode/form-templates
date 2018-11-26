@@ -238,3 +238,18 @@ End-points:
 Шаблон response payload ноходится - *src/main/resources/templates/cancellation/cancellation-tender-template.peb*
 
 ------------
+#### 11. Form Update Contract
+
+End-points:
+**update -** `/api/v1/operations?form=update-ac&ocid=...&lang=...`
+
+Значения параметров:
+
+- **"form"**:  "update-ac" - указания типа создаваемой сущности **(required)**;
+- **"ocid"** :  "..." - ocid AC **(required)**;
+- **"lot-id"** :  "..." - id лота на который был создан AC **(required)**;
+- **"lang"**:  "..." - локализация формы.
+
+Шаблон response payload ноходится - *src/main/resources/templates/ac/update-ac-template.peb*
+
+------------

@@ -1,0 +1,900 @@
+{
+  "uri": "http://dev.public.eprocurement.systems/tenders/ocds-t1s2t3-MD-1542645678020/ocds-t1s2t3-MD-1542645678020-AC-1543106036829",
+  "version": "1.1",
+  "extensions": [
+    "https://raw.githubusercontent.com/open-contracting/ocds_bid_extension/v1.1.1/extension.json",
+    "https://raw.githubusercontent.com/open-contracting/ocds_enquiry_extension/v1.1.1/extension.json"
+  ],
+  "publisher": {
+    "name": "M-Tender",
+    "uri": "https://www.mtender.gov.md"
+  },
+  "license": "http://opendefinition.org/licenses/",
+  "publicationPolicy": "http://opendefinition.org/licenses/",
+  "publishedDate": "2018-11-19T16:49:35Z",
+  "releases": [
+    {
+      "ocid": "ocds-t1s2t3-MD-1542645678020-AC-1543106036829",
+      "id": "ocds-t1s2t3-MD-1542645678020-AC-1543106036829-1542894756471",
+      "date": "2018-11-22T13:52:35Z",
+      "tag": [
+        "contractUpdate"
+      ],
+      "initiationType": "tender",
+      "planning": {
+        "implementation": {
+          "transactions": [
+            {
+              "id": "de35b0f0-ee5d-11e8-b298-2907ceb0d463",
+              "type": "advance",
+              "value": {
+                "amount": 1000.00,
+                "currency": "MDL"
+              },
+              "executionPeriod": {
+                "durationInDays": 10
+              }
+            }
+          ]
+        },
+        "budget": {
+          "description": "описание",
+          "budgetAllocation": [
+            {
+              "budgetBreakdownID": "ocds-t1s2t3-MD-1542894626674-FS-1542894645279",
+              "amount": 100.0,
+              "period": {
+                "startDate": "2018-11-30T00:00:00Z",
+                "endDate": "2018-11-30T23:00:00Z"
+              },
+              "relatedItem": "f0081840-ec19-11e8-9cb9-6bf876bfa65b"
+            }
+          ],
+          "budgetSource": [
+            {
+              "budgetBreakdownID": "ocds-t1s2t3-MD-1542894626674-FS-1542894645279",
+              "amount": 100.0,
+              "currency": "USD"
+            }
+          ]
+        }
+      },
+      "tender": {
+        "id": "ocds-t1s2t3-MD-1542645678020",
+        "lots": [
+          {
+            "id": "f0081845-ec19-11e8-9cb9-6bf876bfa65b",
+            "title": "lot2",
+            "description": "2",
+            "placeOfPerformance": {
+              "address": {
+                "streetAddress": "Steet",
+                "postalCode": "5",
+                "addressDetails": {
+                  "country": {
+                    "scheme": "iso-alpha2",
+                    "id": "MD",
+                    "description": "MOLDOVA",
+                    "uri": "http://reference.iatistandard.org"
+                  },
+                  "region": {
+                    "scheme": "CUATM",
+                    "id": "0301000",
+                    "description": "mun.Bălţi",
+                    "uri": "http://statistica.md"
+                  },
+                  "locality": {
+                    "scheme": "CUATM",
+                    "id": "0301000",
+                    "description": "mun.Bălţi",
+                    "uri": "http://statistica.md"
+                  }
+                }
+              },
+              "description": "decr"
+            }
+          }
+        ],
+        "classification": {
+          "scheme": "CPV",
+          "id": "45400000-1",
+          "description": "Lucrări de finisare a construcţiilor"
+        },
+        "mainProcurementCategory": "works",
+        "procurementMethod": "open",
+        "procurementMethodDetails": "TEST Licitatia deschisa"
+      },
+      "awards": [
+        {
+          "id": "74c43280-ec1a-11e8-928f-a9a0efcf4c9e",
+          "date": "2018-11-19T16:49:40Z",
+          "value": {
+            "amount": 100.00,
+            "currency": "MDL",
+            "amountNet": 100.00,
+            "valueAddedTaxIncluded": false
+          },
+          "suppliers": [
+            {
+              "id": "MD-IDNO-f13",
+              "name": "name"
+            }
+          ],
+          "items": [
+            {
+              "id": "f0081840-ec19-11e8-9cb9-6bf876bfa65b",
+              "description": "p",
+              "classification": {
+                "scheme": "CPV",
+                "id": "45400000-1",
+                "description": "Lucrări de finisare a construcţiilor"
+              },
+              "additionalClassifications": [
+                {
+                  "scheme": "CPVS",
+                  "id": "AA25-3",
+                  "description": "Hafniu"
+                },
+                {
+                  "scheme": "CPVS",
+                  "id": "AA28-2",
+                  "description": "Iridiu"
+                }
+              ],
+              "quantity": 10.0,
+              "unit": {
+                "name": "Milion decalitri",
+                "value": {
+                  "amount": 100.00,
+                  "currency": "MDL",
+                  "amountNet": 100.00,
+                  "valueAddedTaxIncluded": false
+                },
+                "id": "120"
+              },
+              "deliveryAddress": {
+                "streetAddress": "street",
+                "postalCode": "45900",
+                "addressDetails": {
+                  "country": {
+                    "scheme": "iso-alpha2",
+                    "id": "MD",
+                    "description": "MOLDOVA",
+                    "uri": "http://reference.iatistandard.org"
+                  },
+                  "region": {
+                    "scheme": "CUATM",
+                    "id": "0301000",
+                    "description": "mun.Bălţi",
+                    "uri": "http://statistica.md"
+                  },
+                  "locality": {
+                    "scheme": "UN/LOCDE",
+                    "id": "450020",
+                    "description": "Dnipro"
+                  }
+                }
+              },
+              "relatedLot": "f0081845-ec19-11e8-9cb9-6bf876bfa65b"
+            }
+          ],
+          "documents": [
+            {
+              "id": "316980b8-7c67-40c0-ac6d-9886996d39f2-1542818989778",
+              "documentType": "awardNotice",
+              "url": "http://dev.bpe.eprocurement.systems/api/v1/storage/get/316980b8-7c67-40c0-ac6d-9886996d39f2-1542818989778",
+              "datePublished": "2018-11-21T16:50:04Z",
+              "relatedLots": [
+                "f0081845-ec19-11e8-9cb9-6bf876bfa65b"
+              ]
+            }
+          ],
+          "relatedLots": [
+            "f0081845-ec19-11e8-9cb9-6bf876bfa65b"
+          ],
+          "relatedBid": "54e9e680-ec1a-11e8-a0b8-516ba9c66e7e"
+        }
+      ],
+      "contracts": [
+        {
+          "id": "ocds-t1s2t3-MD-1542645678020-AC-1543106036829",
+          "date": "2018-11-19T16:49:35Z",
+          "awardId": "74c43280-ec1a-11e8-928f-a9a0efcf4c9e",
+          "title": "title",
+          "description": "description",
+          "status": "pending",
+          "statusDetails": "contractPreparation",
+          "period": {
+            "startDate": "2018-11-25T00:00:00Z",
+            "endDate": "2018-11-26T00:00:00Z"
+          },
+          "value": {
+            "amount": 100.00,
+            "currency": "MDL",
+            "amountNet": 100.00,
+            "valueAddedTaxIncluded": false
+          },
+          "agreedMetrics": [
+            {
+              "id": "cc-general",
+              "title": "Responsabilități generale",
+              "description": "Condiții contractuale care reglementează responsabilitățile generale legate de ambele părți",
+              "observations": [
+                {
+                  "id": "cc-general-1-1",
+                  "notes": "Nr. max. de zile pentru informarea prinvind invocarea forței majore",
+                  "unit": {
+                    "id": "359",
+                    "name": "ziua",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-general-1-2",
+                  "notes": "Nr. max. de pentru notificarea despre intenția de reziliere",
+                  "unit": {
+                    "id": "359",
+                    "name": "ziua",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-general-1-3",
+                  "notes": "Nr. max. de zile pentru răspunsul la notificarea despre intenția de reziliere",
+                  "unit": {
+                    "id": "359",
+                    "name": "ziua",
+                    "scheme": "MD-CUMC"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "cc-tenderer-1",
+              "title": "Garanție de executare",
+              "description": "Condiții contractuale care reglementează responsabilitățile generale legate de operatorul economic în ceea ce privește garanția",
+              "observations": [
+                {
+                  "id": "cc-tenderer-1-1",
+                  "notes": "Cuantumul garanției",
+                  "measure": 15,
+                  "unit": {
+                    "id": "743",
+                    "name": "procent",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-tenderer-1-2",
+                  "notes": "Cuantumul garanției asigurat de către Antreprenorul general",
+                  "measure": 25,
+                  "unit": {
+                    "id": "743",
+                    "name": "procent",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-tenderer-1-3",
+                  "notes": "Cuantumul garanției în cazul reţinerii succesivă din facturile parţiale",
+                  "measure": 15,
+                  "unit": {
+                    "id": "359",
+                    "name": "ziua",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-tenderer-1-4",
+                  "notes": "Maxim a cuantumului în cazul reţinerii succesivă din facturile parţiale",
+                  "measure": 25,
+                  "unit": {
+                    "id": "359",
+                    "name": "ziua",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-tenderer-1-5",
+                  "notes": "Mximum, zile în care va avea loc transferul garanției",
+                  "measure": 15,
+                  "unit": {
+                    "id": "359",
+                    "name": "ziua",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-tenderer-1-6",
+                  "notes": "Forma de garanţie de bună executare a contractului",
+                  "measure": 25
+                }
+              ]
+            },
+            {
+              "id": "cc-tenderer-2",
+              "title": "Termeni",
+              "description": "Condiții contractuale care reglementează responsabilitățile generale legate de EO în ceea ce privește calendarul",
+              "observations": [
+                {
+                  "id": "cc-tenderer-2-1",
+                  "notes": "Nr. de zile după care se consideră refuz de a vinde Bunurile/Serviciile/Lucrările contractate",
+                  "measure": 9,
+                  "unit": {
+                    "id": "359",
+                    "name": "ziua",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-tenderer-2-2",
+                  "notes": "Perioada de garanţie pentru lucrările executate (luni)",
+                  "measure": 5,
+                  "unit": {
+                    "id": "362",
+                    "name": "lună",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-tenderer-2-3",
+                  "notes": "Nr. max. de zile de la semnarea şi înregistrarea contractului când vor începe lucrările",
+                  "measure": 4,
+                  "unit": {
+                    "id": "359",
+                    "name": "ziua",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-tenderer-2-4",
+                  "notes": "Durata de executare a lucrărilor contractate",
+                  "measure": 5,
+                  "unit": {
+                    "id": "359",
+                    "name": "ziua",
+                    "scheme": "MD-CUMC"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "cc-tenderer-3",
+              "title": "Răspundere",
+              "description": "Condiții contractuale care reglementează responsabilitățile generale legate de furnizor în ceea ce privește răspunderea",
+              "observations": [
+                {
+                  "id": "cc-tenderer-3-1",
+                  "notes": "% max. a penalității pentru refuzul executării contractului",
+                  "measure": 5,
+                  "unit": {
+                    "id": "743",
+                    "name": "procent",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-tenderer-3-2",
+                  "notes": "% de răspundere materială pentru executarea cu întârziere a lucrărilor",
+                  "measure": 5,
+                  "unit": {
+                    "id": "743",
+                    "name": "procent",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-tenderer-3-3",
+                  "notes": "% răspundere materială maximă pentru executarea cu întârziere a lucrărilor",
+                  "measure": 5,
+                  "unit": {
+                    "id": "743",
+                    "name": "procent",
+                    "scheme": "MD-CUMC"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "cc-buyer-1",
+              "title": "Termeni",
+              "description": "Condiții contractuale care reglementează responsabilitățile generale legate de entitatea contractantă în ceea ce privește calendarul",
+              "observations": [
+                {
+                  "id": "cc-buyer-1-1",
+                  "notes": "Termenul maxim de neonorare a plăților scadente de Beneficiar (luni)",
+                  "measure": 5,
+                  "unit": {
+                    "id": "362",
+                    "name": "lună",
+                    "scheme": "MD-CUMC"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "cc-buyer-2",
+              "title": "Răspundere",
+              "description": "Condiții contractuale care reglementează responsabilitățile generale legate de entitatea contractantă privind răspunderea",
+              "observations": [
+                {
+                  "id": "cc-buyer-2-1",
+                  "notes": "% de răspundere materială a Beneficiarului in caz de achitare cu întârziere",
+                  "measure": 5,
+                  "unit": {
+                    "id": "743",
+                    "name": "procent",
+                    "scheme": "MD-CUMC"
+                  }
+                },
+                {
+                  "id": "cc-buyer-2-2",
+                  "notes": "% răspundere materială maximă a Beneficiarului in caz de achitare cu întârziere",
+                  "measure": 5,
+                  "unit": {
+                    "id": "743",
+                    "name": "procent",
+                    "scheme": "MD-CUMC"
+                  }
+                }
+              ]
+            }
+          ],
+          "milestones": [
+            {
+              "id": "x_warranty-MD-IDNO-f13-de33b520-ee5d-11e8-b298-2907ceb0d463",
+              "title": "title",
+              "description": "description",
+              "type": "x_warranty",
+              "status": "scheduled",
+              "relatedItems": [
+                "f0081840-ec19-11e8-9cb9-6bf876bfa65b"
+              ],
+              "additionalInformation": "дополнительная ифнормация",
+              "dueDate": "2018-11-25T00:00:00Z",
+              "relatedParties": [
+                {
+                  "id": "MD-IDNO-f13",
+                  "name": "name"
+                }
+              ]
+            }
+          ],
+          "confirmationRequests": [
+            {
+              "id": "cs-tenderer-confirmation-on-a58b5e64-e338-4b20-a2c1-3650b220489c-1542127310613",
+              "type": "digitalSignature",
+              "title": "Document signing",
+              "description": "Supplier has to sign the transferred document",
+              "relatesTo": "document",
+              "relatedItem": "a58b5e64-e338-4b20-a2c1-3650b220489c-1542127310613",
+              "source": "tenderer",
+              "requestGroups": [
+                {
+                  "id": "cs-tenderer-confirmation-on-a58b5e64-e338-4b20-a2c1-3650b220489c-1542127310613-MD-IDNO-f13",
+                  "requests": [
+                    {
+                      "id": "cs-tenderer-confirmation-on-a58b5e64-e338-4b20-a2c1-3650b220489c-1542127310613-95-78-52",
+                      "title": "parties[role:supplier].persones[role:authority].qwerty",
+                      "description": "Defined person has to sign the transferred document",
+                      "relatedPerson": {
+                        "id": "95-78-52",
+                        "name": "qwerty"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parties": [
+        {
+          "id": "MD-IDNO-MD_00_DM",
+          "name": "BUYER",
+          "identifier": {
+            "scheme": "MD-IDNO",
+            "id": "MD_00_DM",
+            "legalName": "string"
+          },
+          "address": {
+            "streetAddress": "ukukyo777uk",
+            "addressDetails": {
+              "country": {
+                "scheme": "iso-alpha2",
+                "id": "MD",
+                "description": "MOLDOVA",
+                "uri": "http://reference.iatistandard.org"
+              },
+              "region": {
+                "scheme": "CUATM",
+                "id": "1700000",
+                "description": "Cahul",
+                "uri": "http://statistica.md"
+              },
+              "locality": {
+                "scheme": "CUATM",
+                "id": "1701000",
+                "description": "mun.Cahul",
+                "uri": "http://statistica.md"
+              }
+            }
+          },
+          "additionalIdentifiers": [
+            {
+              "scheme": "MD-IDNO",
+              "id": "MD_00_DM",
+              "legalName": "LN",
+              "uri": "uri"
+            }
+          ],
+          "contactPoint": {
+            "name": "CPName",
+            "email": "string@mail.ru",
+            "telephone": "string"
+          },
+          "details": {
+            "typeOfBuyer": "BODY_PUBLIC",
+            "mainGeneralActivity": "HOUSING_AND_COMMUNITY_AMENITIES",
+            "mainSectoralActivity": "RAILWAY_SERVICES",
+            "gpaProfile": {
+              "gpaAnnex": {
+                "id": "654123",
+                "legalName": "LNN",
+                "uri": "https://e-gpa.wto.org/en/Appendix/Details?Agreement=GPA113&amp;Party=Moldova"
+              },
+              "gpaOrganizationType": {
+                "id": "as-85as5",
+                "legalName": "NMNM",
+                "uri": "uri*"
+              },
+              "gpaThresholds": [
+                {
+                  "mainProcurementCategory": "works",
+                  "value": {
+                    "amount": 100.00,
+                    "currency": "MDL"
+                  }
+                }
+              ]
+            },
+            "bankAccounts": [
+              {
+                "description": "32dfgv",
+                "bankName": "MBank",
+                "address": {
+                  "streetAddress": "address of pe",
+                  "addressDetails": {
+                    "country": {
+                      "id": "MD"
+                    },
+                    "region": {
+                      "id": "0101000"
+                    },
+                    "locality": {
+                      "scheme": "CUATM",
+                      "id": "0101000",
+                      "description": "DESCRIPTION"
+                    }
+                  }
+                },
+                "identifier": {
+                  "id": "300711",
+                  "scheme": "MD-BANKS"
+                },
+                "accountIdentification": {
+                  "id": "2600000625637",
+                  "scheme": "MD-IBAN"
+                },
+                "additionalAccountIdentifiers": [
+                  {
+                    "id": "456654",
+                    "scheme": "MD-SETTLEMENT"
+                  }
+                ]
+              }
+            ],
+            "legalForm": {
+              "id": "654",
+              "scheme": "MD-IDNO",
+              "description": "ddd",
+              "uri": "ddd"
+            }
+          },
+          "persones": [
+            {
+              "title": "title",
+              "name": "name",
+              "identifier": {
+                "scheme": "MD-IDNO",
+                "id": "4569123",
+                "uri": "uri"
+              },
+              "businessFunctions": [
+                {
+                  "id": "456921",
+                  "type": "authority",
+                  "jobTitle": "Chief Executive Officer",
+                  "period": {
+                    "startDate": "2018-11-20T00:00:00Z"
+                  },
+                  "documents": [
+                    {
+                      "id": "379e4907-5ab9-4db7-a669-9ffb6c12d781-1542640870786",
+                      "documentType": "regulatoryDocument",
+                      "url": "http://dev.bpe.eprocurement.systems/api/v1/storage/get/379e4907-5ab9-4db7-a669-9ffb6c12d781-1542640870786"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "roles": [
+            "buyer"
+          ]
+        },
+        {
+          "id": "MD-IDNO-f13",
+          "name": "name",
+          "identifier": {
+            "scheme": "MD-IDNO",
+            "id": "f13",
+            "legalName": "jj"
+          },
+          "address": {
+            "streetAddress": "hjk",
+            "addressDetails": {
+              "country": {
+                "scheme": "iso-alpha2",
+                "id": "MD",
+                "description": "MOLDOVA",
+                "uri": "http://reference.iatistandard.org"
+              },
+              "region": {
+                "scheme": "CUATM",
+                "id": "0101000",
+                "description": "mun.Chişinău",
+                "uri": "http://statistica.md"
+              },
+              "locality": {
+                "scheme": "uu",
+                "id": "321",
+                "description": "u"
+              }
+            }
+          },
+          "additionalIdentifiers": [
+            {
+              "scheme": "MD-IDNO",
+              "id": "f13",
+              "legalName": "Legal Name",
+              "uri": "URI"
+            }
+          ],
+          "contactPoint": {
+            "name": "u",
+            "email": "u",
+            "telephone": "u"
+          },
+          "details": {
+            "typeOfSupplier": "type changed",
+            "mainEconomicActivity": [
+              "456-00-changed"
+            ],
+            "permits": [
+              {
+                "id": "4569512354785220000",
+                "scheme": "MD-MD",
+                "url": "4",
+                "permit": {
+                  "issuedBy": {
+                    "id": "changed",
+                    "name": "vasia changed pupkin"
+                  },
+                  "issuedThought": {
+                    "id": "fgfgfgfg",
+                    "name": "changed"
+                  },
+                  "validityPeriod": {
+                    "startDate": "2018-12-05T00:00:00Z",
+                    "endDate": "2018-12-04T00:00:00Z"
+                  }
+                }
+              }
+            ],
+            "bankAccounts": [
+              {
+                "description": "description",
+                "bankName": "bankName",
+                "address": {
+                  "streetAddress": "Steet",
+                  "postalCode": "5",
+                  "addressDetails": {
+                    "country": {
+                      "id": "MD"
+                    },
+                    "region": {
+                      "id": "0301000"
+                    },
+                    "locality": {
+                      "scheme": "CUATM",
+                      "id": "0301000",
+                      "description": ""
+                    }
+                  }
+                },
+                "identifier": {
+                  "id": "300711",
+                  "scheme": "UA-MFO"
+                },
+                "accountIdentification": {
+                  "id": "2600000625637",
+                  "scheme": "IBAN"
+                },
+                "additionalAccountIdentifiers": [
+                  {
+                    "id": "458-9652",
+                    "scheme": "settlement"
+                  }
+                ]
+              }
+            ],
+            "legalForm": {
+              "id": "4592",
+              "scheme": "MD-IDNO",
+              "description": "description",
+              "uri": "uri"
+            },
+            "scale": "large"
+          },
+          "persones": [
+            {
+              "title": "sss",
+              "name": "qwerty",
+              "identifier": {
+                "scheme": "MD-IDNO",
+                "id": "95-78-52",
+                "uri": "URL*"
+              },
+              "businessFunctions": [
+                {
+                  "id": "456951",
+                  "type": "authority",
+                  "jobTitle": "Chief",
+                  "period": {
+                    "startDate": "2018-12-14T00:00:00Z"
+                  },
+                  "documents": [
+                    {
+                      "id": "44530212-7820-4f13-81cd-213ddf4c16d3-1542825585923",
+                      "documentType": "regulatoryDocument",
+                      "url": "http://dev.bpe.eprocurement.systems/api/v1/storage/get/44530212-7820-4f13-81cd-213ddf4c16d3-1542825585923",
+                      "datePublished": "2018-11-21T18:40:09Z"
+                    }
+                  ]
+                },
+                {
+                  "id": "qwerty",
+                  "type": "authority",
+                  "jobTitle": "Chief",
+                  "period": {
+                    "startDate": "2018-12-15T00:00:00Z"
+                  },
+                  "documents": [
+                    {
+                      "id": "42277d77-00b1-420e-a1a1-5fcb8128ff28-1542891858528",
+                      "documentType": "regulatoryDocument",
+                      "url": "http://dev.bpe.eprocurement.systems/api/v1/storage/get/42277d77-00b1-420e-a1a1-5fcb8128ff28-1542891858528",
+                      "datePublished": "2018-11-22T13:04:42Z"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "roles": [
+            "payee",
+            "supplier"
+          ]
+        },
+        {
+          "id": "MD-IDNO-7787-9898-88-aeuyi",
+          "name": "NAMEP000E2 (edited)",
+          "identifier": {
+            "scheme": "MD-IDNO",
+            "id": "7787-9898-88-aeuyi",
+            "legalName": "LN"
+          },
+          "address": {
+            "streetAddress": "street",
+            "addressDetails": {
+              "country": {
+                "scheme": "iso-alpha2",
+                "id": "MD",
+                "description": "MOLDOVA",
+                "uri": "http://reference.iatistandard.org"
+              },
+              "region": {
+                "scheme": "CUATM",
+                "id": "3400000",
+                "description": "Donduşeni",
+                "uri": "http://statistica.md"
+              },
+              "locality": {
+                "scheme": "CUATM",
+                "id": "3401000",
+                "description": "or.Donduşeni (r-l Donduşeni)",
+                "uri": "http://statistica.md"
+              }
+            }
+          },
+          "contactPoint": {
+            "name": "NAME of contact person (EDITED)",
+            "email": "string@mail.ccc",
+            "telephone": "987987"
+          },
+          "roles": [
+            "payer"
+          ]
+        },
+        {
+          "id": "MD-IDNO-1ghj",
+          "name": "NAME of FS buyer",
+          "identifier": {
+            "scheme": "MD-IDNO",
+            "id": "1ghj",
+            "legalName": "1",
+            "uri": "1"
+          },
+          "address": {
+            "streetAddress": "street",
+            "addressDetails": {
+              "country": {
+                "scheme": "iso-alpha2",
+                "id": "MD",
+                "description": "MOLDOVA",
+                "uri": "http://reference.iatistandard.org"
+              },
+              "region": {
+                "scheme": "CUATM",
+                "id": "3400000",
+                "description": "Donduşeni",
+                "uri": "http://statistica.md"
+              },
+              "locality": {
+                "scheme": "CUATM",
+                "id": "3401000",
+                "description": "or.Donduşeni (r-l Donduşeni)",
+                "uri": "http://statistica.md"
+              }
+            }
+          },
+          "roles": [
+            "funder"
+          ]
+        }
+      ],
+      "relatedProcesses": [
+        {
+          "id": "1936e426-ec1b-11e8-8a71-e1320cb9dabd",
+          "relationship": [
+            "x_evaluation"
+          ],
+          "scheme": "ocid",
+          "identifier": "ocds-t1s2t3-MD-1542645678020-EV-1542645678102",
+          "uri": "http://dev.public.eprocurement.systems/tenders/ocds-t1s2t3-MD-1542645678020/ocds-t1s2t3-MD-1542645678020-EV-1542645678102"
+        },
+        {
+          "id": "1936e424-ec1b-11e8-8a71-e1320cb9dabd",
+          "relationship": [
+            "parent"
+          ],
+          "scheme": "ocid",
+          "identifier": "ocds-t1s2t3-MD-1542645678020",
+          "uri": "http://dev.public.eprocurement.systems/tenders/ocds-t1s2t3-MD-1542645678020/ocds-t1s2t3-MD-1542645678020"
+        }
+      ]
+    }
+  ]
+}
