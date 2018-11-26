@@ -3,7 +3,9 @@ package com.procurement.formsservice.model.ac
 class ACUpdateContext (
     val parameters: Parameters,
     val buyer: Buyer,
-    val supplier: Supplier
+    val supplier: Supplier,
+    val itemUris: ItemUris,
+    val currency: String // AC.planning.budget.budgetSource[0].currency
 ) {
     data class Parameters (
         val ocid: String, // ocds-t1s2t3-MD-1532010121824-AC-1532010122650
@@ -47,5 +49,11 @@ class ACUpdateContext (
             val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
         )
     }
+
+    data class ItemUris(
+            val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
+            val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
+            val locality: String // /locality?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id&region=$region$
+    )
 }
 

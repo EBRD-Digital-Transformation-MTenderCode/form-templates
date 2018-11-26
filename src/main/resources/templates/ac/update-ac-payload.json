@@ -16,24 +16,24 @@
         }
       ]
     },
-    "budget": {
-      "description": "",
-      "budgetAllocation": [
+    "+budget": {
+      "+description": "",
+      "+budgetAllocation": [
         {
-          "budgetBreakdownID": "",
-          "period": {
-            "startDate": "",
-            "endDate": ""
+          "+budgetBreakdownID": "",
+          "+period": {
+            "+startDate": "",
+            "+endDate": ""
           },
-          "amount": 0,
-          "relatedItem": ""
+          "+amount": 0,
+          "+relatedItem": ""
         }
       ],
-      "budgetSource": [
+      "+budgetSource": [
         {
-          "budgetBreakdownID": "",
-          "amount": 0,
-          "currency": ""
+          "+budgetBreakdownID": "",
+          "+amount": 0,
+          "+currency": ""
         }
       ]
     }
@@ -65,27 +65,27 @@
         "description": ""
       }
     ],
-    "--confirmationRequests": [
+    "+--confirmationRequests": [
       {
-        "id": "cs-tenderer-confirmation-on-document.id",
-        "relatedItem": "document.id",
-        "source": "tenderer"
+        "+id": "cs-tenderer-confirmation-on-document.id",
+        "+relatedItem": "document.id",
+        "+source": "tenderer"
       }
     ],
-    "agreedMetrics": [
+    "+agreedMetrics": [
       {
-        "id": "cc-general",
-        "observations": [
+        "+id": "cc-general",
+        "+observations": [
           {
-            "id": "cc-general-1-1",
-            "measure": 5
+            "+id": "cc-general-1-1",
+            "+measure": 5
           }
         ]
       }
     ]
   },
-  "award": {
-    "id": "",
+  "+award": {
+    "+id": "",
     "+suppliers": [
       {
         "+id": "",
@@ -94,7 +94,7 @@
             "+scheme": "MD-SRJE",
             "+id": "",
             "+legalName": "",
-            "+uri": ""
+            "+--uri": ""
           }
         ],
         "+persones": [
@@ -204,47 +204,47 @@
         }
       }
     ],
-    "documents": [
+    "+documents": [
       {
-        "documentType": "",
-        "id": "",
-        "--title": "",
-        "--description": "",
-        "--relatedLots":[""]
+        "+documentType": "",
+        "+id": "",
+        "+--title": "",
+        "+--description": "",
+        "+--relatedLots":[""]
       }
     ],
-    "value": {
-      "amount": 0,
-      "currency": "",
-      "amountNet": 0,
-      "valueAddedTaxIncluded": true
+    "+value": {
+      "+amount": 0,
+      "+currency": "",
+      "+amountNet": 0,
+      "+valueAddedTaxIncluded": true
     },
-    "items": [
+    "+items": [
       {
-        "id": "",
-        "quantity": 0,
-        "unit": {
-          "value": {
-            "amount": 0,
-            "amountNet": 0,
-            "valueAddedTaxIncluded": true,
-            "currency": ""
+        "+id": "",
+        "+quantity": 0,
+        "+unit": {
+          "+value": {
+            "+amount": 0,
+            "+amountNet": 0,
+            "+valueAddedTaxIncluded": true,
+            "+currency": ""
           }
         },
-        "deliveryAddress": {
-          "streetAddress": "",
-          "postalCode": "",
-          "addressDetails": {
-            "country": {
-              "id": "UA"
+        "+deliveryAddress": {
+          "+streetAddress": "",
+          "+postalCode": "",
+          "+addressDetails": {
+            "+country": {
+              "+id": "UA"
             },
-            "region": {
-              "id": "UA-12"
+            "+region": {
+              "+id": "UA-12"
             },
-            "locality": {
-              "scheme": "UN/LOCDE",
-              "id": "UA-DNP",
-              "description": "Dnipro"
+            "+locality": {
+              "+scheme": "UN/LOCDE",
+              "+id": "UA-DNP",
+              "+description": "Dnipro"
             }
           }
         }
@@ -258,7 +258,7 @@
         "+scheme": "MD-SRJE",
         "+id": "",
         "+legalName": "",
-        "+uri": ""
+        "+--uri": ""
       }
     ],
     "+persones": [

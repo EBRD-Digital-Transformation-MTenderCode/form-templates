@@ -41,6 +41,7 @@
         "documents": {
           "title": "Attachments and documents of Contract",
           "type": "array",
+          "minItems": 1,
           "items": {
             "type": "object",
             "required": [
@@ -85,6 +86,430 @@
                   "type": "string",
                   "default": "{{ context.parameters.lotId }}",
                   "ocds": "contract::object/documents::array[object]/relatedLots::array[string]"
+                }
+              },
+              "mustConfirmationRequests": {
+                "title": " Signatories required",
+                "type": "boolean",
+                "default": false
+              }
+            },
+            "dependencies": {
+              "mustConfirmationRequests": {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "mustConfirmationRequests": {
+                        "enum": [
+                          true
+                        ]
+                      },
+                      "confirmationRequests": {
+                        "type": "object",
+                        "required": [
+                          "id",
+                          "relatedItem",
+                          "source"
+                        ],
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "ocds": "contract::object/confirmationRequests::array[object]/id::string"
+                          },
+                          "relatedItem": {
+                            "type": "string",
+                            "ocds": "contract::object/confirmationRequests::array[object]/relatedItem::string"
+                          },
+                          "source": {
+                            "type": "string",
+                            "enum": [
+                              "buyer",
+                              "tenderer"
+                            ],
+                            "enumNames": [
+                              "buyer",
+                              "tenderer"
+                            ],
+                            "ocds": "contract::object/confirmationRequests::array[object]/source::string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "mustConfirmationRequests": {
+                        "enum": [
+                          false
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "award": {
+      "title": "",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "ocds": "award::object/id::string"
+        },
+        "items": {
+          "title": "",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "ocds": "award::object/items::array[object]/id::string"
+              },
+              "quantity": {
+                "title": "",
+                "type": "number",
+                "ocds": "award::object/items::array[object]/quantity::number"
+              },
+              "value": {
+                "title": "",
+                "type": "object",
+                "required": [
+                  "amount",
+                  "amountNet",
+                  "valueAddedTaxIncluded",
+                  "currency"
+                ],
+                "properties": {
+                  "amount": {
+                    "title": "",
+                    "type": "number",
+                    "ocds": "award::object/items::array[object]/unit::object/value::object/amount::number"
+                  },
+                  "amountNet": {
+                    "title": "",
+                    "type": "number",
+                    "ocds": "award::object/items::array[object]/unit::object/value::object/amountNet::number"
+                  },
+                  "valueAddedTaxIncluded": {
+                    "title": "",
+                    "type": "boolean",
+                    "ocds": "award::object/items::array[object]/unit::object/value::object/valueAddedTaxIncluded::boolean"
+                  },
+                  "currency": {
+                    "title": "",
+                    "type": "string",
+                    "default": "{{ context.currency }}",
+                    "readOnly": true,
+                    "ocds": "award::object/items::array[object]/unit::object/value::object/currency::string"
+                  }
+                }
+              },
+              "deliveryAddress": {
+                "title": "Address for delivery",
+                "type": "object",
+                "properties": {
+                  "location": {
+                    "title": "Location",
+                    "type": "object",
+                    "properties": {
+                      "country": {
+                        "title": "Country",
+                        "type": "object",
+                        "source": "{{ context.itemUris.country }}",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "ocds": "award::object/items::array[object]/deliveryAddress::object/addressDetails::object/country::object/id::string"
+                          },
+                          "description": {
+                            "type": "string",
+                            "ocds": "award::object/items::array[object]/deliveryAddress::object/addressDetails::object/country::object/description::string"
+                          }
+                        }
+                      },
+                      "region": {
+                        "title": "Region",
+                        "type": "object",
+                        "source": "{{ context.itemUris.region }}",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "ocds": "award::object/items::array[object]/deliveryAddress::object/addressDetails::object/region::object/id::string"
+                          },
+                          "description": {
+                            "type": "string",
+                            "ocds": "award::object/items::array[object]/deliveryAddress::object/addressDetails::object/region::object/description::string"
+                          }
+                        }
+                      },
+                      "locality": {
+                        "type": "object",
+                        "properties": {
+                          "localityType": {
+                            "title": "Specify town/locality",
+                            "type": "string",
+                            "enum": [
+                              "from standarized list",
+                              "by manual input"
+                            ]
+                          }
+                        },
+                        "dependencies": {
+                          "localityType": {
+                            "oneOf": [
+                              {
+                                "properties": {
+                                  "localityType": {
+                                    "enum": [
+                                      "from standarized list"
+                                    ]
+                                  },
+                                  "directory": {
+                                    "type": "object",
+                                    "properties": {
+                                      "locality": {
+                                        "title": "Town/Locality",
+                                        "type": "object",
+                                        "source": "{{ context.itemUris.locality }}",
+                                        "dependentFields": {
+                                          "region": "award.items[itemIndex].deliveryAddress.location.region.id"
+                                        },
+                                        "properties": {
+                                          "scheme": {
+                                            "type": "string",
+                                            "const": "CUATM",
+                                            "ocds": "award::object/items::array[object]/deliveryAddress::object/addressDetails::object/locality::object/scheme::string"
+                                          },
+                                          "id": {
+                                            "type": "string",
+                                            "ocds": "award::object/items::array[object]/deliveryAddress::object/addressDetails::object/locality::object/id::string"
+                                          },
+                                          "description": {
+                                            "type": "string",
+                                            "ocds": "award::object/items::array[object]/deliveryAddress::object/addressDetails::object/locality::object/description::string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              {
+                                "properties": {
+                                  "localityType": {
+                                    "enum": [
+                                      "by manual input"
+                                    ]
+                                  },
+                                  "manual": {
+                                    "type": "object",
+                                    "properties": {
+                                      "locality": {
+                                        "title": "Town/Locality",
+                                        "type": "object",
+                                        "properties": {
+                                          "scheme": {
+                                            "type": "string",
+                                            "const": "other",
+                                            "ocds": "award::object/items::array[object]/deliveryAddress::object/addressDetails::object/locality::object/scheme::string"
+                                          },
+                                          "id": {
+                                            "type": "string",
+                                            "const": "999999999",
+                                            "ocds": "award::object/items::array[object]/deliveryAddress::object/addressDetails::object/locality::object/id::string"
+                                          },
+                                          "description": {
+                                            "type": "string",
+                                            "ocds": "award::object/items::array[object]/deliveryAddress::object/addressDetails::object/locality::object/description::string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "postalAddress": {
+                    "title": "Postal Address",
+                    "type": "object",
+                    "required": [
+                      "streetAddress"
+                    ],
+                    "properties": {
+                      "streetAddress": {
+                        "title": "Street Address",
+                        "type": "string",
+                        "ocds": "award::object/items::array[object]/deliveryAddress::object/streetAddress::string"
+                      },
+                      "postalCode": {
+                        "title": "Postal Code",
+                        "type": "string",
+                        "ocds": "award::object/items::array[object]/deliveryAddress::object/postalCode::string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "value": {
+          "title": "",
+          "type": "object",
+          "required": [
+            "amount",
+            "amountNet",
+            "valueAddedTaxIncluded",
+            "currency"
+          ],
+          "properties": {
+            "amount": {
+              "title": "",
+              "type": "number",
+              "ocds": "award::object/value::object/amount::number"
+            },
+            "amountNet": {
+              "title": "",
+              "type": "number",
+              "ocds": "award::object/value::object/amountNet::number"
+            },
+            "valueAddedTaxIncluded": {
+              "title": "",
+              "type": "boolean",
+              "ocds": "award::object/value::object/valueAddedTaxIncluded::boolean"
+            },
+            "currency": {
+              "title": "",
+              "type": "string",
+              "default": "{{ context.currency }}",
+              "readOnly": true,
+              "ocds": "award::object/value::object/currency::string"
+            }
+          }
+        },
+        "documents": {
+          "title": "",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "documentId",
+              "documentType"
+            ],
+            "properties": {
+              "file": {
+                "title": "Select file",
+                "readOnly": true,
+                "type": "string"
+              },
+              "documentId": {
+                "type": "string",
+                "readOnly": true,
+                "ocds": "award::object/documents::array[object]/id::string"
+              },
+              "title": {
+                "title": "Document title",
+                "type": "string",
+                "readOnly": true,
+                "ocds": "award::object/documents::array[object]/title::string"
+              },
+              "description": {
+                "title": "Brief description for this document",
+                "type": "string",
+                "readOnly": true,
+                "ocds": "award::object/documents::array[object]/description::string"
+              },
+              "documentType": {
+                "title": "Document type",
+                "type": "string",
+                "readOnly": true,
+                "enum": [
+                  ""
+                ],
+                "enumNames": [
+                  ""
+                ],
+                "ocds": "award::object/documents::array[object]/documentType::string"
+              },
+              "relatedLots": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 1,
+                "items": {
+                  "type": "string",
+                  "default": "{{ context.parameters.lotId }}",
+                  "readOnly": true,
+                  "ocds": "award::object/documents::array[object]/relatedLots::array[string]"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "terms": {
+      "title": "Sensitive Terms of Contract",
+      "type": "array",
+      "minItem": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "title": "",
+            "type": "string",
+            "readOnly": true,
+            "ocds": "contract::object/agreedMetrics::array[object]/id::string"
+          },
+          "title": {
+            "title": "",
+            "type": "sting",
+            "readOnly": true
+          },
+          "description": {
+            "title": "",
+            "type": "sting",
+            "readOnly": true
+          },
+          "observations": {
+            "title": "",
+            "type": "array",
+            "minItem": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "title": "",
+                  "type": "string",
+                  "readOnly": true,
+                  "ocds": "contract::object/agreedMetrics::array[object]/observations::array[object]/id::string"
+                },
+                "notes": {
+                  "title": "",
+                  "readOnly": true,
+                  "type": "string"
+                },
+                "measure": {
+                  "title": "",
+                  "type": "string",
+                  "ocds": "contract::object/agreedMetrics::array[object]/observations::array[object]/measure::string"
                 }
               }
             }
@@ -274,7 +699,8 @@
                 },
                 "id": {
                   "title": "Identifier",
-                  "type": "string"
+                  "type": "string",
+                  "readOnly": true
                 }
               }
             },
@@ -293,7 +719,7 @@
                   "scheme": {
                     "title": "Additional Register",
                     "type": "string",
-                    "source": "{{ context.buyer.uris.registrationScheme }}",
+                    "default": "MD-SRJE",
                     "ocds": "buyer::object/additionalIdentifiers::array[object]/scheme::string"
                   },
                   "id": {
@@ -483,12 +909,10 @@
                                 "properties": {
                                   "id": {
                                     "type": "string",
-                                    "readOnly": true,
                                     "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/country::object/id::string"
                                   },
                                   "description": {
                                     "type": "string",
-                                    "readOnly": true,
                                     "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/country::object/description::string"
                                   }
                                 }
@@ -655,7 +1079,7 @@
                           "scheme": {
                             "title": "{{ translate("ac", "buyer.details.bankAccounts.identifier.scheme.title") }}",
                             "type": "string",
-                            "source": "{{ context.buyer.bankAccountUris.registrationScheme }}",
+                            "default": "MD-BANKS",
                             "ocds": "buyer::object/details::object/bankAccounts::array[object]/identifier::object/scheme::string"
                           },
                           "id": {
@@ -676,7 +1100,7 @@
                           "scheme": {
                             "title": "{{ translate("ac", "buyer.details.bankAccounts.accountIdentification.scheme.title") }}",
                             "type": "string",
-                            "source": "{{ context.buyer.bankAccountUris.registrationScheme }}",
+                            "default": "MD-IBAN",
                             "ocds": "buyer::object/details::object/bankAccounts::array[object]/accountIdentification::object/scheme::string"
                           },
                           "id": {
@@ -719,12 +1143,14 @@
                   "required": [
                     "scheme",
                     "id",
-                    "description"
+                    "description",
+                    "uri"
                   ],
                   "properties": {
                     "scheme": {
                       "title": "",
                       "type": "string",
+                      "default": "MD-CFOJ",
                       "ocds": "buyer::object/details::object/legalForm::object/scheme::string"
                     },
                     "id": {
@@ -740,6 +1166,7 @@
                     "uri": {
                       "title": "",
                       "type": "string",
+                      "default": "http://www.statistica.md/public/files/Clasificatoare/cfoj.zip",
                       "ocds": "buyer::object/details::object/legalForm::object/uri::string"
                     }
                   }
@@ -771,12 +1198,14 @@
                     "type": "object",
                     "required": [
                       "scheme",
-                      "id"
+                      "id",
+                      "uri"
                     ],
                     "properties": {
                       "scheme": {
                         "title": "Identification Schema",
                         "type": "string",
+                        "default": "MD-IDNP",
                         "ocds": "buyer::object/persones::array[object]/identifier::object/scheme::string"
                       },
                       "id": {
@@ -787,6 +1216,7 @@
                       "uri": {
                         "title": "URI",
                         "type": "string",
+                        "default": "http://e-services.md/?q=ru/verifica-idnp",
                         "ocds": "buyer::object/persones::array[object]/identifier::object/uri::string"
                       }
                     }
@@ -810,6 +1240,7 @@
                         "type": {
                           "title": "",
                           "type": "string",
+                          "default": "authority",
                           "ocds": "buyer::object/persones::array[object]/businessFunctions::array[object]/type::string"
                         },
                         "jobTitle": {
@@ -855,10 +1286,10 @@
                                 "title": "Document type",
                                 "type": "string",
                                 "enum": [
-
+                                  "regulatoryDocument"
                                 ],
                                 "enumNames": [
-
+                                  "regulatoryDocument"
                                 ],
                                 "ocds": "buyer::object/persones::array[object]/businessFunctions::array[object]/documents::array[object]/documentType::string"
                               }
@@ -1053,7 +1484,8 @@
                   },
                   "id": {
                     "title": "Identifier",
-                    "type": "string"
+                    "type": "string",
+                    "readOnly": true
                   }
                 }
               },
@@ -1072,7 +1504,7 @@
                     "scheme": {
                       "title": "Additional Register",
                       "type": "string",
-                      "source": "{{ context.supplier.uris.registrationScheme }}",
+                      "default": "MD-SRJE",
                       "ocds": "award::object/suppliers::array[object]/additionalIdentifiers::array[object]/scheme::string"
                     },
                     "id": {
@@ -1148,10 +1580,10 @@
                     "title": "{{ translate("ac", "suppliers.details.typeOfSupplier.title") }}",
                     "type": "string",
                     "enum": [
-
+                      "company"
                     ],
                     "enumNames": [
-
+                      "company"
                     ],
                     "ocds": "award::object/suppliers::array[object]/details::object/typeOfBuyer::string"
                   },
@@ -1186,12 +1618,17 @@
                       "type": "object",
                       "required": [
                         "scheme",
-                        "id"
+                        "id",
+                        "url"
                       ],
                       "properties": {
                         "scheme": {
                           "title": "",
                           "type": "string",
+                          "enum": [
+                            "SRLE",
+                            "SRL"
+                          ],
                           "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/scheme::string"
                         },
                         "id": {
@@ -1311,12 +1748,10 @@
                                   "properties": {
                                     "id": {
                                       "type": "string",
-                                      "readOnly": true,
                                       "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/country::object/id::string"
                                     },
                                     "description": {
                                       "type": "string",
-                                      "readOnly": true,
                                       "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/country::object/description::string"
                                     }
                                   }
@@ -1483,7 +1918,7 @@
                             "scheme": {
                               "title": "{{ translate("ac", "suppliers.details.bankAccounts.identifier.scheme.title") }}",
                               "type": "string",
-                              "source": "{{ context.supplier.bankAccountUris.registrationScheme }}",
+                              "default": "MD-BANKS",
                               "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/identifier::object/scheme::string"
                             },
                             "id": {
@@ -1504,7 +1939,7 @@
                             "scheme": {
                               "title": "{{ translate("ac", "suppliers.details.bankAccounts.accountIdentification.scheme.title") }}",
                               "type": "string",
-                              "source": "{{ context.supplier.bankAccountUris.registrationScheme }}",
+                              "default": "MD-IBAN",
                               "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/accountIdentification::object/scheme::string"
                             },
                             "id": {
@@ -1547,12 +1982,14 @@
                     "required": [
                       "scheme",
                       "id",
-                      "description"
+                      "description",
+                      "uri"
                     ],
                     "properties": {
                       "scheme": {
                         "title": "",
                         "type": "string",
+                        "default": "MD-CFOJ",
                         "ocds": "award::object/suppliers::array[object]/details::object/legalForm::object/scheme::string"
                       },
                       "id": {
@@ -1568,6 +2005,7 @@
                       "uri": {
                         "title": "",
                         "type": "string",
+                        "default": "http://www.statistica.md/public/files/Clasificatoare/cfoj.zip",
                         "ocds": "award::object/suppliers::array[object]/details::object/legalForm::object/uri::string"
                       }
                     }
@@ -1599,12 +2037,14 @@
                       "type": "object",
                       "required": [
                         "scheme",
-                        "id"
+                        "id",
+                        "uri"
                       ],
                       "properties": {
                         "scheme": {
                           "title": "Identification Schema",
                           "type": "string",
+                          "default": "MD-IDNP",
                           "ocds": "award::object/suppliers::array[object]/persones::array[object]/identifier::object/scheme::string"
                         },
                         "id": {
@@ -1615,6 +2055,7 @@
                         "uri": {
                           "title": "URI",
                           "type": "string",
+                          "default": "http://e-services.md/?q=ru/verifica-idnp",
                           "ocds": "award::object/suppliers::array[object]/persones::array[object]/identifier::object/uri::string"
                         }
                       }
@@ -1638,6 +2079,7 @@
                           "type": {
                             "title": "",
                             "type": "string",
+                            "default": "authority",
                             "ocds": "award::object/suppliers::array[object]/persones::array[object]/businessFunctions::array[object]/type::string"
                           },
                           "jobTitle": {
@@ -1683,10 +2125,10 @@
                                   "title": "Document type",
                                   "type": "string",
                                   "enum": [
-
+                                    "regulatoryDocument"
                                   ],
                                   "enumNames": [
-
+                                    "regulatoryDocument"
                                   ],
                                   "ocds": "award::object/suppliers::array[object]/persones::array[object]/businessFunctions::array[object]/documents::array[object]/documentType::string"
                                 }
@@ -1696,6 +2138,106 @@
                         }
                       }
                     }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "planning": {
+      "title": "",
+      "type": "object",
+      "properties": {
+        "budget": {
+          "title": "Contract Budget",
+          "type": "object",
+          "required": [
+            "description"
+          ],
+          "properties": {
+            "description": {
+              "title": "",
+              "type": "string",
+              "ocds": "planning::object/budget::object/description::string"
+            },
+            "budgetAllocation": {
+              "title": "",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "budgetBreakdownId",
+                  "amount",
+                  "relatedItem"
+                ],
+                "properties": {
+                  "budgetBreakdownId": {
+                    "title": "",
+                    "type": "string",
+                    "ocds": "planning::object/budget::object/budgetAllocation::array[object]/budgetBreakdownID::string"
+                  },
+                  "period": {
+                    "title": "",
+                    "type": "object",
+                    "required": [
+                      "startDate",
+                      "endDate"
+                    ],
+                    "properties": {
+                      "startDate": {
+                        "title": "",
+                        "type": "sting",
+                        "ocds": "planning::object/budget::object/budgetAllocation::array[object]/period::object/startDate::string"
+                      },
+                      "endDate": {
+                        "title": "",
+                        "type": "sting",
+                        "ocds": "planning::object/budget::object/budgetAllocation::array[object]/period::object/endDate::string"
+                      }
+                    }
+                  },
+                  "amount": {
+                    "title": "",
+                    "type": "number",
+                    "ocds": "planning::object/budget::object/budgetAllocation::array[object]/amount::number"
+                  },
+                  "relatedItem": {
+                    "title": "",
+                    "type": "string",
+                    "ocds": "planning::object/budget::object/budgetAllocation::array[object]/relatedItem::string"
+                  }
+                }
+              }
+            },
+            "budgetSource": {
+              "title": "",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "budgetBreakdownID",
+                  "amount",
+                  "currency"
+                ],
+                "properties": {
+                  "budgetBreakdownID": {
+                    "title": "",
+                    "type": "object",
+                    "ocds": "planning::object/budget::object/budgetSource::array[object]/budgetBreakdownID::string"
+                  },
+                  "amount": {
+                    "title": "",
+                    "type": "number",
+                    "ocds": "planning::object/budget::object/budgetSource::array[object]/amount::number"
+                  },
+                  "currency": {
+                    "title": "",
+                    "type": "string",
+                    "default": "{{ context.currency }}",
+                    "readOnly": true,
+                    "ocds": "planning::object/budget::object/budgetSource::array[object]/currency::string"
                   }
                 }
               }
