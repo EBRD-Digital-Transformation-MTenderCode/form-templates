@@ -1,5 +1,7 @@
 {# @pebvariable name="context" type="com.procurement.formsservice.model.ac.ACUpdateContext" #}
-{# @pebvariable name="doc" type="com.procurement.formsservice.model.ac.ACUpdateContext.Contract.Document" #}
+{# @pebvariable name="contractDoc" type="com.procurement.formsservice.model.ac.ACUpdateContext.Contract.Document" #}
+{# @pebvariable name="item" type="com.procurement.formsservice.model.ac.ACUpdateContext.Award.Item" #}
+{# @pebvariable name="awardDoc" type="com.procurement.formsservice.model.ac.ACUpdateContext.Award.Document" #}
 {
 {% import "../macros/translate" %}
 {% import "../macros/commaIf" %}
@@ -46,7 +48,6 @@
           "documents": {
             "title": "Attachments and documents of Contract",
             "type": "array",
-            "minItems": 1,
             "items": {
               "type": "object",
               "required": [
@@ -166,6 +167,7 @@
         "properties": {
           "id": {
             "type": "string",
+            "readOnly": true,
             "ocds": "award::object/id::string"
           },
           "items": {
@@ -180,6 +182,7 @@
               "properties": {
                 "id": {
                   "type": "string",
+                  "readOnly": true,
                   "ocds": "award::object/items::array[object]/id::string"
                 },
                 "quantity": {
@@ -2420,29 +2423,98 @@
       {% if context.contract.documents != null %}
         ,
         "documents": [
-          {% for doc in context.contract.documents %}
+          {% for contractDoc in context.contract.documents %}
             {% if loop.index  > 0 %},{% endif %}
             {
-              "documentId": "{{ doc.id }}",
-              "documentType": "{{ doc.type }}",
-              "relatedLots": ["{{ doc.relatedLots }}"],
-              "mustConfirmationRequests": {% if doc.confirmationRequest != null %}true{% else %}false{% endif %}
-              {% if doc.confirmationRequest != null %}
+              "documentId": "{{ contractDoc.id }}",
+              "documentType": "{{ contractDoc.type }}",
+              "relatedLots": ["{{ contractDoc.relatedLots }}"],
+              "mustConfirmationRequests": {% if contractDoc.confirmationRequest != null %}true{% else %}false{% endif %}
+              {% if contractDoc.confirmationRequest != null %}
                 ,
                 "confirmationRequests": {
-                  "id": "{{ doc.confirmationRequest.id }}",
-                  "relatedItem": "{{ doc.confirmationRequest.relatedItem }}",
-                  "source": "{{ doc.confirmationRequest.source }}"
+                  "id": "{{ contractDoc.confirmationRequest.id }}",
+                  "relatedItem": "{{ contractDoc.confirmationRequest.relatedItem }}",
+                  "source": "{{ contractDoc.confirmationRequest.source }}"
                 }
               {% endif %}
-              {{ commaIf(doc.title) }}
-              {{ stringAttributeIf(name = "title", value = doc.title) }}
-              {{ commaIf(doc.description) }}
-              {{ stringAttributeIf(name = "description", value = doc.description) }}
+              {{ commaIf(contractDoc.title) }}
+              {{ stringAttributeIf(name = "title", value = contractDoc.title) }}
+              {{ commaIf(contractDoc.description) }}
+              {{ stringAttributeIf(name = "description", value = contractDoc.description) }}
             }
           {% endfor %}
         ]
       {% endif %}
+    },
+    "award": {
+      "id": "{{ context.award.id }}",
+      "items": [
+        {% for item in context.award.items %}
+          {% if loop.index  > 0 %},{% endif %}
+          {
+            "id": "{{ item.id }}",
+            "quantity": {{ item.quantity }},
+            {% if item.value != null %}
+              "value": {
+                "amount": {{ item.value.amount }},
+                "amountNet": {{ item.value.amountNet }}
+                "valueAddedTaxIncluded": {{ item.value.valueAddedTaxIncluded }},
+                "currency": "{{ context.currency }}"
+              }
+            {% endif %}
+            "deliveryAddress": {
+              "location": {
+                "country": {
+                  "id": "{{ item.deliveryAddress.country.id }}",
+                  "description": "{{ item.deliveryAddress.country.description }}"
+                },
+                "region": {
+                  "id": "{{ item.deliveryAddress.region.id }}", 
+                  "description": "{{ item.deliveryAddress.region.description }}"
+                },
+                "locality": {
+                  "localityType": {% if item.deliveryAddress.locality.scheme == "CUATM" %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[0]") }}"{% else %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[1]") }}"{% endif %},
+                    {% if item.deliveryAddress.locality.scheme == "CUATM" %}"directory"{% else %}"manual"{% endif %}: {
+                      "locality": {
+                        "scheme": "{{ item.deliveryAddress.locality.scheme }}",
+                        "id": "{{ item.deliveryAddress.locality.id }}",
+                        "description": "{{ item.deliveryAddress.locality.description }}"
+                      }
+                    }
+                  }
+                },
+                "postalAddress": {
+                "streetAddress": "{{ item.deliveryAddress.streetAddress }}"
+                {{ commaIf(item.deliveryAddress.postalCode) }}
+                {{ stringAttributeIf(name = "postalCode", value = item.deliveryAddress.postalCode) }}
+              }
+            }
+          }
+        {% endfor %}
+      ],
+      "value": {
+        "amount": {{ context.award.value.amount }},
+        "currency": "{{ context.currency }}"
+        {{ commaIf(context.award.value.amountNet) }}
+        {{ stringAttributeIf(name = "amountNet", value = context.award.value.amountNet) }}
+        {{ commaIf(context.award.value.valueAddedTaxIncluded) }}
+        {{ stringAttributeIf(name = "valueAddedTaxIncluded", value = context.award.value.valueAddedTaxIncluded) }}
+      },
+      "documents": [
+        {% for awardDoc in context.award.documents %}
+          {% if loop.index  > 0 %},{% endif %}
+            {
+              "documentId": "{{ awardDoc.id }}",
+              "documentType": "{{ awardDoc.type }}",
+              "relatedLots": ["{{ awardDoc.relatedLots }}"],
+              {{ commaIf(awardDoc.title) }}
+              {{ stringAttributeIf(name = "title", value = awardDoc.title) }}
+              {{ commaIf(awardDoc.description) }}
+              {{ stringAttributeIf(name = "description", value = awardDoc.description) }}
+            }
+        {% endfor %}
+      ]
     }
   }
 }

@@ -4,6 +4,7 @@ class ACUpdateContext (
     val parameters: Parameters,
     val lotId: String, // AC.awards[0].relatedLots[0]
     val contract: Contract,
+    val award: Award,
     val buyer: Buyer,
     val supplier: Supplier,
     val itemUris: ItemUris,
@@ -38,6 +39,64 @@ class ACUpdateContext (
                 val source: String // AC.contracts[0].confirmationRequests[relatedItem==document.id].source
             )
         }
+    }
+
+    data class Award(
+        val id: String, // AC.awards[0].id
+        val items: List<Item>,
+        val value: Value,
+        val documents: List<Document>
+    ) {
+        data class Item(
+            val id: String, // AC.awards[0].items[*].id
+            val quantity: Double, // AC.awards[0].items[*].quantity
+            val value: Value?, // AC.awards[0].items[*].unit.value?
+            val deliveryAddress: DeliveryAddress? // AC.awards[0].items[*].deliveryAddress?
+        ) {
+            data class Value(
+                val amount: Double, // AC.awards[0].items[*].unit.value?.amount
+                val amountNet: Double, // AC.awards[0].items[*].unit.value?.amountNet
+                val valueAddedTaxIncluded: Boolean // AC.awards[0].items[*].unit.value?.valueAddedTaxIncluded
+            )
+
+            data class DeliveryAddress(
+                val country: Country,
+                val region: Region,
+                val locality: Locality,
+                val streetAddress: String, // AC.awards[0].items[*].deliveryAddress.streetAddress
+                val postalCode: String? // AC.awards[0].items[*].deliveryAddress.postalCode
+            ) {
+                data class Country(
+                    val id: String, // AC.awards[0].items[*].deliveryAddress.addressDetails.country.id
+                    val description: String // AC.awards[0].items[*].deliveryAddress.addressDetails.country.description
+                )
+
+                data class Region(
+                    val id: String, // AC.awards[0].items[*].deliveryAddress.addressDetails.region.id
+                    val description: String // AC.awards[0].items[*].deliveryAddress.addressDetails.region.description
+                )
+
+                data class Locality(
+                    val scheme: String, // AC.awards[0].items[*].deliveryAddress.addressDetails.locality.scheme
+                    val id: String, // AC.awards[0].items[*].deliveryAddress.addressDetails.locality.id
+                    val description: String // AC.awards[0].items[*].deliveryAddress.addressDetails.locality.description
+                )
+            }
+        }
+
+        data class Value(
+            val amount: Double, // AC.awards[0].value.amount
+            val amountNet: Double?, // AC.awards[0].value.amountNet
+            val valueAddedTaxIncluded: Boolean? // AC.awards[0].value.valueAddedTaxIncluded
+        )
+
+        data class Document(
+            val id: String, // AC.awards[0].documents[*].id
+            val type: String, // AC.awards[0].documents[*].documentType
+            val title: String?, // AC.awards[0].documents[*].title
+            val description: String?, // AC.awards[0].documents[*].description
+            val relatedLot: String // AC.awards[0].documents[*].relatedLots[0]
+        )
     }
 
     data class Buyer (

@@ -39,19 +39,19 @@
     }
   },
   "+contract": {
-    "+title": "",
-    "+description": "",
-    "+period": {
+    "D+title": "",
+    "D+description": "",
+    "D+period": {
       "+startDate": "",
       "+endDate": ""
     },
-    "+--documents": [
+    "D+--documents": [
       {
-        "+documentType": "",
-        "+id": "",
-        "+--title": "",
-        "+--description": "",
-        "+relatedLots": [""]
+        "D+documentType": "",
+        "D+id": "",
+        "D+--title": "",
+        "D+--description": "",
+        "D+relatedLots": [""]
       }
     ],
     "+milestones": [
@@ -65,11 +65,11 @@
         "+description": ""
       }
     ],
-    "+--confirmationRequests": [
+    "D+--confirmationRequests": [
       {
-        "+id": "cs-tenderer-confirmation-on-document.id",
-        "+relatedItem": "document.id",
-        "+source": "tenderer"
+        "D+id": "cs-tenderer-confirmation-on-document.id",
+        "D+relatedItem": "document.id",
+        "D+source": "tenderer"
       }
     ],
     "+agreedMetrics": [
@@ -85,7 +85,7 @@
     ]
   },
   "+award": {
-    "R+id": "",
+    "DR+id": "",
     "+suppliers": [
       {
         "R+id": "",
@@ -204,7 +204,7 @@
         }
       }
     ],
-    "R+documents": [
+    "DR+documents": [
       {
         "R+documentType": "",
         "R+id": "",
@@ -213,38 +213,38 @@
         "R+--relatedLots":[""]
       }
     ],
-    "+value": {
-      "+amount": 0,
-      "R+currency": "",
-      "+amountNet": 0,
-      "+valueAddedTaxIncluded": true
+    "D+value": {
+      "D+amount": 0,
+      "DR+currency": "",
+      "D+amountNet": 0,
+      "D+valueAddedTaxIncluded": true
     },
-    "+items": [
+    "D+items": [
       {
-        "R+id": "",
-        "+quantity": 0,
-        "+unit": {
-          "+value": {
-            "+amount": 0,
-            "+amountNet": 0,
-            "+valueAddedTaxIncluded": true,
-            "R+currency": ""
+        "DR+id": "",
+        "D+quantity": 0,
+        "D+unit": {
+          "D+value": {
+            "D+amount": 0,
+            "D+amountNet": 0,
+            "D+valueAddedTaxIncluded": true,
+            "DR+currency": ""
           }
         },
-        "+deliveryAddress": {
-          "+streetAddress": "",
-          "+postalCode": "",
-          "+addressDetails": {
-            "+country": {
-              "+id": "UA"
+        "D+deliveryAddress": {
+          "D+streetAddress": "",
+          "D+postalCode": "",
+          "D+addressDetails": {
+            "D+country": {
+              "D+id": "UA"
             },
-            "+region": {
-              "+id": "UA-12"
+            "D+region": {
+              "D+id": "UA-12"
             },
-            "+locality": {
-              "+scheme": "UN/LOCDE",
-              "+id": "UA-DNP",
-              "+description": "Dnipro"
+            "D+locality": {
+              "D+scheme": "UN/LOCDE",
+              "D+id": "UA-DNP",
+              "D+description": "Dnipro"
             }
           }
         }
