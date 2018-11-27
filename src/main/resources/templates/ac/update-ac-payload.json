@@ -1,18 +1,18 @@
 {
-  "planning": {
-    "implementation": {
-      "transactions": [
+  "+planning": {
+    "+implementation": {
+      "+transactions": [
         {
-          "id": "",
-          "type": "advance",
-          "value": {
-            "amount": 20000,
-            "currency": "MDL"
+          "+id": "",
+          "+type": "advance",
+          "+value": {
+            "+amount": 20000,
+            "R+currency": "MDL"
           },
-          "executionPeriod": {
-            "durationInDays": 0
+          "+executionPeriod": {
+            "+durationInDays": 0
           },
-          "--relatedContractMilestone": "approval-3"
+          "+--relatedContractMilestone": "approval-3"
         }
       ]
     },
@@ -33,12 +33,12 @@
         {
           "+budgetBreakdownID": "",
           "+amount": 0,
-          "+currency": ""
+          "R+currency": ""
         }
       ]
     }
   },
-  "contract": {
+  "+contract": {
     "+title": "",
     "+description": "",
     "+period": {
@@ -54,15 +54,15 @@
         "+relatedLots": [""]
       }
     ],
-    "milestones": [
+    "+milestones": [
       {
-        "id": "approval-re1atedparties.id",
-        "type": "approval",
-        "--relatedItems": [""],
-        "additionalInformation": "",
-        "dueDate": "",
-        "title": "",
-        "description": ""
+        "+id": "approval-re1atedparties.id",
+        "+type": "approval",
+        "+--relatedItems": [""],
+        "+additionalInformation": "",
+        "+dueDate": "",
+        "+title": "",
+        "+description": ""
       }
     ],
     "+--confirmationRequests": [
@@ -74,10 +74,10 @@
     ],
     "+agreedMetrics": [
       {
-        "+id": "cc-general",
+        "R+id": "cc-general",
         "+observations": [
           {
-            "+id": "cc-general-1-1",
+            "R+id": "cc-general-1-1",
             "+measure": 5
           }
         ]
@@ -85,10 +85,10 @@
     ]
   },
   "+award": {
-    "+id": "",
+    "R+id": "",
     "+suppliers": [
       {
-        "+id": "",
+        "R+id": "",
         "+additionalIdentifiers": [
           {
             "+scheme": "MD-SRJE",
@@ -118,7 +118,7 @@
                   {
                     "+id": "",
                     "+documentType": "regulatoryDocument",
-                    "+--title": "",
+                    "+title": "",
                     "+--description": ""
                   }
                 ]
@@ -204,31 +204,31 @@
         }
       }
     ],
-    "+documents": [
+    "R+documents": [
       {
-        "+documentType": "",
-        "+id": "",
-        "+--title": "",
-        "+--description": "",
-        "+--relatedLots":[""]
+        "R+documentType": "",
+        "R+id": "",
+        "R+--title": "",
+        "R+--description": "",
+        "R+--relatedLots":[""]
       }
     ],
     "+value": {
       "+amount": 0,
-      "+currency": "",
+      "R+currency": "",
       "+amountNet": 0,
       "+valueAddedTaxIncluded": true
     },
     "+items": [
       {
-        "+id": "",
+        "R+id": "",
         "+quantity": 0,
         "+unit": {
           "+value": {
             "+amount": 0,
             "+amountNet": 0,
             "+valueAddedTaxIncluded": true,
-            "+currency": ""
+            "R+currency": ""
           }
         },
         "+deliveryAddress": {
@@ -252,7 +252,7 @@
     ]
   },
   "+buyer": {
-    "+id": "",
+    "R+id": "",
     "+additionalIdentifiers": [
       {
         "+scheme": "MD-SRJE",
@@ -282,7 +282,7 @@
               {
                 "+id": "",
                 "+documentType": "regulatoryDocument",
-                "+--title": "",
+                "+title": "",
                 "+--description": ""
               }
             ]
