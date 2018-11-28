@@ -10,6 +10,7 @@ class ACUpdateContext (
     val buyerUris: BuyerUris,
     val suppliers: List<Supplier>,
     val supplierUris: SupplierUris,
+    val milestones: List<Milestone>?, // AC.contracts[0].milestones[*]
     val itemUris: ItemUris,
     val currency: String // AC.planning.budget.budgetSource[0].currency
 ) {
@@ -499,6 +500,16 @@ class ACUpdateContext (
                 val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
         )
     }
+
+    data class Milestone(
+        val id: String, // AC.contracts[0].milestones[*].id
+        val title: String, // AC.contracts[0].milestones[*].title
+        val description: String, // AC.contracts[0].milestones[*].description
+        val type: String, // AC.contracts[0].milestones[*].type
+        val additionalInformation: String, // AC.contracts[0].milestones[*].additionalInformation
+        val dueDate: String, // AC.contracts[0].milestones[*].dueDate
+        val relatedItem: String // AC.contracts[0].milestones[*].relatedItems[0]
+    )
 
     data class ItemUris (
             val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest

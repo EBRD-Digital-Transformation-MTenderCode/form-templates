@@ -19,6 +19,7 @@
 {# @pebvariable name="supplierPersone" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Persone" #}
 {# @pebvariable name="supplierBusinessFunction" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Persone.BusinessFunction" #}
 {# @pebvariable name="supplierBusinessFunctionDocument" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Persone.BusinessFunction.Document" #}
+{# @pebvariable name="milestone" type="com.procurement.formsservice.model.ac.ACUpdateContext.Milestone" #}
 {
 {% import "../macros/translate" %}
 {% import "../macros/commaIf" %}
@@ -3064,6 +3065,22 @@
           }
         {% endfor %}
       ]
-    }
+    },
+    {% if context.milestones != null %}
+      "milestones": [
+        {% for milestone in context.milestones %}
+          {% if loop.index  > 0 %},{% endif %}
+          {
+            "id": "{{ milestone.id }}",
+            "title": "{{ milestone.title }}",
+            "description": "{{ milestone.description }}",
+            "type": "{{ milestone.type }}",
+            "additionalInformation": "{{ milestone.additionalInformation }}",
+            "dueDate": "{{ milestone.dueDate }}",
+            "relatedItems": ["{{ milestone.relatedItem }}"],
+          }
+        {% endfor %}
+      ],
+    {% endif %}
   }
 }
