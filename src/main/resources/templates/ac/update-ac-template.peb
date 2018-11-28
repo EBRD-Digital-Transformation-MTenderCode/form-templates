@@ -21,6 +21,8 @@
 {# @pebvariable name="supplierBusinessFunctionDocument" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Persone.BusinessFunction.Document" #}
 {# @pebvariable name="milestone" type="com.procurement.formsservice.model.ac.ACUpdateContext.Milestone" #}
 {# @pebvariable name="transaction" type="com.procurement.formsservice.model.ac.ACUpdateContext.Transaction" #}
+{# @pebvariable name="budgetAllocation" type="com.procurement.formsservice.model.ac.ACUpdateContext.Budget.BudgetAllocation" #}
+{# @pebvariable name="budgetSource" type="com.procurement.formsservice.model.ac.ACUpdateContext.Budget.BudgetSource" #}
 {
 {% import "../macros/translate" %}
 {% import "../macros/commaIf" %}
@@ -2426,100 +2428,94 @@
           }
         }
       },
-      "planning": {
-        "title": "",
+      "budget": {
+        "title": "Contract Budget",
         "type": "object",
+        "required": [
+          "description"
+        ],
         "properties": {
-          "budget": {
-            "title": "Contract Budget",
-            "type": "object",
-            "required": [
-              "description"
-            ],
-            "properties": {
-              "description": {
-                "title": "",
-                "type": "string",
-                "ocds": "planning::object/budget::object/description::string"
-              },
-              "budgetAllocation": {
-                "title": "",
-                "type": "array",
-                "items": {
+          "description": {
+            "title": "",
+            "type": "string",
+            "ocds": "planning::object/budget::object/description::string"
+          },
+          "budgetAllocations": {
+            "title": "",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "budgetBreakdownId",
+                "amount",
+                "relatedItem"
+              ],
+              "properties": {
+                "budgetBreakdownId": {
+                  "title": "",
+                  "type": "string",
+                  "ocds": "planning::object/budget::object/budgetAllocation::array[object]/budgetBreakdownID::string"
+                },
+                "period": {
+                  "title": "",
                   "type": "object",
                   "required": [
-                    "budgetBreakdownId",
-                    "amount",
-                    "relatedItem"
+                    "startDate",
+                    "endDate"
                   ],
                   "properties": {
-                    "budgetBreakdownId": {
+                    "startDate": {
                       "title": "",
-                      "type": "string",
-                      "ocds": "planning::object/budget::object/budgetAllocation::array[object]/budgetBreakdownID::string"
+                      "type": "sting",
+                      "ocds": "planning::object/budget::object/budgetAllocation::array[object]/period::object/startDate::string"
                     },
-                    "period": {
+                    "endDate": {
                       "title": "",
-                      "type": "object",
-                      "required": [
-                        "startDate",
-                        "endDate"
-                      ],
-                      "properties": {
-                        "startDate": {
-                          "title": "",
-                          "type": "sting",
-                          "ocds": "planning::object/budget::object/budgetAllocation::array[object]/period::object/startDate::string"
-                        },
-                        "endDate": {
-                          "title": "",
-                          "type": "sting",
-                          "ocds": "planning::object/budget::object/budgetAllocation::array[object]/period::object/endDate::string"
-                        }
-                      }
-                    },
-                    "amount": {
-                      "title": "",
-                      "type": "number",
-                      "ocds": "planning::object/budget::object/budgetAllocation::array[object]/amount::number"
-                    },
-                    "relatedItem": {
-                      "title": "",
-                      "type": "string",
-                      "ocds": "planning::object/budget::object/budgetAllocation::array[object]/relatedItem::string"
+                      "type": "sting",
+                      "ocds": "planning::object/budget::object/budgetAllocation::array[object]/period::object/endDate::string"
                     }
                   }
+                },
+                "amount": {
+                  "title": "",
+                  "type": "number",
+                  "ocds": "planning::object/budget::object/budgetAllocation::array[object]/amount::number"
+                },
+                "relatedItem": {
+                  "title": "",
+                  "type": "string",
+                  "ocds": "planning::object/budget::object/budgetAllocation::array[object]/relatedItem::string"
                 }
-              },
-              "budgetSource": {
-                "title": "",
-                "type": "array",
-                "items": {
+              }
+            }
+          },
+          "budgetSources": {
+            "title": "",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "budgetBreakdownID",
+                "amount",
+                "currency"
+              ],
+              "properties": {
+                "budgetBreakdownID": {
+                  "title": "",
                   "type": "object",
-                  "required": [
-                    "budgetBreakdownID",
-                    "amount",
-                    "currency"
-                  ],
-                  "properties": {
-                    "budgetBreakdownID": {
-                      "title": "",
-                      "type": "object",
-                      "ocds": "planning::object/budget::object/budgetSource::array[object]/budgetBreakdownID::string"
-                    },
-                    "amount": {
-                      "title": "",
-                      "type": "number",
-                      "ocds": "planning::object/budget::object/budgetSource::array[object]/amount::number"
-                    },
-                    "currency": {
-                      "title": "",
-                      "type": "string",
-                      "default": "{{ context.currency }}",
-                      "readOnly": true,
-                      "ocds": "planning::object/budget::object/budgetSource::array[object]/currency::string"
-                    }
-                  }
+                  "ocds": "planning::object/budget::object/budgetSource::array[object]/budgetBreakdownID::string"
+                },
+                "amount": {
+                  "title": "",
+                  "type": "number",
+                  "ocds": "planning::object/budget::object/budgetSource::array[object]/amount::number"
+                },
+                "currency": {
+                  "title": "",
+                  "type": "string",
+                  "default": "{{ context.currency }}",
+                  "readOnly": true,
+                  "ocds": "planning::object/budget::object/budgetSource::array[object]/currency::string"
                 }
               }
             }
@@ -3104,6 +3100,35 @@
           }
         {% endfor %}
       ]
+    {% endif %}
+    {% if context.budget != null %}
+      "budget": {
+        "description": "{{ context.budget.description }}",
+        "budgetAllocations": [
+          {% for budgetAllocation in context.budget.budgetAllocations %}
+            {% if loop.index  > 0 %},{% endif %}
+            {
+              "budgetBreakdownId": "{{ budgetAllocation.budgetBreakdownId }}",
+              "period": {
+                "startDate": "{{ budgetAllocation.period.startDate }}",
+                "endDate": "{{ budgetAllocation.period.endDate }}",
+              },
+              "amount": {{ budgetAllocation.amount }},
+              "relatedItem": "{{ budgetAllocation.relatedItem }}"
+            }
+          {% endfor %}
+        ],
+        "budgetSources": [
+          {% for budgetSource in context.budget.budgetSources %}
+            {% if loop.index  > 0 %},{% endif %}
+            {
+              "budgetBreakdownID": "{{ budgetSource.budgetBreakdownID }}"
+              "amount": {{ budgetSource.amount }}
+              "currency": "{{ context.currency }}"
+            }
+          {% endfor %}
+        ]
+      }
     {% endif %}
   }
 }

@@ -12,6 +12,7 @@ class ACUpdateContext (
     val supplierUris: SupplierUris,
     val milestones: List<Milestone>?, // AC.contracts[0].milestones[*]?
     val transactions: List<Transaction>, // AC.planning?.implementation.transactions[*]
+    val budget: Budget?, // AC.planning?.budget
     val itemUris: ItemUris,
     val currency: String // AC.planning.budget.budgetSource[0].currency
 ) {
@@ -521,6 +522,29 @@ class ACUpdateContext (
     ) {
         data class Value(
             val amount: Double // AC.planning?.implementation.transactions[*].value.amount
+        )
+    }
+
+    data class Budget(
+        val description: String, // AC.planning?.budget.description
+        val budgetAllocations: List<BudgetAllocation>,
+        val budgetSources: List<BudgetSource>
+    ) {
+        data class BudgetAllocation(
+            val budgetBreakdownId: String, // AC.planning?.budget.budgetAllocation[*].budgetBreakdownID
+            val period: Period,
+            val amount: Double, // AC.planning?.budget.budgetAllocation[*].amount
+            val relatedItem: String // AC.planning?.budget.budgetAllocation[*].relatedItem
+        ) {
+            data class Period(
+                val startDate: String, // AC.planning?.budget.budgetAllocation[*].period.startDate
+                val endDate: String // AC.planning?.budget.budgetAllocation[*].period.endDate
+            )
+        }
+
+        data class BudgetSource(
+            val budgetBreakdownID: String, // AC.planning?.budget.budgetSource[*].budgetBreakdownID
+            val amount: Double // AC.planning?.budget.budgetSource[*].amount
         )
     }
 
