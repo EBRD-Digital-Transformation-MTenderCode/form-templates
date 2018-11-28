@@ -20,6 +20,7 @@
 {# @pebvariable name="supplierBusinessFunction" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Persone.BusinessFunction" #}
 {# @pebvariable name="supplierBusinessFunctionDocument" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Persone.BusinessFunction.Document" #}
 {# @pebvariable name="milestone" type="com.procurement.formsservice.model.ac.ACUpdateContext.Milestone" #}
+{# @pebvariable name="transaction" type="com.procurement.formsservice.model.ac.ACUpdateContext.Transaction" #}
 {
 {% import "../macros/translate" %}
 {% import "../macros/commaIf" %}
@@ -3065,8 +3066,9 @@
           }
         {% endfor %}
       ]
-    },
+    }
     {% if context.milestones != null %}
+      ,
       "milestones": [
         {% for milestone in context.milestones %}
           {% if loop.index  > 0 %},{% endif %}
@@ -3080,7 +3082,28 @@
             "relatedItems": ["{{ milestone.relatedItem }}"],
           }
         {% endfor %}
-      ],
+      ]
+    {% endif %}
+    {% if context.transactions != null %}
+      ,
+      "transactions": [
+        {% for transaction in context.transactions %}
+          {% if loop.index  > 0 %},{% endif %}
+          {
+            "id": "{{ transaction.id }}",
+            "type": "{{ transaction.type }}",
+            "value": {
+              "amount": {{ transaction.value.amount }},
+              "currency": "{{ context.currency }}",
+            },
+            "durationInDays": {{ transaction.durationInDays }}
+            {% if transaction.type == "payment" %}
+              ,
+              "relatedContractMilestone": "{{ transaction.relatedContractMilestone }}"
+            {% endif %}
+          }
+        {% endfor %}
+      ]
     {% endif %}
   }
 }
