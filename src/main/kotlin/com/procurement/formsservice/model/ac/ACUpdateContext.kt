@@ -188,22 +188,22 @@ class ACUpdateContext (
                 val id: String, // AC.parties[role==buyer]?.details.permits[*].id
                 val url: String, // AC.parties[role==buyer]?.details.permits[*].url
                 val issuedBy: IssuedBy,
-                val issuedThought: IssuedThought, // AC.parties[role==buyer]?.details.permits[*].url
-                val validityPeriod: ValidityPeriod // AC.parties[role==buyer]?.details.permits[*].url
+                val issuedThought: IssuedThought,
+                val validityPeriod: ValidityPeriod
             ) {
                 data class IssuedBy(
-                    val id: String, // AC.parties[role==buyer]?.details.permits[*].permit.issuedBy.id
-                    val name: String // AC.parties[role==buyer]?.details.permits[*].permit.issuedBy.name
+                    val id: String, // AC.parties[role==buyer]?.details.permits[*].permitDetails.issuedBy.id
+                    val name: String // AC.parties[role==buyer]?.details.permits[*].permitDetails.issuedBy.name
                 )
 
                 data class IssuedThought(
-                    val id: String, // AC.parties[role==buyer]?.details.permits[*].permit.IssuedThought.id
-                    val name: String // AC.parties[role==buyer]?.details.permits[*].permit.IssuedThought.name
+                    val id: String, // AC.parties[role==buyer]?.details.permits[*].permitDetails.IssuedThought.id
+                    val name: String // AC.parties[role==buyer]?.details.permits[*].permitDetails.IssuedThought.name
                 )
 
                 data class ValidityPeriod(
-                    val startDate: String, // AC.parties[role==buyer]?.details.permits[*].permit.validityPeriod.startDate
-                    val endDate: String // AC.parties[role==buyer]?.details.permits[*].permit.validityPeriod.endDate
+                    val startDate: String, // AC.parties[role==buyer]?.details.permits[*].permitDetails.validityPeriod.startDate
+                    val endDate: String // AC.parties[role==buyer]?.details.permits[*].permitDetails.validityPeriod.endDate
                 )
             }
 
@@ -380,22 +380,22 @@ class ACUpdateContext (
                 val id: String, // AC.parties[role==supplier].details.permits[*].id
                 val url: String, // AC.parties[role==supplier].details.permits[*].url
                 val issuedBy: IssuedBy,
-                val issuedThought: IssuedThought, // AC.parties[role==supplier].details.permits[*].url
-                val validityPeriod: ValidityPeriod // AC.parties[role==supplier].details.permits[*].url
+                val issuedThought: IssuedThought,
+                val validityPeriod: ValidityPeriod
             ) {
                 data class IssuedBy(
-                    val id: String, // AC.parties[role==supplier].details.permits[*].permit.issuedBy.id
-                    val name: String // AC.parties[role==supplier].details.permits[*].permit.issuedBy.name
+                    val id: String, // AC.parties[role==supplier].details.permits[*].permitDetails.issuedBy.id
+                    val name: String // AC.parties[role==supplier].details.permits[*].permitDetails.issuedBy.name
                 )
 
                 data class IssuedThought(
-                    val id: String, // AC.parties[role==supplier].details.permits[*].permit.IssuedThought.id
-                    val name: String // AC.parties[role==supplier].details.permits[*].permit.IssuedThought.name
+                    val id: String, // AC.parties[role==supplier].details.permits[*].permitDetails.IssuedThought.id
+                    val name: String // AC.parties[role==supplier].details.permits[*].permitDetails.IssuedThought.name
                 )
 
                 data class ValidityPeriod(
-                    val startDate: String, // AC.parties[role==supplier].details.permits[*].permit.validityPeriod.startDate
-                    val endDate: String // AC.parties[role==supplier].details.permits[*].permit.validityPeriod.endDate
+                    val startDate: String, // AC.parties[role==supplier].details.permits[*].permitDetails.validityPeriod.startDate
+                    val endDate: String // AC.parties[role==supplier].details.permits[*].permitDetails.validityPeriod.endDate
                 )
             }
 

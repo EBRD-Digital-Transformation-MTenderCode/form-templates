@@ -31,8 +31,8 @@
     "type": "object",
     "properties": {
       "contract": {
+        "title": "{{ translate("ac", "contract.title") }}",
         "type": "object",
-        "title": " Contract Summary",
         "properties": {
           "title": {
             "title": "Title",
@@ -910,8 +910,8 @@
                           "title": "",
                           "type": "string",
                           "enum": [
-                            "SRLE",
-                            "SRL"
+                            "MD-SRLE",
+                            "MD-SRL"
                           ],
                           "ocds": "buyer::object/details::object/permits::array[object]/scheme::string"
                         },
@@ -925,7 +925,7 @@
                           "type": "string",
                           "ocds": "buyer::object/details::object/permits::array[object]/url::string"
                         },
-                        "permit": {
+                        "permitDetails": {
                           "title": "",
                           "type": "object",
                           "properties": {
@@ -940,12 +940,12 @@
                                 "id": {
                                   "title": "",
                                   "type": "string",
-                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/issuedBy::object/id::string"
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permitDetails::object/issuedBy::object/id::string"
                                 },
                                 "name": {
                                   "title": "",
                                   "type": "string",
-                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/issuedBy::object/name::string"
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permitDetails::object/issuedBy::object/name::string"
                                 }
                               }
                             },
@@ -960,12 +960,12 @@
                                 "id": {
                                   "title": "",
                                   "type": "string",
-                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/issuedThought::object/id::string"
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permitDetails::object/issuedThought::object/id::string"
                                 },
                                 "name": {
                                   "title": "",
                                   "type": "string",
-                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/issuedThought::object/name::string"
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permitDetails::object/issuedThought::object/name::string"
                                 }
                               }
                             },
@@ -980,12 +980,12 @@
                                 "startDate": {
                                   "title": "",
                                   "type": "string",
-                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/validityPeriod::object/startDate::string"
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permitDetails::object/validityPeriod::object/startDate::string"
                                 },
                                 "endDate": {
                                   "title": "",
                                   "type": "string",
-                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/validityPeriod::object/endDate::string"
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permitDetails::object/validityPeriod::object/endDate::string"
                                 }
                               }
                             }
@@ -1750,8 +1750,8 @@
                             "title": "",
                             "type": "string",
                             "enum": [
-                              "SRLE",
-                              "SRL"
+                              "MD-SRLE",
+                              "MD-SRL"
                             ],
                             "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/scheme::string"
                           },
@@ -1765,7 +1765,7 @@
                             "type": "string",
                             "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/url::string"
                           },
-                          "permit": {
+                          "permitDetails": {
                             "title": "",
                             "type": "object",
                             "properties": {
@@ -1780,12 +1780,12 @@
                                   "id": {
                                     "title": "",
                                     "type": "string",
-                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permit::object/issuedBy::object/id::string"
+                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permitDetails::object/issuedBy::object/id::string"
                                   },
                                   "name": {
                                     "title": "",
                                     "type": "string",
-                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permit::object/issuedBy::object/name::string"
+                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permitDetails::object/issuedBy::object/name::string"
                                   }
                                 }
                               },
@@ -1800,12 +1800,12 @@
                                   "id": {
                                     "title": "",
                                     "type": "string",
-                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permit::object/issuedThought::object/id::string"
+                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permitDetails::object/issuedThought::object/id::string"
                                   },
                                   "name": {
                                     "title": "",
                                     "type": "string",
-                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permit::object/issuedThought::object/name::string"
+                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permitDetails::object/issuedThought::object/name::string"
                                   }
                                 }
                               },
@@ -1820,12 +1820,12 @@
                                   "startDate": {
                                     "title": "",
                                     "type": "string",
-                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permit::object/validityPeriod::object/startDate::string"
+                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permitDetails::object/validityPeriod::object/startDate::string"
                                   },
                                   "endDate": {
                                     "title": "",
                                     "type": "string",
-                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permit::object/validityPeriod::object/endDate::string"
+                                    "ocds": "award::object/suppliers::array[object]/details::object/permits::array[object]/permitDetails::object/validityPeriod::object/endDate::string"
                                   }
                                 }
                               }
@@ -2729,7 +2729,7 @@
                   "scheme": "{{ buyerPermit.scheme }}",
                   "id": "{{ buyerPermit.id }}",
                   "url": "{{ buyerPermit.url }}",
-                  "permit": {
+                  "permitDetails": {
                     "issuedBy": {
                       "id": "{{ buyerPermit.issuedBy.id }}",
                       "name": "{{ buyerPermit.issuedBy.name }}",
@@ -2935,7 +2935,7 @@
                       "scheme": "{{ supplierPermit.scheme }}",
                       "id": "{{ supplierPermit.id }}",
                       "url": "{{ supplierPermit.url }}",
-                      "permit": {
+                      "permitDetails": {
                         "issuedBy": {
                           "id": "{{ supplierPermit.issuedBy.id }}",
                           "name": "{{ supplierPermit.issuedBy.name }}",
