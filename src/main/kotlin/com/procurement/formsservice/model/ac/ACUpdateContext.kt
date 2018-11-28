@@ -5,6 +5,7 @@ class ACUpdateContext (
     val lotId: String, // AC.awards[0].relatedLots[0]
     val contract: Contract,
     val award: Award,
+    val terms: Terms,
     val buyer: Buyer,
     val supplier: Supplier,
     val itemUris: ItemUris,
@@ -14,7 +15,7 @@ class ACUpdateContext (
         val ocid: String // ocds-t1s2t3-MD-1532010121824-AC-1532010122650
     )
 
-    data class Contract(
+    data class Contract (
         val title: String?, // AC.contracts[0].title
         val description: String?, // AC.contracts[0].description
         val period: Period,
@@ -41,7 +42,7 @@ class ACUpdateContext (
         }
     }
 
-    data class Award(
+    data class Award (
         val id: String, // AC.awards[0].id
         val items: List<Item>,
         val value: Value,
@@ -99,10 +100,168 @@ class ACUpdateContext (
         )
     }
 
+    data class Terms (
+        val id: String, // AC.contracts[0].agreedMetrics[*].id
+        val title: String, // AC.contracts[0].agreedMetrics[*].title
+        val description: String, // AC.contracts[0].agreedMetrics[*].description
+        val observations: List<Observation> // AC.contracts[0].agreedMetrics[*].observations
+    ) {
+        data class Observation (
+            val id: String, // AC.contracts[0].agreedMetrics[*].observations[*].id
+            val notes: String, // AC.contracts[0].agreedMetrics[*].observations[*].notes
+            val measure: String? // AC.contracts[0].agreedMetrics[*].observations[*].measure
+        )
+    }
+
     data class Buyer (
+        val id: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].id : AC.parties[role==buyer].id
+        val name: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].name : AC.parties[role==buyer].name
+        val address: Address,
+        val identifier: Identifier,
+        val additionalIdentifiers: List<AdditionalIdentifier>?,
+        val contactPoint: ContactPoint,
+        val details: Details?,
+        val persones: List<Persone>?, // AC.parties[role==buyer]?.persones[*]
         val uris: Uris,
         val bankAccountUris: BankAccountUris
     ) {
+        data class Address(
+            val country: Country,
+            val region: Region,
+            val locality: Locality,
+            val streetAddress: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].address.streetAddress : AC.parties[role==buyer].address.streetAddress
+            val postalCode: String? // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].address.postalCode : AC.parties[role==buyer].address.postalCode
+        ) {
+            data class Country(
+                    val id: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].address.addressDetails.country.id : AC.parties[role==buyer].address.addressDetails.country.id
+                    val description: String // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].address.addressDetails.country.description : AC.parties[role==buyer].address.addressDetails.country.description
+            )
+
+            data class Region(
+                    val id: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].address.addressDetails.country.id : AC.parties[role==buyer].address.addressDetails.region.id
+                    val description: String // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].address.addressDetails.country.id : AC.parties[role==buyer].address.addressDetails.region.description
+            )
+
+            data class Locality(
+                    val scheme: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].address.addressDetails.country.id : AC.parties[role==buyer].address.addressDetails.locality.scheme
+                    val id: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].address.addressDetails.country.id : AC.parties[role==buyer].address.addressDetails.locality.id
+                    val description: String // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].address.addressDetails.country.id : AC.parties[role==buyer].address.addressDetails.locality.description
+            )
+        }
+
+        data class Identifier(
+            val scheme: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].identifier.scheme : AC.parties[role==buyer].identifier.scheme
+            val id: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].identifier.id : AC.parties[role==buyer].identifier.id
+            val legalName: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].identifier.legalName : AC.parties[role==buyer].identifier.legalName
+            val uri: String? // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].identifier.uri : AC.parties[role==buyer].identifier.uri
+        )
+
+        data class AdditionalIdentifier(
+            val scheme: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].additionalIdentifier[*].scheme : AC.parties[role==buyer].additionalIdentifier[*].scheme
+            val id: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].additionalIdentifier[*].id : AC.parties[role==buyer].additionalIdentifier[*].id
+            val legalName: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].additionalIdentifier[*].legalName : AC.parties[role==buyer].additionalIdentifier[*].legalName
+            val uri: String? // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].additionalIdentifier[*].uri : AC.parties[role==buyer].additionalIdentifier[*].uri
+        )
+
+        data class ContactPoint(
+            val name: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].contactPoint.name : AC.parties[role==buyer].contactPoint.name
+            val url: String?, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].contactPoint.url : AC.parties[role==buyer].contactPoint.url
+            val telephone: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].contactPoint.telephone : AC.parties[role==buyer].contactPoint.telephone
+            val email: String, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].contactPoint.email : AC.parties[role==buyer].contactPoint.email
+            val faxNumber: String? // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].contactPoint.faxNumber : AC.parties[role==buyer].contactPoint.faxNumber
+        )
+
+        data class Details (
+            val typeOfBuyer: String?, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].details.typeOfBuyer : AC.parties[role==buyer].details.typeOfBuyer
+            val mainGeneralActivity: String?, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].details.mainGeneralActivity : AC.parties[role==buyer].details.mainGeneralActivity
+            val mainSectoralActivity: String?, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].details.mainSectoralActivity : AC.parties[role==buyer].details.mainSectoralActivity
+            val bankAccounts: List<BankAccount>?, // AC.parties[role==buyer]?.details.bankAccounts[*]
+            val legalForm: LegalForm? // AC.parties[role==buyer]?.details.legalForm
+        ) {
+            data class BankAccount(
+                val bankName: String, // AC.parties[role==buyer]?.details.bankAccounts[*].bankName
+                val description: String, // AC.parties[role==buyer]?.details.bankAccounts[*].description
+                val address: Address,
+                val identifier: Identifier,
+                val accountIdentification: AccountIdentification,
+                val additionalAccountIdentifiers: List<AdditionalAccountIdentifier>?
+            ) {
+                data class Address(
+                        val country: Country,
+                        val region: Region,
+                        val locality: Locality,
+                        val streetAddress: String, // AC.parties[role==buyer]?.details.bankAccounts[*].address.streetAddress
+                        val postalCode: String? // AC.parties[role==buyer]?.details.bankAccounts[*].address.postalCode
+                ) {
+                    data class Country(
+                        val id: String, // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.country.id
+                        val description: String // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.country.description
+                    )
+
+                    data class Region(
+                        val id: String, // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.region.id
+                        val description: String // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.region.description
+                    )
+
+                    data class Locality(
+                        val scheme: String, // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.locality.scheme
+                        val id: String, // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.locality.id
+                        val description: String // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.locality.description
+                    )
+                }
+
+                data class Identifier(
+                    val scheme: String, // AC.parties[role==buyer]?.details.bankAccounts[*].identifier.scheme
+                    val id: String // AC.parties[role==buyer]?.details.bankAccounts[*].identifier.id
+                )
+
+                data class AccountIdentification(
+                    val scheme: String, // AC.parties[role==buyer]?.details.bankAccounts[*].accountIdentification.scheme
+                    val id: String // AC.parties[role==buyer]?.details.bankAccounts[*].accountIdentification.id
+                )
+
+                data class AdditionalAccountIdentifier(
+                    val scheme: String, // AC.parties[role==buyer]?.details.bankAccounts[*].additionalAccountIdentifiers[*].scheme
+                    val id: String // AC.parties[role==buyer]?.details.bankAccounts[*].additionalAccountIdentifiers[*].id
+                )
+            }
+
+            data class LegalForm(
+                val scheme: String, // AC.parties[role==buyer]?.details.legalForm.scheme
+                val id: String, // AC.parties[role==buyer]?.details.legalForm.id
+                val legalName: String, // AC.parties[role==buyer]?.details.legalForm.legalName
+                val uri: String // AC.parties[role==buyer]?.details.legalForm.uri
+            )
+        }
+
+        data class Persone(
+            val title: String, // AC.parties[role==buyer]?.persones[*].title
+            val name: String, // AC.parties[role==buyer]?.persones[*].name
+            val identifier: Identifier,
+            val businessFunctions: List<BusinessFunction>
+        ) {
+            data class Identifier(
+                val scheme: String, // AC.parties[role==buyer]?.persones[*].scheme
+                val id: String, // AC.parties[role==buyer]?.persones[*].id
+                val uri: String // AC.parties[role==buyer]?.persones[*].uri
+            )
+
+            data class BusinessFunction(
+                val id: String, // AC.parties[role==buyer].persones[*]?.businessFunctions[*].id
+                val type: String, // AC.parties[role==buyer].persones[*]?.businessFunctions[*].type
+                val jobTitle: String, // AC.parties[role==buyer].persones[*]?.businessFunctions[*].jobTitle
+                val startDate: String, // AC.parties[role==buyer].persones[*]?.businessFunctions[*].period.startDate
+                val documents: List<Document>
+            ) {
+                data class Document(
+                    val id: String, // AC.parties[role==buyer].persones[*]?.businessFunctions[*].documents[*].id
+                    val type: String, // AC.parties[role==buyer].persones[*]?.businessFunctions[*].documents[*].documentType
+                    val title: String?, // AC.parties[role==buyer].persones[*]?.businessFunctions[*].documents[*].title
+                    val description: String? // AC.parties[role==buyer].persones[*]?.businessFunctions[*].documents[*].description
+                )
+            }
+        }
+
         data class Uris (
             val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
             val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
@@ -118,7 +277,7 @@ class ACUpdateContext (
         )
     }
 
-    data class Supplier(
+    data class Supplier (
         val uris: Uris,
         val bankAccountUris: BankAccountUris
     ) {
@@ -137,7 +296,7 @@ class ACUpdateContext (
         )
     }
 
-    data class ItemUris(
+    data class ItemUris (
             val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
             val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
             val locality: String // /locality?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id&region=$region$

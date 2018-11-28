@@ -2,6 +2,14 @@
 {# @pebvariable name="contractDoc" type="com.procurement.formsservice.model.ac.ACUpdateContext.Contract.Document" #}
 {# @pebvariable name="item" type="com.procurement.formsservice.model.ac.ACUpdateContext.Award.Item" #}
 {# @pebvariable name="awardDoc" type="com.procurement.formsservice.model.ac.ACUpdateContext.Award.Document" #}
+{# @pebvariable name="term" type="com.procurement.formsservice.model.ac.ACUpdateContext.Terms" #}
+{# @pebvariable name="observation" type="com.procurement.formsservice.model.ac.ACUpdateContext.Terms.Observation" #}
+{# @pebvariable name="buyerAdditionalIdentifier" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.AdditionalIdentifier" #}
+{# @pebvariable name="buyerBankAccount" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Details.BankAccount" #}
+{# @pebvariable name="buyerAdditionalAccountIdentifier" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Details.BankAccount.AdditionalAccountIdentifier" #}
+{# @pebvariable name="buyerPersone" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Persone" #}
+{# @pebvariable name="buyerBusinessFunction" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Persone.BusinessFunction" #}
+{# @pebvariable name="buyerBusinessFunctionDocument" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Persone.BusinessFunction.Document" #}
 {
 {% import "../macros/translate" %}
 {% import "../macros/commaIf" %}
@@ -2504,16 +2512,218 @@
       "documents": [
         {% for awardDoc in context.award.documents %}
           {% if loop.index  > 0 %},{% endif %}
-            {
-              "documentId": "{{ awardDoc.id }}",
-              "documentType": "{{ awardDoc.type }}",
-              "relatedLots": ["{{ awardDoc.relatedLots }}"],
-              {{ commaIf(awardDoc.title) }}
-              {{ stringAttributeIf(name = "title", value = awardDoc.title) }}
-              {{ commaIf(awardDoc.description) }}
-              {{ stringAttributeIf(name = "description", value = awardDoc.description) }}
-            }
+          {
+            "documentId": "{{ awardDoc.id }}",
+            "documentType": "{{ awardDoc.type }}",
+            "relatedLots": ["{{ awardDoc.relatedLots }}"],
+            {{ commaIf(awardDoc.title) }}
+            {{ stringAttributeIf(name = "title", value = awardDoc.title) }}
+            {{ commaIf(awardDoc.description) }}
+            {{ stringAttributeIf(name = "description", value = awardDoc.description) }}
+          }
         {% endfor %}
+      ]
+    },
+    "terms": [
+      {% for term in context.terms %}
+        {% if loop.index  > 0 %},{% endif %}
+        {
+          "id": "{{ term.id }}",
+          "title": "{{ term.title }}",
+          "description": "{{ term.description }}",
+          "observations": [
+            {% for observation in term.observations %}
+              {% if loop.index  > 0 %},{% endif %}
+              {
+                "id": "{{ observation.id }}",
+                "notes": "{{ observation.notes }}",
+                "measure": "{{ observation.measure }}"
+              }
+            {% endfor %}
+          ]
+        }
+      {% endfor %}
+    ],
+    "parties": {
+      "buyer": {
+        "id": "{{ context.buyer.id }}",
+        "name": "{{ context.buyer.name }}"
+        "address": {
+          "location": {
+            "country": {
+              "id": "{{ context.buyer.address.country.id }}",
+              "description": "{{ context.buyer.address.country.description }}"
+            },
+            "region": {
+              "id": "{{ context.buyer.address.region.id }}",
+              "description": "{{ context.buyer.address.region.description }}"
+            },
+            "locality": {
+              "localityType": {% if context.buyer.address.locality.scheme == "CUATM" %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[0]") }}"{% else %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[1]") }}"{% endif %},
+              {% if context.buyer.address.locality.scheme == "CUATM" %}"directory"{% else %}"manual"{% endif %}: {
+                "locality": {
+                "scheme": "{{ context.buyer.address.locality.scheme }}",
+                "id": "{{ context.buyer.address.locality.id }}",
+                "description": "{{ context.buyer.address.locality.description }}"
+                }
+              }
+            }
+          },
+          "postalAddress": {
+          "streetAddress": "{{ context.buyer.address.streetAddress }}"
+          {{ commaIf(context.buyer.address.postalCode) }}
+          {{ stringAttributeIf(name = "postalCode", value = context.buyer.address.postalCode) }}
+          }
+        },
+        "identifier": {
+          "scheme": "{{ context.buyer.identifier.scheme }}",
+          "id": "{{ context.buyer.identifier.id }}",
+          "legalName": "{{ context.buyer.identifier.legalName }}"
+          {{ commaIf(context.buyer.identifier.uri) }}
+          {{ stringAttributeIf(name = "uri", value = context.buyer.identifier.uri) }}
+        },
+        {% if context.buyer.additionalIdentifiers != null %}
+          "additionalIdentifiers": [
+            {% for buyerAdditionalIdentifier in context.buyer.additionalIdentifiers %}
+              {% if loop.index  > 0 %},{% endif %}
+              {
+                "scheme": "{{ buyerAdditionalIdentifier.scheme }}",
+                "id": "{{ buyerAdditionalIdentifier.id }}",
+                "legalName": "{{ buyerAdditionalIdentifier.legalName }}"
+                {{ commaIf(buyerAdditionalIdentifier.uri) }}
+                {{ stringAttributeIf(name = "uri", value = buyerAdditionalIdentifier.uri) }}
+              }
+            {% endfor %}
+          ],
+        {% endif %}
+        "contactPoint": {
+          "person": {
+            "name": "{{ context.buyer.contactPoint.name }}"
+            {{ commaIf(context.buyer.contactPoint.url) }}
+            {{ stringAttributeIf(name = "url", value = context.buyer.contactPoint.url) }}
+          },
+          "contacts": {
+            "telephone": "{{ context.buyer.contactPoint.telephone }}",
+            "email": "{{ context.buyer.contactPoint.email }}"
+            {{ commaIf(context.buyer.contactPoint.faxNumber) }}
+            {{ stringAttributeIf(name = "faxNumber", value = context.buyer.contactPoint.faxNumber) }}
+          }
+        },
+        "details": {
+          {{ stringAttributeIf(name = "url", value = context.buyer.details.typeOfBuyer ) }}
+          {{ commaIf(context.buyer.details.mainGeneralActivity) }}
+          {{ stringAttributeIf(name = "url", value = context.buyer.details.mainGeneralActivity ) }}
+          {{ commaIf(context.buyer.details.mainSectoralActivity) }}
+          {{ stringAttributeIf(name = "url", value = context.buyer.details.mainSectoralActivity ) }}
+          {% if context.buyer.details.bankAccounts != null %}
+            "bankAccounts": [
+              {% for buyerBankAccount in context.buyer.details.bankAccounts %}
+                {% if loop.index  > 0 %},{% endif %}
+                {
+                  "bankName": "{{ buyerBankAccount.bankName }}",
+                  "description": "{{ buyerBankAccount.description }}",
+                  "address": {
+                    "location": {
+                      "country": {
+                        "id": "{{ buyerBankAccount.address.country.id }}",
+                        "description": "{{ buyerBankAccount.address.country.description }}"
+                      },
+                      "region": {
+                        "id": "{{ buyerBankAccount.address.region.id }}",
+                        "description": "{{ buyerBankAccount.address.region.description }}"
+                      },
+                      "locality": {
+                        "localityType": {% if buyerBankAccount.address.locality.scheme == "CUATM" %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[0]") }}"{% else %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[1]") }}"{% endif %},
+                        {% if buyerBankAccount.address.locality.scheme == "CUATM" %}"directory"{% else %}"manual"{% endif %}: {
+                          "locality": {
+                            "scheme": "{{ buyerBankAccount.address.locality.scheme }}",
+                            "id": "{{ buyerBankAccount.address.locality.id }}",
+                            "description": "{{ buyerBankAccount.address.locality.description }}"
+                          }
+                        }
+                      }
+                    },
+                    "postalAddress": {
+                      "streetAddress": "{{buyerBankAccount.address.streetAddress }}"
+                      {{ commaIf(buyerBankAccount.address.postalCode) }}
+                      {{ stringAttributeIf(name = "postalCode", value = buyerBankAccount.address.postalCode) }}
+                    }
+                  },
+                  "identifier": {
+                    "scheme": "{{ buyerBankAccount.identifier.scheme }}",
+                    "id": "{{ buyerBankAccount.identifier.id }}"
+                  },
+                  "accountIdentification": {
+                    "scheme": "{{ buyerBankAccount.accountIdentification.scheme }}",
+                    "id": "{{ buyerBankAccount.accountIdentification.id }}"
+                  },
+                  {% if buyerBankAccount.additionalAccountIdentifiers != null %}
+                    "additionalAccountIdentifiers": [
+                      {% for buyerAdditionalAccountIdentifier in buyerBankAccount.additionalAccountIdentifiers %}
+                        {% if loop.index  > 0 %},{% endif %}
+                        {
+                          "scheme": "{{ buyerAdditionalAccountIdentifier.scheme }}",
+                          "id": "{{ buyerAdditionalAccountIdentifier.id }}"
+                        }
+                      {% endfor %}
+                    ],
+                  {% endif %}
+                }
+              {% endfor %}
+            ],
+          {% endif %}
+          {% if context.buyer.details.legalForm.scheme != null %}
+            "legalForm": {
+              "scheme": "{{ context.buyer.details.legalForm.scheme }}"
+              "id": "{{ context.buyer.details.legalForm.id }}"
+              "description": "{{ context.buyer.details.legalForm.description }}"
+              "uri": "{{ context.buyer.details.legalForm.uri }}"
+            }
+          {% endif %}
+        }
+        {% if context.buyer.persones != null %}
+          "persones": [
+            {% for buyerPersone in context.buyer.persones %}
+              {% if loop.index  > 0 %},{% endif %}
+              {
+                "title": "{{ buyerPersone.title }}",
+                "name": "{{ buyerPersone.name }}",
+                "identifier": {
+                  "scheme": "{{ buyerPersone.identifier.scheme }}",
+                  "id": "{{ buyerPersone.identifier.id }}",
+                  "uri": "{{ buyerPersone.identifier.uri }}"
+                },
+                "businessFunctions": [
+                  {% for buyerBusinessFunction in buyerPersone.businessFunctions %}
+                    {% if loop.index  > 0 %},{% endif %}
+                    {
+                      "id": "{{ buyerBusinessFunction.id }}",
+                      "type": "{{ buyerBusinessFunction.type }}",
+                      "jobTitle": "{{ buyerBusinessFunction.jobTitle }}",
+                      "startDate": "{{ buyerBusinessFunction.startDate }}",
+                      "documents": [
+                        {% for buyerBusinessFunctionDocument in buyerBusinessFunction.documents %}
+                          {% if loop.index  > 0 %},{% endif %}
+                          {
+                            "documentId": "{{ buyerBusinessFunctionDocument.id }}",
+                            "documentType": "{{ buyerBusinessFunctionDocument.type }}",
+                            {{ commaIf(buyerBusinessFunctionDocument.title) }}
+                            {{ stringAttributeIf(name = "title", value = buyerBusinessFunctionDocument.title) }}
+                            {{ commaIf(buyerBusinessFunctionDocument.description) }}
+                            {{ stringAttributeIf(name = "description", value = buyerBusinessFunctionDocument.description) }}
+                          }
+                        {% endfor %}
+                      ]
+                    }
+                  {% endfor %}
+                ]
+              }
+            {% endfor %}
+          ]
+        {% endif %}
+      },
+      "suppliers": [
+        {% for  %}
       ]
     }
   }
