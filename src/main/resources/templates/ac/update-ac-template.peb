@@ -5,11 +5,20 @@
 {# @pebvariable name="term" type="com.procurement.formsservice.model.ac.ACUpdateContext.Terms" #}
 {# @pebvariable name="observation" type="com.procurement.formsservice.model.ac.ACUpdateContext.Terms.Observation" #}
 {# @pebvariable name="buyerAdditionalIdentifier" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.AdditionalIdentifier" #}
+{# @pebvariable name="buyerPermit" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Details.Permit" #}
 {# @pebvariable name="buyerBankAccount" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Details.BankAccount" #}
 {# @pebvariable name="buyerAdditionalAccountIdentifier" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Details.BankAccount.AdditionalAccountIdentifier" #}
 {# @pebvariable name="buyerPersone" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Persone" #}
 {# @pebvariable name="buyerBusinessFunction" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Persone.BusinessFunction" #}
 {# @pebvariable name="buyerBusinessFunctionDocument" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Persone.BusinessFunction.Document" #}
+{# @pebvariable name="supplier" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier" #}
+{# @pebvariable name="supplierAdditionalIdentifier" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.AdditionalIdentifier" #}
+{# @pebvariable name="supplierPermit" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Details.Permit" #}
+{# @pebvariable name="supplierBankAccount" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Details.BankAccount" #}
+{# @pebvariable name="supplierAdditionalAccountIdentifier" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Details.BankAccount.AdditionalAccountIdentifier" #}
+{# @pebvariable name="supplierPersone" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Persone" #}
+{# @pebvariable name="supplierBusinessFunction" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Persone.BusinessFunction" #}
+{# @pebvariable name="supplierBusinessFunctionDocument" type="com.procurement.formsservice.model.ac.ACUpdateContext.Supplier.Persone.BusinessFunction.Document" #}
 {
 {% import "../macros/translate" %}
 {% import "../macros/commaIf" %}
@@ -560,7 +569,7 @@
                       "country": {
                         "title": "Country",
                         "type": "object",
-                        "source": "{{ context.buyer.uris.country }}",
+                        "source": "{{ context.buyerUris.uris.country }}",
                         "properties": {
                           "id": {
                             "type": "string",
@@ -575,7 +584,7 @@
                       "region": {
                         "title": "Region",
                         "type": "object",
-                        "source": "{{ context.buyer.uris.region }}",
+                        "source": "{{ context.buyerUris.uris.region }}",
                         "properties": {
                           "id": {
                             "type": "string",
@@ -616,7 +625,7 @@
                                       "locality": {
                                         "title": "Town/Locality",
                                         "type": "object",
-                                        "source": "{{ context.buyer.uris.locality }}",
+                                        "source": "{{ context.buyerUris.uris.locality }}",
                                         "properties": {
                                           "scheme": {
                                             "type": "string",
@@ -705,7 +714,7 @@
                   "scheme": {
                     "title": "Identification Schema",
                     "type": "string",
-                    "source": "{{ context.buyer.uris.registrationScheme }}",
+                    "source": "{{ context.buyer.buyerUris.registrationScheme }}",
                     "readOnly": true
                   },
                   "id": {
@@ -881,6 +890,105 @@
                       "{{ translate("ac", "buyer.details.mainSectoralActivity.enumNames[9]") }}"
                     ],
                     "ocds": "buyer::object/details::object/mainSectoralActivity::string"
+                  },
+                  "permits": {
+                    "type": "array",
+                    "items": {
+                      "title": "",
+                      "type": "object",
+                      "required": [
+                        "scheme",
+                        "id",
+                        "url"
+                      ],
+                      "properties": {
+                        "scheme": {
+                          "title": "",
+                          "type": "string",
+                          "enum": [
+                            "SRLE",
+                            "SRL"
+                          ],
+                          "ocds": "buyer::object/details::object/permits::array[object]/scheme::string"
+                        },
+                        "id": {
+                          "title": "",
+                          "type": "string",
+                          "ocds": "buyer::object/details::object/permits::array[object]/id::string"
+                        },
+                        "url": {
+                          "title": "",
+                          "type": "string",
+                          "ocds": "buyer::object/details::object/permits::array[object]/url::string"
+                        },
+                        "permit": {
+                          "title": "",
+                          "type": "object",
+                          "properties": {
+                            "issuedBy": {
+                              "title": "",
+                              "type": "object",
+                              "required": [
+                                "id",
+                                "name"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "title": "",
+                                  "type": "string",
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/issuedBy::object/id::string"
+                                },
+                                "name": {
+                                  "title": "",
+                                  "type": "string",
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/issuedBy::object/name::string"
+                                }
+                              }
+                            },
+                            "issuedThought": {
+                              "title": "",
+                              "type": "object",
+                              "required": [
+                                "id",
+                                "name"
+                              ],
+                              "properties": {
+                                "id": {
+                                  "title": "",
+                                  "type": "string",
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/issuedThought::object/id::string"
+                                },
+                                "name": {
+                                  "title": "",
+                                  "type": "string",
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/issuedThought::object/name::string"
+                                }
+                              }
+                            },
+                            "validityPeriod": {
+                              "title": "",
+                              "type": "object",
+                              "required": [
+                                "startDate",
+                                "endDate"
+                              ],
+                              "properties": {
+                                "startDate": {
+                                  "title": "",
+                                  "type": "string",
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/validityPeriod::object/startDate::string"
+                                },
+                                "endDate": {
+                                  "title": "",
+                                  "type": "string",
+                                  "ocds": "buyer::object/details::object/permits::array[object]/permit::object/validityPeriod::object/endDate::string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   },
                   "bankAccounts": {
                     "type": "array",
@@ -1346,7 +1454,7 @@
                         "country": {
                           "title": "Country",
                           "type": "object",
-                          "source": "{{ context.supplier.uris.country }}",
+                          "source": "{{ context.supplierUris.uris.country }}",
                           "properties": {
                             "id": {
                               "type": "string",
@@ -1361,7 +1469,7 @@
                         "region": {
                           "title": "Region",
                           "type": "object",
-                          "source": "{{ context.supplier.uris.region }}",
+                          "source": "{{ context.supplierUris.uris.region }}",
                           "properties": {
                             "id": {
                               "type": "string",
@@ -1402,7 +1510,7 @@
                                         "locality": {
                                           "title": "Town/Locality",
                                           "type": "object",
-                                          "source": "{{ context.supplier.uris.locality }}",
+                                          "source": "{{ context.supplierUris.uris.locality }}",
                                           "properties": {
                                             "scheme": {
                                               "type": "string",
@@ -1491,7 +1599,7 @@
                     "scheme": {
                       "title": "Identification Schema",
                       "type": "string",
-                      "source": "{{ context.supplier.uris.registrationScheme }}",
+                      "source": "{{ context.supplierUris.uris.registrationScheme }}",
                       "readOnly": true
                     },
                     "id": {
@@ -2615,6 +2723,32 @@
           {{ stringAttributeIf(name = "url", value = context.buyer.details.mainGeneralActivity ) }}
           {{ commaIf(context.buyer.details.mainSectoralActivity) }}
           {{ stringAttributeIf(name = "url", value = context.buyer.details.mainSectoralActivity ) }}
+          {% if context.buyer.details.permits != null %}
+            "permits": [
+              {% for buyerPermit in context.buyer.details.permits %}
+                {% if loop.index  > 0 %},{% endif %}
+                {
+                  "scheme": "{{ buyerPermit.scheme }}",
+                  "id": "{{ buyerPermit.id }}",
+                  "url": "{{ buyerPermit.url }}",
+                  "permit": {
+                    "issuedBy": {
+                      "id": "{{ buyerPermit.issuedBy.id }}",
+                      "name": "{{ buyerPermit.issuedBy.name }}",
+                    },
+                    "issuedThought": {
+                      "id": "{{ buyerPermit.issuedThought.id }}",
+                      "name": "{{ buyerPermit.issuedThought.name }}",
+                    },
+                    "validityPeriod": {
+                      "startDate": "{{ buyerPermit.validityPeriod.startDate }}",
+                      "endDate": "{{ buyerPermit.validityPeriod.endDate }}"
+                    }
+                  }
+                }
+              {% endfor %}
+            ],
+          {% endif %}
           {% if context.buyer.details.bankAccounts != null %}
             "bankAccounts": [
               {% for buyerBankAccount in context.buyer.details.bankAccounts %}
@@ -2723,7 +2857,212 @@
         {% endif %}
       },
       "suppliers": [
-        {% for  %}
+        {% for supplier in context.suppliers %}
+          {% if loop.index  > 0 %},{% endif %}
+          {
+            "id": "{{ supplier.id }}",
+            "name": "{{ supplier.name }}"
+            "address": {
+              "location": {
+                "country": {
+                  "id": "{{ supplier.address.country.id }}",
+                  "description": "{{ supplier.address.country.description }}"
+                },
+                "region": {
+                  "id": "{{ supplier.address.region.id }}",
+                  "description": "{{ supplier.address.region.description }}"
+                },
+                "locality": {
+                  "localityType": {% if supplier.address.locality.scheme == "CUATM" %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[0]") }}"{% else %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[1]") }}"{% endif %},
+                    {% if supplier.address.locality.scheme == "CUATM" %}"directory"{% else %}"manual"{% endif %}: {
+                    "locality": {
+                      "scheme": "{{ supplier.address.locality.scheme }}",
+                      "id": "{{ supplier.address.locality.id }}",
+                      "description": "{{ supplier.address.locality.description }}"
+                    }
+                  }
+                }
+              },
+              "postalAddress": {
+                "streetAddress": "{{ supplier.address.streetAddress }}"
+                {{ commaIf(supplier.address.postalCode) }}
+                {{ stringAttributeIf(name = "postalCode", value = supplier.address.postalCode) }}
+              }
+            },
+            "identifier": {
+              "scheme": "{{ supplier.identifier.scheme }}",
+              "id": "{{ supplier.identifier.id }}",
+              "legalName": "{{ supplier.identifier.legalName }}"
+              {{ commaIf(supplier.identifier.uri) }}
+              {{ stringAttributeIf(name = "uri", value = supplier.identifier.uri) }}
+            },
+            {% if supplier.additionalIdentifiers != null %}
+              "additionalIdentifiers": [
+                {% for supplierAdditionalIdentifier in supplier.additionalIdentifiers %}
+                  {% if loop.index  > 0 %},{% endif %}
+                  {
+                    "scheme": "{{ supplierAdditionalIdentifier.scheme }}",
+                    "id": "{{ supplierAdditionalIdentifier.id }}",
+                    "legalName": "{{ supplierAdditionalIdentifier.legalName }}"
+                    {{ commaIf(supplierAdditionalIdentifier.uri) }}
+                    {{ stringAttributeIf(name = "uri", value = supplierAdditionalIdentifier.uri) }}
+                  }
+                {% endfor %}
+              ],
+            {% endif %}
+            "contactPoint": {
+              "person": {
+                "name": "{{ supplier.contactPoint.name }}"
+                {{ commaIf(supplier.contactPoint.url) }}
+                {{ stringAttributeIf(name = "url", value = supplier.contactPoint.url) }}
+              },
+              "contacts": {
+                "telephone": "{{ supplier.contactPoint.telephone }}",
+                "email": "{{ supplier.contactPoint.email }}"
+                {{ commaIf(supplier.contactPoint.faxNumber) }}
+                {{ stringAttributeIf(name = "faxNumber", value = supplier.contactPoint.faxNumber) }}
+              }
+            },
+            "details": {
+              {{ stringAttributeIf(name = "url", value = supplier.details.typeOfSupplier ) }}
+              {{ commaIf(supplier.details.mainEconomicActivities) }}
+              {{ stringAttributeIf(name = "url", value = supplier.details.mainEconomicActivities ) }}
+              {{ commaIf(supplier.details.scale) }}
+              {{ stringAttributeIf(name = "url", value = supplier.details.scale ) }}
+              {% if supplier.details.permits != null %}
+                "permits": [
+                  {% for supplierPermit in supplier.details.permits %}
+                    {% if loop.index  > 0 %},{% endif %}
+                    {
+                      "scheme": "{{ supplierPermit.scheme }}",
+                      "id": "{{ supplierPermit.id }}",
+                      "url": "{{ supplierPermit.url }}",
+                      "permit": {
+                        "issuedBy": {
+                          "id": "{{ supplierPermit.issuedBy.id }}",
+                          "name": "{{ supplierPermit.issuedBy.name }}",
+                        },
+                        "issuedThought": {
+                          "id": "{{ supplierPermit.issuedThought.id }}",
+                          "name": "{{ supplierPermit.issuedThought.name }}",
+                        },
+                        "validityPeriod": {
+                          "startDate": "{{ supplierPermit.validityPeriod.startDate }}",
+                          "endDate": "{{ supplierPermit.validityPeriod.endDate }}"
+                        }
+                      }
+                    }
+                  {% endfor %}
+                ],
+              {% endif %}
+              {% if supplier.details.bankAccounts != null %}
+                "bankAccounts": [
+                  {% for supplierBankAccount in supplier.details.bankAccounts %}
+                    {% if loop.index  > 0 %},{% endif %}
+                    {
+                      "bankName": "{{ supplierBankAccount.bankName }}",
+                      "description": "{{ supplierBankAccount.description }}",
+                      "address": {
+                        "location": {
+                          "country": {
+                            "id": "{{ supplierBankAccount.address.country.id }}",
+                            "description": "{{ supplierBankAccount.address.country.description }}"
+                            },
+                          "region": {
+                            "id": "{{ supplierBankAccount.address.region.id }}",
+                            "description": "{{ supplierBankAccount.address.region.description }}"
+                          },
+                          "locality": {
+                            "localityType": {% if supplierBankAccount.address.locality.scheme == "CUATM" %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[0]") }}"{% else %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[1]") }}"{% endif %},
+                            {% if supplierBankAccount.address.locality.scheme == "CUATM" %}"directory"{% else %}"manual"{% endif %}: {
+                              "locality": {
+                                "scheme": "{{ supplierBankAccount.address.locality.scheme }}",
+                                "id": "{{ supplierBankAccount.address.locality.id }}",
+                                "description": "{{ supplierBankAccount.address.locality.description }}"
+                              }
+                            }
+                          }
+                        },
+                        "postalAddress": {
+                          "streetAddress": "{{supplierBankAccount.address.streetAddress }}"
+                          {{ commaIf(supplierBankAccount.address.postalCode) }}
+                          {{ stringAttributeIf(name = "postalCode", value = supplierBankAccount.address.postalCode) }}
+                        }
+                      },
+                      "identifier": {
+                        "scheme": "{{ supplierBankAccount.identifier.scheme }}",
+                        "id": "{{ supplierBankAccount.identifier.id }}"
+                      },
+                      "accountIdentification": {
+                        "scheme": "{{ supplierBankAccount.accountIdentification.scheme }}",
+                        "id": "{{ supplierBankAccount.accountIdentification.id }}"
+                      },
+                      {% if supplierBankAccount.additionalAccountIdentifiers != null %}
+                        "additionalAccountIdentifiers": [
+                          {% for supplierAdditionalAccountIdentifier in supplierBankAccount.additionalAccountIdentifiers %}
+                            {% if loop.index  > 0 %},{% endif %}
+                            {
+                              "scheme": "{{ supplierAdditionalAccountIdentifier.scheme }}",
+                              "id": "{{ supplierAdditionalAccountIdentifier.id }}"
+                            }
+                          {% endfor %}
+                        ],
+                      {% endif %}
+                    }
+                  {% endfor %}
+                ],
+              {% endif %}
+              {% if supplier.details.legalForm.scheme != null %}
+                "legalForm": {
+                  "scheme": "{{ supplier.details.legalForm.scheme }}"
+                  "id": "{{ supplier.details.legalForm.id }}"
+                  "description": "{{ supplier.details.legalForm.description }}"
+                  "uri": "{{ supplier.details.legalForm.uri }}"
+                }
+              {% endif %}
+            }
+            {% if supplier.persones != null %}
+              "persones": [
+                {% for supplierPersone in supplier.persones %}
+                  {% if loop.index  > 0 %},{% endif %}
+                  {
+                    "title": "{{ buyerPersone.title }}",
+                    "name": "{{ buyerPersone.name }}",
+                    "identifier": {
+                      "scheme": "{{ buyerPersone.identifier.scheme }}",
+                      "id": "{{ buyerPersone.identifier.id }}",
+                      "uri": "{{ buyerPersone.identifier.uri }}"
+                    },
+                    "businessFunctions": [
+                      {% for buyerBusinessFunction in buyerPersone.businessFunctions %}
+                        {% if loop.index  > 0 %},{% endif %}
+                        {
+                          "id": "{{ buyerBusinessFunction.id }}",
+                          "type": "{{ buyerBusinessFunction.type }}",
+                          "jobTitle": "{{ buyerBusinessFunction.jobTitle }}",
+                          "startDate": "{{ buyerBusinessFunction.startDate }}",
+                          "documents": [
+                            {% for buyerBusinessFunctionDocument in buyerBusinessFunction.documents %}
+                              {% if loop.index  > 0 %},{% endif %}
+                              {
+                                "documentId": "{{ buyerBusinessFunctionDocument.id }}",
+                                "documentType": "{{ buyerBusinessFunctionDocument.type }}",
+                                {{ commaIf(buyerBusinessFunctionDocument.title) }}
+                                {{ stringAttributeIf(name = "title", value = buyerBusinessFunctionDocument.title) }}
+                                {{ commaIf(buyerBusinessFunctionDocument.description) }}
+                                {{ stringAttributeIf(name = "description", value = buyerBusinessFunctionDocument.description) }}
+                              }
+                            {% endfor %}
+                          ]
+                        }
+                      {% endfor %}
+                    ]
+                  }
+                {% endfor %}
+              ]
+            {% endif %}
+          }
+        {% endfor %}
       ]
     }
   }

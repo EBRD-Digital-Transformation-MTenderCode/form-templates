@@ -7,7 +7,9 @@ class ACUpdateContext (
     val award: Award,
     val terms: Terms,
     val buyer: Buyer,
-    val supplier: Supplier,
+    val buyerUris: BuyerUris,
+    val suppliers: List<Supplier>,
+    val supplierUris: SupplierUris,
     val itemUris: ItemUris,
     val currency: String // AC.planning.budget.budgetSource[0].currency
 ) {
@@ -121,9 +123,8 @@ class ACUpdateContext (
         val additionalIdentifiers: List<AdditionalIdentifier>?,
         val contactPoint: ContactPoint,
         val details: Details?,
-        val persones: List<Persone>?, // AC.parties[role==buyer]?.persones[*]
-        val uris: Uris,
-        val bankAccountUris: BankAccountUris
+        val persones: List<Persone>? // AC.parties[role==buyer]?.persones[*]?
+
     ) {
         data class Address(
             val country: Country,
@@ -175,9 +176,34 @@ class ACUpdateContext (
             val typeOfBuyer: String?, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].details.typeOfBuyer : AC.parties[role==buyer].details.typeOfBuyer
             val mainGeneralActivity: String?, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].details.mainGeneralActivity : AC.parties[role==buyer].details.mainGeneralActivity
             val mainSectoralActivity: String?, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].details.mainSectoralActivity : AC.parties[role==buyer].details.mainSectoralActivity
+            val permits: List<Permit>?, // AC.parties[role==buyer].details.permits[*]
             val bankAccounts: List<BankAccount>?, // AC.parties[role==buyer]?.details.bankAccounts[*]
             val legalForm: LegalForm? // AC.parties[role==buyer]?.details.legalForm
         ) {
+            data class Permit(
+                val scheme: String, // AC.parties[role==buyer]?.details.permits[*].scheme
+                val id: String, // AC.parties[role==buyer]?.details.permits[*].id
+                val url: String, // AC.parties[role==buyer]?.details.permits[*].url
+                val issuedBy: IssuedBy,
+                val issuedThought: IssuedThought, // AC.parties[role==buyer]?.details.permits[*].url
+                val validityPeriod: ValidityPeriod // AC.parties[role==buyer]?.details.permits[*].url
+            ) {
+                data class IssuedBy(
+                    val id: String, // AC.parties[role==buyer]?.details.permits[*].permit.issuedBy.id
+                    val name: String // AC.parties[role==buyer]?.details.permits[*].permit.issuedBy.name
+                )
+
+                data class IssuedThought(
+                    val id: String, // AC.parties[role==buyer]?.details.permits[*].permit.IssuedThought.id
+                    val name: String // AC.parties[role==buyer]?.details.permits[*].permit.IssuedThought.name
+                )
+
+                data class ValidityPeriod(
+                    val startDate: String, // AC.parties[role==buyer]?.details.permits[*].permit.validityPeriod.startDate
+                    val endDate: String // AC.parties[role==buyer]?.details.permits[*].permit.validityPeriod.endDate
+                )
+            }
+
             data class BankAccount(
                 val bankName: String, // AC.parties[role==buyer]?.details.bankAccounts[*].bankName
                 val description: String, // AC.parties[role==buyer]?.details.bankAccounts[*].description
@@ -261,38 +287,216 @@ class ACUpdateContext (
                 )
             }
         }
-
-        data class Uris (
-            val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
-            val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
-            val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id&region=AC.parties[role=="buyer"].address.addressDetails.region.id
-            val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
-        )
-
-        data class BankAccountUris (
-            val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
-            val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
-            val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id&region=$region$
-            val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
-        )
     }
 
-    data class Supplier (
+    data class BuyerUris (
         val uris: Uris,
         val bankAccountUris: BankAccountUris
     ) {
         data class Uris (
-            val country: String, // /country/AC.parties[role=="supplier"].address.addressDetails.country.id?lang=langFromRequest
-            val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
-            val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id&region=AC.parties[role=="supplier"].address.addressDetails.region.id
-            val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
+                val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
+                val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
+                val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id&region=AC.parties[role=="buyer"].address.addressDetails.region.id
+                val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
         )
 
         data class BankAccountUris (
-            val country: String, // /country/AC.parties[role=="supplier"].address.addressDetails.country.id?lang=langFromRequest
-            val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
-            val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id&region=$region$
-            val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
+                val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
+                val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
+                val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id&region=$region$
+                val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
+        )
+    }
+
+    data class Supplier (
+        val id: String, // AC.parties[role==supplier].id
+        val name: String, // AC.parties[role==supplier].name
+        val address: Address,
+        val identifier: Identifier,
+        val additionalIdentifiers: List<AdditionalIdentifier>?,
+        val contactPoint: ContactPoint,
+        val details: Details,
+        val persones: List<Persone>? // AC.parties[role==supplier].persones[*]?
+    ) {
+        data class Address(
+            val country: Country,
+            val region: Region,
+            val locality: Locality,
+            val streetAddress: String, // AC.parties[role==supplier].address.streetAddress
+            val postalCode: String? // AC.parties[role==supplier].address.postalCode
+        ) {
+            data class Country(
+                val id: String, // AC.parties[role==supplier].address.addressDetails.country.id
+                val description: String // AC.parties[role==supplier].address.addressDetails.country.description
+            )
+
+            data class Region(
+                val id: String, // AC.parties[role==supplier].address.addressDetails.region.id
+                val description: String // AC.parties[role==supplier].address.addressDetails.region.description
+            )
+
+            data class Locality(
+                val scheme: String, // AC.parties[role==supplier].address.addressDetails.locality.scheme
+                val id: String, // AC.parties[role==supplier].address.addressDetails.locality.id
+                val description: String // AC.parties[role==supplier].address.addressDetails.locality.description
+            )
+        }
+
+        data class Identifier(
+            val scheme: String, // AC.parties[role==supplier].identifier.scheme
+            val id: String, // AC.parties[role==supplier].identifier.id
+            val legalName: String, // AC.parties[role==supplier].identifier.legalName
+            val uri: String? // AC.parties[role==supplier].identifier.uri
+        )
+
+        data class AdditionalIdentifier(
+            val scheme: String, // AC.parties[role==supplier].additionalIdentifier[*].scheme
+            val id: String, // AC.parties[role==supplier].additionalIdentifier[*].id
+            val legalName: String, // AC.parties[role==supplier].additionalIdentifier[*].legalName
+            val uri: String? // AC.parties[role==supplier].additionalIdentifier[*].uri
+        )
+
+        data class ContactPoint(
+            val name: String, // AC.parties[role==supplier].contactPoint.name
+            val url: String?, // AC.parties[role==supplier].contactPoint.url
+            val telephone: String, // AC.parties[role==supplier].contactPoint.telephone
+            val email: String, // AC.parties[role==supplier].contactPoint.email
+            val faxNumber: String? // AC.parties[role==supplier].contactPoint.faxNumber
+        )
+
+        data class Details (
+            val typeOfSupplier: String?, // AC.parties[role==supplier].details.typeOfSupplier
+            val mainEconomicActivities: String?, // AC.parties[role==supplier].details.mainEconomicActivities
+            val scale: String, // AC.parties[role==supplier].details.scale
+            val permits: List<Permit>?, // AC.parties[role==supplier].details.permits[*]
+            val bankAccounts: List<BankAccount>?, // AC.parties[role==supplier].details.bankAccounts[*]
+            val legalForm: LegalForm? // AC.parties[role==supplier].details.legalForm
+        ) {
+            data class Permit(
+                val scheme: String, // AC.parties[role==supplier].details.permits[*].scheme
+                val id: String, // AC.parties[role==supplier].details.permits[*].id
+                val url: String, // AC.parties[role==supplier].details.permits[*].url
+                val issuedBy: IssuedBy,
+                val issuedThought: IssuedThought, // AC.parties[role==supplier].details.permits[*].url
+                val validityPeriod: ValidityPeriod // AC.parties[role==supplier].details.permits[*].url
+            ) {
+                data class IssuedBy(
+                    val id: String, // AC.parties[role==supplier].details.permits[*].permit.issuedBy.id
+                    val name: String // AC.parties[role==supplier].details.permits[*].permit.issuedBy.name
+                )
+
+                data class IssuedThought(
+                    val id: String, // AC.parties[role==supplier].details.permits[*].permit.IssuedThought.id
+                    val name: String // AC.parties[role==supplier].details.permits[*].permit.IssuedThought.name
+                )
+
+                data class ValidityPeriod(
+                    val startDate: String, // AC.parties[role==supplier].details.permits[*].permit.validityPeriod.startDate
+                    val endDate: String // AC.parties[role==supplier].details.permits[*].permit.validityPeriod.endDate
+                )
+            }
+
+            data class BankAccount(
+                val bankName: String, // AC.parties[role==supplier].details.bankAccounts[*].bankName
+                val description: String, // AC.parties[role==supplier].details.bankAccounts[*].description
+                val address: Address,
+                val identifier: Identifier,
+                val accountIdentification: AccountIdentification,
+                val additionalAccountIdentifiers: List<AdditionalAccountIdentifier>?
+            ) {
+                data class Address(
+                    val country: Country,
+                    val region: Region,
+                    val locality: Locality,
+                    val streetAddress: String, // AC.parties[role==supplier]?.details.bankAccounts[*].address.streetAddress
+                    val postalCode: String? // AC.parties[role==supplier]?.details.bankAccounts[*].address.postalCode
+                ) {
+                    data class Country(
+                        val id: String, // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.country.id
+                        val description: String // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.country.description
+                    )
+
+                    data class Region(
+                        val id: String, // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.region.id
+                        val description: String // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.region.description
+                    )
+
+                    data class Locality(
+                        val scheme: String, // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.locality.scheme
+                        val id: String, // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.locality.id
+                        val description: String // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.locality.description
+                    )
+                }
+
+                data class Identifier(
+                    val scheme: String, // AC.parties[role==supplier].details.bankAccounts[*].identifier.scheme
+                    val id: String // AC.parties[role==supplier].details.bankAccounts[*].identifier.id
+                )
+
+                data class AccountIdentification(
+                    val scheme: String, // AC.parties[role==supplier].details.bankAccounts[*].accountIdentification.scheme
+                    val id: String // AC.parties[role==supplier].details.bankAccounts[*].accountIdentification.id
+                )
+
+                data class AdditionalAccountIdentifier(
+                    val scheme: String, // AC.parties[role==supplier].details.bankAccounts[*].additionalAccountIdentifiers[*].scheme
+                    val id: String // AC.parties[role==supplier].details.bankAccounts[*].additionalAccountIdentifiers[*].id
+                )
+            }
+
+            data class LegalForm(
+                val scheme: String, // AC.parties[role==supplier].details.legalForm.scheme
+                val id: String, // AC.parties[role==supplier].details.legalForm.id
+                val legalName: String, // AC.parties[role==supplier].details.legalForm.legalName
+                val uri: String // AC.parties[role==supplier].details.legalForm.uri
+            )
+        }
+
+        data class Persone(
+            val title: String, // AC.parties[role==supplier].persones[*]?.title
+            val name: String, // AC.parties[role==supplier].persones[*]?.name
+            val identifier: Identifier,
+            val businessFunctions: List<BusinessFunction>
+        ) {
+            data class Identifier(
+                val scheme: String, // AC.parties[role==supplier].persones[*]?.scheme
+                val id: String, // AC.parties[role==supplier].persones[*]?.id
+                val uri: String // AC.parties[role==supplier].persones[*]?.uri
+            )
+
+            data class BusinessFunction(
+                val id: String, // AC.parties[role==supplier].persones[*]?.businessFunctions[*].id
+                val type: String, // AC.parties[role==supplier].persones[*]?.businessFunctions[*].type
+                val jobTitle: String, // AC.parties[role==supplier].persones[*]?.businessFunctions[*].jobTitle
+                val startDate: String, // AC.parties[role==supplier].persones[*]?.businessFunctions[*].period.startDate
+                val documents: List<Document>
+            ) {
+                data class Document(
+                    val id: String, // AC.parties[role==supplier].persones[*]?.businessFunctions[*].documents[*].id
+                    val type: String, // AC.parties[role==supplier].persones[*]?.businessFunctions[*].documents[*].documentType
+                    val title: String?, // AC.parties[role==supplier].persones[*]?.businessFunctions[*].documents[*].title
+                    val description: String? // AC.parties[role==supplier].persones[*]?.businessFunctions[*].documents[*].description
+                )
+            }
+        }
+    }
+
+    data class SupplierUris(
+        val uris: Uris,
+        val bankAccountUris: BankAccountUris
+    ) {
+        data class Uris (
+                val country: String, // /country/AC.parties[role=="supplier"].address.addressDetails.country.id?lang=langFromRequest
+                val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
+                val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id&region=AC.parties[role=="supplier"].address.addressDetails.region.id
+                val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
+        )
+
+        data class BankAccountUris (
+                val country: String, // /country/AC.parties[role=="supplier"].address.addressDetails.country.id?lang=langFromRequest
+                val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
+                val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id&region=$region$
+                val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
         )
     }
 
