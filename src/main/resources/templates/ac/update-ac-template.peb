@@ -1245,7 +1245,7 @@
                             "scheme": {
                               "title": "{{ translate("ac", "parties.buyer.details.bankAccounts.identifier.scheme.title") }}",
                               "type": "string",
-                              "default": "MD-BANKS",
+                              "default": "MD-BNM",
                               "ocds": "buyer::object/details::object/bankAccounts::array[object]/identifier::object/scheme::string"
                             },
                             "id": {
@@ -2097,7 +2097,7 @@
                               "scheme": {
                                 "title": "{{ translate("ac", "parties.suppliers.details.bankAccounts.identifier.scheme.title") }}",
                                 "type": "string",
-                                "default": "MD-BANKS",
+                                "default": "MD-BNM",
                                 "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/identifier::object/scheme::string"
                               },
                               "id": {
