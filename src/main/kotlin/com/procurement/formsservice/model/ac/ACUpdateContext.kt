@@ -5,7 +5,7 @@ class ACUpdateContext(
         val lotId: String, // AC.awards[0].relatedLots[0]
         val contract: Contract,
         val award: Award,
-        val terms: Terms,
+        val terms: List<Term>,
         val buyer: Buyer,
         val buyerUris: BuyerUris,
         val suppliers: List<Supplier>,
@@ -101,11 +101,11 @@ class ACUpdateContext(
                 val type: String, // AC.awards[0].documents[*].documentType
                 val title: String?, // AC.awards[0].documents[*].title
                 val description: String?, // AC.awards[0].documents[*].description
-                val relatedLot: String // AC.awards[0].documents[*].relatedLots[0]
+                val relatedLot: String? // AC.awards[0].documents[*].relatedLots?[0]
         )
     }
 
-    data class Terms(
+    data class Term(
             val id: String, // AC.contracts[0].agreedMetrics[*].id
             val title: String, // AC.contracts[0].agreedMetrics[*].title
             val description: String, // AC.contracts[0].agreedMetrics[*].description

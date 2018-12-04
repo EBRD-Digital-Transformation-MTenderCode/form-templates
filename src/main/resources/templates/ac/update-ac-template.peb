@@ -2,7 +2,7 @@
 {# @pebvariable name="contractDoc" type="com.procurement.formsservice.model.ac.ACUpdateContext.Contract.Document" #}
 {# @pebvariable name="item" type="com.procurement.formsservice.model.ac.ACUpdateContext.Award.Item" #}
 {# @pebvariable name="awardDoc" type="com.procurement.formsservice.model.ac.ACUpdateContext.Award.Document" #}
-{# @pebvariable name="term" type="com.procurement.formsservice.model.ac.ACUpdateContext.Terms" #}
+{# @pebvariable name="term" type="com.procurement.formsservice.model.ac.ACUpdateContext.Term" #}
 {# @pebvariable name="observation" type="com.procurement.formsservice.model.ac.ACUpdateContext.Terms.Observation" #}
 {# @pebvariable name="buyerAdditionalIdentifier" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.AdditionalIdentifier" #}
 {# @pebvariable name="buyerPermit" type="com.procurement.formsservice.model.ac.ACUpdateContext.Buyer.Details.Permit" #}
