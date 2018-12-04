@@ -224,12 +224,14 @@ class ACUpdateContext(
                 ) {
                     data class Country(
                             val id: String, // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.country.id
-                            val description: String // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.country.description
+                            val description: String, // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.country.description
+                            val uri: String // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.country.uri
                     )
 
                     data class Region(
                             val id: String, // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.region.id
-                            val description: String // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.region.description
+                            val description: String, // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.region.description
+                            val uri: String // AC.parties[role==buyer]?.details.bankAccounts[*].address.addressDetails.region.uri
                     )
 
                     data class Locality(
@@ -293,20 +295,12 @@ class ACUpdateContext(
     }
 
     data class BuyerUris(
-            val uris: Uris,
-            val bankAccountUris: BankAccountUris
+            val uris: Uris
     ) {
         data class Uris(
                 val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
                 val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
                 val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id&region=AC.parties[role=="buyer"].address.addressDetails.region.id
-                val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
-        )
-
-        data class BankAccountUris(
-                val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
-                val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
-                val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id&region=$region$
                 val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
         )
     }
@@ -416,12 +410,14 @@ class ACUpdateContext(
                 ) {
                     data class Country(
                             val id: String, // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.country.id
-                            val description: String // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.country.description
+                            val description: String, // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.country.description
+                            val uri: String // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.country.uri
                     )
 
                     data class Region(
                             val id: String, // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.region.id
-                            val description: String // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.region.description
+                            val description: String, // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.region.description
+                            val uri: String // AC.parties[role==supplier]?.details.bankAccounts[*].address.addressDetails.region.uri
                     )
 
                     data class Locality(
@@ -485,20 +481,12 @@ class ACUpdateContext(
     }
 
     data class SupplierUris(
-            val uris: Uris,
-            val bankAccountUris: BankAccountUris
+            val uris: Uris
     ) {
         data class Uris(
                 val country: String, // /country/AC.parties[role=="supplier"].address.addressDetails.country.id?lang=langFromRequest
                 val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
                 val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id&region=AC.parties[role=="supplier"].address.addressDetails.region.id
-                val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
-        )
-
-        data class BankAccountUris(
-                val country: String, // /country/AC.parties[role=="supplier"].address.addressDetails.country.id?lang=langFromRequest
-                val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
-                val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id&region=$region$
                 val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="supplier"].address.addressDetails.country.id
         )
     }

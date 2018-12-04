@@ -1067,10 +1067,10 @@
                                 "country": {
                                   "title": "{{ translate("ac", "parties.buyer.details.bankAccounts.address.location.country.title") }}",
                                   "type": "object",
-                                  "source": "{{ context.buyer.bankAccountUris.country }}",
                                   "required": [
                                     "id",
-                                    "description"
+                                    "description",
+                                    "uri"
                                   ],
                                   "properties": {
                                     "id": {
@@ -1080,16 +1080,20 @@
                                     "description": {
                                       "type": "string",
                                       "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/country::object/description::string"
+                                    },
+                                    "uri": {
+                                      "type": "string",
+                                      "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/country::object/uri::string"
                                     }
                                   }
                                 },
                                 "region": {
                                   "title": "{{ translate("ac", "parties.buyer.details.bankAccounts.address.location.region.title") }}",
                                   "type": "object",
-                                  "source": "{{ context.buyer.bankAccountUris.region }}",
                                   "required": [
                                     "id",
-                                    "description"
+                                    "description",
+                                    "uri"
                                   ],
                                   "properties": {
                                     "id": {
@@ -1099,115 +1103,33 @@
                                     "description": {
                                       "type": "string",
                                       "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/region::object/description::string"
+                                    },
+                                    "uri": {
+                                      "type": "string",
+                                      "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/region::object/uri::string"
                                     }
                                   }
                                 },
                                 "locality": {
+                                  "title": "{{ translate("ac", "parties.buyer.details.bankAccounts.address.location.locality.title") }}",
                                   "type": "object",
                                   "required": [
-                                    "localityType"
+                                    "scheme",
+                                    "id",
+                                    "description"
                                   ],
                                   "properties": {
-                                    "localityType": {
-                                      "title": "{{ translate("ac", "parties.buyer.details.bankAccounts.address.location.locality.localityType.title") }}",
+                                    "scheme": {
                                       "type": "string",
-                                      "enum": [
-                                        "{{ translate("ac", "parties.buyer.details.bankAccounts.address.location.locality.localityType.enum[0]") }}",
-                                        "{{ translate("ac", "parties.buyer.details.bankAccounts.address.location.locality.localityType.enum[1]") }}"
-                                      ]
-                                    }
-                                  },
-                                  "dependencies": {
-                                    "localityType": {
-                                      "oneOf": [
-                                        {
-                                          "required": [
-                                            "localityType"
-                                          ],
-                                          "properties": {
-                                            "localityType": {
-                                              "enum": [
-                                                "{{ translate("ac", "parties.buyer.details.bankAccounts.address.location.locality.localityType.enum[0]") }}"
-                                              ]
-                                            },
-                                            "directory": {
-                                              "type": "object",
-                                              "properties": {
-                                                "locality": {
-                                                  "title": "{{ translate("ac", "parties.buyer.details.bankAccounts.address.location.locality.title") }}",
-                                                  "type": "object",
-                                                  "source": "{{ context.buyer.bankAccountUris.locality }}",
-                                                  "dependentFields": {
-                                                    "region": "parties.buyer.details.bankAccounts[bankAccountIndex].address.location.region.id"
-                                                  },
-                                                  "required": [
-                                                    "scheme",
-                                                    "id",
-                                                    "description"
-                                                  ],
-                                                  "properties": {
-                                                    "scheme": {
-                                                      "type": "string",
-                                                      "const": "CUATM",
-                                                      "ocds": "buyer::object/details::object/bankAccounts::array[object]address::object/addressDetails::object/locality::object/scheme::string"
-                                                    },
-                                                    "id": {
-                                                      "type": "string",
-                                                      "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/id::string"
-                                                    },
-                                                    "description": {
-                                                      "type": "string",
-                                                      "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/description::string"
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        },
-                                        {
-                                          "required": [
-                                            "localityType"
-                                          ],
-                                          "properties": {
-                                            "localityType": {
-                                              "enum": [
-                                                "{{ translate("ac", "parties.buyer.details.bankAccounts.address.location.locality.localityType.enum[1]") }}"
-                                              ]
-                                            },
-                                            "manual": {
-                                              "type": "object",
-                                              "properties": {
-                                                "locality": {
-                                                  "title": "{{ translate("ac", "parties.buyer.details.bankAccounts.address.location.locality.title") }}",
-                                                  "type": "object",
-                                                  "required": [
-                                                    "scheme",
-                                                    "id",
-                                                    "description"
-                                                  ],
-                                                  "properties": {
-                                                    "scheme": {
-                                                      "type": "string",
-                                                      "const": "other",
-                                                      "ocds": "buyer::object/details::object/bankAccounts::array[object]address::object/addressDetails::object/locality::object/scheme::string"
-                                                    },
-                                                    "id": {
-                                                      "type": "string",
-                                                      "const": "999999999",
-                                                      "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/id::string"
-                                                    },
-                                                    "description": {
-                                                      "type": "string",
-                                                      "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/description::string"
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      ]
+                                      "ocds": "buyer::object/details::object/bankAccounts::array[object]address::object/addressDetails::object/locality::object/scheme::string"
+                                    },
+                                    "id": {
+                                      "type": "string",
+                                      "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/id::string"
+                                    },
+                                    "description": {
+                                      "type": "string",
+                                      "ocds": "buyer::object/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/description::string"
                                     }
                                   }
                                 }
@@ -1919,10 +1841,10 @@
                                   "country": {
                                     "title": "{{ translate("ac", "parties.suppliers.details.bankAccounts.address.location.country.title") }}",
                                     "type": "object",
-                                    "source": "{{ context.supplier.bankAccountUris.country }}",
                                     "required": [
                                       "id",
-                                      "description"
+                                      "description",
+                                      "uri"
                                     ],
                                     "properties": {
                                       "id": {
@@ -1932,13 +1854,16 @@
                                       "description": {
                                         "type": "string",
                                         "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/country::object/description::string"
+                                      },
+                                      "uri": {
+                                        "type": "string",
+                                        "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/country::object/uri::string"
                                       }
                                     }
                                   },
                                   "region": {
                                     "title": "{{ translate("ac", "parties.suppliers.details.bankAccounts.address.location.region.title") }}",
                                     "type": "object",
-                                    "source": "{{ context.supplier.bankAccountUris.region }}",
                                     "required": [
                                       "id",
                                       "description"
@@ -1951,115 +1876,33 @@
                                       "description": {
                                         "type": "string",
                                         "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/region::object/description::string"
+                                      },
+                                      "uri": {
+                                        "type": "string",
+                                        "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/region::object/uri::string"
                                       }
                                     }
                                   },
                                   "locality": {
+                                    "title": "{{ translate("ac", "parties.suppliers.details.bankAccounts.address.location.locality.title") }}",
                                     "type": "object",
                                     "required": [
-                                      "localityType"
+                                      "scheme",
+                                      "id",
+                                      "description"
                                     ],
                                     "properties": {
-                                      "localityType": {
-                                        "title": "{{ translate("ac", "parties.suppliers.details.bankAccounts.address.location.locality.localityType.title") }}",
+                                      "scheme": {
                                         "type": "string",
-                                        "enum": [
-                                          "{{ translate("ac", "parties.suppliers.details.bankAccounts.address.location.locality.localityType.enum[0]") }}",
-                                          "{{ translate("ac", "parties.suppliers.details.bankAccounts.address.location.locality.localityType.enum[1]") }}"
-                                        ]
-                                      }
-                                    },
-                                    "dependencies": {
-                                      "localityType": {
-                                        "oneOf": [
-                                          {
-                                            "required": [
-                                              "localityType"
-                                            ],
-                                            "properties": {
-                                              "localityType": {
-                                                "enum": [
-                                                  "{{ translate("ac", "parties.suppliers.details.bankAccounts.address.location.locality.localityType.enum[0]") }}"
-                                                ]
-                                              },
-                                              "directory": {
-                                                "type": "object",
-                                                "properties": {
-                                                  "locality": {
-                                                    "title": "{{ translate("ac", "parties.suppliers.details.bankAccounts.address.location.locality.title") }}",
-                                                    "type": "object",
-                                                    "source": "{{ context.supplier.bankAccountUris.locality }}",
-                                                    "dependentFields": {
-                                                      "region": "parties.suppliers[supplierIndex].details.bankAccounts[bankAccountIndex].address.location.region.id"
-                                                    },
-                                                    "required": [
-                                                      "scheme",
-                                                      "id",
-                                                      "description"
-                                                    ],
-                                                    "properties": {
-                                                      "scheme": {
-                                                        "type": "string",
-                                                        "const": "CUATM",
-                                                        "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]address::object/addressDetails::object/locality::object/scheme::string"
-                                                      },
-                                                      "id": {
-                                                        "type": "string",
-                                                        "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/id::string"
-                                                      },
-                                                      "description": {
-                                                        "type": "string",
-                                                        "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/description::string"
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          },
-                                          {
-                                            "required": [
-                                              "localityType"
-                                            ],
-                                            "properties": {
-                                              "localityType": {
-                                                "enum": [
-                                                  "{{ translate("ac", "parties.suppliers.details.bankAccounts.address.location.locality.localityType.enum[1]") }}"
-                                                ]
-                                              },
-                                              "manual": {
-                                                "type": "object",
-                                                "properties": {
-                                                  "locality": {
-                                                    "title": "{{ translate("ac", "parties.suppliers.details.bankAccounts.address.location.locality.title") }}",
-                                                    "type": "object",
-                                                    "required": [
-                                                      "scheme",
-                                                      "id",
-                                                      "description"
-                                                    ],
-                                                    "properties": {
-                                                      "scheme": {
-                                                        "type": "string",
-                                                        "const": "other",
-                                                        "ocds": "buyer::objectaward::object/suppliers::array[object]/details::object/bankAccounts::array[object]address::object/addressDetails::object/locality::object/scheme::string"
-                                                      },
-                                                      "id": {
-                                                        "type": "string",
-                                                        "const": "999999999",
-                                                        "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/id::string"
-                                                      },
-                                                      "description": {
-                                                        "type": "string",
-                                                        "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/description::string"
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        ]
+                                        "ocds": "buyer::objectaward::object/suppliers::array[object]/details::object/bankAccounts::array[object]address::object/addressDetails::object/locality::object/scheme::string"
+                                      },
+                                      "id": {
+                                        "type": "string",
+                                        "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/id::string"
+                                      },
+                                      "description": {
+                                        "type": "string",
+                                        "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/address::object/addressDetails::object/locality::object/description::string"
                                       }
                                     }
                                   }
@@ -2141,7 +1984,6 @@
                                 "scheme": {
                                   "title": "{{ translate("ac", "parties.suppliers.details.bankAccounts.additionalAccountIdentifiers.scheme.title") }}",
                                   "type": "string",
-                                  "source": "{{ context.supplier.bankAccountUris.registrationScheme }}",
                                   "ocds": "award::object/suppliers::array[object]/details::object/bankAccounts::array[object]/additionalAccountIdentifiers::array[object]/scheme::string"
                                 },
                                 "id": {
@@ -2814,21 +2656,18 @@
                     "location": {
                       "country": {
                         "id": "{{ buyerBankAccount.address.country.id }}",
-                        "description": "{{ buyerBankAccount.address.country.description }}"
+                        "description": "{{ buyerBankAccount.address.country.description }}",
+                        "uri": "{{ buyerBankAccount.address.country.uri }}"
                       },
                       "region": {
                         "id": "{{ buyerBankAccount.address.region.id }}",
-                        "description": "{{ buyerBankAccount.address.region.description }}"
+                        "description": "{{ buyerBankAccount.address.region.description }}",
+                        "uri": "{{ buyerBankAccount.address.region.uri }}"
                       },
                       "locality": {
-                        "localityType": {% if buyerBankAccount.address.locality.scheme == "CUATM" %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[0]") }}"{% else %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[1]") }}"{% endif %},
-                        {% if buyerBankAccount.address.locality.scheme == "CUATM" %}"directory"{% else %}"manual"{% endif %}: {
-                          "locality": {
-                            "scheme": "{{ buyerBankAccount.address.locality.scheme }}",
-                            "id": "{{ buyerBankAccount.address.locality.id }}",
-                            "description": "{{ buyerBankAccount.address.locality.description }}"
-                          }
-                        }
+                        "scheme": "{{ buyerBankAccount.address.locality.scheme }}",
+                        "id": "{{ buyerBankAccount.address.locality.id }}",
+                        "description": "{{ buyerBankAccount.address.locality.description }}"
                       }
                     },
                     "postalAddress": {
@@ -3020,21 +2859,18 @@
                         "location": {
                           "country": {
                             "id": "{{ supplierBankAccount.address.country.id }}",
-                            "description": "{{ supplierBankAccount.address.country.description }}"
+                            "description": "{{ supplierBankAccount.address.country.description }}",
+                            "uri": "{{ supplierBankAccount.address.country.uri }}"
                             },
                           "region": {
                             "id": "{{ supplierBankAccount.address.region.id }}",
                             "description": "{{ supplierBankAccount.address.region.description }}"
+                            "uri": "{{ supplierBankAccount.address.region.uri }}"
                           },
                           "locality": {
-                            "localityType": {% if supplierBankAccount.address.locality.scheme == "CUATM" %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[0]") }}"{% else %}"{{ translate("cn", "section2.lots.performance.address.location.locality.localityType.enum[1]") }}"{% endif %},
-                            {% if supplierBankAccount.address.locality.scheme == "CUATM" %}"directory"{% else %}"manual"{% endif %}: {
-                              "locality": {
-                                "scheme": "{{ supplierBankAccount.address.locality.scheme }}",
-                                "id": "{{ supplierBankAccount.address.locality.id }}",
-                                "description": "{{ supplierBankAccount.address.locality.description }}"
-                              }
-                            }
+                            "scheme": "{{ supplierBankAccount.address.locality.scheme }}",
+                            "id": "{{ supplierBankAccount.address.locality.id }}",
+                            "description": "{{ supplierBankAccount.address.locality.description }}"
                           }
                         },
                         "postalAddress": {
