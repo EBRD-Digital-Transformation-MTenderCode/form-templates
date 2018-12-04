@@ -179,8 +179,8 @@ class ACUpdateContext(
                 val typeOfBuyer: String?, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].details.typeOfBuyer : AC.parties[role==buyer].details.typeOfBuyer
                 val mainGeneralActivity: String?, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].details.mainGeneralActivity : AC.parties[role==buyer].details.mainGeneralActivity
                 val mainSectoralActivity: String?, // AC.parties[role==buyer] is missing ? MS.parties[role==buyer].details.mainSectoralActivity : AC.parties[role==buyer].details.mainSectoralActivity
-                val permits: List<Permit>, // AC.parties[role==buyer].details.permits[*]
-                val bankAccounts: List<BankAccount>, // AC.parties[role==buyer]?.details.bankAccounts[*]
+                val permits: List<Permit>, // if AC.parties[role==buyer] is missing then empty list else AC.parties[role==buyer].details.permits[*]
+                val bankAccounts: List<BankAccount>, // if AC.parties[role==buyer] is missing then empty list else AC.parties[role==buyer]?.details.bankAccounts[*]
                 val legalForm: LegalForm? // AC.parties[role==buyer]?.details.legalForm
         ) {
             data class Permit(
