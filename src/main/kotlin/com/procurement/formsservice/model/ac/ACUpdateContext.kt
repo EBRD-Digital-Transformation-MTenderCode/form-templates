@@ -298,10 +298,10 @@ class ACUpdateContext(
             val uris: Uris
     ) {
         data class Uris(
-                val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
-                val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
-                val locality: String, // /locality?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id&region=AC.parties[role=="buyer"].address.addressDetails.region.id
-                val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
+                val country: String, // /country/(AC || MS).parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
+                val region: String, // /region?lang=langFromRequest&country=(AC || MS).parties[role=="buyer"].address.addressDetails.country.id
+                val locality: String, // /locality?lang=langFromRequest&country=(AC || MS).parties[role=="buyer"].address.addressDetails.country.id&region=(AC || MS).parties[role=="buyer"].address.addressDetails.region.id
+                val registrationScheme: String  // /registration-scheme?lang=langFromRequest&country=(AC || MS).parties[role=="buyer"].address.addressDetails.country.id
         )
     }
 
@@ -537,9 +537,9 @@ class ACUpdateContext(
     }
 
     data class ItemUris(
-            val country: String, // /country/AC.parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
-            val region: String, // /region?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id
-            val locality: String // /locality?lang=langFromRequest&country=AC.parties[role=="buyer"].address.addressDetails.country.id&region=$region$
+            val country: String, // /country/(AC || MS).parties[role=="buyer"].address.addressDetails.country.id?lang=langFromRequest
+            val region: String, // /region?lang=langFromRequest&country=(AC || MS).parties[role=="buyer"].address.addressDetails.country.id
+            val locality: String // /locality?lang=langFromRequest&country=(AC || MS).parties[role=="buyer"].address.addressDetails.country.id&region=$region$
     )
 }
 
