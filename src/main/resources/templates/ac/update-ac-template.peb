@@ -2814,11 +2814,11 @@
               }
             },
             "details": {
-              {{ stringAttributeIf(name = "url", value = supplier.details.typeOfSupplier ) }}
+              {{ stringAttributeIf(name = "typeOfSupplier", value = supplier.details.typeOfSupplier ) }}
               {{ commaIf(supplier.details.mainEconomicActivities) }}
-              {{ stringAttributeIf(name = "url", value = supplier.details.mainEconomicActivities ) }}
+              {{ stringAttributeIf(name = "mainEconomicActivities", value = supplier.details.mainEconomicActivities ) }}
               {{ commaIf(supplier.details.scale) }}
-              {{ stringAttributeIf(name = "url", value = supplier.details.scale ) }}
+              {{ stringAttributeIf(name = "scale", value = supplier.details.scale ) }}
               {% if supplier.details.permits != null %}
                 "permits": [
                   {% for supplierPermit in supplier.details.permits %}

@@ -363,7 +363,7 @@ class ACUpdateContext(
 
         data class Details(
                 val typeOfSupplier: String?, // AC.parties[role==supplier].details.typeOfSupplier
-                val mainEconomicActivities: String?, // AC.parties[role==supplier].details.mainEconomicActivities
+                val mainEconomicActivities: List<String>, // AC.parties[role==supplier].details.mainEconomicActivities[*]?
                 val scale: String, // AC.parties[role==supplier].details.scale
                 val permits: List<Permit>, // AC.parties[role==supplier].details.permits[*]
                 val bankAccounts: List<BankAccount>, // AC.parties[role==supplier].details.bankAccounts[*]
