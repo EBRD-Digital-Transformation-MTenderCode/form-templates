@@ -203,7 +203,7 @@ class ACUpdateContext(
 
                 data class ValidityPeriod(
                         val startDate: String, // AC.parties[role==buyer]?.details.permits[*].permitDetails.validityPeriod.startDate
-                        val endDate: String // AC.parties[role==buyer]?.details.permits[*].permitDetails.validityPeriod.endDate
+                        val endDate: String? // AC.parties[role==buyer]?.details.permits[*].permitDetails.validityPeriod.endDate
                 )
             }
 
@@ -261,7 +261,7 @@ class ACUpdateContext(
                     val scheme: String, // AC.parties[role==buyer]?.details.legalForm.scheme
                     val id: String, // AC.parties[role==buyer]?.details.legalForm.id
                     val description: String, // AC.parties[role==buyer]?.details.legalForm.description
-                    val uri: String // AC.parties[role==buyer]?.details.legalForm.uri
+                    val uri: String? // AC.parties[role==buyer]?.details.legalForm.uri
             )
         }
 
@@ -389,7 +389,7 @@ class ACUpdateContext(
 
                 data class ValidityPeriod(
                         val startDate: String, // AC.parties[role==supplier].details.permits[*].permitDetails.validityPeriod.startDate
-                        val endDate: String // AC.parties[role==supplier].details.permits[*].permitDetails.validityPeriod.endDate
+                        val endDate: String? // AC.parties[role==supplier].details.permits[*].permitDetails.validityPeriod.endDate
                 )
             }
 
@@ -447,7 +447,7 @@ class ACUpdateContext(
                     val scheme: String, // AC.parties[role==supplier].details.legalForm.scheme
                     val id: String, // AC.parties[role==supplier].details.legalForm.id
                     val description: String, // AC.parties[role==supplier].details.legalForm.description
-                    val uri: String // AC.parties[role==supplier].details.legalForm.uri
+                    val uri: String? // AC.parties[role==supplier].details.legalForm.uri
             )
         }
 
