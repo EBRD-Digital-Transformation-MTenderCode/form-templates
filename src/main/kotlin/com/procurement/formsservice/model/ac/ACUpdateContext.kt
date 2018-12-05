@@ -274,7 +274,7 @@ class ACUpdateContext(
             data class Identifier(
                     val scheme: String, // AC.parties[role==buyer]?.persones[*].identifier.scheme
                     val id: String, // AC.parties[role==buyer]?.persones[*].identifier.id
-                    val uri: String // AC.parties[role==buyer]?.persones[*].identifier.uri
+                    val uri: String? // AC.parties[role==buyer]?.persones[*].identifier.uri
             )
 
             data class BusinessFunction(
@@ -460,7 +460,7 @@ class ACUpdateContext(
             data class Identifier(
                     val scheme: String, // AC.parties[role==supplier].persones[*]?.scheme
                     val id: String, // AC.parties[role==supplier].persones[*]?.id
-                    val uri: String // AC.parties[role==supplier].persones[*]?.uri
+                    val uri: String? // AC.parties[role==supplier].persones[*]?.uri
             )
 
             data class BusinessFunction(

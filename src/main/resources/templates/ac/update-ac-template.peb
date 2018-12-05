@@ -1015,8 +1015,7 @@
                               "title": "{{ translate("ac", "parties.buyer.details.permits.permitDetails.validityPeriod.title") }}",
                               "type": "object",
                               "required": [
-                                "startDate",
-                                "endDate"
+                                "startDate"
                               ],
                               "properties": {
                                 "startDate": {
@@ -1231,8 +1230,7 @@
                     "required": [
                       "scheme",
                       "id",
-                      "description",
-                      "uri"
+                      "description"
                     ],
                     "properties": {
                       "scheme": {
@@ -1286,8 +1284,7 @@
                       "type": "object",
                       "required": [
                         "scheme",
-                        "id",
-                        "uri"
+                        "id"
                       ],
                       "properties": {
                         "scheme": {
@@ -1789,8 +1786,7 @@
                                 "title": "{{ translate("ac", "parties.suppliers.details.permits.permitDetails.validityPeriod.title") }}",
                                 "type": "object",
                                 "required": [
-                                  "startDate",
-                                  "endDate"
+                                  "startDate"
                                 ],
                                 "properties": {
                                   "startDate": {
@@ -2003,8 +1999,7 @@
                       "required": [
                         "scheme",
                         "id",
-                        "description",
-                        "uri"
+                        "description"
                       ],
                       "properties": {
                         "scheme": {
@@ -2058,8 +2053,7 @@
                         "type": "object",
                         "required": [
                           "scheme",
-                          "id",
-                          "uri"
+                          "id"
                         ],
                         "properties": {
                           "scheme": {
@@ -2637,8 +2631,9 @@
                       "name": "{{ buyerPermit.issuedThought.name }}",
                     },
                     "validityPeriod": {
-                      "startDate": "{{ buyerPermit.validityPeriod.startDate }}",
-                      "endDate": "{{ buyerPermit.validityPeriod.endDate }}"
+                      "startDate": "{{ buyerPermit.validityPeriod.startDate }}"
+                      {{ commaIf(buyerPermit.validityPeriod.endDate) }}
+                      {{ stringAttributeIf(name = "endDate", value = buyerPermit.validityPeriod.endDate) }}
                     }
                   }
                 }
@@ -2701,10 +2696,11 @@
           {% endif %}
           {% if context.buyer.details.legalForm.scheme != null %}
             "legalForm": {
-              "scheme": "{{ context.buyer.details.legalForm.scheme }}"
-              "id": "{{ context.buyer.details.legalForm.id }}"
+              "scheme": "{{ context.buyer.details.legalForm.scheme }}",
+              "id": "{{ context.buyer.details.legalForm.id }}",
               "description": "{{ context.buyer.details.legalForm.description }}"
-              "uri": "{{ context.buyer.details.legalForm.uri }}"
+              {{ commaIf(context.buyer.details.legalForm.uri) }}
+              {{ stringAttributeIf(name = "uri", value = context.buyer.details.legalForm.uri ) }}
             }
           {% endif %}
         }
@@ -2717,8 +2713,9 @@
                 "name": "{{ buyerPersone.name }}",
                 "identifier": {
                   "scheme": "{{ buyerPersone.identifier.scheme }}",
-                  "id": "{{ buyerPersone.identifier.id }}",
-                  "uri": "{{ buyerPersone.identifier.uri }}"
+                  "id": "{{ buyerPersone.identifier.id }}"
+                  {{ commaIf(buyerPersone.identifier.uri) }}
+                  {{ stringAttributeIf(name = "uri", value = buyerPersone.identifier.uri ) }}
                 },
                 "businessFunctions": [
                   {% for buyerBusinessFunction in buyerPersone.businessFunctions %}
@@ -2840,8 +2837,9 @@
                           "name": "{{ supplierPermit.issuedThought.name }}",
                         },
                         "validityPeriod": {
-                          "startDate": "{{ supplierPermit.validityPeriod.startDate }}",
-                          "endDate": "{{ supplierPermit.validityPeriod.endDate }}"
+                          "startDate": "{{ supplierPermit.validityPeriod.startDate }}"
+                          {{ commaIf(supplierPermit.validityPeriod.endDate) }}
+                          {{ stringAttributeIf(name = "endDate", value = supplierPermit.validityPeriod.endDate) }}
                         }
                       }
                     }
@@ -2904,10 +2902,11 @@
               {% endif %}
               {% if supplier.details.legalForm.scheme != null %}
                 "legalForm": {
-                  "scheme": "{{ supplier.details.legalForm.scheme }}"
-                  "id": "{{ supplier.details.legalForm.id }}"
+                  "scheme": "{{ supplier.details.legalForm.scheme }}",
+                  "id": "{{ supplier.details.legalForm.id }}",
                   "description": "{{ supplier.details.legalForm.description }}"
-                  "uri": "{{ supplier.details.legalForm.uri }}"
+                  {{ commaIf(supplier.details.legalForm.uri) }}
+                  {{ stringAttributeIf(name = "uri", value = supplier.details.legalForm.uri ) }}
                 }
               {% endif %}
             }
@@ -2920,8 +2919,9 @@
                     "name": "{{ buyerPersone.name }}",
                     "identifier": {
                       "scheme": "{{ buyerPersone.identifier.scheme }}",
-                      "id": "{{ buyerPersone.identifier.id }}",
-                      "uri": "{{ buyerPersone.identifier.uri }}"
+                      "id": "{{ buyerPersone.identifier.id }}"
+                      {{ commaIf(buyerPersone.identifier.uri) }}
+                      {{ stringAttributeIf(name = "uri", value = buyerPersone.identifier.uri) }}
                     },
                     "businessFunctions": [
                       {% for buyerBusinessFunction in buyerPersone.businessFunctions %}
