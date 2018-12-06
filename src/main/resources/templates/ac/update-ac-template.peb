@@ -1420,7 +1420,7 @@
                         "country": {
                           "title": "{{ translate("ac", "parties.suppliers.address.location.country.title") }}",
                           "type": "object",
-                          "source": "{{ context.supplierUris.uris.country }}",
+                          "source": "{{ context.supplierUris.country }}",
                           "properties": {
                             "id": {
                               "type": "string",
@@ -1435,7 +1435,7 @@
                         "region": {
                           "title": "{{ translate("ac", "parties.suppliers.address.location.region.title") }}",
                           "type": "object",
-                          "source": "{{ context.supplierUris.uris.region }}",
+                          "source": "{{ context.supplierUris.region }}",
                           "properties": {
                             "id": {
                               "type": "string",
@@ -1476,7 +1476,7 @@
                                         "locality": {
                                           "title": "{{ translate("ac", "parties.suppliers.address.location.locality.title") }}",
                                           "type": "object",
-                                          "source": "{{ context.supplierUris.uris.locality }}",
+                                          "source": "{{ context.supplierUris.locality }}",
                                           "properties": {
                                             "scheme": {
                                               "type": "string",
@@ -2705,10 +2705,11 @@
               "description": "{{ context.buyer.details.legalForm.description }}"
               {{ commaIf(context.buyer.details.legalForm.uri) }}
               {{ stringAttributeIf(name = "uri", value = context.buyer.details.legalForm.uri ) }}
-            },
+            }
           {% endif %}
         }
         {% if context.buyer.persones != null %}
+          ,
           "persones": [
             {% for buyerPersone in context.buyer.persones %}
               {% if loop.index  > 0 %},{% endif %}
@@ -2821,9 +2822,13 @@
               "scale": "{{ supplier.details.scale }}"
               {{ commaIf(supplier.details.typeOfSupplier) }}
               {{ stringAttributeIf(name = "typeOfSupplier", value = supplier.details.typeOfSupplier ) }}
-              {{ commaIf(supplier.details.mainEconomicActivities) }}
+              {% if supplier.details.mainEconomicActivities.length != 0 %}
+                ,
+                "mainEconomicActivities": [{% for mainEconomicActivity in supplier.details.mainEconomicActivities %}{% if loop.index  > 0 %},{% endif %}"{{ mainEconomicActivity }}"{% endFor %}]
+              {% endif %}
               {{ stringAttributeIf(name = "mainEconomicActivities", value = supplier.details.mainEconomicActivities ) }}
               {% if supplier.details.permits != null %}
+                ,
                 "permits": [
                   {% for supplierPermit in supplier.details.permits %}
                     {% if loop.index  > 0 %},{% endif %}
@@ -2911,10 +2916,11 @@
                   "description": "{{ supplier.details.legalForm.description }}"
                   {{ commaIf(supplier.details.legalForm.uri) }}
                   {{ stringAttributeIf(name = "uri", value = supplier.details.legalForm.uri ) }}
-                },
+                }
               {% endif %}
             }
             {% if supplier.persones != null %}
+              ,
               "persones": [
                 {% for supplierPersone in supplier.persones %}
                   {% if loop.index  > 0 %},{% endif %}
