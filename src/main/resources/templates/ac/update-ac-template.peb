@@ -2498,12 +2498,12 @@
       "value": {
         "amount": {{ context.award.value.amount }},
         "currency": "{{ context.currency }}"
-        {{ commaIf(context.award.value.amountNet) }}
         {% if context.award.value.amountNet != null %}
+          ,
           "amountNet": {{ context.award.value.amountNet }}
         {% endif %}
-        {{ commaIf(context.award.value.valueAddedTaxIncluded) }}
         {% if context.award.value.valueAddedTaxIncluded != null %}
+          ,
           "valueAddedTaxIncluded": {{ context.award.value.valueAddedTaxIncluded }}
         {% endif %}
       },
