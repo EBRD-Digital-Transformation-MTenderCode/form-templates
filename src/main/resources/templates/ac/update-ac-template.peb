@@ -2416,8 +2416,9 @@
     "contract": {
       {{ stringAttributeIf(name = "title", value = context.contract.title) }}
       {{ commaIf(context.contract.description) }}
-      {{ stringAttributeIf(name = "description", value = context.contract.description) }},,
+      {{ stringAttributeIf(name = "description", value = context.contract.description) }}
       {% if context.contract.period != null %}
+        ,
         "period": {
           "startDate": "{{ context.contract.period.startDate }}",
           "endDate": "{{ context.contract.period.endDate }}"
