@@ -2466,7 +2466,7 @@
                 "amountNet": {{ item.value.amountNet }},
                 "valueAddedTaxIncluded": {{ item.value.valueAddedTaxIncluded }},
                 "currency": "{{ context.currency }}"
-              },
+              }
             {% endif %}
             {% if item.deliveryAddress != null %}
               ,
@@ -2498,7 +2498,6 @@
                 }
               }
             {% endif %}
-
           }
         {% endfor %}
       ],
