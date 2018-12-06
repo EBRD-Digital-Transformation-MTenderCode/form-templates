@@ -606,7 +606,7 @@
                       "country": {
                         "title": "{{ translate("ac", "parties.buyer.address.location.country.title") }}",
                         "type": "object",
-                        "source": "{{ context.buyerUris.uris.country }}",
+                        "source": "{{ context.buyerUris.country }}",
                         "properties": {
                           "id": {
                             "type": "string",
@@ -621,7 +621,7 @@
                       "region": {
                         "title": "{{ translate("ac", "parties.buyer.address.location.region.title") }}",
                         "type": "object",
-                        "source": "{{ context.buyerUris.uris.region }}",
+                        "source": "{{ context.buyerUris.region }}",
                         "properties": {
                           "id": {
                             "type": "string",
@@ -662,7 +662,7 @@
                                       "locality": {
                                         "title": "{{ translate("ac", "parties.buyer.address.location.locality.title") }}",
                                         "type": "object",
-                                        "source": "{{ context.buyerUris.uris.locality }}",
+                                        "source": "{{ context.buyerUris.locality }}",
                                         "properties": {
                                           "scheme": {
                                             "type": "string",
@@ -2822,11 +2822,10 @@
               "scale": "{{ supplier.details.scale }}"
               {{ commaIf(supplier.details.typeOfSupplier) }}
               {{ stringAttributeIf(name = "typeOfSupplier", value = supplier.details.typeOfSupplier ) }}
-              {% if supplier.details.mainEconomicActivities.length != 0 %}
+              {% if supplier.details.mainEconomicActivities is not empty %}
                 ,
-                "mainEconomicActivities": [{% for mainEconomicActivity in supplier.details.mainEconomicActivities %}{% if loop.index  > 0 %},{% endif %}"{{ mainEconomicActivity }}"{% endFor %}]
+                "mainEconomicActivities": [{% for mainEconomicActivity in supplier.details.mainEconomicActivities %}{% if loop.index  > 0 %},{% endif %}"{{ mainEconomicActivity }}"{% endfor %}]
               {% endif %}
-              {{ stringAttributeIf(name = "mainEconomicActivities", value = supplier.details.mainEconomicActivities ) }}
               {% if supplier.details.permits != null %}
                 ,
                 "permits": [
