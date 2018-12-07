@@ -1275,7 +1275,7 @@
                       "ocds": "buyer::object/persones::array[object]/title::string"
                     },
                     "name": {
-                      "title": "{{ translate("ac", "parties.buyer.persones.title.title") }}",
+                      "title": "{{ translate("ac", "parties.buyer.persones.name.title") }}",
                       "type": "string",
                       "ocds": "buyer::object/persones::array[object]/name::string"
                     },
@@ -2044,7 +2044,7 @@
                         "ocds": "award::object/suppliers::array[object]/persones::array[object]/title::string"
                       },
                       "name": {
-                        "title": "{{ translate("ac", "parties.suppliers.persones.title.title") }}",
+                        "title": "{{ translate("ac", "parties.suppliers.persones.name.title") }}",
                         "type": "string",
                         "ocds": "award::object/suppliers::array[object]/persones::array[object]/name::string"
                       },
