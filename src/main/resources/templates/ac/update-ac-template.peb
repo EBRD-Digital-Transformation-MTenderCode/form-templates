@@ -820,7 +820,7 @@
                         "readOnly": true
                       },
                       "url": {
-                        "title": "{{ translate("ac", "parties.buyer.contactPoint.person.name.title") }}",
+                        "title": "{{ translate("ac", "parties.buyer.contactPoint.person.url.title") }}",
                         "type": "string",
                         "readOnly": true
                       }
@@ -1634,7 +1634,7 @@
                           "readOnly": true
                         },
                         "url": {
-                          "title": "{{ translate("ac", "parties.suppliers.contactPoint.person.name.title") }}",
+                          "title": "{{ translate("ac", "parties.suppliers.contactPoint.person.url.title") }}",
                           "type": "string",
                           "readOnly": true
                         }
@@ -2057,18 +2057,18 @@
                         ],
                         "properties": {
                           "scheme": {
-                            "title": "{{ translate("ac", "parties.buyer.persones.identifier.scheme.title") }}",
+                            "title": "{{ translate("ac", "parties.suppliers.persones.identifier.scheme.title") }}",
                             "type": "string",
                             "default": "MD-IDNP",
                             "ocds": "award::object/suppliers::array[object]/persones::array[object]/identifier::object/scheme::string"
                           },
                           "id": {
-                            "title": "{{ translate("ac", "parties.buyer.persones.identifier.id.title") }}",
+                            "title": "{{ translate("ac", "parties.suppliers.persones.identifier.id.title") }}",
                             "type": "string",
                             "ocds": "award::object/suppliers::array[object]/persones::array[object]/identifier::object/id::string"
                           },
                           "uri": {
-                            "title": "{{ translate("ac", "parties.buyer.persones.identifier.uri.title") }}",
+                            "title": "{{ translate("ac", "parties.suppliers.persones.identifier.uri.title") }}",
                             "type": "string",
                             "default": "http://e-services.md/?q=ru/verifica-idnp",
                             "ocds": "award::object/suppliers::array[object]/persones::array[object]/identifier::object/uri::string"
