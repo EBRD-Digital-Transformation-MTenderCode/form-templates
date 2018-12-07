@@ -2344,7 +2344,7 @@
               "properties": {
                 "budgetBreakdownId": {
                   "type": "string",
-                  "ocds": "planning::object/budget::object/budgetAllocation::array[object]/budgetBreakdownID::string"
+                  "ocds": "planning::object/budget::object/budgetAllocation::array[object]/budgetBreakdownId::string"
                 },
                 "period": {
                   "title": "{{ translate("ac", "budget.budgetAllocations.period.title") }}",
@@ -2389,9 +2389,9 @@
                 "currency"
               ],
               "properties": {
-                "budgetBreakdownID": {
-                  "type": "object",
-                  "ocds": "planning::object/budget::object/budgetSource::array[object]/budgetBreakdownID::string"
+                "budgetBreakdownId": {
+                  "type": "string",
+                  "ocds": "planning::object/budget::object/budgetSource::array[object]/budgetBreakdownId::string"
                 },
                 "amount": {
                   "title": "{{ translate("ac", "budget.budgetAllocations.amount.title") }}",
@@ -3037,7 +3037,7 @@
           {% for budgetSource in context.budget.budgetSources %}
             {% if loop.index  > 0 %},{% endif %}
             {
-              "budgetBreakdownID": "{{ budgetSource.budgetBreakdownID }}",
+              "budgetBreakdownId": "{{ budgetSource.budgetBreakdownId }}",
               "amount": {{ budgetSource.amount }},
               "currency": "{{ context.currency }}"
             }
