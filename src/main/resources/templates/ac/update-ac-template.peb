@@ -34,6 +34,10 @@
       "contract": {
         "title": "{{ translate("ac", "contract.title") }}",
         "type": "object",
+        "required": [
+          "title",
+          "description"
+        ],
         "properties": {
           "title": {
             "title": "{{ translate("ac", "contract.title.title") }}",
