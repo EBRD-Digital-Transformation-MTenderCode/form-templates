@@ -247,7 +247,6 @@ End-points:
 
 - **"form"**:  "update-ac" - указания типа создаваемой сущности **(required)**;
 - **"ocid"** :  "..." - ocid AC **(required)**;
-- **"lot-id"** :  "..." - id лота на который был создан AC **(required)**;
 - **"lang"**:  "..." - локализация формы.
 
 Шаблон response payload ноходится - *src/main/resources/templates/ac/update-ac-template.peb*
