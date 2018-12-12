@@ -49,7 +49,7 @@
             "title": "{{ translate("ac", "contract.description.title") }}",
             "description": "{{ translate("ac", "contract.description.description") }}",
             "type": "string",
-            "ocds": "contract::object/descripiton::string"
+            "ocds": "contract::object/description::string"
           },
           "period": {
             "title": "{{ translate("ac", "contract.period.title") }}",
