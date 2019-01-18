@@ -252,3 +252,18 @@ End-points:
 Шаблон response payload ноходится - *src/main/resources/templates/ac/update-ac-template.peb*
 
 ------------
+
+#### 12. Form Create Contract
+
+End-points:
+**create -** `/api/v1/operations?form=ac&ocid=...&lang=...`
+
+Значения параметров:
+
+- **"form"**:  "ac" - указания типа создаваемой сущности **(required)**;
+- **"ocid"** :  "..." - ocid EV **(required)**;
+- **"lang"**:  "..." - локализация формы.
+
+Шаблон response payload ноходится - *src/main/resources/templates/ac/create-ac-template.peb*
+
+------------
