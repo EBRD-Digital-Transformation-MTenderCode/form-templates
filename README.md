@@ -211,6 +211,24 @@ End-points:
 
 #### 9. Form Award
 
+##### Create:
+
+End-points:
+**create -** `/api/v1/operations?form=award&lang=...&ocid=...&lot-id=...`
+
+Значения параметров:
+
+- **"form"**:  "award" - указания типа создаваемой сущности **(required)**;
+- **"ocid"** :  "..." - ocid стадии тендерного процесса в которой подается award **(required)**;
+- **"lot-id"**: "..." -  id лота на который подается bid **(required)**;
+- **"lang"**:  "..." - локализация формы.
+
+Шаблон response payload ноходится - *src/main/resources/templates/award/create-award-template.peb*
+
+------------
+
+##### Update:
+
 End-points:
 **update -** `/api/v1/operations?form=update-award&lot-id=...&lang=...`
 
