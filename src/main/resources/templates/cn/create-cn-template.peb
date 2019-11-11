@@ -924,6 +924,12 @@
                       "type": "string",
                       "ocds": "tender::object/lots::array[object]/id::string"
                     },
+                    "internalId": {
+                      "title": "{{ translate("cn", "section2.lots.description.internalId.title") }}",
+                      "description": "{{ translate("cn", "section2.lots.description.internalId.description") }}",
+                      "type": "string",
+                      "ocds": "tender::object/lots::array[object]/internalId::string"
+                    },
                     "title": {
                       "title": "{{ translate("cn", "section2.lots.description.title.title") }}",
                       "description": "{{ translate("cn", "section2.lots.description.title.description") }}",
