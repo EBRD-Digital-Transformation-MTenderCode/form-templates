@@ -3543,8 +3543,7 @@
                             {% if loop.index  > 0 %},{% endif %}
                             {
                               "documentId": "{{ businessFunctionDocument.id }}",
-                              "documentType": "{{ businessFunctionDocument.type }}",
-                              "relatedLots": ["{{ businessFunctionDocument.relatedLots }}"]
+                              "documentType": "{{ businessFunctionDocument.type }}"
                               {{ commaIf(businessFunctionDocument.title) }}
                               {{ stringAttributeIf(name = "title", value = businessFunctionDocument.title) }}
                               {{ commaIf(businessFunctionDocument.description) }}
@@ -3792,10 +3791,10 @@
                     {
                       "itemId": "{{ item.id }}",
                       "relatedLot": "{{ item.relatedLot }}",
-                      {{ stringAttributeIf(name = "internalId", value = item.internalId) }}
+                      {{ stringAttributeIf(name = "description", value = item.description) }}
                       {{ commaIf(item.description) }}
                       {{ stringAttributeIf(name = "internalId", value = item.internalId) }}
-                      {{ commaIf(item.description) }}
+                      {{ commaIf(item.internalId) }}
                       "quantity": {
                         "quantity": {{ item.quantity.quantity }},
                         "unitDetails": {
