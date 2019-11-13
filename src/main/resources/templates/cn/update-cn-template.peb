@@ -3829,7 +3829,7 @@
                           {% endfor %}
                         ]
                       {% endif %}
-                      {% if lot.itemCriteria != null %}
+                      {% if item.itemCriteria != null %}
                         ,
                         "itemCriteria": [
                           {% for itemCriterion in lot.itemCriteria %}
