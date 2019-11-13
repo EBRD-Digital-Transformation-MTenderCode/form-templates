@@ -3301,8 +3301,11 @@
           "method": {
             "type": "object",
             "required": [
-              "legalBasis",
-              "awardCriteria"
+              "legalBasis"
+              {% if context.parentEntity != "NP" %}
+                ,
+                "awardCriteria"
+              {% endif %}
             ],
             "properties": {
               "procurementMethodDetails": {
@@ -3345,19 +3348,22 @@
                   "{{ translate("cn", "section4.awardCriteria.enumNames[4]") }}"
                 ],
                 "ocds": "tender::object/awardCriteria::string"
-              },
-              "awardCriteriaDetails": {
-                "title": "",
-                "type": "string",
-                "enum": [
-                  "manual",
-                  "automated"
-                ],
-                "enumNames": [
-
-                ],
-                "ocds": "tender::object/awardCriteriaDetails::string"
               }
+              {% if context.parentEntity != 'NP' %}
+                ,
+                "awardCriteriaDetails": {
+                  "title": "",
+                  "type": "string",
+                  "enum": [
+                    "manual",
+                    "automated"
+                  ],
+                  "enumNames": [
+
+                  ],
+                  "ocds": "tender::object/awardCriteriaDetails::string"
+                }
+              {% endif %}
             }
           },
           "administrative": {
@@ -4302,8 +4308,11 @@
     "section4": {
       "method": {
         "procurementMethodDetails": "{{ context.tender.procurementMethodDetails }}",
-        "legalBasis": "{{ context.tender.legalBasis }}",
-        "awardCriteria": "{{ context.tender.awardCriteria }}"
+        "legalBasis": "{{ context.tender.legalBasis }}"
+        {{ commaIf(context.tender.awardCriteria) }}
+        {{ stringAttributeIf(name = "awardCriteria", value = context.tender.awardCriteria) }}
+        {{ commaIf(context.tender.awardCriteriaDetails) }}
+        {{ stringAttributeIf(name = "awardCriteriaDetails", value = context.tender.awardCriteriaDetails) }}
       }
       {% if context.tender.enquiryPeriod != null and context.tender.tenderPeriod != null %}
         ,
