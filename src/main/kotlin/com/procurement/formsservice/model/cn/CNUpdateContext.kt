@@ -116,7 +116,7 @@ class CNUpdateContext(
         val electronicAuctions: List<ElectronicAuction>?, // CN.tender.electronicAuctions?.details
         val procurementMethodDetails: String, // MS.tender.procurementMethodDetails
         val awardCriteria: String?, // CN.tender.awardCriteria
-        val awardCriteriaDetails: String?, // CN.tender.awardCriteria.awardCriteriaDetails
+        val awardCriteriaDetails: String?, // CN.tender.awardCriteriaDetails
         val legalBasis: String,  // MS.tender.legalBasis
         val enquiryPeriod: String?, // CN.tender.enquiryPeriod?.endDate
         val tenderPeriod: String?, // CN.tender.tenderPeriod.endDate
@@ -314,7 +314,7 @@ class CNUpdateContext(
                             ) {
                                 data class Coefficient(
                                     val id: String, // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].id
-                                    val value: String/* | Double | Integer | Boolean*/, // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].value
+                                    val value: String, // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].value
                                     val coefficient: Double // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].coefficient
                                 )
                             }
@@ -370,7 +370,7 @@ class CNUpdateContext(
                     ) {
                         data class Coefficient(
                             val id: String, // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].id
-                            val value: String/* | Double | Integer | Boolean*/, // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].value
+                            val value: String, // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].value
                             val coefficient: Double // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].coefficient
                         )
                     }
@@ -415,7 +415,7 @@ class CNUpdateContext(
                     ) {
                         data class Coefficient(
                             val id: String, // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].id
-                            val value: String/* | Double | Integer | Boolean*/, // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].value
+                            val value: String, // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].value
                             val coefficient: Double // CN.tender.conversions[relatedItem = 'requirement.id'].coefficients[i].coefficient
                         )
                     }
