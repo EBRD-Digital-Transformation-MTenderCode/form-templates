@@ -295,8 +295,8 @@ class CNUpdateContext(
                             val period: Period?,
                             val dataType: String, // CN.tender.criteria[relatesTo = 'item' && relatedItem = 'item.id'].requirementGroups[i].requirements[i].dataType
                             val expectedValue: String?/* | Double | Integer | Boolean*/, // CN.tender.criteria[relatesTo = 'item' && relatedItem = 'item.id'].requirementGroups[i].requirements[i].expectedValue
-                            val minValue: Double?/* | Integer*/, // CN.tender.criteria[relatesTo = 'item' && relatedItem = 'item.id'].requirementGroups[i].requirements[i].minValue
-                            val maxValue: Double?/* | Integer*/, // CN.tender.criteria[relatesTo = 'item' && relatedItem = 'item.id'].requirementGroups[i].requirements[i].maxValue
+                            val minValue: String?, // CN.tender.criteria[relatesTo = 'item' && relatedItem = 'item.id'].requirementGroups[i].requirements[i].minValue
+                            val maxValue: String?/* | Integer*/, // CN.tender.criteria[relatesTo = 'item' && relatedItem = 'item.id'].requirementGroups[i].requirements[i].maxValue
                             val conversions: List<Conversion>?
                         ) {
                             data class Period(
@@ -351,8 +351,8 @@ class CNUpdateContext(
                     val period: Period?,
                     val dataType: String, // CN.tender.criteria[relatesTo = 'tenderer'].requirementGroups[i].requirements[i].dataType
                     val expectedValue: String?/* | Double | Integer | Boolean*/, // CN.tender.criteria[relatesTo = 'tenderer'].requirementGroups[i].requirements[i].expectedValue
-                    val minValue: Double?/* | Integer*/, // CN.tender.criteria[relatesTo = 'tenderer'].requirementGroups[i].requirements[i].minValue
-                    val maxValue: Double?/* | Integer*/, // CN.tender.criteria[relatesTo = 'tenderer'].requirementGroups[i].requirements[i].maxValue
+                    val minValue: String?, // CN.tender.criteria[relatesTo = 'tenderer'].requirementGroups[i].requirements[i].minValue
+                    val maxValue: String?, // CN.tender.criteria[relatesTo = 'tenderer'].requirementGroups[i].requirements[i].maxValue
                     val conversions: List<Conversion>?
                 ) {
                     data class Period(
@@ -396,8 +396,8 @@ class CNUpdateContext(
                     val period: Period?,
                     val dataType: String, // CN.tender.criteria[hasn't field relatesTo].requirementGroups[i].requirements[i].dataType
                     val expectedValue: String?/* | Double | Integer | Boolean*/, // CN.tender.criteria[hasn't field relatesTo].requirementGroups[i].requirements[i].expectedValue
-                    val minValue: Double?/* | Integer*/, // CN.tender.criteria[hasn't field relatesTo].requirementGroups[i].requirements[i].minValue
-                    val maxValue: Double?/* | Integer*/, // CN.tender.criteria[hasn't field relatesTo].requirementGroups[i].requirements[i].maxValue
+                    val minValue: String?, // CN.tender.criteria[hasn't field relatesTo].requirementGroups[i].requirements[i].minValue
+                    val maxValue: String?, // CN.tender.criteria[hasn't field relatesTo].requirementGroups[i].requirements[i].maxValue
                     val conversions: List<Conversion>?
                 ) {
                     data class Period(
