@@ -3840,7 +3840,7 @@
                       {% if item.itemCriteria != null %}
                         ,
                         "itemCriteria": [
-                          {% for itemCriterion in lot.itemCriteria %}
+                          {% for itemCriterion in item.itemCriteria %}
                             {% if loop.index  > 0 %},{% endif %}
                             {
                               "id": "{{ itemCriterion.id }}",
