@@ -88,7 +88,7 @@ End-points:
 - **"ocid"** :  "..." - ocid EI, FS`ы которого будут использоваться** (required)**;
 - **"procuringEntity"**: "..." -  *"buyer"* || *"thirdParty"* **(required)**;
 - **"responsibleContactPerson"**: "..." - *"buyer"* || *"thirdParty"* **(required)**;
-- **"pmd"**: "..." - *MV* || *TEST_MV* || *SV* || *TEST_SV* *"OT"* || *TEST_OT* || *"NP"* || *TEST_NP* ||*"DA"* || *TEST_DA* ||*"OP"* || *TEST_OP* **(required)**;
+- **"pmd"**: "..." - *"MV"* || *"TEST_MV"* || *"SV"* || *"TEST_SV"* || *"OT"* || *TEST_OT* || *"NP"* || *"TEST_NP"* ||*"DA"* || *"TEST_DA"* ||*"OP"* || *"TEST_OP"* **(required)**;
 - **"lang"**:  "..." - локализация формы.
 
 Шаблон response payload ноходится - *src/main/resources/templates/pn/create-pn-template.peb*
@@ -124,7 +124,7 @@ End-points:
 - **"ocid"** :  "..." - ocid EI, FS`ы которого будут использоваться** (required)**;
 - **"procuringEntity"**: "..." -  *"buyer"* || *"thirdParty"* **(required)**;
 - **"responsibleContactPerson"**: "..." - *"buyer"* || *"thirdParty"* **(required)**;
-- **"pmd"**: "..." - *MV* || *TEST_MV* || *SV* || *TEST_SV* *"OT"* || *TEST_OT* || *"NP"* || *TEST_NP* ||*"DA"* || *TEST_DA* ||*"OP"* || *TEST_OP*  **(required)**;
+- **"pmd"**: "..." - *"MV"* || *"TEST_MV"* || *"SV"* || *"TEST_SV"* || *"OT"* || *TEST_OT* || *"NP"* || *"TEST_NP"* ||*"DA"* || *"TEST_DA"* ||*"OP"* || *"TEST_OP"*  **(required)**;
 - **"lang"**:  "..." - локализация формы.
 
 Шаблон response payload ноходится - *src/main/resources/templates/cn/create-cn-template.peb*
