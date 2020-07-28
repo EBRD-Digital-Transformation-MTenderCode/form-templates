@@ -1,0 +1,158 @@
+{# @pebvariable name="context" type="com.procurement.formsservice.model.award.AwardUpdateContext" #}
+{
+{% import "../macros/translate" %}
+  "schema": {
+    "title": "{{ translate("award", "titleUpdate") }}",
+    "type": "object",
+    "required": [
+      "statusDetails"
+    ],
+    "properties": {
+      "status": {
+        "type": "object",
+        "properties": {
+          "statusDetails": {
+            "title": "{{ translate("award", "statusDetails.title") }}",
+            "type": "string",
+            "enum": [
+              "active",
+              "unsuccessful"
+            ],
+            "enumNames": [
+              "{{ translate("award", "statusDetails.enumNames[1]") }}",
+              "{{ translate("award", "statusDetails.enumNames[2]") }}"
+            ],
+            "ocds": "awards::object/statusDetails::string"
+          }
+        },
+        "dependency": {
+          "statusDetails": {
+            "oneOf": [
+              {
+                "properties": {
+                  "statusDetails": {
+                    "enum": ["active"]
+                  },
+                  "description": {
+                    "title": "{{ translate("award", "description.title") }}",
+                    "type": "string",
+                    "ocds": "awards::object/description::string"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "statusDetails": {
+                    "enum": ["unsuccessful"]
+                  },
+                  "description": {
+                    "title": "{{ translate("award", "description.title") }}",
+                    "type": "string",
+                    "enum": [
+                      "Ofertantul cade sub incidența temeiurilor de excludere",
+                      "Ofertantul nu corespunde capacității economice și financiare",
+                      "Ofertantul nu corespunde capacității tehnice şi/sau profesionale",
+                      "Ofertantul nu corespunde altor criterii de selecție",
+                      "Oferta nu corespunde documentației de atribuire",
+                      "Oferta este anormal de scăzută",
+                      "Propunerea financiară conține prețuri care nu sînt un rezultat al liberei concurențe",
+                      "Oferta este neadecvată",
+                      "Oferta este inacceptabilă",
+                      "Oferta este neconformă",
+                      "Alte temeiuri de respingere a ofertei"
+                    ],
+                    "enumNames": [
+                      "{{ translate("award", "description.enumNames[1]") }}",
+                      "{{ translate("award", "description.enumNames[2]") }}",
+                      "{{ translate("award", "description.enumNames[3]") }}",
+                      "{{ translate("award", "description.enumNames[4]") }}",
+                      "{{ translate("award", "description.enumNames[5]") }}",
+                      "{{ translate("award", "description.enumNames[6]") }}",
+                      "{{ translate("award", "description.enumNames[7]") }}",
+                      "{{ translate("award", "description.enumNames[8]") }}",
+                      "{{ translate("award", "description.enumNames[9]") }}",
+                      "{{ translate("award", "description.enumNames[10]") }}",
+                      "{{ translate("award", "description.enumNames[11]") }}"
+                    ],
+                    "ocds": "awards::object/description::string"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "documents": {
+        "title": "{{ translate("award", "documents.title") }}",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "documentId",
+            "documentType"
+          ],
+          "properties": {
+            "file": {
+              "title": "{{ translate("award", "documents.file.title") }}",
+              "type": "string"
+            },
+            "documentId": {
+              "type": "string",
+              "ocds": "awards::object/documents::array[object]/id::string"
+            },
+            "title": {
+              "title": "{{ translate("award", "documents.title.title") }}",
+              "type": "string",
+              "ocds": "awards::object/documents::array[object]/title::string"
+            },
+            "description": {
+              "title": "{{ translate("award", "documents.description.title") }}",
+              "type": "string",
+              "ocds": "awards::object/documents::array[object]/description::string"
+            },
+            "documentType": {
+              "title": "{{ translate("award", "documents.documentType.title") }}",
+              "type": "string",
+              "enum": [
+                "awardNotice",
+                "evaluationReports",
+                "shortlistedFirms",
+                "winningBid",
+                "complaints",
+                "conflictOfInterest",
+                "cancellationDetails",
+                "contractDraft",
+                "contractArrangements",
+                "contractSchedule"
+              ],
+              "enumNames": [
+                "{{ translate("award", "documentType.enumNames[1]") }}",
+                "{{ translate("award", "documentType.enumNames[2]") }}",
+                "{{ translate("award", "documentType.enumNames[3]") }}",
+                "{{ translate("award", "documentType.enumNames[4]") }}",
+                "{{ translate("award", "documentType.enumNames[5]") }}",
+                "{{ translate("award", "documentType.enumNames[6]") }}",
+                "{{ translate("award", "documentType.enumNames[7]") }}",
+                "{{ translate("award", "documentType.enumNames[8]") }}",
+                "{{ translate("award", "documentType.enumNames[9]") }}",
+                "{{ translate("award", "documentType.enumNames[10]") }}"
+              ],
+              "ocds": "awards::object/documents::array[object]/documentType::string"
+            },
+            "relatedLots": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "default": "{{ context.parameters.lotId }}",
+                "ocds": "awards::object/documents::array[object]/relatedLots::array[string]"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "data": {
+  }
+}

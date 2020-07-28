@@ -1,6 +1,0 @@
-{
-{% macro translate(key) %}
-{{ i18n("i18n/cn/messages",key) }}
-{% endmacro %}
-
-}
